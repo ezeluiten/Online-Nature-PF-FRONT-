@@ -1,6 +1,6 @@
 import style from "./Login.module.css";
 
-export default function Login() {
+export default function Login({loginFn}) {
 	return (
 		<div className={style.login}>
 			<h4> Log In </h4>
@@ -18,6 +18,10 @@ export default function Login() {
 					<button type="submit" className={style.button}>
 						Log In
 					</button>
+					<button onClick={()=>loginFn()} className={style.button}>
+						Log in with Google
+					</button>
+					
 				</div>
 				<div className={style.bcgimage}></div>
 			</div>
