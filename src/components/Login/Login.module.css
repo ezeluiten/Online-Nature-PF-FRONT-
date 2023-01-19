@@ -1,0 +1,83 @@
+.login {
+	position: absolute;
+	padding: 50px 50px;
+	text-align: center;
+	box-shadow: 3px 6px 30px 8px rgba(58 58 58 / 15%);
+	background: rgb(0, 52, 134 / 50%);
+	right: 15%;
+	bottom: 20%;
+	height: 75%;
+	border: 1px solid;
+	border-top-color: #56aaff;
+	border-left-color: #56aaff;
+	border-bottom-color: #00000030;
+	border-right-color: #00000030;
+	border-radius: 8px;
+	backdrop-filter: blur(5px);
+}
+
+.login h4 {
+	font-size: 28px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	color: #d7f52b;
+}
+
+.login p {
+	font-size: 18px;
+	color: #d7f52b;
+	margin-bottom: 100px;
+}
+
+.inputbox {
+	position: relative;
+	margin-bottom: 50px;
+}
+
+.inputbox input {
+	font-size: 24px;
+	font-weight: 400;
+	letter-spacing: 2px;
+	color: #eff9ff;
+	border: none;
+	border-bottom: 1px solid #abe0ff;
+	background-color: transparent;
+	padding: 4px 3px;
+	outline: none;
+}
+
+.inputbox span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	color: #d7f52b;
+	font-size: 14px;
+	line-height: 25px;
+	text-align: right;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.button {
+	position: relative;
+	cursor: pointer;
+	background: #c0dc20;
+	color: #022e79;
+	font-weight: 600;
+	border: none;
+	font-size: 20px;
+	padding: 18px 80px;
+	text-transform: uppercase;
+	border-radius: 50px;
+	box-shadow: 0 3px 8px 2px rgb(60 60 60 / 30%);
+	margin-top: 30px;
+	transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+	background: #cfee21;
+	box-shadow: 0 3px 8px 2px rgb(60 60 60 / 30%);
+	transition: all 0.2s ease-in-out;
+}
