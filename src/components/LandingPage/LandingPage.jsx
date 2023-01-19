@@ -28,3 +28,4 @@ export function LandingPage() {
 		</section>
 	);
 }
+
