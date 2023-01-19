@@ -1,10 +1,10 @@
-import LandingPage from "./components/LandingPage/LandingPage";
+import {Navigation} from "../src/components/routes/Navigation.jsx"
 
 function App() {
   return (
-    <div>
-      <LandingPage />
-    </div>
+    <>
+      <Navigation />
+    </>
   );
 }
 

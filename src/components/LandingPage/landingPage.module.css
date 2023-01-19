@@ -1,4 +1,44 @@
-.container {
+.container{ 
     background: rgb(16, 16, 16);
     color:rgb(255, 255, 255);
+    display:flex;
+    flex-direction: row;
 }
+
+.navigationContainer ul a{
+    text-decoration: none;
+    text-decoration-line:none;
+    text-decoration-style:none;
+    text-decoration-color:none;
+    list-style-type: none;
+    color: white;
+    cursor: pointer;
+}
+.navigationContainer li::marker {
+    unicode-bidi: none !important;
+    font-variant-numeric: none !important;
+    text-transform: none !important;
+    text-indent: none !important;
+    text-align:none !important;
+    text-align-last: none !important;
+    text-align: -webkit-match-parent;
+}
+.navigationContainer{
+    display: flex;
+    flex-direction:row;
+    text-align: center;
+    align-items:center;
+}
+
+.navigationContainer{ 
+    background: rgb(16, 16, 16);
+    color:rgb(255, 255, 255);
+    display:flex;
+    flex-direction: row;
+}
+
+.navActive a{
+    display: none;
+    
+}
+
