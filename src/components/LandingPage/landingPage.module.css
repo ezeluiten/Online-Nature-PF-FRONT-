@@ -1,44 +1,32 @@
-.container{ 
-    background: rgb(16, 16, 16);
-    color:rgb(255, 255, 255);
-    display:flex;
-    flex-direction: row;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
 }
-
-.navigationContainer ul a{
-    text-decoration: none;
-    text-decoration-line:none;
-    text-decoration-style:none;
-    text-decoration-color:none;
-    list-style-type: none;
-    color: white;
-    cursor: pointer;
+section {
+	position: relative;
+	min-height: 100vh;
+	background-image: url(https://cdn.wallpapersafari.com/26/7/uwGf1D.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
-.navigationContainer li::marker {
-    unicode-bidi: none !important;
-    font-variant-numeric: none !important;
-    text-transform: none !important;
-    text-indent: none !important;
-    text-align:none !important;
-    text-align-last: none !important;
-    text-align: -webkit-match-parent;
+.container {
+	margin: 0 14%;
 }
-.navigationContainer{
-    display: flex;
-    flex-direction:row;
-    text-align: center;
-    align-items:center;
+.promotext {
+	padding-top: 24%;
+	color: white;
+	text-shadow: 1px 1px 1px blue;
 }
-
-.navigationContainer{ 
-    background: rgb(16, 16, 16);
-    color:rgb(255, 255, 255);
-    display:flex;
-    flex-direction: row;
+.promotext h3 {
+	font-size: 6.5rem;
+	line-height: 1;
 }
-
-.navActive a{
-    display: none;
-    
+.promotext p {
+	font-size: 2.2rem;
+	font-weight: 300;
+	margin-top: 40px;
 }
-
