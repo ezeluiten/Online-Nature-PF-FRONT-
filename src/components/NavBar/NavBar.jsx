@@ -3,9 +3,9 @@ import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
 import { useAuth0 } from "@auth0/auth0-react";
-// import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
-const NavBarExample = () => {
+const NavBar = () => {
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
