@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const  getanimals = () => {
+export const  getAnimals = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get("http://localhost:3001/api/v1/animals");
@@ -17,6 +17,24 @@ export const  getanimals = () => {
     }
   };
 };
+
+export const getAnimalsById = (id) => {
+    return async function(dispatch) {
+      try{
+        const response = await axios.get(`http://localhost:3001/api/v1/animals/${id}`);
+        const data = response.data;
+        dispatch({
+          type: "GET_ANIMALS_BY_ID",
+          payload: data
+        })
+      }catch(error){
+        dispatch({
+          type: 'ERROR',
+          payload: error
+        })
+      }
+    }
+}
 
 export const getTrees = () => {
   return async function (dispatch) {
@@ -36,4 +54,20 @@ export const getTrees = () => {
   };
 };
 
-  
+export const getTreesById = (id) => {
+    return async function(dispatch) {
+      try{
+        const response = await axios.get(`http://localhost:3001/api/v1/trees/${id}`);
+        const data = response.data;
+        dispatch({
+          type: "GET_TREES_BY_ID",
+          payload: data
+        })
+      }catch(error){
+        dispatch({
+          type: 'ERROR',
+          payload: error
+        })
+      }
+    }
+}
