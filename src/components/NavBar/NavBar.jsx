@@ -6,7 +6,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
 const NavBar = () => {
-  const { logout } = useAuth0();
+  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+  
   return (
     <>
       <div className={styles.container}>
@@ -46,16 +47,9 @@ const NavBar = () => {
           </NavLink>
           <HiShoppingCart className={styles.cart} />
           <button className={styles.button}>DONATE</button>
-          <button
-            onClick={() =>
-              logout({
-                returnTo: window.location.origin,
-              })
-            }
-            className={styles.button}
-          >
-            Log out
-          </button>
+          {
+            !isAuthenticated ? <button className={styles.button} onClick={()=>loginWithRedirect()}>log in</button>:<button onClick={() =>logout()}className={styles.button}> Log out</button>
+          }
         </div>
       </div>
       {/* <Navbar bg="light" expand="lg">

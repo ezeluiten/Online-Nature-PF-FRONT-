@@ -19,7 +19,7 @@ export const Navigation = () => {
         <div className="main-layout">
           <NavLink to={"/home"}></NavLink>
           <Routes>
-            <Route path="home" element={<Profile />}></Route>
+            <Route path="home" element={<Home />}></Route>
             <Route path="/" element={<LandingPage />}></Route>
             <Route path="/*" element={<Navigate to={"/"} replace />}></Route>
           </Routes>

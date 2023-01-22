@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export function LandingPage() {
 
-  const {loginWithRedirect} = useAuth0()
 
   return (
     <section>
@@ -14,7 +13,6 @@ export function LandingPage() {
           <h3> Welcome </h3>
           <h3> Back </h3>
           <p> NATURE ONLINE </p>
-          <button onClick={()=>loginWithRedirect()}>log in</button>
         </div>
       </div>
     </section>
