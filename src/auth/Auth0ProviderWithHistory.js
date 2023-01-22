@@ -6,13 +6,14 @@ export const Auth0ProviderWithHistory = ({children}) => {
 
   const history = useNavigate();
   const domain = process.env.REACT_APP_AUTH0_DOMAIN
-  console.log("🚀 ~ file: Auth0ProviderWithHistory.js:9 ~ Auth0ProviderWithHistory ~ domain", domain, process.env)
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
-  console.log("🚀 ~ file: Auth0ProviderWithHistory.js:11 ~ Auth0ProviderWithHistory ~ clientId", clientId)
 
   const onRedirectCallback = (appState)=>{
-    history.push(appState?.returnTo || window.location.pathname)
+    console.log(window.location.pathname, appState?.returnTo, "retorno")
+    history("/home")
   }
+
+
 
   return (
     <Auth0Provider

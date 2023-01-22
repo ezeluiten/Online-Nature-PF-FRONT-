@@ -6,8 +6,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export function LandingPage() {
 
-	const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0()
-	console.log("🚀 ~ file: LandingPage.jsx:10 ~ LandingPage ~ isAuthenticated", isAuthenticated, user)
+	const { loginWithRedirect, logout} = useAuth0()
+	
 
 	return (
 		<section>
