@@ -1,7 +1,11 @@
 import React from "react";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import styles from "./NavBar.module.css";
+import { NavLink } from "react-router-dom";
+import { HiShoppingCart } from "react-icons/hi";
+import { useAuth0 } from "@auth0/auth0-react";
+// import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
-const NavBar = () => {
+const NavBarExample = () => {
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
@@ -11,7 +15,6 @@ const NavBar = () => {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
 							<Nav.Link href="#inicio">Inicio</Nav.Link>
-							<Nav.Link href="/home">Home</Nav.Link>
 							<Nav.Link href="/Adopcioness">Adopciones</Nav.Link>
 							<NavDropdown title="Registro" id="basic-nav-dropdown">
 								<NavDropdown.Item href="#registrarse">

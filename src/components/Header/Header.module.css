@@ -1,0 +1,13 @@
+.header img {
+  width: 100%;
+  width: 100%;
+}
+
+.degradado {
+  font-family: "Courier New", Courier, monospace;
+  position: absolute;
+  color: #fffbff;
+  z-index: 0;
+  width: 50%;
+  margin-top: 10%;
+}
