@@ -12,18 +12,16 @@ function CarouselFadeExample() {
       <Carousel.Item>
         <img className={style.imagen} src={img1} alt="First slide" />
         <Carousel.Caption>
-          <div className={style.container}>
-            <img className={style.logo} src={logo} alt="img_logo" />
-            <h3>First slide label</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-              quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-              voluptates temporibus a.
-            </p>
-            <button onClick={() => navigate("/login")} className={style.boton}>
-              WELCOME
-            </button>
-          </div>
+          <img className={style.logo} src={logo} alt="img_logo" />
+          <h3>First slide label</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+            quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
+            voluptates temporibus a.
+          </p>
+          <button onClick={() => navigate("/login")} className={style.boton}>
+            WELCOME
+          </button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
