@@ -19,3 +19,9 @@
 .boton:hover {
   background-color: hsla(124, 20%, 42%, 0.8);
 }
+
+.container {
+  background-color: hwb(206 7% 90% / 0.5);
+  padding: 30px;
+  border-radius: 40%;
+}
