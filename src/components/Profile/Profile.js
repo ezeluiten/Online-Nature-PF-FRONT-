@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Profile = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, logout } = useAuth0();
   console.log(
     "🚀 ~ file: Profile.js:8 ~ Profile ~ isAuthenticated, user",
     isAuthenticated,
@@ -21,6 +21,7 @@ export const Profile = () => {
     <div>
       <img src={user.picture} />
       <p>{user.name}</p>
+      <button onClick={logout}>log out</button>
     </div>
   );
 };

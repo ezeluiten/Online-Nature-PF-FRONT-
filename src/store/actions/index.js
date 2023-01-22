@@ -1,81 +1,53 @@
-import axios from 'axios';
-import { response } from 'express';
+import axios from "axios";
+import { useSelector } from "react-redux";
 
-export function getAnimals(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/animals');
-        return dispatch({
-            type: "GET_ANIMALS",
-            payload: response.data
-        })
+export const  getAnimals = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/api/v1/animals");
+      console.log(response.data);
+      dispatch({
+        type: "GET_ANIMALS",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
     }
-}
+  };
+};
 
-export function getClients(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/clients');
-        return dispatch({
-            type: "GET_CLIENTS",
-            payload: response.data
-        })
+export const getTrees = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("http://localhost:3001/api/v1/trees");
+      console.log(response.data);
+      dispatch({
+        type: "GET_TREES",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
     }
-}
+  };
+};
 
-export function getTrees(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/Trees');
-        return dispatch({
-            type: "GET_TREES",
-            payload: response.data
-        })
-    }
-}
+export const setOpenModal = (isOpen) => {
+  console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
+  const setIsOpen = !isOpen
+  console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
+  return async function (dispatch) {
+    dispatch({
+      type: "MODAL_GATE",
+      payload: setIsOpen
+    })
+  };
 
-export function getSpecies(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/Species');
-        return dispatch({
-            type: "GET_SPECIES",
-            payload: response.data
-        })
-    }
-}
-
-export function getOrgs(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/Orgs');
-        return dispatch({
-            type: "GET_ORGS",
-            payload: response.data
-        })
-    }
-}
-
-export function getPublications(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/Publications');
-        return dispatch({
-            type: "GET_PUBLICATIONS",
-            payload: response.data
-        })
-    }
-}
-
-export function getDonations(){
-    return async function (dispatch){
-        response = await axios.get('http://localhost:3000/api/v1/Donations');
-        return dispatch({
-            type: "GET_DONATIONS",
-            payload: response.data
-        })
-    }
-}
-
-export function orderByName(payload){
-    return {
-      type: "ORDER_BY_NAME",
-      payload
-    }
-  }
+};
 
   
