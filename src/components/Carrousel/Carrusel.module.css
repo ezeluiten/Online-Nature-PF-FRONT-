@@ -1,0 +1,27 @@
+.imagen {
+  height: 100vh;
+  width: 210vh;
+}
+
+.logo {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 100px;
+}
+
+.boton {
+  background-color: #568259;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border-color: transparent;
+}
+
+.boton:hover {
+  background-color: hsla(124, 20%, 42%, 0.8);
+}
+
+.container {
+  background-color: hwb(206 7% 90% / 0.5);
+  padding: 30px;
+  border-radius: 40%;
+}
