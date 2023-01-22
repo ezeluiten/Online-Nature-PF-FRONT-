@@ -1,7 +1,18 @@
-import React from 'react'
+import React from "react";
+import style from "./Home.module.css";
+import NavBar from "../NavBar/NavBar";
+import Header from "../Header/Header";
+const img = require("../../imagenes/header-home.jpg");
 
 export const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <NavBar />
+      <Header
+        imagen={img}
+        text="We have suffered an alarming loss of biodiversity in recent
+            decades..."
+      />
+    </>
+  );
+};
