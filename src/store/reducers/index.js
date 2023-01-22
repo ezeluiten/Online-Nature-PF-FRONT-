@@ -1,22 +1,34 @@
 const initialState = {
     animals: [],
     allanimals:[],
-    trees:[]
+    trees:[],
+    animalDetail: {},
+    treeDetail: {}
 };
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-      case "GET_ANIMALS":
-        return {
-          ...state,
-          animals: action.payload,
-          allanimals: action.payload,
+        case "GET_ANIMALS":
+            return {
+                ...state,
+                animals: action.payload,
+                allanimals: action.payload,
         };
-      case "GET_TREES":
+        case 'GET_ANIMALS_BY_ID':
           return {
-            ...state,
-            trees: action.payload,
+                ...state,
+                animalDetail: action.payload
+        }
+        case "GET_TREES":
+            return {
+                ...state,
+                trees: action.payload,
           }
+        case 'GET_ANIMALS_BY_ID':
+            return {
+                  ...state,
+                  treeDetail: action.payload
+        }
       default:
         return { ...state };
     }
