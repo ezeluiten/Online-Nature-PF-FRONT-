@@ -1,5 +1,4 @@
 import style from "./Login.module.css";
-
 export default function Login({loginFn}) {
 	return (
 		<div className={style.login}>
@@ -25,6 +24,6 @@ export default function Login({loginFn}) {
 				</div>
 				<div className={style.bcgimage}></div>
 			</div>
-		</div>
+		</div>	
 	);
 }
