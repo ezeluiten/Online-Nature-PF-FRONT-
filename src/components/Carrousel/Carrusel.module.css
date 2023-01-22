@@ -1,21 +1,32 @@
 .imagen {
   height: 100vh;
-  width: 210vh;
+  width: 100%;
 }
 
 .logo {
   width: 300px;
-  height: 300px;
+}
+
+.containeImg {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+  width: 100%;
+  background-color: transparent;
   margin-bottom: 100px;
 }
 
-.boton {
-  background-color: #568259;
-  border-radius: 10px;
-  padding: 5px 10px;
-  border-color: transparent;
+.subContaineImg {
+  width: 40%;
+  padding: 15px;
+  transition: all 1s;
 }
 
-.boton:hover {
-  background-color: hsla(124, 20%, 42%, 0.8);
+.subContaineImg:hover {
+  transition: all 1s;
+  transform: scale(1.1);
+  background-color: #56825943;
+  border-radius: 20px;
 }

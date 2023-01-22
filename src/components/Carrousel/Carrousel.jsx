@@ -12,48 +12,66 @@ function CarouselFadeExample() {
       <Carousel.Item>
         <img className={style.imagen} src={img1} alt="First slide" />
         <Carousel.Caption>
-          <img className={style.logo} src={logo} alt="img_logo" />
+          <div
+            className={style.containeImg}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            <div className={style.subContaineImg}>
+              <img className={style.logo} src={logo} alt="img_logo" />
+            </div>
+          </div>
           <h3>First slide label</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
             quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
             voluptates temporibus a.
           </p>
-          <button onClick={() => navigate("/login")} className={style.boton}>
-            WELCOME
-          </button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img className={style.imagen} src={img2} alt="Second slide" />
 
         <Carousel.Caption>
-          <img className={style.logo} src={logo} alt="img_logo" />
+          <div
+            className={style.containeImg}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            <div className={style.subContaineImg}>
+              <img className={style.logo} src={logo} alt="img_logo" />
+            </div>
+          </div>
           <h3>Second slide label</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
             quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
             voluptates temporibus a.
           </p>
-          <button onClick={() => navigate("/login")} className={style.boton}>
-            WELCOME
-          </button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img className={style.imagen} src={img3} alt="Third slide" />
 
         <Carousel.Caption>
-          <img className={style.logo} src={logo} alt="img_logo" />
+          <div
+            className={style.containeImg}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            <div className={style.subContaineImg}>
+              <img className={style.logo} src={logo} alt="img_logo" />
+            </div>
+          </div>
           <h3>Third slide label</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
             quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
             voluptates temporibus a.
           </p>
-          <button onClick={() => navigate("/login")} className={style.boton}>
-            WELCOME
-          </button>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
