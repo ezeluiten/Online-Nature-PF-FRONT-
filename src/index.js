@@ -13,10 +13,10 @@ root.render(
       clientId="nfR8JrcLD4Uz3kRybl8cv8EGj41YC7W3"
       redirectUri={window.location.origin}
     > */}
-      <Navigation>
+      
 
-          <App />
-      </Navigation>
+          <App/>
+      
     {/* </Auth0Provider> */}
   </React.StrictMode>
 );
