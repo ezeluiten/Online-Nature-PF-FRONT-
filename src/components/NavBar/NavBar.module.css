@@ -43,6 +43,7 @@
 .link:hover {
   transition-duration: all 1s;
   color: #a8cf45;
+  text-decoration: none;
 }
 
 .navActivety {
