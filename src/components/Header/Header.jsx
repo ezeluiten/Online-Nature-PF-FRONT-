@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 
 const Header = (props) => {
-  const imagen = props.imagen;
-  const text = props.text;
+  const { imagen, text } = props;
   return (
     <>
       <div className={styles.header}>

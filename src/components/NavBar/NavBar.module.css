@@ -72,6 +72,5 @@
 
 .button:hover {
   transition: all 1s;
-  background-color: transparent;
-  border-color: #ea4335;
+  background-color: hsla(5, 81%, 56%, 0.8);
 }
