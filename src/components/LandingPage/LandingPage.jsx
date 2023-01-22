@@ -1,7 +1,11 @@
 import style from "./landingPage.module.css";
 import NavBar from "../NavBar/NavBar";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export default function LandingPage() {
+export function LandingPage() {
+
+  const {loginWithRedirect} = useAuth0()
+
   return (
     <section>
       <NavBar />
@@ -10,6 +14,7 @@ export default function LandingPage() {
           <h3> Welcome </h3>
           <h3> Back </h3>
           <p> NATURE ONLINE </p>
+          <button onClick={()=>loginWithRedirect()}>log in</button>
         </div>
       </div>
     </section>
