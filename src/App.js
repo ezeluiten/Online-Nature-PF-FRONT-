@@ -7,7 +7,6 @@ import { Home } from './components/Home/Home.jsx';
 function App() {
   return (
     // <Route path="/" element={<Dashboard />}>
-    
     <BrowserRouter>
     <Routes>
     <Route exact path = '/detail/:id' element={<Detail/>}/>
