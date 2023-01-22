@@ -1,11 +1,10 @@
 import style from "./landingPage.module.css";
-// import { useAuth0 } from "@auth0/auth0-react";
+import NavBar from "../NavBar/NavBar";
 
-export function LandingPage() {
-  // const { loginWithRedirect, logout } = useAuth0();
-
+export default function LandingPage() {
   return (
     <section>
+      <NavBar />
       <div className={style.container}>
         <div className={style.promotext}>
           <h3> Welcome </h3>
@@ -13,19 +12,6 @@ export function LandingPage() {
           <p> NATURE ONLINE </p>
         </div>
       </div>
-      {/* boton pasado a componente NavBar */}
-      {/* <button
-        onClick={() =>
-          logout({
-            returnTo: window.location.origin,
-          })
-        }
-        className={styles.button}
-      >
-        Log out
-      </button> */}
-      {/* boton pasado a conponente Login */}
-      {/* // <Login loginFn={loginWithRedirect} /> */}
     </section>
   );
 }
