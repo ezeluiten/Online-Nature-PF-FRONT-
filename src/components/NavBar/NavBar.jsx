@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 
-const NavBarExample = () => {
+const NavBar = () => {
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
@@ -11,6 +11,7 @@ const NavBarExample = () => {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
 							<Nav.Link href="#inicio">Inicio</Nav.Link>
+							<Nav.Link href="/home">Home</Nav.Link>
 							<Nav.Link href="/Adopcioness">Adopciones</Nav.Link>
 							<NavDropdown title="Registro" id="basic-nav-dropdown">
 								<NavDropdown.Item href="#registrarse">
@@ -29,4 +30,4 @@ const NavBarExample = () => {
 	);
 };
 
-export default NavBarExample;
+export default NavBar;
