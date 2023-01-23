@@ -27,7 +27,7 @@ We have suffered an alarming loss of biodiversity in recent decades...
 "
       />
       <CardsHome />
-      <Campaing/>
+      {/* <Campaing/> */}
       <ModalCashierPortal onClose={handleClose}/>
     </>
   );
