@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar.jsx';
 import LandingPage from './components/LandingPage/LandingPage.jsx';
-import Detail  from './components/detail/detail.jsx';
+import Detail  from './components/detail/AnimalDetail/AnimalDetail.jsx';
 import { Home } from './components/Home/Home.jsx';
 import { Navigation } from "./components/routes/Navigation"
 function App() {
@@ -19,7 +19,6 @@ function App() {
     //   </Routes>
     // </BrowserRouter>
       
-    
   );
 }
 
