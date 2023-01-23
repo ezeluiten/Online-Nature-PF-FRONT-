@@ -18,6 +18,7 @@ export const Campaing = () => {
   const animals = useSelector((state) => state.animals);
   const isModalOpen = useSelector((state) => state.isModalOpen);
   const trees = useSelector((state) => state.trees);
+  console.log("🚀 ~ file: Campaing.js:21 ~ Campaing ~ trees",animals, trees)
 
   useEffect(() => {
     dispatch(getAnimals());
@@ -27,11 +28,6 @@ export const Campaing = () => {
   const img = require("../../imagenes/header-home.jpg");
   return (
     <>
-      <NavBar />
-      <Header
-        imagen={img}
-        text="We have suffered an alarming loss of biodiversity in recent decades..."
-      />
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
@@ -47,19 +43,17 @@ export const Campaing = () => {
                     </Card>
               );
             })}          
-        </CardContainer>
 
-        <CardContainer>
           {trees?.map((trees) => {
               return (
                 <Card key={trees.title}>
-                        <img src={trees.image}/>
-                        <CardLabel>
-                            <h3>{trees.title}</h3>
-                            <p>{trees.amount}</p>
-                            <button className='donate-button' onClick={()=>dispatch(setOpenModal(isModalOpen))}>Donate</button>
-                        </CardLabel>
-                    </Card>
+                  <img src={trees.image}/>
+                  <CardLabel>
+                      <h3>{trees.title}</h3>
+                      <p>{trees.amount}</p>
+                      <button className='donate-button' onClick={()=>dispatch(setOpenModal(isModalOpen))}>Donate</button>
+                  </CardLabel>
+                </Card>
               );
             })}
         </CardContainer>
