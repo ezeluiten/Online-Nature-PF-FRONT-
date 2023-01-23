@@ -7,7 +7,7 @@ import { Navigation } from "./components/routes/Navigation"
 import axios from "axios"
 
 // axios.defaults.baseURL = "http://localhost:3001/api/v1" 
-axios.defaults.baseURL = "https://craven-sign-production.up.railway.app/"
+axios.defaults.baseURL = "https://craven-sign-production.up.railway.app/api/v1/"
 
 function App() {
   return (
