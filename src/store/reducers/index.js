@@ -1,7 +1,9 @@
 const initialState = {
     animals: [],
     allanimals:[],
-    trees:[]
+    trees:[],
+    animalDetail: {},
+    treeDetail: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,11 +13,27 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           animals: action.payload,
           allanimals: action.payload,
+          
         };
-      case "GET_TREES":
+        case 'GET_ANIMALS_BY_ID':
+          return {
+                ...state,
+                animalDetail: action.payload
+        }
+        case "GET_TREES":
+            return {
+                ...state,
+                trees: action.payload,
+          }
+        case 'GET_ANIMALS_BY_ID':
+            return {
+                  ...state,
+                  treeDetail: action.payload
+        }
+      case "MODAL_GATE":
           return {
             ...state,
-            trees: action.payload,
+            isModalOpen: action.payload
           }
       default:
         return { ...state };

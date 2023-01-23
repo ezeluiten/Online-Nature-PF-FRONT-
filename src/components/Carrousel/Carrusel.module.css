@@ -1,0 +1,32 @@
+.imagen {
+  height: 100vh;
+  width: 100%;
+}
+
+.logo {
+  width: 300px;
+}
+
+.containeImg {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+  width: 100%;
+  background-color: transparent;
+  margin-bottom: 100px;
+}
+
+.subContaineImg {
+  width: 40%;
+  padding: 15px;
+  transition: all 1s;
+}
+
+.subContaineImg:hover {
+  transition: all 1s;
+  transform: scale(1.1);
+  background-color: #56825943;
+  border-radius: 20px;
+}
