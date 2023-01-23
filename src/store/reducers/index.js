@@ -8,11 +8,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "GET_ANIMALS":
-            return {
-                ...state,
-                animals: action.payload,
-                allanimals: action.payload,
+      case "GET_ANIMALS":
+        return {
+          ...state,
+          animals: action.payload,
+          allanimals: action.payload,
+          
         };
         case 'GET_ANIMALS_BY_ID':
           return {
@@ -29,6 +30,11 @@ const rootReducer = (state = initialState, action) => {
                   ...state,
                   treeDetail: action.payload
         }
+      case "MODAL_GATE":
+          return {
+            ...state,
+            isModalOpen: action.payload
+          }
       default:
         return { ...state };
     }

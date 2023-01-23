@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export const  getAnimals = () => {
   return async function (dispatch) {
@@ -53,6 +54,20 @@ export const getTrees = () => {
     }
   };
 };
+
+export const setOpenModal = (isOpen) => {
+  console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
+  const setIsOpen = !isOpen
+  console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
+  return async function (dispatch) {
+    dispatch({
+      type: "MODAL_GATE",
+      payload: setIsOpen
+    })
+  };
+
+};
+
 
 export const getTreesById = (id) => {
     return async function(dispatch) {
