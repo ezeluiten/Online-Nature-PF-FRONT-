@@ -4,13 +4,12 @@ import { StoreCampaingContainer, FiltersContainer,CardLabel, Card, CardContainer
 import { getAnimals, getTrees } from "./../../store/actions"
 import { setOpenModal } from "../../store/actions"
 
+
 export const Campaing = () => {
 
     const dispatch = useDispatch();
     const animals = useSelector((state) => state.animals);
     const isModalOpen = useSelector((state) => state.isModalOpen);
-    console.log("🚀 ~ file: Campaing.js:12 ~ Campaing ~ isModalOpen", isModalOpen)
-    
     const trees = useSelector((state) => state.trees);
     console.log("🚀 ~ file: Campaing.js:10 ~ Campaing ~ animals", trees, animals)
     
@@ -35,7 +34,7 @@ export const Campaing = () => {
                         <CardLabel>
                             <h3>{animal.title}</h3>
                             <p>{animal.amount}</p>
-                            <button className='donate-button' onClick={()=>setOpenModal(isModalOpen)}>Donate</button>
+                            <button className='donate-button' onClick={()=>dispatch(setOpenModal(isModalOpen))}>Donate</button>
                         </CardLabel>
                     </Card>
             )
