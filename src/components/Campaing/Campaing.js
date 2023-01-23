@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   StoreCampaingContainer,
   FiltersContainer,
@@ -44,7 +45,9 @@ export const Campaing = () => {
             {animals?.map((animal) => {
               return (
                 <Card key={animal.title}>
-                  <img src={animal.image} />
+                    <Link to={`/campaign/`}>
+                        <img src={animal.image} />
+                    </Link>
                   <CardLabel>
                     <h3>{animal.title}</h3>
                     <p>{animal.amount}</p>
@@ -64,7 +67,9 @@ export const Campaing = () => {
           {trees?.map((trees) => {
               return (
                 <Card key={trees.title}>
-                  <img src={trees.image} />
+                    <Link to={`/campaign/`}>
+                        <img src={trees.image} />
+                    </Link>
                   <CardLabel>
                     <h3>{trees.title}</h3>
                     <p>{trees.amount}</p>
