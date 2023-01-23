@@ -15,7 +15,7 @@ function CarouselFadeExample() {
           <div
             className={style.containeImg}
             onClick={() => {
-              navigate("/login");
+              navigate("/home");
             }}
           >
             <div className={style.subContaineImg}>
@@ -37,7 +37,7 @@ function CarouselFadeExample() {
           <div
             className={style.containeImg}
             onClick={() => {
-              navigate("/login");
+              navigate("/home");
             }}
           >
             <div className={style.subContaineImg}>
@@ -59,7 +59,7 @@ function CarouselFadeExample() {
           <div
             className={style.containeImg}
             onClick={() => {
-              navigate("/login");
+              navigate("/home");
             }}
           >
             <div className={style.subContaineImg}>

@@ -58,7 +58,7 @@ export const getTrees = () => {
 export const setOpenModal = (isOpen) => {
   console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
   const setIsOpen = !isOpen
-  console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
+  console.log("🚀 ~ file: index.js:43 ~ setOpenModal ~ isOpen", isOpen, setIsOpen)
   return async function (dispatch) {
     dispatch({
       type: "MODAL_GATE",
