@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export const  getAnimals = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/api/v1/animals");
+      const response = await axios.get("/animals");
       console.log(response.data);
       dispatch({
         type: "GET_ANIMALS",
@@ -19,10 +19,29 @@ export const  getAnimals = () => {
   };
 };
 
+
+export const getAnimalsById = (id) => {
+    return async function(dispatch) {
+      try{
+        const response = await axios.get(`/animals/${id}`);
+        const data = response.data;
+        dispatch({
+          type: "GET_ANIMALS_BY_ID",
+          payload: data
+        })
+      }catch(error){
+        dispatch({
+          type: 'ERROR',
+          payload: error
+        })
+      }
+    }
+}
+
 export const getTrees = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/api/v1/trees");
+      const response = await axios.get("/trees");
       console.log(response.data);
       dispatch({
         type: "GET_TREES",
@@ -40,7 +59,7 @@ export const getTrees = () => {
 export const setOpenModal = (isOpen) => {
   console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
   const setIsOpen = !isOpen
-  console.log("🚀 ~ file: index.js:41 ~ setOpenModal ~ isOpen", isOpen)
+  console.log("🚀 ~ file: index.js:43 ~ setOpenModal ~ isOpen", isOpen, setIsOpen)
   return async function (dispatch) {
     dispatch({
       type: "MODAL_GATE",
@@ -50,4 +69,21 @@ export const setOpenModal = (isOpen) => {
 
 };
 
-  
+
+export const getTreesById = (id) => {
+    return async function(dispatch) {
+      try{
+        const response = await axios.get(`/trees/${id}`);
+        const data = response.data;
+        dispatch({
+          type: "GET_TREES_BY_ID",
+          payload: data
+        })
+      }catch(error){
+        dispatch({
+          type: 'ERROR',
+          payload: error
+        })
+      }
+    }
+}
