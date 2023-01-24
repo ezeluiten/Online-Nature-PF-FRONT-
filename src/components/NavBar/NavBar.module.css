@@ -13,6 +13,7 @@
   justify-content: space-around;
   align-items: center;
   z-index: 10;
+  padding: 5px;
 }
 
 .logo {
@@ -71,7 +72,56 @@
   transition: all 1s;
 }
 
+.navBtn {
+  padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	/* color: var(red); */
+	visibility: hidden;
+	opacity: 0;
+	font-size: 1.8rem;
+}
+
 .button:hover {
   transition: all 1s;
   background-color: hsla(5, 81%, 56%, 0.8);
+}
+
+@media only screen and (max-width: 600px) {
+  .container, .navBtn{
+    visibility: visible;
+		opacity: 1;
+  }
+
+  .links{
+    position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		background-color: var(--mainColor);
+		transition: 1s;
+		transform: translateY(-100vh);
+  }
+
+  .container, .responsive_nav{
+    transform: none;
+  }
+
+  .links, .navCloseBtn {
+    position: absolute;
+		top: 2rem;
+		right: 2rem;
+  }
+
+  .links, .a {
+    font-size: 1.5rem;
+  }
 }

@@ -10,4 +10,18 @@
   z-index: 0;
   width: 50%;
   margin-top: 10%;
+  padding: 2rem;
+}
+
+@media only screen and (max-width: 600px){
+  
+  .header img {
+    object-fit: cover;
+    height: 18rem;
+  }
+
+  .degradado {
+    padding-top: 0;
+    margin-top: 20px;
+  }
 }
