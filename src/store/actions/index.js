@@ -68,6 +68,16 @@ export const setOpenModal = (isOpen) => {
   };
 
 };
+export const setOpenModalNavBar = (isOpen) => {
+  const setIsOpen = !isOpen
+  return async function (dispatch) {
+    dispatch({
+      type: "MODAL_NAV",
+      payload: setIsOpen
+    })
+  };
+
+};
 
 
 export const getTreesById = (id) => {

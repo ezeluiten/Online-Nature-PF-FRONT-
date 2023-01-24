@@ -3,7 +3,9 @@ const initialState = {
     allanimals:[],
     trees:[],
     animalDetail: {},
-    treeDetail: {}
+    treeDetail: {},
+    isModalCashierOpen:false,
+    isModalNavBarOpen:false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -31,11 +33,17 @@ const rootReducer = (state = initialState, action) => {
               treeDetail: action.payload
             }
             case "MODAL_GATE":
+              
+              return {
+            ...state,
+            isModalCashierOpen: action.payload
+          }
+            case "MODAL_NAV":
               console.log("🚀 ~ file: index.js:28 ~ rootReducer ~ action.payload", action.payload)
               
               return {
             ...state,
-            isModalOpen: action.payload
+            isModalNavBar: action.payload
           }
       default:
         return { ...state };
