@@ -95,7 +95,7 @@
 		opacity: 1;
   }
 
-  .links{
+  .container .links{
     position: fixed;
 		top: 0;
 		left: 0;
@@ -106,12 +106,12 @@
 		align-items: center;
 		justify-content: center;
 		gap: 1.5rem;
-		background-color: var(--mainColor);
+		background-color: #568259;
 		transition: 1s;
 		transform: translateY(-100vh);
   }
 
-  .container, .responsive_nav{
+  .container, .responsiveNav{
     transform: none;
   }
 
