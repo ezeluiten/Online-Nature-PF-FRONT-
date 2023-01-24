@@ -8,16 +8,17 @@ import * as ReactDOM from "react-dom"
 
 const ModalCashier = ({children, onClose}) => {
     const dispatch = useDispatch()
-    const isModalOpen = useSelector(state=>state.isModalOpen)
+    const isModalOpen = useSelector(state=>state.isModalCashierOpen)
+    console.log("🚀 ~ file: ModalCashier.js:12 ~ ModalCashier ~ isModalOpen", isModalOpen)
     if(isModalOpen){
 
         return (
-            <ModalContainer className='modal-cashier' isOpen={isModalOpen}>
+            <ModalContainer className='modal-cashier' >
                 <ModalBody>
                     <div className='header-cart'>
                         
                     </div>
-                    <div className='button-close' onClick={()=>onClose()}>{<IoCloseCircleOutline/>}</div>
+                    <div className='button-close' onClick={()=>onClose(isModalOpen)}>{<IoCloseCircleOutline/>}</div>
                     <div className='modal-content'>
                         {children}
 
@@ -29,7 +30,8 @@ const ModalCashier = ({children, onClose}) => {
     
 }
 
-export const ModalCashierPortal = ({children, onClose})=>{
+export const ModalCashierPortal = ({children, onClose}) => {
+    console.log("🚀 ~ file: ModalCashier.js:34 ~ ModalCashierPortal ~ onClose", onClose)
 
     return( ReactDOM.createPortal(
         <ModalCashier onClose={onClose}>

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export const  getAnimals = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/api/v1/animals");
+      const response = await axios.get("/animals");
       console.log(response.data);
       dispatch({
         type: "GET_ANIMALS",
@@ -19,10 +19,11 @@ export const  getAnimals = () => {
   };
 };
 
+
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
       try{
-        const response = await axios.get(`http://localhost:3001/api/v1/animals/${id}`);
+        const response = await axios.get(`/animals/${id}`);
         const data = response.data;
         dispatch({
           type: "GET_ANIMALS_BY_ID",
@@ -40,7 +41,7 @@ export const getAnimalsById = (id) => {
 export const getTrees = () => {
   return async function (dispatch) {
     try {
-      const response = await axios.get("http://localhost:3001/api/v1/trees");
+      const response = await axios.get("/trees");
       console.log(response.data);
       dispatch({
         type: "GET_TREES",
@@ -67,12 +68,22 @@ export const setOpenModal = (isOpen) => {
   };
 
 };
+export const setOpenModalNavBar = (isOpen) => {
+  const setIsOpen = !isOpen
+  return async function (dispatch) {
+    dispatch({
+      type: "MODAL_NAV",
+      payload: setIsOpen
+    })
+  };
+
+};
 
 
 export const getTreesById = (id) => {
     return async function(dispatch) {
       try{
-        const response = await axios.get(`http://localhost:3001/api/v1/trees/${id}`);
+        const response = await axios.get(`/trees/${id}`);
         const data = response.data;
         dispatch({
           type: "GET_TREES_BY_ID",

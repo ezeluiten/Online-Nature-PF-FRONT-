@@ -24,6 +24,7 @@ export const StoreCampaingContainer = styled.div`
 
 `
 export const Card = styled.div`
+    
     display:flex;
     flex-direction:column;
     gap:20px;
@@ -35,6 +36,9 @@ export const Card = styled.div`
     border-radius:20px;
     overflow:hidden;
     border-color:#dee2e6;
+
+    transform: scale(var(--escala, 1));
+    transition: transform 0.25s;
     h3{
         font-size:1.5rem
         
@@ -43,6 +47,20 @@ export const Card = styled.div`
         object-fit:cover;
         width:100%;
         height:192px
+    }
+
+    &:hover {
+        cursor:pointer;
+        --escala: 1.1;
+        cursor:pointer;
+    }
+    .button {
+        color: #fffbff;
+        border-radius: 10px;
+        padding: 5px 15px 5px 15px;
+        background-color: #ea4335;
+        border-color: transparent;
+        transition: all 1s;
     }
     @media (max-width: 600px) {
         width:100%
