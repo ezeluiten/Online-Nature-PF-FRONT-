@@ -7,19 +7,11 @@ import { Navigation } from "./components/routes/Navigation"
 import axios from "axios"
 
 axios.defaults.baseURL = "http://localhost:3001/api/v1" 
-// axios.defaults.baseURL = "https://craven-sign-production.up.railway.app/"
+// axios.defaults.baseURL = "https://craven-sign-production.up.railway.app/api/v1/"
 
 function App() {
   return (
-    // <Route path="/" element={<Dashboard />}>
     <Navigation/>
-    // <BrowserRouter>
-    // <Routes>
-    // <Route exact path = '/detail/:id' element={<Detail/>}/>
-    //   <Route exact path = '/home' element={<Home/>}/>
-    //   <Route exact path = '/' element = {<LandingPage/>}/>
-    //   </Routes>
-    // </BrowserRouter>
   );
 }
 

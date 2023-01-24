@@ -19,6 +19,7 @@ export const  getAnimals = () => {
   };
 };
 
+
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
       try{
