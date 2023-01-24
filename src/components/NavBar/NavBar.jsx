@@ -7,10 +7,15 @@ import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import './NavBar.module.css'
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenModal } from "../../store/actions";
+
 
 const NavBar = () => {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
   
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
   const navRef = useRef();
 
 	const showNavbar = () => {
@@ -66,8 +71,8 @@ const NavBar = () => {
           </NavLink>
           </div>
           
-          <HiShoppingCart className={styles.cart} />
-          <button className={styles.button}>DONATE</button>
+          <HiShoppingCart className={styles.cart} onClick={() =>  dispatch(setOpenModal(isModalOpen))} />
+          <button className={styles.button} onClick={() =>  dispatch(setOpenModal(isModalOpen))}>DONATE</button>
           {
             !isAuthenticated ? <button className={styles.button} onClick={()=>loginWithRedirect()}>log in</button>:<button onClick={() =>logout()}className={styles.button}> Log out</button>
           }
