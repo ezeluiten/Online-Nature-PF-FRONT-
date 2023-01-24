@@ -12,13 +12,16 @@ import { getAnimals, getTrees } from "./../../store/actions";
 import { setOpenModal } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Campaing = () => {
+
+  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+  console.log("🚀 ~ file: Campaing.js:19 ~ Campaing ~ isAuthenticated", isAuthenticated)
+
   const dispatch = useDispatch();
   const animals = useSelector((state) => state.animals);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  console.log( "🚀 ~ file: Campaing.js:12 ~ Campaing ~ isModalOpen", isModalOpen );
-
   const trees = useSelector((state) => state.trees);
 
   useEffect(() => {
@@ -47,12 +50,17 @@ export const Campaing = () => {
                   <CardLabel>
                     <h3>{animal.title}</h3>
                     <p>{animal.amount}</p>
-                    <button
+                   { isAuthenticated &&
+                     <button
                       className="donate-button"
                       onClick={() =>  dispatch(setOpenModal(isModalOpen))}
                     >
                       Donate
                     </button>
+                   }
+                    {
+                      !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
+                    }
                   </CardLabel>
                 </Card>
               );

@@ -71,8 +71,8 @@ const NavBar = () => {
           </NavLink>
           </div>
           
-          <HiShoppingCart className={styles.cart} onClick={() =>  dispatch(setOpenModal(isModalOpen))} />
-          <button className={styles.button} onClick={() =>  dispatch(setOpenModal(isModalOpen))}>DONATE</button>
+          { isAuthenticated && <HiShoppingCart className={styles.cart} onClick={() =>  dispatch(setOpenModal(isModalOpen))} />}
+          { isAuthenticated && <button className={styles.button} onClick={() =>  dispatch(setOpenModal(isModalOpen))}>DONATE</button>}
           {
             !isAuthenticated ? <button className={styles.button} onClick={()=>loginWithRedirect()}>log in</button>:<button onClick={() =>logout()}className={styles.button}> Log out</button>
           }
