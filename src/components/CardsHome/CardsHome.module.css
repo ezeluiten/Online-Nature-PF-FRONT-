@@ -16,3 +16,14 @@
   background-color: hsla(124, 20%, 42%, 0.8);
   border-color: transparent;
 }
+
+@media only screen and (max-width: 600px){
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+}

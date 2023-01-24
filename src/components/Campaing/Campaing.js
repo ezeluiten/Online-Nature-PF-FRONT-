@@ -44,7 +44,7 @@ export const Campaing = () => {
         <CardContainer>
             {animals?.map((animal) => {
               return (
-                <Card key={animal.title}>
+                <Card key={animal.id}>
                     <Link to={`/campaign/`}>
                         <img src={animal.image} />
                     </Link>
@@ -66,7 +66,7 @@ export const Campaing = () => {
         <CardContainer>
           {trees?.map((trees) => {
               return (
-                <Card key={trees.title}>
+                <Card key={trees.id}>
                     <Link to={`/campaign/`}>
                         <img src={trees.image} />
                     </Link>
