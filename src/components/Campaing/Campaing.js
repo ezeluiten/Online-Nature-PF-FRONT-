@@ -53,7 +53,7 @@ export const Campaing = () => {
                     <p>{animal.amount}</p>
                     <button
                       className="donate-button"
-                      onClick={() => setOpenModal(isModalOpen)}
+                      onClick={() =>  dispatch(setOpenModal(isModalOpen))}
                     >
                       Donate
                     </button>
@@ -75,7 +75,7 @@ export const Campaing = () => {
                     <p>{trees.amount}</p>
                     <button
                       className="donate-button"
-                      onClick={() => setOpenModal(isModalOpen)}
+                      onClick={() => dispatch(setOpenModal(isModalOpen))}
                     >
                       Donate
                     </button>
