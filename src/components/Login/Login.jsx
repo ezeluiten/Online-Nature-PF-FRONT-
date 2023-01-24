@@ -1,6 +1,7 @@
 import style from "./Login.module.css";
+import Foteer from "../Foteer/Foteer";
 
-export default function Login({loginFn}) {
+export default function Login({ loginFn }) {
 	return (
 		<div className={style.login}>
 			<h4> Log In </h4>
@@ -18,13 +19,13 @@ export default function Login({loginFn}) {
 					<button type="submit" className={style.button}>
 						Log In
 					</button>
-					<button onClick={()=>loginFn()} className={style.button}>
+					<button onClick={() => loginFn()} className={style.button}>
 						Log in with Google
 					</button>
-					
 				</div>
 				<div className={style.bcgimage}></div>
 			</div>
+			<Foteer />
 		</div>
 	);
 }

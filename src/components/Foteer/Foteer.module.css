@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+.piepagina {
+	width: 100%;
+	background-color: #568259;
+}
+
+.piepagina .grupo1 {
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 50px;
+	padding: 45px 0px;
+}
+
+.piepagina .grupo1 .box figure {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.piepagina .grupo1 .box figure img {
+	width: 250px;
+}
+
+.piepagina .grupo1 .box h2 {
+	color: #fff;
+	margin-bottom: 25px;
+	font-size: 20px;
+}
+
+.piepagina .grupo1 .box p {
+	color: #efefef;
+	margin-bottom: 10px;
+}
+
+.piepagina .grupo1 .RedSocial a {
+	display: inline-block;
+	text-decoration: none;
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	color: #fff;
+	margin-right: 10px;
+	background-color: #618964;
+	text-align: center;
+	transition: all 300ms ease;
+	-webkit-transition: all 300ms ease;
+	-moz-transition: all 300ms ease;
+	-ms-transition: all 300ms ease;
+	-o-transition: all 300ms ease;
+}
+
+.piepagina .grupo1 .RedSocial a:hover {
+	color: #81e4da;
+}
+
+.piepagina .grupo2 {
+	background-color: #618964;
+	padding: 15px 10px;
+	text-align: center;
+	color: #fff;
+}
+
+.piepagina .grupo2 small {
+	font-size: 15px;
+}
+
+@media screen and (max-width: 800px) {
+	.piepagina .grupo1 {
+		width: 95%;
+		grid-template-columns: repeat(1, 1fr);
+		grid-gap: 30px;
+		padding: 35px 0px;
+	}
+}
