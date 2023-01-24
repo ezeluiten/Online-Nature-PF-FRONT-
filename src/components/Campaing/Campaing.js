@@ -16,14 +16,10 @@ import NavBar from "../NavBar/NavBar";
 export const Campaing = () => {
   const dispatch = useDispatch();
   const animals = useSelector((state) => state.animals);
-  const isModalOpen = useSelector((state) => state.isModalOpen);
-  console.log(
-    "🚀 ~ file: Campaing.js:12 ~ Campaing ~ isModalOpen",
-    isModalOpen
-  );
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  console.log( "🚀 ~ file: Campaing.js:12 ~ Campaing ~ isModalOpen", isModalOpen );
 
   const trees = useSelector((state) => state.trees);
-  console.log("🚀 ~ file: Campaing.js:10 ~ Campaing ~ animals", trees, animals);
 
   useEffect(() => {
     dispatch(getAnimals());
