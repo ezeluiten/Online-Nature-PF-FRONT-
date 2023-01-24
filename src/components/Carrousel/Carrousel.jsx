@@ -24,9 +24,7 @@ function CarouselFadeExample() {
           </div>
           <h3>First slide label</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-            quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-            voluptates temporibus a.
+            Help nature
           </p>
         </Carousel.Caption>
       </Carousel.Item>
