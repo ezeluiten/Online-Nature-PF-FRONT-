@@ -9,6 +9,7 @@ import * as ReactDOM from "react-dom"
 const ModalCashier = ({children, onClose}) => {
     const dispatch = useDispatch()
     const isModalOpen = useSelector(state=>state.isModalOpen)
+    console.log("🚀 ~ file: ModalCashier.js:12 ~ ModalCashier ~ isModalOpen", isModalOpen)
     if(isModalOpen){
 
         return (

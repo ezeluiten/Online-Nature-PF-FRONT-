@@ -25,13 +25,15 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 trees: action.payload,
           }
-        case 'GET_ANIMALS_BY_ID':
+          case 'GET_ANIMALS_BY_ID':
             return {
-                  ...state,
-                  treeDetail: action.payload
-        }
-      case "MODAL_GATE":
-          return {
+              ...state,
+              treeDetail: action.payload
+            }
+            case "MODAL_GATE":
+              console.log("🚀 ~ file: index.js:28 ~ rootReducer ~ action.payload", action.payload)
+              
+              return {
             ...state,
             isModalOpen: action.payload
           }

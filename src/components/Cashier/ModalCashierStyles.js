@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const ModalContainer = styled.div`
    background-color:rgba(255,255,255, .3);
-   backdrop-filter:blur(2px);
+   backdrop-filter:blur(3px);
    position: fixed;
    top:0;
    left:0;

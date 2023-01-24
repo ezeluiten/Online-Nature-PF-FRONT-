@@ -5,21 +5,22 @@ import Detail  from './components/detail/AnimalDetail/AnimalDetail.jsx';
 import { Home } from './components/Home/Home.jsx';
 import { Navigation } from "./components/routes/Navigation"
 import axios from "axios"
+import { ModalCashierPortal } from "./components/Cashier/ModalCashier"
+import { HandleClose } from '../src/components/helpers/cashierModalHelper.js';
 
-// axios.defaults.baseURL = "http://localhost:3001/api/v1" 
-axios.defaults.baseURL = "https://craven-sign-production.up.railway.app/api/v1/"
+const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
+const prodUrl = process.env.REACT_APP_PRODUCTION_URL
+axios.defaults.baseURL = developUrl
+// axios.defaults.baseURL = prodUrl
 
 function App() {
   return (
-    // <Route path="/" element={<Dashboard />}>
-    <Navigation/>
-    // <BrowserRouter>
-    // <Routes>
-    // <Route exact path = '/detail/:id' element={<Detail/>}/>
-    //   <Route exact path = '/home' element={<Home/>}/>
-    //   <Route exact path = '/' element = {<LandingPage/>}/>
-    //   </Routes>
-    // </BrowserRouter>
+    <>
+      <ModalCashierPortal onClose={HandleClose}>
+        {/* {componente - children} */}
+      </ModalCashierPortal>
+      <Navigation/>
+    </>
   );
 }
 
