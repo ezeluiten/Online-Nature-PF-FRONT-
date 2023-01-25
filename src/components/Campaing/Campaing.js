@@ -8,8 +8,8 @@ import {
   Card,
   CardContainer,
 } from "./CampaingStyles";
-import { getAnimals, getTrees } from "./../../store/actions";
-import { setOpenModal } from "../../store/actions";
+import { getCatalogue } from "./../../store/actions/index";
+import { setOpenModal, setDonationCartElements } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,17 +17,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 export const Campaing = () => {
 
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
-  console.log("🚀 ~ file: Campaing.js:19 ~ Campaing ~ isAuthenticated", isAuthenticated)
-
-  const dispatch = useDispatch();
-  const animals = useSelector((state) => state.animals);
-  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const trees = useSelector((state) => state.trees);
-
   useEffect(() => {
-    dispatch(getAnimals());
-    dispatch(getTrees());
-  }, [dispatch]);
+    dispatch(getCatalogue());
+  }, []);
+  
+  const dispatch = useDispatch();
+  const catalogue = useSelector((state) => state.donationCatalogue);
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+
 
   const img = require("../../imagenes/header-home.jpg");
   return (
@@ -41,19 +38,22 @@ export const Campaing = () => {
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
-            {animals?.map((animal) => {
+            {catalogue?.map((item) => {
               return (
-                <Card key={animal.id}>
+                <Card key={item._id}>
                     <Link to={`/campaign/`}>
-                        <img src={animal.image} />
+                        <img src={item.image} />
                     </Link>
                   <CardLabel>
-                    <h3>{animal.title}</h3>
-                    <p>{animal.amount}</p>
+                    <h3>{item.title}</h3>
+                    <p>{item.amount}</p>
                    { isAuthenticated &&
                      <button
                       className="donate-button"
-                      onClick={() =>  dispatch(setOpenModal(isModalOpen))}
+                      onClick={() =>{
+                        dispatch(setOpenModal(isModalOpen))
+                        dispatch(setDonationCartElements(item,"add"))
+                      }}
                     >
                       Donate
                     </button>
@@ -65,28 +65,6 @@ export const Campaing = () => {
                 </Card>
               );
             })}          
-        </CardContainer>
-
-        <CardContainer>
-          {trees?.map((trees) => {
-              return (
-                <Card key={trees.id}>
-                    <Link to={`/campaign/`}>
-                        <img src={trees.image} />
-                    </Link>
-                  <CardLabel>
-                    <h3>{trees.title}</h3>
-                    <p>{trees.amount}</p>
-                    <button
-                      className="donate-button"
-                      onClick={() => dispatch(setOpenModal(isModalOpen))}
-                    >
-                      Donate
-                    </button>
-                  </CardLabel>
-                </Card>
-              );
-            })}
         </CardContainer>
       </StoreCampaingContainer>
     </>

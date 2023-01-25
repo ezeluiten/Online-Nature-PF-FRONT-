@@ -5,7 +5,12 @@ const initialState = {
     animalDetail: {},
     treeDetail: {},
     isModalCashierOpen:false,
-    isModalNavBarOpen:false
+    isModalNavBarOpen:false,
+    donationCatalogue:[],
+    itemsCart:{
+      items:[],
+      totalAmount:0
+    }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -39,11 +44,23 @@ const rootReducer = (state = initialState, action) => {
             isModalCashierOpen: action.payload
           }
             case "MODAL_NAV":
-              console.log("🚀 ~ file: index.js:28 ~ rootReducer ~ action.payload", action.payload)
               
               return {
             ...state,
             isModalNavBar: action.payload
+          }
+            case "GET_DONATION_PORTFOLIO":
+              
+              return {
+            ...state,
+            donationCatalogue: action.payload.data.allCatalogue
+          }
+            case "ITEMS_CART":
+              console.log("🚀 ~ file: index.js:54 ~ rootReducer ~ action.payload", action.payload)
+              
+              return {
+            ...state,
+            itemsCart: action.payload
           }
       default:
         return { ...state };

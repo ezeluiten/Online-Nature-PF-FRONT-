@@ -33,25 +33,6 @@
     <title>Online Nature</title>
   </head>
   <body>
-    // SDK MercadoPago.js
-<script src="https://sdk.mercadopago.com/js/v2"></script>
-<div class="cho-container"></div>
-<script>
-  const mp = new MercadoPago('TEST-9edefb1c-b7b7-44fd-8bff-b641c0aeef35', {
-    locale: 'es-AR'
-  });
-
-  mp.checkout({
-    preference: {
-      id: 'YOUR_PREFERENCE_ID'
-    },
-    render: {
-      container: '.cho-container',
-      label: 'Pagar',
-    }
-  });
-</script>
-
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="modal"></div>
     <div id="root"></div>
