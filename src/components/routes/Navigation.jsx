@@ -8,6 +8,7 @@ import {
 import { LandingPage } from "../LandingPage/LandingPage.jsx";
 import { Home } from "../Home/Home";
 import { Profile } from "../Profile/Profile";
+import Login from "../Login/Login.jsx";
 import { Auth0ProviderWithHistory } from "../../auth/Auth0ProviderWithHistory";
 import { Campaing } from "../Campaing/Campaing.js";
 import AnimalDetil from "../detail/AnimalDetail/AnimalDetail.jsx";
@@ -20,10 +21,11 @@ export const Navigation = () => {
         <div className="main-layout">
           <NavLink to={"/home"}></NavLink>
           <Routes>
-            <Route path='/campaign/:id' element={<TreeDetail />} />
-            <Route path='/campaign/:id' element={<AnimalDetil />} />
+            <Route path="/campaign/:id" element={<TreeDetail />} />
+            <Route path="/campaign/:id" element={<AnimalDetil />} />
             <Route path="/campaign" element={<Campaing />} />
             <Route path="home" element={<Home />} />
+            <Route path="login" element={<Login />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/*" element={<Navigate to={"/"} replace />} />
           </Routes>
