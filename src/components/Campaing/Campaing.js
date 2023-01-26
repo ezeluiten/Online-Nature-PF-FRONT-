@@ -51,7 +51,7 @@ export const Campaing = () => {
                      <button
                       className="donate-button"
                       onClick={() =>{
-                        dispatch(setOpenModal(isModalOpen))
+                        // dispatch(setOpenModal(isModalOpen))
                         dispatch(setDonationCartElements(item))
                       }}
                     >

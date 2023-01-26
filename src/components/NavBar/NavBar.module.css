@@ -31,7 +31,20 @@
   align-items: center;
   gap: 50px;
 } */
+.cartLogoContainer{
+  position: relative;
+}
 
+.cartQuantity{
+  position: absolute;
+  width: 20px;
+  top: -13px;
+  right: -13px;
+  color: black;
+  border: solid 0.3px white;
+  border-radius: 50%;
+  background-color:  white;
+}
 .link {
   background-color: transparent;
   border-color: transparent;

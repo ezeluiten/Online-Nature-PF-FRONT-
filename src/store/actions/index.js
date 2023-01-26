@@ -77,92 +77,66 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
   return async function (dispatch, getState) {
     const { itemsCart } = getState()
     const { items } = itemsCart
-    console.log("🚀 ~ file: index.js:79 ~ setDonationCartElements ~ newItem, action ", action , newItem)
     
-    console.log("🚀 ~ file: index.js:81 ~ itemsCart", itemsCart)
 
     let newItemsCart = items && items.length ? [...items] : []
-    console.log("🚀 ~ file: index.js:83 ~ newItemsCart", newItemsCart)
     const initialTotal = 0
     let newItemSelected = {...newItem}
     
     
     if( newItemsCart.length  && action == "increase" && newItemSelected ){
       let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id == newItemSelected._id)
-      console.log("🚀 ~ file: index.js:91 ~ searchItemAndIncreaseQuantity", searchItemAndIncreaseQuantity)
       if(searchItemAndIncreaseQuantity){
         searchItemAndIncreaseQuantity.quantity ++
       }else{
         newItemSelected.quantity = 1
-        console.log("🚀 ~ file: index.js:96 ~ newItemSelected", newItemSelected)
         newItemsCart.push(newItemSelected)
       }
 
-      console.log("🚀 ~ file: index.js:101 ~ searchItemAndIncreaseQuantity", searchItemAndIncreaseQuantity)
 
     }
-    if(newItemsCart.length && action == "decrease" && newItemSelected){
-      let searchItemAndDecreaseQuantity = newItemsCart.find(item=>item._id == newItem._id)
-      console.log("🚀 ~ file: index.js:106 ~ searchItemAndIncreaseQuantity", searchItemAndDecreaseQuantity)
-      if(searchItemAndDecreaseQuantity.quantity > 1){
-        searchItemAndDecreaseQuantity.quantity -= 1
-      }else{
-        const index = newItemsCart.indexOf(searchItemAndDecreaseQuantity) 
-        const erasingItem = newItemsCart.splice(index, 1)
-      }
-      console.log("🚀 ~ file: index.js:116 ~ searchItemAndIncreaseQuantity", searchItemAndDecreaseQuantity)
-    }
-    
+
     if(action == "increase" &&  newItemsCart.length == 0){
-      console.log("🚀 ~ file: index.js:121 ~ newItemsCart")
       newItemSelected.quantity = 1
       newItemsCart.push(newItemSelected)
     }
-    console.log("🚀 ~ file: index.js:125 ~ newItemsCart", newItemsCart)
-
-    if(action == "delete" && newItemsCart.length) {
-      let cartFiltered = newItemsCart.find(item=>item._id == newItem._id)
-      console.log("cart filtered",cartFiltered);
-      cartFiltered.quantity = 0
-
-      const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
-
-      const index = newItemsCart.indexOf({...remainingObject}) 
-      console.log("index", index)
-      const erasingItem = newItemsCart.splice(index, 1)
-      console.log("erasingItem", erasingItem)
-
-    }
-
-    if(action == "getCartEmpty" && newItemsCart.length){
-        newItemsCart.length = 0
+    
+    if(newItemsCart.length && action == "decrease" && newItemSelected){
+      let searchItemAndDecreaseQuantity = newItemsCart.find(item=>item._id == newItem._id)
+      if(searchItemAndDecreaseQuantity.quantity >= 1){
+        searchItemAndDecreaseQuantity.quantity -= 1
+      }else{
+        newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
+      }
     }
     
+    if(action == "delete" && newItemsCart.length) {
+      newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
+      console.log("🚀 ~ file: index.js:117 ~ cartFiltered", newItemsCart)
+      
+      // const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
 
+      // const index = newItemsCart.indexOf({...remainingObject}) 
+      // console.log("🚀 ~ file: index.js:122 ~ index", index)
+      // const whetherIsNotCoincidence = index == -1 ? newItemsCart.filter(item => item._id !== newItem._id) : newItemsCart.splice(index, 1)
+    }
+    
+    
+    if(action == "getCartEmpty" && newItemsCart.length){
+      newItemsCart.length = 0
+    }
+    
+    
 
     let newTotalAmount = 0
-    console.log("🚀 ~ file: index.js:128 ~ newTotalAmount", newTotalAmount)
     
-    if(newItemsCart.length > 1){
+    if(newItemsCart.length){
       
       newTotalAmount = newItemsCart.reduce((accumulator, currentItem)=>{
-        console.log("primera vez")
-        console.log("acumulador", accumulator, currentItem)
-        const newAmount = currencyToNumber(currentItem.amount)
-        console.log("🚀 ~ file: index.js:131 ~ newItemsCart.reduce ~ quantity, amount", currentItem.quantity,currentItem.amount)
-        const totalElement = currentItem.quantity * newAmount
-        console.log("🚀 ~ file: index.js:135 ~ newItemsCart.reduce ~ totalElement", totalElement)
+        const totalElement = currentItem.quantity * currentItem.amount
         return accumulator + totalElement
       }, initialTotal)
-      console.log("🚀 ~ file: index.js:142 ~ newTotalAmount=newItemsCart.reduce ~ newTotalAmount", newTotalAmount)
-    }else{
-      const newAmount = newItemsCart[0] && newItemsCart[0].amount ? currencyToNumber( newItemsCart[0].amount  ) : 0
-
-      newTotalAmount = newItemsCart && newItemsCart[0].quantity * newAmount
-      console.log("🚀 ~ file: index.js:145 ~ newTotalAmount", newTotalAmount)
     }
-    
-    console.log("🚀 ~ file: index.js:148 ~ newTotalAmount", newTotalAmount)
     
     // itemsCart.items = [...newItemsCart]
     // itemsCart.totalAmount = newTotalAmount

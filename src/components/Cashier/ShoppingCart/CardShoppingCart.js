@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import { CardContainer } from "./styles/CardStyles"
 import style from './CartShopping.module.css'
 import { setDonationCartElements } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdAdd, IoIosRemove } from "react-icons/io"
 import { Button } from 'bootstrap';
-import { removeItemCart } from '../../../store/actions';
+import { removeItemCart } from '../../../store/actions';  
+import { getCatalogue } from "../../../store/actions"
+import Select from '@mui/material/Select';
+
+
 export const CardShoppingCart = () => {
 
 
+    useEffect(()=>{
+        getCatalogue()
+    },[])
+    
+    const [value, setValue] = useState("")
     const dispatch = useDispatch()
     const shoppingCartItems = useSelector(state=>state.itemsCart)
-
-    const useCallBack = () => {
-
-    }
+    
+    
+    
         return (
                 <div className={style.containerCart}>
                 {
@@ -22,6 +30,7 @@ export const CardShoppingCart = () => {
                     (
                         shoppingCartItems?.items.map(item=>{
                             return( 
+                                
                                 <div className={style.cardContainer} key={item._id}>
                                     <div className={style.imgContainer}>
                                         <img src={item.image} />
