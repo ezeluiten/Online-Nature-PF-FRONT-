@@ -6,8 +6,7 @@ import {IoCloseCircleOutline} from "react-icons/io5";
 import * as ReactDOM from "react-dom"
 
 const ModalCashier = ({children, onClose}) => {
-    console.log("🚀 ~ file: ModalCashier.js:9 ~ ModalCashier ~ children", children)
-    const dispatch = useDispatch()
+
     const isModalOpen = useSelector(state=>state.isModalCashierOpen)
 
     useEffect(() => {
@@ -35,7 +34,6 @@ const ModalCashier = ({children, onClose}) => {
                     </div>
                     <div className='modal-content'>
                         {children}
-
                     </div>
                 </ModalBody>
             </ModalContainer>

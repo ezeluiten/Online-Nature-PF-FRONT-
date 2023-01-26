@@ -10,6 +10,9 @@ export const ModalContainer = styled.div`
    left:0;
    width:100vw;
    z-index: 9999;
+
+   /* box-shadow:  */
+   /* overflow: auto; */
 `
 export const ModalBody = styled.div`
   display:flex;
@@ -19,6 +22,8 @@ export const ModalBody = styled.div`
   width:500px;
   border-radius: 0px 20px 20px 0px;
   padding:15px;
+  width: 50%;
+  box-shadow: 10px 5px 5px 0px rgb(91 97 86);
   .header-cart{
     position:relative;
     padding-left:55px;

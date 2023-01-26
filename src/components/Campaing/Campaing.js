@@ -46,13 +46,13 @@ export const Campaing = () => {
                     </Link>
                   <CardLabel>
                     <h3>{item.title}</h3>
-                    <p>{item.amount}</p>
+                    <p>$ {item.amount}</p>
                    { isAuthenticated &&
                      <button
                       className="donate-button"
                       onClick={() =>{
                         dispatch(setOpenModal(isModalOpen))
-                        dispatch(setDonationCartElements(item,"add"))
+                        dispatch(setDonationCartElements(item))
                       }}
                     >
                       Donate

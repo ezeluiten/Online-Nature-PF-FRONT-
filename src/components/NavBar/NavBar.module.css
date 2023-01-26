@@ -23,13 +23,14 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
+  margin-right: 1rem;
 }
-.links {
+/* .links {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 50px;
-}
+} */
 
 .link {
   background-color: transparent;
@@ -71,18 +72,18 @@
   border-color: transparent;
   transition: all 1s;
 }
-
+/* 
 .navBtn {
   padding: 5px;
 	cursor: pointer;
 	background: transparent;
 	border: none;
 	outline: none;
-	/* color: var(red); */
+
 	visibility: hidden;
 	opacity: 0;
 	font-size: 1.8rem;
-}
+} */
 
 .button:hover {
   transition: all 1s;
@@ -90,12 +91,12 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .container, .navBtn{
+  /* .container, .navBtn{
     visibility: visible;
 		opacity: 1;
-  }
+  } */
 
-  .container .links{
+  /* .container .links{
     position: fixed;
 		top: 0;
 		left: 0;
@@ -109,17 +110,17 @@
 		background-color: #568259;
 		transition: 1s;
 		transform: translateY(-100vh);
-  }
+  } */
 
-  .container, .responsiveNav{
+  /* .container, .responsiveNav{
     transform: none;
-  }
+  } */
 
-  .links, .navCloseBtn {
+  /* .links, .navCloseBtn {
     position: absolute;
 		top: 2rem;
 		right: 2rem;
-  }
+  } */
 
   .links, .a {
     font-size: 1.5rem;

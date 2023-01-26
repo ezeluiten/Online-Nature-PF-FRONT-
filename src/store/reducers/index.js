@@ -62,6 +62,11 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             itemsCart: action.payload
           }
+            case "REMOVE_ITEM_CART":
+              return {
+                ...state,
+                itemsCart: state.itemsCart.items.filter(el => el._id !== action.payload)
+              }
       default:
         return { ...state };
     }
