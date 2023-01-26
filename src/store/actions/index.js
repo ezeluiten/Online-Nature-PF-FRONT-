@@ -59,6 +59,7 @@ export const getCatalogue = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get("/adoptionCatalogue");
+      console.log(response.data)
       dispatch({
         type: "GET_DONATION_PORTFOLIO",
         payload: response.data
@@ -72,10 +73,10 @@ export const getCatalogue = () => {
   };
 };
 
-export const setDonationCartElements = ( newItem, action = "add" ) => {
+export const setDonationCartElements = ( newItem, action = "increase" ) => {
   return async function (dispatch, getState) {
     const { itemsCart } = getState()
-    const { items, totalAmount } = itemsCart
+    const { items } = itemsCart
     console.log("🚀 ~ file: index.js:79 ~ setDonationCartElements ~ newItem, action ", action , newItem)
     
     console.log("🚀 ~ file: index.js:81 ~ itemsCart", itemsCart)
@@ -86,7 +87,7 @@ export const setDonationCartElements = ( newItem, action = "add" ) => {
     let newItemSelected = {...newItem}
     
     
-    if( newItemsCart.length  && action == "add" && newItemSelected ){
+    if( newItemsCart.length  && action == "increase" && newItemSelected ){
       let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id == newItemSelected._id)
       console.log("🚀 ~ file: index.js:91 ~ searchItemAndIncreaseQuantity", searchItemAndIncreaseQuantity)
       if(searchItemAndIncreaseQuantity){
@@ -95,13 +96,12 @@ export const setDonationCartElements = ( newItem, action = "add" ) => {
         newItemSelected.quantity = 1
         console.log("🚀 ~ file: index.js:96 ~ newItemSelected", newItemSelected)
         newItemsCart.push(newItemSelected)
-        
       }
 
       console.log("🚀 ~ file: index.js:101 ~ searchItemAndIncreaseQuantity", searchItemAndIncreaseQuantity)
 
     }
-    if(newItemsCart.length && action == "remove" && newItemSelected){
+    if(newItemsCart.length && action == "decrease" && newItemSelected){
       let searchItemAndDecreaseQuantity = newItemsCart.find(item=>item._id == newItem._id)
       console.log("🚀 ~ file: index.js:106 ~ searchItemAndIncreaseQuantity", searchItemAndDecreaseQuantity)
       if(searchItemAndDecreaseQuantity.quantity > 1){
@@ -109,20 +109,36 @@ export const setDonationCartElements = ( newItem, action = "add" ) => {
       }else{
         const index = newItemsCart.indexOf(searchItemAndDecreaseQuantity) 
         const erasingItem = newItemsCart.splice(index, 1)
-        
       }
-      
-      
       console.log("🚀 ~ file: index.js:116 ~ searchItemAndIncreaseQuantity", searchItemAndDecreaseQuantity)
-      
     }
     
-    if(action == "add" &&  newItemsCart.length == 0){
+    if(action == "increase" &&  newItemsCart.length == 0){
       console.log("🚀 ~ file: index.js:121 ~ newItemsCart")
       newItemSelected.quantity = 1
       newItemsCart.push(newItemSelected)
     }
     console.log("🚀 ~ file: index.js:125 ~ newItemsCart", newItemsCart)
+
+    if(action == "delete" && newItemsCart.length) {
+      let cartFiltered = newItemsCart.find(item=>item._id == newItem._id)
+      console.log("cart filtered",cartFiltered);
+      cartFiltered.quantity = 0
+
+      const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
+
+      const index = newItemsCart.indexOf({...remainingObject}) 
+      console.log("index", index)
+      const erasingItem = newItemsCart.splice(index, 1)
+      console.log("erasingItem", erasingItem)
+
+    }
+
+    if(action == "getCartEmpty" && newItemsCart.length){
+        newItemsCart.length = 0
+    }
+    
+
 
     let newTotalAmount = 0
     console.log("🚀 ~ file: index.js:128 ~ newTotalAmount", newTotalAmount)
@@ -132,7 +148,7 @@ export const setDonationCartElements = ( newItem, action = "add" ) => {
       newTotalAmount = newItemsCart.reduce((accumulator, currentItem)=>{
         console.log("primera vez")
         console.log("acumulador", accumulator, currentItem)
-        const newAmount = currencyToMoney(currentItem.amount)
+        const newAmount = currencyToNumber(currentItem.amount)
         console.log("🚀 ~ file: index.js:131 ~ newItemsCart.reduce ~ quantity, amount", currentItem.quantity,currentItem.amount)
         const totalElement = currentItem.quantity * newAmount
         console.log("🚀 ~ file: index.js:135 ~ newItemsCart.reduce ~ totalElement", totalElement)
@@ -140,27 +156,29 @@ export const setDonationCartElements = ( newItem, action = "add" ) => {
       }, initialTotal)
       console.log("🚀 ~ file: index.js:142 ~ newTotalAmount=newItemsCart.reduce ~ newTotalAmount", newTotalAmount)
     }else{
-      const newAmount = currencyToMoney( newItemsCart[0].amount )
+      const newAmount = newItemsCart[0] && newItemsCart[0].amount ? currencyToNumber( newItemsCart[0].amount  ) : 0
+
       newTotalAmount = newItemsCart && newItemsCart[0].quantity * newAmount
       console.log("🚀 ~ file: index.js:145 ~ newTotalAmount", newTotalAmount)
     }
     
     console.log("🚀 ~ file: index.js:148 ~ newTotalAmount", newTotalAmount)
     
-        
-    
-    itemsCart.items = [...newItemsCart]
-    itemsCart.totalAmount = newTotalAmount
+    // itemsCart.items = [...newItemsCart]
+    // itemsCart.totalAmount = newTotalAmount
     console.log("🚀 ~ file: index.js:140 ~ itemsCart", itemsCart)
 
     dispatch({
       type: "ITEMS_CART",
-      payload: itemsCart
+      payload: {
+          items: newItemsCart,
+          totalAmount: newTotalAmount
+      }
     })
   };
 }
 
-const currencyToMoney = (number)=>{
+const currencyToNumber = (number)=>{
   const regex= /[^0-9.-]+/g
   const isNumber = typeof number == "number"
   if(isNumber) return number
@@ -210,3 +228,8 @@ export const getTreesById = (id) => {
       }
     }
 }
+
+export const removeItemCart = (_id) => ({
+    type: "REMOVE_ITEM_CART", 
+    payload: _id 
+})
