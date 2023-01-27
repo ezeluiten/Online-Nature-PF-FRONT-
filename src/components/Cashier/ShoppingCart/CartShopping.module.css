@@ -4,18 +4,17 @@
     flex-direction:column;
     width:100%;
     color:white;
-    gap:20px;
-    overflow-x:hidden;
-    overflow:hidden;
-    overflow-y:auto;
-}
+}   
 
 .containerCart,.noCards {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; LA SOLUCION ERA QUITAR ESTA SHIT*/
     height: 100%;
     align-items: center;
+    overflow:auto;
 }
+
+
 
 .cardContainer {
     display:flex;

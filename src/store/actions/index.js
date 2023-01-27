@@ -168,6 +168,7 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     // itemsCart.totalAmount = newTotalAmount
     console.log("🚀 ~ file: index.js:140 ~ itemsCart", itemsCart)
 
+
     dispatch({
       type: "ITEMS_CART",
       payload: {
