@@ -54,6 +54,14 @@ export const Card = styled.div`
         --escala: 1.1;
         cursor:pointer;
     }
+    .button {
+        color: #fffbff;
+        border-radius: 10px;
+        padding: 5px 15px 5px 15px;
+        background-color: #ea4335;
+        border-color: transparent;
+        transition: all 1s;
+    }
     @media (max-width: 600px) {
         width:100%
     }
