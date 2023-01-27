@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -73,96 +74,118 @@ export const getCatalogue = () => {
   };
 };
 
+
+export const getUserLoggedInfoToPay = (client) => {
+  return async function (dispatch, getState) {
+    console.log("🚀 ~ file: index.js:79 ~ getUserLoggedInfoToPay ~ client", client)
+
+    dispatch({
+      type:"PAYER_CLIENT_INFO",
+      payload:client
+      
+    })
+
+  
+  }
+}
+
+export const initCheckOut = ()=>{
+  return async function (dispatch, getState) {
+    const {itemsCart:shoppingCart} = getState()
+    const { payer } = getState();
+
+      const {name, email} = payer
+      console.log("🚀 ~ file: index.js:85 ~ clientInfo", name, email)
+      console.log("🚀 ~ file: index.js:80 ~ shoppingCart", shoppingCart)
+      axios
+      .post("http://localhost:3001/api/v1/checkOutController", {
+        items:shoppingCart.items,
+        totalAmount:shoppingCart.totalAmount,
+        payer:{
+          name,
+          email
+        }
+      },{headers:{
+        "content-type":"application/json",
+        "Access-Control-Allow-Origin":"*",
+        "Authorization":process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN
+      }})
+      .then((response) => {
+        dispatch({
+
+          type:"INIT_TRANSACTION",
+          payload:response
+        })
+      });
+      
+    }
+
+}
+
 export const setDonationCartElements = ( newItem, action = "increase" ) => {
   return async function (dispatch, getState) {
     const { itemsCart } = getState()
     const { items } = itemsCart
-    console.log("🚀 ~ file: index.js:79 ~ setDonationCartElements ~ newItem, action ", action , newItem)
     
-    console.log("🚀 ~ file: index.js:81 ~ itemsCart", itemsCart)
 
     let newItemsCart = items && items.length ? [...items] : []
-    console.log("🚀 ~ file: index.js:83 ~ newItemsCart", newItemsCart)
     const initialTotal = 0
     let newItemSelected = {...newItem}
     
     
     if( newItemsCart.length  && action == "increase" && newItemSelected ){
       let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id == newItemSelected._id)
-      console.log("🚀 ~ file: index.js:91 ~ searchItemAndIncreaseQuantity", searchItemAndIncreaseQuantity)
       if(searchItemAndIncreaseQuantity){
         searchItemAndIncreaseQuantity.quantity ++
       }else{
         newItemSelected.quantity = 1
-        console.log("🚀 ~ file: index.js:96 ~ newItemSelected", newItemSelected)
         newItemsCart.push(newItemSelected)
       }
 
-      console.log("🚀 ~ file: index.js:101 ~ searchItemAndIncreaseQuantity", searchItemAndIncreaseQuantity)
 
     }
-    if(newItemsCart.length && action == "decrease" && newItemSelected){
-      let searchItemAndDecreaseQuantity = newItemsCart.find(item=>item._id == newItem._id)
-      console.log("🚀 ~ file: index.js:106 ~ searchItemAndIncreaseQuantity", searchItemAndDecreaseQuantity)
-      if(searchItemAndDecreaseQuantity.quantity > 1){
-        searchItemAndDecreaseQuantity.quantity -= 1
-      }else{
-        const index = newItemsCart.indexOf(searchItemAndDecreaseQuantity) 
-        const erasingItem = newItemsCart.splice(index, 1)
-      }
-      console.log("🚀 ~ file: index.js:116 ~ searchItemAndIncreaseQuantity", searchItemAndDecreaseQuantity)
-    }
-    
+
     if(action == "increase" &&  newItemsCart.length == 0){
-      console.log("🚀 ~ file: index.js:121 ~ newItemsCart")
       newItemSelected.quantity = 1
       newItemsCart.push(newItemSelected)
     }
-    console.log("🚀 ~ file: index.js:125 ~ newItemsCart", newItemsCart)
-
-    if(action == "delete" && newItemsCart.length) {
-      let cartFiltered = newItemsCart.find(item=>item._id == newItem._id)
-      console.log("cart filtered",cartFiltered);
-      cartFiltered.quantity = 0
-
-      const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
-
-      const index = newItemsCart.indexOf({...remainingObject}) 
-      console.log("index", index)
-      const erasingItem = newItemsCart.splice(index, 1)
-      console.log("erasingItem", erasingItem)
-
-    }
-
-    if(action == "getCartEmpty" && newItemsCart.length){
-        newItemsCart.length = 0
+    
+    if(newItemsCart.length && action == "decrease" && newItemSelected){
+      let searchItemAndDecreaseQuantity = newItemsCart.find(item=>item._id == newItem._id)
+      if(searchItemAndDecreaseQuantity.quantity >= 1){
+        searchItemAndDecreaseQuantity.quantity -= 1
+      }else{
+        newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
+      }
     }
     
+    if(action == "delete" && newItemsCart.length) {
+      newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
+      console.log("🚀 ~ file: index.js:117 ~ cartFiltered", newItemsCart)
+      
+      // const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
 
+      // const index = newItemsCart.indexOf({...remainingObject}) 
+      // console.log("🚀 ~ file: index.js:122 ~ index", index)
+      // const whetherIsNotCoincidence = index == -1 ? newItemsCart.filter(item => item._id !== newItem._id) : newItemsCart.splice(index, 1)
+    }
+    
+    
+    if(action == "getCartEmpty" && newItemsCart.length){
+      newItemsCart.length = 0
+    }
+    
+    
 
     let newTotalAmount = 0
-    console.log("🚀 ~ file: index.js:128 ~ newTotalAmount", newTotalAmount)
     
-    if(newItemsCart.length > 1){
+    if(newItemsCart.length){
       
       newTotalAmount = newItemsCart.reduce((accumulator, currentItem)=>{
-        console.log("primera vez")
-        console.log("acumulador", accumulator, currentItem)
-        const newAmount = currencyToNumber(currentItem.amount)
-        console.log("🚀 ~ file: index.js:131 ~ newItemsCart.reduce ~ quantity, amount", currentItem.quantity,currentItem.amount)
-        const totalElement = currentItem.quantity * newAmount
-        console.log("🚀 ~ file: index.js:135 ~ newItemsCart.reduce ~ totalElement", totalElement)
+        const totalElement = currentItem.quantity * currentItem.amount
         return accumulator + totalElement
       }, initialTotal)
-      console.log("🚀 ~ file: index.js:142 ~ newTotalAmount=newItemsCart.reduce ~ newTotalAmount", newTotalAmount)
-    }else{
-      const newAmount = newItemsCart[0] && newItemsCart[0].amount ? currencyToNumber( newItemsCart[0].amount  ) : 0
-
-      newTotalAmount = newItemsCart && newItemsCart[0].quantity * newAmount
-      console.log("🚀 ~ file: index.js:145 ~ newTotalAmount", newTotalAmount)
     }
-    
-    console.log("🚀 ~ file: index.js:148 ~ newTotalAmount", newTotalAmount)
     
     // itemsCart.items = [...newItemsCart]
     // itemsCart.totalAmount = newTotalAmount
@@ -174,6 +197,44 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
           items: newItemsCart,
           totalAmount: newTotalAmount
       }
+    })
+  };
+}
+
+export function sorting(params="descendant", catalogue){
+ 
+
+   return async function (dispatch) {
+    const sortAction = params
+    console.log("🚀 ~ file: index.js:160 ~ sortAction", sortAction)
+    const allCatalogue = catalogue
+    const orderedAscendantCatalogue = allCatalogue.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (b.title < a.title) {
+          return 1;
+        }
+        return 0;
+    })
+    console.log("🚀 ~ file: index.js:171 ~ orderedAscendantCatalogue ~ orderedAscendantCatalogue", orderedAscendantCatalogue)
+ 
+    const orderedDescendantCatalogue = allCatalogue.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (b.title < a.title) {
+          return 1;
+        }
+        return 0;
+    })
+    console.log("🚀 ~ file: index.js:182 ~ orderedDescendantCatalogue ~ orderedDescendantCatalogue", orderedDescendantCatalogue)
+ 
+    const sorted = sortAction == "ascendant" ? orderedAscendantCatalogue : orderedDescendantCatalogue||[]
+    console.log("🚀 ~ file: index.js:185 ~ sorted", sorted)
+    dispatch({
+      type: "SORT",
+      payload: sorted
     })
   };
 }

@@ -8,8 +8,7 @@ import {
   Card,
   CardContainer,
 } from "./CampaingStyles";
-import { getCatalogue } from "./../../store/actions/index";
-import { setOpenModal, setDonationCartElements } from "../../store/actions";
+import { setOpenModal, setDonationCartElements, sorting } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,13 +16,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 export const Campaing = () => {
 
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
-  useEffect(() => {
-    dispatch(getCatalogue());
-  }, []);
-  
+ 
   const dispatch = useDispatch();
   const catalogue = useSelector((state) => state.donationCatalogue);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+
+  
 
 
   const img = require("../../imagenes/header-home.jpg");
@@ -51,12 +49,13 @@ export const Campaing = () => {
                      <button
                       className="donate-button"
                       onClick={() =>{
-                        dispatch(setOpenModal(isModalOpen))
+                        // dispatch(setOpenModal(isModalOpen))
                         dispatch(setDonationCartElements(item))
                       }}
                     >
                       Donate
                     </button>
+
                    }
                     {
                       !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
