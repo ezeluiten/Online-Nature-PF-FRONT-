@@ -12,6 +12,7 @@ import { Auth0ProviderWithHistory } from "../../auth/Auth0ProviderWithHistory";
 import { Campaing } from "../Campaing/Campaing.js";
 import AnimalDetil from "../detail/AnimalDetail/AnimalDetail.jsx";
 import TreeDetail from "../detail/TreeDetail/TreeDetail.jsx";
+import { PaymentForm } from "../Cashier/PaymentForm.js";
 
 export const Navigation = () => {
   return (
@@ -22,6 +23,7 @@ export const Navigation = () => {
           <Routes>
             <Route path='/campaign/:id' element={<TreeDetail />} />
             <Route path='/campaign/:id' element={<AnimalDetil />} />
+            <Route path="/payment" element={<PaymentForm/>}/>
             <Route path="/campaign" element={<Campaing />} />
             <Route path="home" element={<Home />} />
             <Route path="/" element={<LandingPage />} />

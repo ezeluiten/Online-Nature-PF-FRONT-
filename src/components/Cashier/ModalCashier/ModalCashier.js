@@ -11,21 +11,8 @@ const ModalCashier = ({children, onClose}) => {
     const dispatch = useDispatch()
     const isModalOpen = useSelector(state=>state.isModalCashierOpen)
 
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.async = true;
-        script.src = "https://sdk.mercadopago.com/js/v2";
-        script.id = "MP";
-        script.onload = () => {
-          var mp = window.MP
-
-        };
-        document.head.appendChild(script);
-    }, []);
-    
-    const mp = document.getElementById("MP")
-
     const catalogue = useSelector((state) => state.donationCatalogue);
+    const shoppingCartItems = useSelector(state=>state.itemsCart)
 
     const handleSelectChange = (itemSelected)=>{
         const id = itemSelected.target.value
@@ -57,8 +44,10 @@ const ModalCashier = ({children, onClose}) => {
                                 })
                             }
                             </select>
+                            {
+                                shoppingCartItems.items?.length > 0 && <button className={style.buttonSubmit} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Get cart empty</button> 
 
-                            <button className={style.buttonSubmit} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Get cart empty</button> 
+                            }
 
                         </div>
                         

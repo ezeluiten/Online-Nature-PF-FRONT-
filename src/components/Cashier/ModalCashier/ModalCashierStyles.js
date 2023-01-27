@@ -43,7 +43,7 @@ export const ModalBody = styled.div`
   }
   .modal-content{
     width:100%;
-    height:80%;
+    height:70%;
     background-color:#6d9970;
     backdrop-filter:blur(2px);
     

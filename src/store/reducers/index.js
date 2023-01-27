@@ -10,7 +10,9 @@ const initialState = {
     itemsCart:{
       items:[],
       totalAmount:0
-    }
+    },
+    payer:{},
+    transactionInfo:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -66,6 +68,16 @@ const rootReducer = (state = initialState, action) => {
               return {
                 ...state,
                 itemsCart: state.itemsCart.items.filter(el => el._id !== action.payload)
+              }
+            case "PAYER_CLIENT_INFO":
+              return {
+                ...state,
+                payer: action.payload
+              }
+            case "INIT_TRANSACTION":
+              return {
+                ...state,
+                transactionInfo: action.payload
               }
       default:
         return { ...state };

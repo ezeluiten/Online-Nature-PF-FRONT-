@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -72,6 +73,54 @@ export const getCatalogue = () => {
     }
   };
 };
+
+
+export const getUserLoggedInfoToPay = (client) => {
+  return async function (dispatch, getState) {
+    console.log("🚀 ~ file: index.js:79 ~ getUserLoggedInfoToPay ~ client", client)
+
+    dispatch({
+      type:"PAYER_CLIENT_INFO",
+      payload:client
+      
+    })
+
+  
+  }
+}
+
+export const initCheckOut = ()=>{
+  return async function (dispatch, getState) {
+    const {itemsCart:shoppingCart} = getState()
+    const { payer } = getState();
+
+      const {name, email} = payer
+      console.log("🚀 ~ file: index.js:85 ~ clientInfo", name, email)
+      console.log("🚀 ~ file: index.js:80 ~ shoppingCart", shoppingCart)
+      axios
+      .post("http://localhost:3001/api/v1/checkOutController", {
+        items:shoppingCart.items,
+        totalAmount:shoppingCart.totalAmount,
+        payer:{
+          name,
+          email
+        }
+      },{headers:{
+        "content-type":"application/json",
+        "Access-Control-Allow-Origin":"*",
+        "Authorization":process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN
+      }})
+      .then((response) => {
+        dispatch({
+
+          type:"INIT_TRANSACTION",
+          payload:response
+        })
+      });
+      
+    }
+
+}
 
 export const setDonationCartElements = ( newItem, action = "increase" ) => {
   return async function (dispatch, getState) {
@@ -148,6 +197,44 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
           items: newItemsCart,
           totalAmount: newTotalAmount
       }
+    })
+  };
+}
+
+export function sorting(params="descendant", catalogue){
+ 
+
+   return async function (dispatch) {
+    const sortAction = params
+    console.log("🚀 ~ file: index.js:160 ~ sortAction", sortAction)
+    const allCatalogue = catalogue
+    const orderedAscendantCatalogue = allCatalogue.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (b.title < a.title) {
+          return 1;
+        }
+        return 0;
+    })
+    console.log("🚀 ~ file: index.js:171 ~ orderedAscendantCatalogue ~ orderedAscendantCatalogue", orderedAscendantCatalogue)
+ 
+    const orderedDescendantCatalogue = allCatalogue.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (b.title < a.title) {
+          return 1;
+        }
+        return 0;
+    })
+    console.log("🚀 ~ file: index.js:182 ~ orderedDescendantCatalogue ~ orderedDescendantCatalogue", orderedDescendantCatalogue)
+ 
+    const sorted = sortAction == "ascendant" ? orderedAscendantCatalogue : orderedDescendantCatalogue||[]
+    console.log("🚀 ~ file: index.js:185 ~ sorted", sorted)
+    dispatch({
+      type: "SORT",
+      payload: sorted
     })
   };
 }

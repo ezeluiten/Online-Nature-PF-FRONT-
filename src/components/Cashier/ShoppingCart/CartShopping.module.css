@@ -8,6 +8,7 @@
     overflow-x:hidden;
     overflow:hidden;
     overflow-y:auto;
+    margin-bottom: 10px;
 }
 
 .containerCart,.noCards {
@@ -23,7 +24,7 @@
     justify-content: center;
     width:80%;
     border-radius: 1rem ;
-    padding-bottom: 1rem;
+    box-shadow: 10px 5px 5px 0px rgb(91 97 86);
 }
 .imgContainer{
     width: 60%;

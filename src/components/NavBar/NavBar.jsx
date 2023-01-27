@@ -73,7 +73,7 @@ function Navbar() {
           </div>
           {isAuthenticated && (
             <div className={styles.cartLogoContainer}>
-              <span className={styles.cartQuantity}>{shoppingCartItems.items.length}</span>
+              { shoppingCartItems.items && shoppingCartItems.items.length > 0 && <span className={styles.cartQuantity}>{shoppingCartItems.items.length}</span>}
               <HiShoppingCart
                 className={styles.cart}
                 onClick={() => dispatch(setOpenModal(isModalOpen))}

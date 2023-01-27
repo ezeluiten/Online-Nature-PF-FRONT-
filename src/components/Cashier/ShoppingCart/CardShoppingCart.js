@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 // import { CardContainer } from "./styles/CardStyles"
 import style from './CartShopping.module.css'
-import { setDonationCartElements } from "../../../store/actions";
+import { initCheckOut, setDonationCartElements } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdAdd, IoIosRemove } from "react-icons/io"
 import { Button } from 'bootstrap';
 import { removeItemCart } from '../../../store/actions';  
 import { getCatalogue } from "../../../store/actions"
 import Select from '@mui/material/Select';
+import { useNavigate } from 'react-router-dom';
+import { PaymentForm } from '../PaymentForm';
 
 
 export const CardShoppingCart = () => {
@@ -20,8 +22,6 @@ export const CardShoppingCart = () => {
     const [value, setValue] = useState("")
     const dispatch = useDispatch()
     const shoppingCartItems = useSelector(state=>state.itemsCart)
-    
-    
     
         return (
                 <div className={style.containerCart}>
@@ -80,14 +80,20 @@ export const CardShoppingCart = () => {
                                 subtotal <span>$ {shoppingCartItems.totalAmount}</span>
                             </div>
                         <div> 
-                            <button className={style.buttonSubmit}>CHECKOUT</button> 
+                            <button className={style.buttonSubmit} onClick={
+                                ()=>{
+                                    dispatch(initCheckOut())
+                                }
+                                }>CHECKOUT</button> 
                         </div>
                     </div>
                     ):
                     (
                         <></>
                     )
+
                 }
+                    <PaymentForm/>
                 </div>
         )
 }
