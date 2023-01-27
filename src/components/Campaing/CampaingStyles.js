@@ -14,7 +14,7 @@ export const StoreCampaingContainer = styled.div`
     gap:20px;
     padding-left: 140px;
     padding-right: 140px;
-    background-color:#eeeeee00;
+    background-color:#eeeeee;
     font-family: "Poppins", sans-serif;
     @media (max-width: 600px) {
         width:100%;
