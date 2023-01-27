@@ -9,7 +9,7 @@ import { ModalCashierPortal } from "./components/Cashier/ModalCashier/ModalCashi
 import { HandleClose } from '../src/components/helpers/cashierModalHelper.js';
 import { useDispatch, useSelector } from "react-redux"
 import { setOpenModal } from "./store/actions"
-
+import { CardShoppingCart } from './components/Cashier/ShoppingCart/CardShoppingCart.js';
 
 
 const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
@@ -21,6 +21,10 @@ function App() {
 
   const dispatch = useDispatch()
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  
+  useEffect(() => {
+    dispatch(getCatalogue());
+  }, []);
   
   const modifyModalState =(isOpen)=>{
       console.log("🚀 ~ file: cashierModalHelper.js:8 ~ HandleClose ~ isOpen", isOpen)

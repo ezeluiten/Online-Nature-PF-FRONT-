@@ -8,7 +8,7 @@ import {
   Card,
   CardContainer,
 } from "./CampaingStyles";
-import { getCatalogue, orderAnimalsDescendant, orderAnimalsAscendant } from "./../../store/actions/index";
+import { getCatalogue } from "./../../store/actions/index";
 import { setOpenModal, setDonationCartElements } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
@@ -17,22 +17,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 export const Campaing = () => {
 
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
-  useEffect(() => {
-    dispatch(getCatalogue());
-  }, []);
-  
+ 
   const dispatch = useDispatch();
   const catalogue = useSelector((state) => state.donationCatalogue);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const [order, setOrder] = useState("");
 
-
-  function handleName(e){e.preventDefault()
-    dispatch(orderAnimalsDescendant(e.target.value));
-    dispatch(orderAnimalsAscendant(e.target.value));
-    setOrder(e.target.value);}
-    
-    
 
   const img = require("../../imagenes/header-home.jpg");
   return (
@@ -62,17 +51,18 @@ export const Campaing = () => {
                     </Link>
                   <CardLabel>
                     <h3>{item.title}</h3>
-                    <p>{item.amount}</p>
+                    <p>$ {item.amount}</p>
                    { isAuthenticated &&
                      <button
                       className="donate-button"
                       onClick={() =>{
-                        dispatch(setOpenModal(isModalOpen))
-                        dispatch(setDonationCartElements(item,"add"))
+                        // dispatch(setOpenModal(isModalOpen))
+                        dispatch(setDonationCartElements(item))
                       }}
                     >
                       Donate
                     </button>
+
                    }
                     {
                       !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
