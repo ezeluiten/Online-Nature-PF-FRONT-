@@ -12,7 +12,7 @@ import { setOpenModal, setDonationCartElements, sorting } from "../../store/acti
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import Filters from '../filters/filters'
 export const Campaing = () => {
 
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
@@ -21,6 +21,8 @@ export const Campaing = () => {
   const catalogue = useSelector((state) => state.donationCatalogue);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [order, setOrder]= useState("")
   
 
 
@@ -32,38 +34,42 @@ export const Campaing = () => {
         imagen={img}
         text="We have suffered an alarming loss of biodiversity in recent decades..."
       />
-
+      <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
-            {catalogue?.map((item) => {
-              return (
-                <Card key={item._id}>
-                    <Link to={`/campaign/`}>
-                        <img src={item.image} />
-                    </Link>
-                  <CardLabel>
-                    <h3>{item.title}</h3>
-                    <p>$ {item.amount}</p>
-                   { isAuthenticated &&
-                     <button
+          {catalogue?.map((item) => {
+            return (
+              <Card key={item._id}>
+                <Link to={`/campaign/`}>
+                  <img src={item.image} alt="img not found" />
+                </Link>
+                <CardLabel>
+                  <h3>{item.title}</h3>
+                  <p>$ {item.amount}</p>
+                  {isAuthenticated && (
+                    <button
                       className="donate-button"
-                      onClick={() =>{
+                      onClick={() => {
                         // dispatch(setOpenModal(isModalOpen))
-                        dispatch(setDonationCartElements(item))
+                        dispatch(setDonationCartElements(item));
                       }}
                     >
                       Donate
                     </button>
-
-                   }
-                    {
-                      !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
-                    }
-                  </CardLabel>
-                </Card>
-              );
-            })}          
+                  )}
+                  {!isAuthenticated && (
+                    <button
+                      className={"donate-button"}
+                      onClick={() => loginWithRedirect()}
+                    >
+                      log in
+                    </button>
+                  )}
+                </CardLabel>
+              </Card>
+            );
+          })}
         </CardContainer>
       </StoreCampaingContainer>
     </>
