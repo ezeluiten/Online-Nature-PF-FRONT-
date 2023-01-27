@@ -9,6 +9,7 @@ import { LandingPage } from "../LandingPage/LandingPage.jsx";
 import { Home } from "../Home/Home";
 import { Profile } from "../Profile/Profile";
 import Login from "../Login/Login.jsx";
+import Register from "../Register/Register.jsx";
 import { Auth0ProviderWithHistory } from "../../auth/Auth0ProviderWithHistory";
 import { Campaing } from "../Campaing/Campaing.js";
 import AnimalDetil from "../detail/AnimalDetail/AnimalDetail.jsx";
@@ -26,6 +27,7 @@ export const Navigation = () => {
             <Route path="/campaign" element={<Campaing />} />
             <Route path="home" element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/*" element={<Navigate to={"/"} replace />} />
           </Routes>

@@ -57,92 +57,59 @@ export default function Login({ loginFn }) {
         <div className={style.logo}></div>
         <h4>Log in to your account</h4>
         <form onSubmit={handleSubmit}>
-          <div className={style.Contenedor}>
-            <div className={style.sudContainer}>
-              <h6>Email</h6>
-              <input
-                className={style.Entrada}
-                name="username"
-                type="email"
-                placeholder="example@example.com"
-                value={userDate.username}
-                onChange={handleInputChange}
-              />
-              {errors.username ? (
-                <p className={style.danger}>
-                  <strong>{errors.username}</strong>
-                </p>
-              ) : (
-                <p className={style.ok}>ok</p>
-              )}
+          <div className={style.sudContainer}>
+            <h6>Email</h6>
+            <input
+              className={style.Entrada}
+              name="username"
+              type="email"
+              placeholder="example@example.com"
+              value={userDate.username}
+              onChange={handleInputChange}
+            />
+            {errors.username ? (
+              <p className={style.danger}>
+                <strong>{errors.username}</strong>
+              </p>
+            ) : (
+              <p className={style.ok}>ok</p>
+            )}
 
-              <h6>Password</h6>
-              <input
-                className={style.Entrada}
-                name="password"
-                type="password"
-                placeholder="Enter your Password"
-                value={userDate.password}
-                onChange={handleInputChange}
-              />
-              {errors.password ? (
-                <p className={style.danger}>
-                  <strong>{errors.password}</strong>
-                </p>
-              ) : (
-                <p className={style.ok}>ok</p>
-              )}
-            </div>
-            <div className={style.botones}>
-              <button className={style.logMail} type="submit">
-                <BsMailbox /> Log in whith Mail
-              </button>
+            <h6>Password</h6>
+            <input
+              className={style.Entrada}
+              name="password"
+              type="password"
+              placeholder="Enter your Password"
+              value={userDate.password}
+              onChange={handleInputChange}
+            />
+            {errors.password ? (
+              <p className={style.danger}>
+                <strong>{errors.password}</strong>
+              </p>
+            ) : (
+              <p className={style.ok}>ok</p>
+            )}
+          </div>
+          <div className={style.botones}>
+            <button className={style.logMail} type="submit">
+              <BsMailbox /> Log in whith Mail
+            </button>
 
-              <button className={style.logGoogle}>
-                {" "}
-                <FcGoogle /> Log in whith Google
-              </button>
-            </div>
-            <div className={style.mensaje}>
-              <span>Don’t have an account?</span>
-              <NavLink to={"register"} className={style.link}>
-                Sign up
-              </NavLink>
-            </div>
+            <button className={style.logGoogle}>
+              {" "}
+              <FcGoogle /> Log in whith Google
+            </button>
+          </div>
+          <div className={style.mensaje}>
+            <span>Don’t have an account?</span>
+            <NavLink to={"/register"} className={style.link}>
+              Sign up
+            </NavLink>
           </div>
         </form>
       </div>
     </div>
   );
 }
-
-// import style from "./Login.module.css";
-
-// export default function Login({loginFn}) {
-// 	return (
-// 		<div className={style.login}>
-// 			<h4> Log In </h4>
-// 			<p> to your account </p>
-// 			<div className={style.logbox}>
-// 				<div className={style.inputbox}>
-// 					<input type="text" />
-// 					<span> User Name</span>
-// 					<div>
-// 						<div className={style.inputbox}>
-// 							<input type="password" />
-// 							<span> Password</span>
-// 						</div>
-// 					</div>
-// 					<button type="submit" className={style.button}>
-// 						Log In
-// 					</button>
-// 					<button onClick={()=>loginFn()} className={style.button}>
-// 						Log in with Google
-// 					</button>
-
-// 				</div>
-// 				<div className={style.bcgimage}></div>
-// 			</div>
-// 		</div>
-// 	);
-// }
