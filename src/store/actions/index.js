@@ -210,3 +210,40 @@ export const getTreesById = (id) => {
       }
     }
 }
+
+export function getName(props){
+  return async function(dispatch){
+    try{
+      if(props){
+        const response = await axios.get(`http://localhost:3001/videogames?name=${props}`);
+      return dispatch({
+        type: "GET_NAME",
+        payload: response.data
+      })
+      } 
+    }
+    catch(e){
+      console.log(e)
+    }
+  }
+}
+
+export function orderAnimalsDescendant(){
+  return async function(dispatch){
+    const response = await axios.get('http://localhost:3001/api/v1/filterController?type="descendant"');
+    return dispatch({
+      type: "ORDER_ANIMAL_DESCENDANT",
+      payload: response.data
+    })
+  }
+}
+
+export function orderAnimalsAscendant(){
+  return async function(dispatch){
+    const response = await axios.get('http://localhost:3001/api/v1/filterController?type="ascendant"');
+    return dispatch({
+      type: "ORDER_ANIMAL_ASCENDANT",
+      payload: response.data
+    })
+  }
+}

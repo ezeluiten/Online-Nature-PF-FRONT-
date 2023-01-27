@@ -8,7 +8,7 @@ import {
   Card,
   CardContainer,
 } from "./CampaingStyles";
-import { getCatalogue } from "./../../store/actions/index";
+import { getCatalogue, orderAnimalsDescendant, orderAnimalsAscendant } from "./../../store/actions/index";
 import { setOpenModal, setDonationCartElements } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
@@ -24,7 +24,15 @@ export const Campaing = () => {
   const dispatch = useDispatch();
   const catalogue = useSelector((state) => state.donationCatalogue);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const [order, setOrder] = useState("");
 
+
+  function handleName(e){e.preventDefault()
+    dispatch(orderAnimalsDescendant(e.target.value));
+    dispatch(orderAnimalsAscendant(e.target.value));
+    setOrder(e.target.value);}
+    
+    
 
   const img = require("../../imagenes/header-home.jpg");
   return (
@@ -36,7 +44,15 @@ export const Campaing = () => {
       />
 
       <StoreCampaingContainer>
-        <FiltersContainer></FiltersContainer>
+        <FiltersContainer>
+          <div>
+            <select id='order' onChange={(e) => handleName(e)}>
+            <option>Alphabetical Order</option>
+                        <option value = "ascendant">A - Z</option>
+                        <option value = "descendant">Z - A</option>
+            </select>
+          </div>
+        </FiltersContainer>
         <CardContainer>
             {catalogue?.map((item) => {
               return (
@@ -70,3 +86,4 @@ export const Campaing = () => {
     </>
   );
 };
+
