@@ -12,7 +12,10 @@ const initialState = {
       totalAmount:0
     },
     payer:{},
-    transactionInfo:{}
+    transactionInfo:{},
+    isOpenSettingsModal: false,
+    favorites:[]
+    
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -55,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
               
               return {
             ...state,
-            donationCatalogue: action.payload.data.allCatalogue
+            donationCatalogue: action.payload
           }
             case "ITEMS_CART":
               console.log("🚀 ~ file: index.js:54 ~ rootReducer ~ action.payload", action.payload)
@@ -78,6 +81,16 @@ const rootReducer = (state = initialState, action) => {
               return {
                 ...state,
                 transactionInfo: action.payload
+              }
+            case "MODAL_SETTINGS":
+              return {
+                ...state,
+                isOpenSettingsModal: action.payload
+              }
+            case "SET_FAVORITES":
+              return {
+                ...state,
+                favorites: action.payload
               }
       default:
         return { ...state };

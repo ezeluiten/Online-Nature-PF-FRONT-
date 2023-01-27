@@ -21,6 +21,39 @@ export const  getAnimals = () => {
 };
 
 
+export const setFavorites = (item) => {
+    return async function(dispatch, getState) { 
+      const {favorites, donationCatalogue} = getState()
+      if(item.selected){
+        item.selected = ""
+        const indexInFavorites = favorites.indexOf(item._id)
+        const removingItemFromFavorites = favorites.splice(indexInFavorites, 1)
+        const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
+        itemInCatalogue.selected = ""
+        console.log("🚀 ~ file: index.js:30 ~ returnfunction ~ index", favorites, indexInFavorites)
+      }else{
+        const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
+        item.selected = "selected";
+        itemInCatalogue.selected = "selected"
+        favorites.push(item)
+        console.log("🚀 ~ file: index.js:35 ~ returnfunction ~ favorites", favorites, item)
+
+      }
+      console.log("🚀 ~ file: index.js:38 ~ returnfunction ~ favorites", favorites,item)
+      dispatch({
+        type:"SET_FAVORITES",
+        payload:favorites
+      })
+      dispatch({
+        type:"GET_DONATION_PORTFOLIO",
+        payload:[
+          ...donationCatalogue
+        ]
+      })
+      
+    }
+}
+
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
       try{
@@ -60,10 +93,10 @@ export const getCatalogue = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get("/adoptionCatalogue");
-      console.log(response.data)
+      const data = await response.data.data
       dispatch({
         type: "GET_DONATION_PORTFOLIO",
-        payload: response.data
+        payload: data.allCatalogue
       });
     } catch (error) {
       dispatch({
@@ -250,6 +283,16 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
+export const setSettingsModalGate = (isOpen) => {
+  const setIsOpen = !isOpen
+  return async function (dispatch) {
+    dispatch({
+      type: "MODAL_SETTINGS",
+      payload: setIsOpen
+    })
+  };
+
+};
 export const setOpenModal = (isOpen) => {
   const setIsOpen = !isOpen
   return async function (dispatch) {

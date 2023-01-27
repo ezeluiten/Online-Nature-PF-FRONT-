@@ -8,10 +8,11 @@ import {
   Card,
   CardContainer,
 } from "./CampaingStyles";
-import { setOpenModal, setDonationCartElements, sorting } from "../../store/actions";
+import { setOpenModal, setDonationCartElements, sorting, setFavorites } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IoHeart } from "react-icons/io5"
 
 export const Campaing = () => {
 
@@ -36,34 +37,40 @@ export const Campaing = () => {
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
-            {catalogue?.map((item) => {
-              return (
-                <Card key={item._id}>
-                    <Link to={`/campaign/`}>
-                        <img src={item.image} />
-                    </Link>
-                  <CardLabel>
-                    <h3>{item.title}</h3>
-                    <p>$ {item.amount}</p>
-                   { isAuthenticated &&
-                     <button
-                      className="donate-button"
-                      onClick={() =>{
-                        // dispatch(setOpenModal(isModalOpen))
-                        dispatch(setDonationCartElements(item))
-                      }}
-                    >
-                      Donate
-                    </button>
+          {catalogue?.map((item) => {
+            return (
+              <Card key={item._id}>
+                  <Link to={`/campaign/`}>
+                    <img src={item.image} />
+                  </Link>
+                <CardLabel>
+                  <h3>{item.title}</h3>
+                  <p>$ {item.amount}</p>
+                  { isAuthenticated &&
+                    <button
+                    className="donate-button"
+                    onClick={() =>{
+                      // dispatch(setOpenModal(isModalOpen))
+                      dispatch(setDonationCartElements(item))
+                    }}
+                  >
+                    Donate
+                  </button>
 
-                   }
-                    {
-                      !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
-                    }
-                  </CardLabel>
-                </Card>
-              );
-            })}          
+                  }
+                  {
+                    !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
+                  }
+                  <div className={`icon-favorites ${item.selected}`} onClick={
+                      ()=>dispatch(setFavorites( item ))
+                    }>
+                    <IoHeart />
+
+                  </div>
+                </CardLabel>
+              </Card>
+            );
+          })}          
         </CardContainer>
       </StoreCampaingContainer>
     </>

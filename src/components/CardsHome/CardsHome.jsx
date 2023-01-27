@@ -16,6 +16,7 @@ export default function CardsHome(props) {
               variant="top"
               src={img1}
               style={{ width: "18rem", height: "150px" }}
+              className={"cardImg"}
             />
             <Card.Body>
               <Card.Title>Plant a Tree!</Card.Title>
