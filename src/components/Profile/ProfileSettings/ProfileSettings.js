@@ -8,8 +8,8 @@ import { ViewSelected } from './ViewSelected'
 export const ProfileSettings = () => {
 
     const [ isOpen, setIsOpen ] = useState({
-        open:false,
-        view:""
+        open:true,
+        view:"favorites"
     })
     console.log("🚀 ~ file: ProfileSettings.js:14 ~ ProfileSettings ~ isOpen", isOpen)
 
@@ -28,7 +28,7 @@ export const ProfileSettings = () => {
             "position":"fixed"
         }}/> */}
         <Navbar/>
-        <ProfileContainer>
+        <ProfileContainer className='profile-container'>
             <div className='settings-panel-options-picker'>
                 <p onClick={()=>handleToggle("edit")}>Edit Account Information</p>
                 <p onClick={()=>handleToggle("family")}>Family members preserved</p>

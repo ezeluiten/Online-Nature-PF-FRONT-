@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes , movimentBelow} from "styled-components";
 import zorro from "../../../imagenes/zorro.jpg" 
 import sunrise from "../../../imagenes/sunrise.jpg" 
 
@@ -13,6 +13,7 @@ export const ProfileContainer = styled.div`
     height:100%;
     gap:40px;
     max-width:1200px;
+    position: relative; 
     .settings-panel-options-picker{
         display:flex;
         flex-direction:column;
@@ -24,7 +25,17 @@ export const ProfileContainer = styled.div`
         border-radius:10px;
         padding:10px;
         box-shadow:6px 6px 5px 2px #3d2020;
+
     }
+    animation: movementBelow 1s linear 1;
+    .active-view @keyframes movementBelow {
+        from{
+        transform: translateX(-100%);
+        opacity: 0;
+        }to{
+        transform: translateX(0);
+        opacity: 1;
+    };
     .active-view{
         background-color: #568259;
         width:100%;
