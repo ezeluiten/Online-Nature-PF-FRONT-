@@ -17,7 +17,7 @@ export const Home = () => {
   
   console.log("🚀 ~ file: Home.jsx:15 ~ Home ~ user", user)
   useEffect(() => {
-    dispatch(getUserLoggedInfoToPay(user))
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
   }, [])
   
   const isModalOpen = useSelector((state) => state.isModalOpen);
