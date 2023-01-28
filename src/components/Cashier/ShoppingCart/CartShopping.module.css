@@ -4,6 +4,7 @@
     flex-direction:column;
     width:100%;
     color:white;
+    margin-bottom: 10px;
 }   
 
 .containerCart,.noCards {
@@ -14,20 +15,46 @@
     overflow:auto;
 }
 
-
-
 .cardContainer {
     display:flex;
     flex-direction:row;
     justify-content: center;
     width:80%;
     border-radius: 1rem ;
-    padding-bottom: 1rem;
+    box-shadow: 10px 5px 5px 0px rgb(91 97 86);
+    margin-bottom: 1rem;
 }
 .imgContainer{
     width: 60%;
     height: 100%;
 }
+
+.selectContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-right: 1rem;
+    height: 45px;
+    margin-right: 65px;
+}
+
+.selectAnimal{
+    display: flex;
+    align-self: flex-start;
+    border-radius: 8px;
+    width: 10rem;
+    margin-right: 1rem;
+    height: 40px;
+    background: initial;
+    font-family: inherit;
+    font-size: medium;
+    margin-bottom: 1rem;
+    background: #556e56;
+    padding-left: 15px;
+    color:white;
+    z-index: 999;
+}
+
 .infoContainer {
     display: flex;
     flex-direction: column;

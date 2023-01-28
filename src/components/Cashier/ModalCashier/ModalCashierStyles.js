@@ -25,9 +25,11 @@ export const ModalBody = styled.div`
   width: 50%;
   box-shadow: 10px 5px 5px 0px rgb(91 97 86);
 
+  
   .header-cart{
     position:relative;
     padding-left:55px;
+    padding-bottom:2rem;
     .button-close{
       position:absolute;
       top:-14px;
@@ -42,7 +44,7 @@ export const ModalBody = styled.div`
   }
   .modal-content{
     width:100%;
-    height:80%;
+    height:70%;
     background-color:#6d9970;
     backdrop-filter:blur(2px);
     

@@ -16,6 +16,8 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const shoppingCartItems = useSelector(state=>state.itemsCart)
+  console.log("🚀 ~ file: NavBar.jsx:20 ~ Navbar ~ shoppingCartItems", shoppingCartItems)
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
@@ -70,10 +72,13 @@ function Navbar() {
             </NavLink>
           </div>
           {isAuthenticated && (
-            <HiShoppingCart
-              className={styles.cart}
-              onClick={() => dispatch(setOpenModal(isModalOpen))}
-            />
+            <div className={styles.cartLogoContainer}>
+              { shoppingCartItems.items && shoppingCartItems.items.length > 0 && <span className={styles.cartQuantity}>{shoppingCartItems.items.length}</span>}
+              <HiShoppingCart
+                className={styles.cart}
+                onClick={() => dispatch(setOpenModal(isModalOpen))}
+              ></HiShoppingCart>
+            </div>
           )}
           {isAuthenticated && (
             <button
