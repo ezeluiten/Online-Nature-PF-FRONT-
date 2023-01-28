@@ -166,8 +166,8 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     let newItemSelected = {...newItem}
     
     
-    if( newItemsCart.length  && action == "increase" && newItemSelected ){
-      let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id == newItemSelected._id)
+    if( newItemsCart.length  && action === "increase" && newItemSelected ){
+      let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id === newItemSelected._id)
       if(searchItemAndIncreaseQuantity){
         searchItemAndIncreaseQuantity.quantity ++
       }else{
@@ -337,3 +337,38 @@ export const removeItemCart = (_id) => ({
     type: "REMOVE_ITEM_CART", 
     payload: _id 
 })
+
+export const orderByAlpha = (data) => {
+ 
+  return async (dispatch) => {
+    try {
+      let url = `/filterController/sort?type=${data}`;
+      console.log(url);
+      let json = await axios.get(url);
+      console.log(json.data);
+      return dispatch({
+        type: "ORDER_BY_ALPHA",
+        payload: json.data
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const orderBySpecies = (data) => {
+  return async (dispatch) => {
+    try {
+      let url = `/filterController/category?type=${data}`;
+      console.log(url);
+      let json = await axios.get(url);
+      console.log(json.data);
+      return dispatch({
+        type: "ORDER_BY_SPECIES",
+        payload: json.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

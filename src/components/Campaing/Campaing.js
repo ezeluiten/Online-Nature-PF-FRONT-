@@ -13,6 +13,7 @@ import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IoHeart } from "react-icons/io5"
+import Filters from '../filters/filters'
 
 export const Campaing = () => {
 
@@ -22,6 +23,8 @@ export const Campaing = () => {
   const catalogue = useSelector((state) => state.donationCatalogue);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [order, setOrder]= useState("")
   
 
 
@@ -33,7 +36,7 @@ export const Campaing = () => {
         imagen={img}
         text="We have suffered an alarming loss of biodiversity in recent decades..."
       />
-
+      <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
