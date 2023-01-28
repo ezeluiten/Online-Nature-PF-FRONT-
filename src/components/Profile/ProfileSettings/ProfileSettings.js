@@ -24,20 +24,26 @@ export const ProfileSettings = () => {
 
   return (
     <ProfileContainerView>
-        {/* <img src={zorro} style={{
+      {/* <img src={zorro} style={{
             "position":"fixed"
         }}/> */}
-        <Navbar/>
-        <ProfileContainer>
-            <div className='settings-panel-options-picker'>
-                <p onClick={()=>handleToggle("edit")}>Edit Account Information</p>
-                <p onClick={()=>handleToggle("family")}>Family members preserved</p>
-                <p onClick={()=>handleToggle("favorites")}>Favorite adoption prospects</p>
-            </div>
-            <ViewSelected className='active-view' isOpen={isOpen}>
-                Abierto
-            </ViewSelected>
-        </ProfileContainer>
+      <Navbar />
+      <ProfileContainer>
+        <div className="settings-panel-options-picker">
+          <p className="p-settings" onClick={() => handleToggle("edit")}>
+            Edit Account Information
+          </p>
+          <p className="p-settings" onClick={() => handleToggle("family")}>
+            Family members preserved
+          </p>
+          <p className="p-settings" onClick={() => handleToggle("favorites")}>
+            Favorite adoption prospects
+          </p>
+        </div>
+        <ViewSelected className="active-view" isOpen={isOpen}>
+          Abierto
+        </ViewSelected>
+      </ProfileContainer>
     </ProfileContainerView>
-  )
+  );
 }
