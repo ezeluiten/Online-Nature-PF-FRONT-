@@ -21,16 +21,18 @@ export const  getAnimals = () => {
 };
 
 
-export const setFavorites = (item) => {
+export const setFavorites = (item, funct) => {
+    console.log("🚀 ~ file: index.js:25 ~ setFavorites ~ item", item)
     return async function(dispatch, getState) { 
-      const {favorites, donationCatalogue} = getState()
+      let {favorites, donationCatalogue} = getState()
       if(item.selected){
         item.selected = ""
-        const indexInFavorites = favorites.indexOf(item._id)
-        const removingItemFromFavorites = favorites.splice(indexInFavorites, 1)
+        const indexInFavorites = favorites.filter(element => {
+          return element._id !== item._id
+        })
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         itemInCatalogue.selected = ""
-        console.log("🚀 ~ file: index.js:30 ~ returnfunction ~ index", favorites, indexInFavorites)
+        favorites = indexInFavorites
       }else{
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         item.selected = "selected";
@@ -42,7 +44,9 @@ export const setFavorites = (item) => {
       console.log("🚀 ~ file: index.js:38 ~ returnfunction ~ favorites", favorites,item)
       dispatch({
         type:"SET_FAVORITES",
-        payload:favorites
+        payload:[
+          ...favorites
+        ]
       })
       dispatch({
         type:"GET_DONATION_PORTFOLIO",

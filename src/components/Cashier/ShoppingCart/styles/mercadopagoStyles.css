@@ -1,0 +1,10 @@
+.mercadopago-button{
+    width: 140px;
+    background-color: #ea4335 !important;
+    position: absolute;
+    bottom: -120px;
+    right: 38%;
+    padding: 5px 15px 5px 15px;
+    border-radius: 10px !important;
+    text-transform: capitalize !important;
+}
