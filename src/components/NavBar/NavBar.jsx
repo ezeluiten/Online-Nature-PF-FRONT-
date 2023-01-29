@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BurguerButton from "./ModalBurger"
-
+import { NavBarContainer } from "./NavBarContainer";
 import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
@@ -18,7 +18,6 @@ function Navbar() {
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
   const shoppingCartItems = useSelector(state=>state.itemsCart)
-  console.log("🚀 ~ file: NavBar.jsx:20 ~ Navbar ~ shoppingCartItems", shoppingCartItems)
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
