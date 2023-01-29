@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/logo2.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%PUBLIC_URL%/logo2.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta
+			name="description"
+			content="Web site created using create-react-app"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0"
+		/>
+
+		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+		<!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+		<!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,119 +33,124 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
-    />
-    <title>Online Nature</title>
-  </head>
-  <body>
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script>
-      const mp = new MercadoPago("TEST-3c30ef4a-5961-4ffe-93f4-aee719753c29");
-      const cardForm = mp.cardForm({
-      amount: "100.5",
-      iframe: true,
-      form: {
-        id: "form-checkout",
-        cardNumber: {
-          id: "form-checkout__cardNumber",
-          placeholder: "Numero de tarjeta",
-        },
-        expirationDate: {
-          id: "form-checkout__expirationDate",
-          placeholder: "MM/YY",
-        },
-        securityCode: {
-          id: "form-checkout__securityCode",
-          placeholder: "Código de seguridad",
-        },
-        cardholderName: {
-          id: "form-checkout__cardholderName",
-          placeholder: "Titular de la tarjeta",
-        },
-        issuer: {
-          id: "form-checkout__issuer",
-          placeholder: "Banco emisor",
-        },
-        installments: {
-          id: "form-checkout__installments",
-          placeholder: "Cuotas",
-        },        
-        identificationType: {
-          id: "form-checkout__identificationType",
-          placeholder: "Tipo de documento",
-        },
-        identificationNumber: {
-          id: "form-checkout__identificationNumber",
-          placeholder: "Número del documento",
-        },
-        cardholderEmail: {
-          id: "form-checkout__cardholderEmail",
-          placeholder: "E-mail",
-        },
-      },
-      callbacks: {
-        onFormMounted: error => {
-          if (error) return console.warn("Form Mounted handling error: ", error);
-          console.log("Form mounted");
-        },
-        onSubmit: event => {
-          event.preventDefault();
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+			integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://kit.fontawesome.com/cd94a3c478.js"
+			crossorigin="anonymous"
+		></script>
+		<title>Online Nature</title>
+	</head>
+	<body>
+		<script src="https://sdk.mercadopago.com/js/v2"></script>
+		<script>
+			const mp = new MercadoPago("TEST-3c30ef4a-5961-4ffe-93f4-aee719753c29");
+			const cardForm = mp.cardForm({
+				amount: "100.5",
+				iframe: true,
+				form: {
+					id: "form-checkout",
+					cardNumber: {
+						id: "form-checkout__cardNumber",
+						placeholder: "Numero de tarjeta",
+					},
+					expirationDate: {
+						id: "form-checkout__expirationDate",
+						placeholder: "MM/YY",
+					},
+					securityCode: {
+						id: "form-checkout__securityCode",
+						placeholder: "Código de seguridad",
+					},
+					cardholderName: {
+						id: "form-checkout__cardholderName",
+						placeholder: "Titular de la tarjeta",
+					},
+					issuer: {
+						id: "form-checkout__issuer",
+						placeholder: "Banco emisor",
+					},
+					installments: {
+						id: "form-checkout__installments",
+						placeholder: "Cuotas",
+					},
+					identificationType: {
+						id: "form-checkout__identificationType",
+						placeholder: "Tipo de documento",
+					},
+					identificationNumber: {
+						id: "form-checkout__identificationNumber",
+						placeholder: "Número del documento",
+					},
+					cardholderEmail: {
+						id: "form-checkout__cardholderEmail",
+						placeholder: "E-mail",
+					},
+				},
+				callbacks: {
+					onFormMounted: (error) => {
+						if (error)
+							return console.warn("Form Mounted handling error: ", error);
+						console.log("Form mounted");
+					},
+					onSubmit: (event) => {
+						event.preventDefault();
 
-          const {
-            paymentMethodId: payment_method_id,
-            issuerId: issuer_id,
-            cardholderEmail: email,
-            amount,
-            token,
-            installments,
-            identificationNumber,
-            identificationType,
-          } = cardForm.getCardFormData();
+						const {
+							paymentMethodId: payment_method_id,
+							issuerId: issuer_id,
+							cardholderEmail: email,
+							amount,
+							token,
+							installments,
+							identificationNumber,
+							identificationType,
+						} = cardForm.getCardFormData();
 
-          fetch("/process_payment", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              token,
-              issuer_id,
-              payment_method_id,
-              transaction_amount: Number(amount),
-              installments: Number(installments),
-              description: "Descripción del producto",
-              payer: {
-                email,
-                identification: {
-                  type: identificationType,
-                  number: identificationNumber,
-                },
-              },
-            }),
-          });
-        },
-        onFetching: (resource) => {
-          console.log("Fetching resource: ", resource);
+						fetch("/process_payment", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								token,
+								issuer_id,
+								payment_method_id,
+								transaction_amount: Number(amount),
+								installments: Number(installments),
+								description: "Descripción del producto",
+								payer: {
+									email,
+									identification: {
+										type: identificationType,
+										number: identificationNumber,
+									},
+								},
+							}),
+						});
+					},
+					onFetching: (resource) => {
+						console.log("Fetching resource: ", resource);
 
-          // Animate progress bar
-          const progressBar = document.querySelector(".progress-bar");
-          progressBar.removeAttribute("value");
+						// Animate progress bar
+						const progressBar = document.querySelector(".progress-bar");
+						progressBar.removeAttribute("value");
 
-          return () => {
-            progressBar.setAttribute("value", "0");
-          };
-        }
-      },
-    });
-    </script>
-    
-    <div id="modal"></div>
-    <div id="root"></div>
-    <!--
+						return () => {
+							progressBar.setAttribute("value", "0");
+						};
+					},
+				},
+			});
+		</script>
+
+		<div id="modal"></div>
+		<div id="root"></div>
+		<!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -146,5 +160,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+	</body>
 </html>
