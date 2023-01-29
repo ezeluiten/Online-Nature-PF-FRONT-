@@ -8,8 +8,9 @@ import axios from "axios"
 import { ModalCashierPortal } from "./components/Cashier/ModalCashier/ModalCashier"
 import { HandleClose } from '../src/components/helpers/cashierModalHelper.js';
 import { useDispatch, useSelector } from "react-redux"
-import { setOpenModal } from "./store/actions"
+import { setOpenModal, getCatalogue, } from "./store/actions"
 import { CardShoppingCart } from './components/Cashier/ShoppingCart/CardShoppingCart.js';
+import { useEffect } from 'react';
 
 
 const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
