@@ -8,8 +8,8 @@ import { ViewSelected } from './ViewSelected'
 export const ProfileSettings = () => {
 
     const [ isOpen, setIsOpen ] = useState({
-        open:false,
-        view:""
+        open:true,
+        view:"favorites"
     })
     console.log("🚀 ~ file: ProfileSettings.js:14 ~ ProfileSettings ~ isOpen", isOpen)
 
@@ -27,6 +27,7 @@ export const ProfileSettings = () => {
       {/* <img src={zorro} style={{
             "position":"fixed"
         }}/> */}
+
       <Navbar />
       <ProfileContainer>
         <div className="settings-panel-options-picker">
@@ -44,6 +45,10 @@ export const ProfileSettings = () => {
           Abierto
         </ViewSelected>
       </ProfileContainer>
+
+        <Navbar/>
+       
+
     </ProfileContainerView>
   );
 }
