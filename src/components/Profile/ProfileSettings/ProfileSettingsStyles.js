@@ -44,6 +44,10 @@ export const ProfileContainer = styled.div`
         padding:10px;
         box-shadow:6px 6px 5px 2px #3d2020;
     }
+    .p-settings{
+       cursor:pointer;
+    }
+    
 `;
 export const ProfileContainerView = styled.div`
     display:flex;
@@ -56,5 +60,5 @@ export const ProfileContainerView = styled.div`
     background-size:cover;
     
     width:100%;
-    height:100vh
+    height:150vh
 `;
