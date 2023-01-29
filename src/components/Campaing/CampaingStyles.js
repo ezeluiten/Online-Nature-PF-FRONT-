@@ -14,7 +14,7 @@ export const StoreCampaingContainer = styled.div`
     gap:20px;
     padding-left: 140px;
     padding-right: 140px;
-    background-color:#eeeeee00;
+    background-color:#eeeeee;
     font-family: "Poppins", sans-serif;
     @media (max-width: 600px) {
         width:100%;
@@ -28,7 +28,7 @@ export const Card = styled.div`
     display:flex;
     flex-direction:column;
     gap:20px;
-    width: 350px;
+    width: 300px;
     height: 400px;
     background-color:white;
     border-style: solid;
@@ -36,9 +36,32 @@ export const Card = styled.div`
     border-radius:20px;
     overflow:hidden;
     border-color:#dee2e6;
-
+    
     transform: scale(var(--escala, 1));
     transition: transform 0.25s;
+    .icon-favorites{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:absolute;
+        top:10px;
+        right:10px;
+        z-index:99999;
+        width:40px;
+        height:40px;
+        color:white;
+        font-size:30px;
+        background-color:rgb(33, 37, 41, 0.8);
+        border-radius:100%;
+        cursor: pointer;
+        
+    }
+    .selected{
+        color:#900A22;
+    }
+    a{
+        cursor:auto
+    }
     h3{
         font-size:1.5rem
         
@@ -50,9 +73,7 @@ export const Card = styled.div`
     }
 
     &:hover {
-        cursor:pointer;
         --escala: 1.1;
-        cursor:pointer;
     }
     .button {
         color: #fffbff;

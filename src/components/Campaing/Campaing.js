@@ -8,11 +8,13 @@ import {
   Card,
   CardContainer,
 } from "./CampaingStyles";
-import { getCatalogue } from "./../../store/actions/index";
-import { setOpenModal, setDonationCartElements } from "../../store/actions";
+import { setOpenModal, setDonationCartElements, sorting } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IoHeart } from "react-icons/io5"
+import Filters from '../filters/filters'
+import Pagination from '../Paginate/Paginate'
 
 export const Campaing = () => {
 
@@ -21,6 +23,8 @@ export const Campaing = () => {
   const dispatch = useDispatch();
   const catalogue = useSelector((state) => state.donationCatalogue);
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+
+  
 
 
   const img = require("../../imagenes/header-home.jpg");
@@ -31,7 +35,7 @@ export const Campaing = () => {
         imagen={img}
         text="We have suffered an alarming loss of biodiversity in recent decades..."
       />
-
+      <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
         <FiltersContainer>
           <div>
@@ -43,36 +47,51 @@ export const Campaing = () => {
           </div>
         </FiltersContainer>
         <CardContainer>
-            {catalogue?.map((item) => {
-              return (
-                <Card key={item._id}>
-                    <Link to={`/campaign/`}>
-                        <img src={item.image} />
-                    </Link>
-                  <CardLabel>
-                    <h3>{item.title}</h3>
-                    <p>$ {item.amount}</p>
-                   { isAuthenticated &&
-                     <button
+          {currentCatalogue?.map((item) => {
+            return (
+              <Card key={item._id}>
+                <Link to={`/campaign/`}>
+                  <img src={item.image} />
+                </Link>
+                <CardLabel>
+                  <h3>{item.title}</h3>
+                  <p>$ {item.amount}</p>
+                  {isAuthenticated && (
+                    <button
                       className="donate-button"
-                      onClick={() =>{
+                      onClick={() => {
                         // dispatch(setOpenModal(isModalOpen))
-                        dispatch(setDonationCartElements(item))
+                        dispatch(setDonationCartElements(item));
                       }}
                     >
                       Donate
                     </button>
-
-                   }
-                    {
-                      !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
-                    }
-                  </CardLabel>
-                </Card>
-              );
-            })}          
+                  )}
+                  {!isAuthenticated && (
+                    <button
+                      className={"donate-button"}
+                      onClick={() => loginWithRedirect()}
+                    >
+                      log in
+                    </button>
+                  )}
+                  <div
+                    className={`icon-favorites ${item.selected}`}
+                    onClick={() => dispatch(setFavorites(item))}
+                  >
+                    <IoHeart />
+                  </div>
+                </CardLabel>
+              </Card>
+            );
+          })}
         </CardContainer>
       </StoreCampaingContainer>
+      <Pagination
+        elementPerPage={elementPerPage}
+        element={catalogue.length}
+        pagination={pagination}
+      />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BurguerButton from "./ModalBurger"
-
+import { NavBarContainer } from "./NavBarContainer";
 import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
@@ -9,6 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./NavBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenModal } from "../../store/actions";
+import { Profile } from "../Profile/Profile";
 
 function Navbar() {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
@@ -17,7 +18,6 @@ function Navbar() {
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
   const shoppingCartItems = useSelector(state=>state.itemsCart)
-  console.log("🚀 ~ file: NavBar.jsx:20 ~ Navbar ~ shoppingCartItems", shoppingCartItems)
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
@@ -95,17 +95,18 @@ function Navbar() {
             >
               log in
             </button>
-          ) : (
-            <button onClick={() => logout()} className={styles.button}>
-              {" "}
-              Log out
-            </button>
-          )}
+          ) :<Profile isAuthenticated={isAuthenticated} />
+            // <button onClick={() => logout()} className={styles.button}>
+            //   {" "}
+            //   Log out
+            // </button>
+          }
+          
         </div>
         <div className="burguer">
           <BurguerButton clicked={clicked} handleClick={handleClick} />
         </div>
-        <BgDiv className={`initial ${clicked ? " active" : ""}`}></BgDiv>
+        
       </NavContainer>
     </>
   );

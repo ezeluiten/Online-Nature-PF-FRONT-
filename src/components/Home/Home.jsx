@@ -4,7 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import Header from "../Header/Header";
 import CardsHome from "../CardsHome/CardsHome";
 import { Campaing } from "../Campaing/Campaing";
-
+import styles from '../Home/Home.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserLoggedInfoToPay, setOpenModal } from "../../store/actions"
 import { useAuth0 } from "@auth0/auth0-react";
@@ -19,7 +19,7 @@ export const Home = () => {
   
   console.log("🚀 ~ file: Home.jsx:15 ~ Home ~ user", user)
   useEffect(() => {
-    dispatch(getUserLoggedInfoToPay(user))
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
   }, [])
   
   const isModalOpen = useSelector((state) => state.isModalOpen);
@@ -27,7 +27,7 @@ export const Home = () => {
   
 
   return (
-    <>
+    <div className={styles.body}>
       <NavBar />
       <Header
         imagen={img}
@@ -38,7 +38,7 @@ We have suffered an alarming loss of biodiversity in recent decades...
       <CardsHome />
       {/* <Campaing/> */}
       
-    </>
+    </div>
   );
 };
 
