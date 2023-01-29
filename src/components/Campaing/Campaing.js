@@ -65,7 +65,7 @@ export const Campaing = () => {
                     !isAuthenticated && <button className={"donate-button"} onClick={()=>loginWithRedirect()}>log in</button>
                   }
                   <div className={`icon-favorites ${item.selected}`} onClick={
-                      ()=>dispatch(setFavorites( item ))
+                      ()=>dispatch(setFavorites( item ))  
                     }>
                     <IoHeart />
 
