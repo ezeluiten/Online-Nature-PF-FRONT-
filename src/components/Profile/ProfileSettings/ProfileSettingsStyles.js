@@ -27,15 +27,16 @@ export const ProfileContainer = styled.div`
         box-shadow:6px 6px 5px 2px #3d2020;
 
     }
-    animation: movementBelow 1s linear 1;
+    animation: movementBelow 1.5s linear ease-in;
     .active-view @keyframes movementBelow {
-        from{
+        from {
         transform: translateX(-100%);
         opacity: 0;
-        }to{
-        transform: translateX(0);
-        opacity: 1;
-    };
+        };
+        to{
+            transform: translateX(0);
+            opacity: 1;
+        };
     .active-view{
         background-color: #568259;
         width:100%;
