@@ -32,9 +32,9 @@ export const PaymentForm = () => {
         <progress value="0" class="progress-bar">Carregando...</progress>
       </form>
     `
-
+    
     containerHtml.innerHTML=htmlMeli
-    document.getElementById("modal").appendChild(containerHtml)
+    document.getElementById("modal").appendChild(containerHtml).style.display = "none"
 
     
 
@@ -54,7 +54,7 @@ export const PaymentForm = () => {
         console.log(prepaymentInfo.data, "token id")
         const form = document.getElementById(FORM_ID);
         form.appendChild(script);
-        
+        document.getElementById("modal").style.display = "block"
       }
     }, [prepaymentInfo]);
   
