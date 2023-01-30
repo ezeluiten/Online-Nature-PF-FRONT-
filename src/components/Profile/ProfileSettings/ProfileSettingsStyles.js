@@ -12,7 +12,7 @@ export const ProfileContainer = styled.div`
     width:100%;
     height:100%;
     gap:40px;
-    max-width:1200px;
+    max-width:1300px;
     position: relative; 
     .settings-panel-options-picker{
         display:flex;
@@ -27,15 +27,16 @@ export const ProfileContainer = styled.div`
         box-shadow:6px 6px 5px 2px #3d2020;
 
     }
-    animation: movementBelow 1s linear 1;
+    animation: movementBelow 1.5s linear ease-in;
     .active-view @keyframes movementBelow {
-        from{
+        from {
         transform: translateX(-100%);
         opacity: 0;
-        }to{
-        transform: translateX(0);
-        opacity: 1;
-    };
+        };
+        to{
+            transform: translateX(0);
+            opacity: 1;
+        };
     .active-view{
         background-color: #568259;
         width:100%;
@@ -44,17 +45,24 @@ export const ProfileContainer = styled.div`
         padding:10px;
         box-shadow:6px 6px 5px 2px #3d2020;
     }
+    .p-settings{
+       cursor:pointer;
+    }
+    
 `;
 export const ProfileContainerView = styled.div`
     display:flex;
     flex-direction:column;
     justify-items:center;
     align-items:center;
+    box-sizing:border-box;
     background-image:url(${zorro});
+    background-color:#02010000;
     background-origin: border-box;
     background-repeat: no-repeat;
     background-size:cover;
-    
+    padding:40px;
     width:100%;
-    height:100vh
+    height:100vh;
+
 `;

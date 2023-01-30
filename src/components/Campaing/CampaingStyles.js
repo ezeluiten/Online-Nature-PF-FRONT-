@@ -28,7 +28,7 @@ export const Card = styled.div`
     display:flex;
     flex-direction:column;
     gap:20px;
-    width: 350px;
+    width: 300px;
     height: 400px;
     background-color:white;
     border-style: solid;
