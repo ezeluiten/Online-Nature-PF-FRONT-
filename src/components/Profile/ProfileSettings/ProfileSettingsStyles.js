@@ -12,7 +12,7 @@ export const ProfileContainer = styled.div`
     width:100%;
     height:100%;
     gap:40px;
-    max-width:1300px;
+    max-width:1500px;
     position: relative; 
     .settings-panel-options-picker{
         display:flex;

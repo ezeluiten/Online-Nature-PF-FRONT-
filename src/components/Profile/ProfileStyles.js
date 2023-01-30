@@ -12,12 +12,15 @@ export const ProfileSectionContainer = styled.div`
     font-size: 16px;
     cursor:pointer;
     .img-container {
-        width: 100%;
+        width: 40px;
+        height:40px;
+        img {
+            height:40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit:cover;
+        }
 
-    }
-    img {
-        width: 100%;
-        border-radius: 50%;
     }
     .text-container {
         display: flex;
