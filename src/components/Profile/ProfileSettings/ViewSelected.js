@@ -36,14 +36,24 @@ const pagination = (pageNumber) => {
 
     return (
       <ViewSelectedContainer>
-          
+        <CardsContainer>
+              <h4 className="title-welcome">
+                User panel:
+              </h4>
+              <p className="title-welcome">Change your Account information: </p>
+            </CardsContainer>
       </ViewSelectedContainer>
     )
   }else if(open && view == "family"){
 
     return (
       <ViewSelectedContainer>
-          
+           <CardsContainer>
+              <h2 className="title-welcome">
+                Family members:
+              </h2>
+              <h4 className="title-welcome">Your favorite friend's panel: </h4>
+            </CardsContainer>
       </ViewSelectedContainer>
     )
   }else if(open && view == "favorites"){
