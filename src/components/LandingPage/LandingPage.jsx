@@ -9,6 +9,7 @@ export function LandingPage() {
     <>
       <div className={style.container}>
         <CarouselFadeExample />
+        
       </div>
     </>
   );

@@ -1,0 +1,142 @@
+.containerCart {
+    margin-top: 1rem;
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    color:white;
+    gap:20px;
+    overflow-x:hidden;
+    overflow:hidden;
+    overflow-y:auto;
+    margin-bottom: 10px;
+}
+
+.containerCart,.noCards {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    overflow:auto;
+}
+
+.cardContainer {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    width:80%;
+    border-radius: 1rem ;
+    box-shadow: 10px 5px 5px 0px rgb(91 97 86);
+}
+.imgContainer{
+    width: 60%;
+    height: 100%;
+}
+
+.selectContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-right: 1rem;
+    height: 45px;
+    margin-right: 65px;
+}
+
+.selectAnimal{
+    display: flex;
+    align-self: flex-start;
+    border-radius: 8px;
+    width: 10rem;
+    margin-right: 1rem;
+    height: 40px;
+    background: initial;
+    font-family: inherit;
+    font-size: medium;
+    margin-bottom: 1rem;
+    background: #556e56;
+    padding-left: 15px;
+    color:white;
+    z-index: 999;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #556e56;
+    width: 60%;
+    padding: 1rem;
+}
+
+.infoContainerChild {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerQuantity {
+    display: flex;
+    justify-content: space-between;
+    height: 70%;
+}
+.containerQuantityChild {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    background-color: #354436;
+}
+
+.containerQuantityChild > a {
+    cursor: pointer;
+}
+
+.containerAmount {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.containerSubmit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: -4rem;
+    width: 80%;
+}
+
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 2px solid #556e56;
+    font-size: larger;
+    color: #354436;
+    font-weight: bolder;
+    background-color:#6d9970;
+}
+
+.btn {
+    background-color: rgba(254, 254, 254, 0);
+    width: 10%;
+    height: min-content;
+    color: white;
+    border: solid rgba(255, 0, 0, 0) ;
+    font-weight: bold;
+}
+
+.buttonSubmit {
+    color: #fffbff;
+    border-radius: 10px;
+    padding: 5px 15px 5px 15px;
+    background-color: #ea4335;
+    border-color: transparent;
+    transition: all 1s;
+}
+
+.buttonSubmit:hover {
+    transition: all 1s;
+    background-color: hsla(5, 81%, 56%, 0.8);
+  }

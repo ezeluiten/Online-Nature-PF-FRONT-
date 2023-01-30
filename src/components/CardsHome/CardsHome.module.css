@@ -3,8 +3,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  overflow: hidden;
   margin-top: 50px;
   margin-bottom: 50px;
+  gap:30px;
+}
+
+.cardImg{
+  object-fit:cover;
 }
 
 .store {
@@ -15,4 +21,18 @@
 .store:hover {
   background-color: hsla(124, 20%, 42%, 0.8);
   border-color: transparent;
+}
+
+@media only screen and (max-width: 600px){
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+  }
+  img{
+    object-fit:contain;
+  }
+  .card {
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
 }

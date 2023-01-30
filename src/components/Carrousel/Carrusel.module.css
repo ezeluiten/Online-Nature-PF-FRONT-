@@ -30,3 +30,9 @@
   background-color: #56825943;
   border-radius: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .subContaineImg{
+    width: auto;
+  }
+}

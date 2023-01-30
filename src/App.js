@@ -5,21 +5,39 @@ import Detail  from './components/detail/AnimalDetail/AnimalDetail.jsx';
 import { Home } from './components/Home/Home.jsx';
 import { Navigation } from "./components/routes/Navigation"
 import axios from "axios"
+import { ModalCashierPortal } from "./components/Cashier/ModalCashier/ModalCashier"
+import { HandleClose } from '../src/components/helpers/cashierModalHelper.js';
+import { useDispatch, useSelector } from "react-redux"
+import { getCatalogue, setOpenModal } from "./store/actions"
+import { CardShoppingCart } from './components/Cashier/ShoppingCart/CardShoppingCart.js';
+import { useEffect } from 'react';
 
-// axios.defaults.baseURL = "http://localhost:3001/api/v1" 
-axios.defaults.baseURL = "https://craven-sign-production.up.railway.app/api/v1/"
+
+const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
+const prodUrl = process.env.REACT_APP_PRODUCTION_URL
+axios.defaults.baseURL = developUrl
+// axios.defaults.baseURL = prodUrl
 
 function App() {
+
+  const dispatch = useDispatch()
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  
+  useEffect(() => {
+    dispatch(getCatalogue());
+  }, []);
+  
+  const modifyModalState =(isOpen)=>{
+      console.log("🚀 ~ file: cashierModalHelper.js:8 ~ HandleClose ~ isOpen", isOpen)
+    dispatch(setOpenModal(isOpen))
+    
+  }
   return (
-    // <Route path="/" element={<Dashboard />}>
-    <Navigation/>
-    // <BrowserRouter>
-    // <Routes>
-    // <Route exact path = '/detail/:id' element={<Detail/>}/>
-    //   <Route exact path = '/home' element={<Home/>}/>
-    //   <Route exact path = '/' element = {<LandingPage/>}/>
-    //   </Routes>
-    // </BrowserRouter>
+    <>
+      <ModalCashierPortal onClose={modifyModalState} children={<CardShoppingCart/>}/>
+        
+      <Navigation/>
+    </>
   );
 }
 
