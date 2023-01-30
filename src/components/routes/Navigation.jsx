@@ -25,7 +25,6 @@ export const Navigation = () => {
         <MainContainer className="main-layout">
           <NavLink to={"/home"}></NavLink>
           <Routes>
-            <Route path="/campaign/:id" element={<TreeDetail />} />
             <Route path="/campaign/:id" element={<AnimalDetil />} />
             <Route path="/payment" element={<PaymentForm />} />
             <Route path="/campaign" element={<Campaing />} />

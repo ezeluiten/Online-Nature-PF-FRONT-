@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 
 export default function Cards(props) {
   const { imagen, title, price } = props;
+
   return (
     <>
       <Card style={{ width: "18rem" }}>
