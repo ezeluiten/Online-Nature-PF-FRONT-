@@ -21,6 +21,43 @@ export const  getAnimals = () => {
 };
 
 
+export const setFavorites = (item, funct) => {
+    console.log("🚀 ~ file: index.js:25 ~ setFavorites ~ item", item)
+    return async function(dispatch, getState) { 
+      let {favorites, donationCatalogue} = getState()
+      if(item.selected){
+        item.selected = ""
+        const indexInFavorites = favorites.filter(element => {
+          return element._id !== item._id
+        })
+        const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
+        itemInCatalogue.selected = ""
+        favorites = indexInFavorites
+      }else{
+        const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
+        item.selected = "selected";
+        itemInCatalogue.selected = "selected"
+        favorites.push(item)
+        console.log("🚀 ~ file: index.js:35 ~ returnfunction ~ favorites", favorites, item)
+
+      }
+      console.log("🚀 ~ file: index.js:38 ~ returnfunction ~ favorites", favorites,item)
+      dispatch({
+        type:"SET_FAVORITES",
+        payload:[
+          ...favorites
+        ]
+      })
+      dispatch({
+        type:"GET_DONATION_PORTFOLIO",
+        payload:[
+          ...donationCatalogue
+        ]
+      })
+      
+    }
+}
+
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
       try{
@@ -60,10 +97,10 @@ export const getCatalogue = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get("/adoptionCatalogue");
-      console.log(response.data)
+      const data = await response.data.data
       dispatch({
         type: "GET_DONATION_PORTFOLIO",
-        payload: response.data
+        payload: data.allCatalogue
       });
     } catch (error) {
       dispatch({
@@ -133,8 +170,8 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     let newItemSelected = {...newItem}
     
     
-    if( newItemsCart.length  && action == "increase" && newItemSelected ){
-      let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id == newItemSelected._id)
+    if( newItemsCart.length  && action === "increase" && newItemSelected ){
+      let searchItemAndIncreaseQuantity = newItemsCart.find(item=>item._id === newItemSelected._id)
       if(searchItemAndIncreaseQuantity){
         searchItemAndIncreaseQuantity.quantity ++
       }else{
@@ -250,6 +287,16 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
+export const setSettingsModalGate = (isOpen) => {
+  const setIsOpen = !isOpen
+  return async function (dispatch) {
+    dispatch({
+      type: "MODAL_SETTINGS",
+      payload: setIsOpen
+    })
+  };
+
+};
 export const setOpenModal = (isOpen) => {
   const setIsOpen = !isOpen
   return async function (dispatch) {
@@ -294,3 +341,38 @@ export const removeItemCart = (_id) => ({
     type: "REMOVE_ITEM_CART", 
     payload: _id 
 })
+
+export const orderByAlpha = (data) => {
+ 
+  return async (dispatch) => {
+    try {
+      let url = `/filterController/sort?type=${data}`;
+      console.log(url);
+      let json = await axios.get(url);
+      console.log(json.data);
+      return dispatch({
+        type: "ORDER_BY_ALPHA",
+        payload: json.data
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const orderBySpecies = (data) => {
+  return async (dispatch) => {
+    try {
+      let url = `/filterController/category?type=${data}`;
+      console.log(url);
+      let json = await axios.get(url);
+      console.log(json.data);
+      return dispatch({
+        type: "ORDER_BY_SPECIES",
+        payload: json.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

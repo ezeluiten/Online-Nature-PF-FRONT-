@@ -3,8 +3,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  overflow: hidden;
   margin-top: 50px;
   margin-bottom: 50px;
+  gap:30px;
+}
+
+.cardImg{
+  object-fit:cover;
 }
 
 .store {
@@ -22,8 +28,11 @@
     display: flex;
     flex-direction: column;
   }
-
+  img{
+    object-fit:contain;
+  }
   .card {
     margin-bottom: 1rem;
+    overflow: hidden;
   }
 }
