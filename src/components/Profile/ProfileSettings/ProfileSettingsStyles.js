@@ -12,7 +12,7 @@ export const ProfileContainer = styled.div`
     width:100%;
     height:100%;
     gap:40px;
-    max-width:1500px;
+    max-width:100px;
     position: relative; 
     .settings-panel-options-picker{
         display:flex;
@@ -28,7 +28,7 @@ export const ProfileContainer = styled.div`
 
     }
     animation: movementBelow 1.5s linear ease-in;
-    .active-view @keyframes movementBelow {
+    @keyframes movementBelow {
         from {
         transform: translateX(-100%);
         opacity: 0;
