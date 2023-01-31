@@ -15,6 +15,7 @@ import TreeDetail from "../detail/TreeDetail/TreeDetail.jsx";
 import { PaymentForm } from "../Cashier/PaymentForm.js";
 import { ProfileSettings } from "../Profile/ProfileSettings/ProfileSettings.js";
 import { MainContainer } from "./NavigationStyles.js";
+import DashboarAdmin from "../DashboarAdmin/DashboarAdmin.jsx";
 
 export const Navigation = () => {
   return (
@@ -28,6 +29,7 @@ export const Navigation = () => {
             <Route path="/payment" element={<PaymentForm/>}/>
             <Route path="/profile" element={<ProfileSettings/>}/>
             <Route path="/campaign" element={<Campaing />} />
+            <Route path="/DashboarAdmin" element={<DashboarAdmin />} />
             <Route path="home" element={<Home />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/*" element={<Navigate to={"/"} replace />} />

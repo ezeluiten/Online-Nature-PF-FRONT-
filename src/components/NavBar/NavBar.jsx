@@ -62,6 +62,12 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
+						<NavLink to="/DashboarAdmin" className={styles.link}>
+							My Dash
+						</NavLink>
+					</div>
+
+          <div className={styles.a}>
             <NavLink
               to="/reservation"
               className={({ isActive }) =>
@@ -178,8 +184,8 @@ const NavContainer = styled.nav`
     }
   }
   .links.active {
-    width: inherit;
-    height: 42rem;
+    width: auto;
+    height: auto;
     /* width: 100%;
     height: 100%; */
     display: -webkit-box;
@@ -190,7 +196,7 @@ const NavContainer = styled.nav`
     margin-left: auto;
     margin-right: auto;
     top: 0;
-    left: 0px;
+    left: -285px;
     right: 0;
     text-align: center;
     -webkit-flex-direction: column;

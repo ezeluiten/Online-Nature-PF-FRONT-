@@ -4,6 +4,7 @@ import { ProfileSectionContainer } from "./ProfileStyles";
 import { useDispatch, useSelector } from "react-redux";
 import {setSettingsModalGate} from "../../store/actions/index"
 import { ModalMenuSettings } from "./modalSettings/ModalMenuSettings";
+import coala from "../../imagenes/koala.webp"
 
 export const Profile = ({isAuthenticated}) => {
 
@@ -29,7 +30,7 @@ export const Profile = ({isAuthenticated}) => {
       <>
         <ProfileSectionContainer onClick={()=>openSettingsModal()}>
           <div className="img-container" >
-            <img src={payer.picture} alt={payer.name} />
+            <img src={ payer.picture ||coala } alt={payer.given_name} />
           </div>
           
           {/* <button onClick={logout}>log out</button> */}
