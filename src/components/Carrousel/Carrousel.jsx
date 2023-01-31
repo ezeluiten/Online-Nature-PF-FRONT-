@@ -22,10 +22,14 @@ function CarouselFadeExample() {
               <img className={style.logo} src={logo} alt="img_logo" />
             </div>
           </div>
-          <h3>First slide label</h3>
-          <p>
-            Help nature
-          </p>
+          <div className={style.containerText}>
+            <h3>First slide label</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+              quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
+              voluptates temporibus a.
+            </p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -42,12 +46,14 @@ function CarouselFadeExample() {
               <img className={style.logo} src={logo} alt="img_logo" />
             </div>
           </div>
-          <h3>Second slide label</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-            quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-            voluptates temporibus a.
-          </p>
+          <div className={style.containerText}>
+            <h3>Second slide label</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+              quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
+              voluptates temporibus a.
+            </p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -64,12 +70,14 @@ function CarouselFadeExample() {
               <img className={style.logo} src={logo} alt="img_logo" />
             </div>
           </div>
-          <h3>Third slide label</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-            quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-            voluptates temporibus a.
-          </p>
+          <div className={style.containerText}>
+            <h3>Third slide label</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+              quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
+              voluptates temporibus a.
+            </p>
+          </div>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
