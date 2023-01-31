@@ -70,6 +70,12 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
+						<NavLink to="/DashboarAdmin" className={styles.link}>
+							My Dash
+						</NavLink>
+					</div>
+
+          <div className={styles.a}>
             <NavLink
               to="/reservation"
               className={({ isActive }) =>

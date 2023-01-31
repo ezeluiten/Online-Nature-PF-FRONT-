@@ -64,42 +64,46 @@ export const Campaing = () => {
         <FiltersContainer></FiltersContainer>
         <CardContainer>
           {currentCatalogue?.map((item) => {
-            return (
-              <Card key={item._id}>
-                <div onClick={() => handleClick(item._id)}>
-                  <img src={item.image} />
-                </div>
-                <CardLabel>
-                  <h3>{item.title}</h3>
-                  <p>$ {item.amount}</p>
-                  {isAuthenticated && (
-                    <button
-                      className="donate-button"
-                      onClick={() => {
-                        // dispatch(setOpenModal(isModalOpen))
-                        dispatch(setDonationCartElements(item));
-                      }}
+
+            if(item.amount){
+              
+              return (
+                <Card key={item._id}>
+                  <Link to={`/campaign/`}>
+                    <img src={item.image} />
+                  </Link>
+                  <CardLabel>
+                    <h3>{item.title}</h3>
+                    <p>$ {item.amount}</p>
+                    {isAuthenticated && (
+                      <button
+                        className="donate-button"
+                        onClick={() => {
+                          // dispatch(setOpenModal(isModalOpen))
+                          dispatch(setDonationCartElements(item));
+                        }}
+                      >
+                        Donate
+                      </button>
+                    )}
+                    {!isAuthenticated && (
+                      <button
+                        className={"donate-button"}
+                        onClick={() => loginWithRedirect()}
+                      >
+                        log in
+                      </button>
+                    )}
+                    <div
+                      className={`icon-favorites ${item.selected}`}
+                      onClick={() => dispatch(setFavorites(item))}
                     >
-                      Donate
-                    </button>
-                  )}
-                  {!isAuthenticated && (
-                    <button
-                      className={"donate-button"}
-                      onClick={() => loginWithRedirect()}
-                    >
-                      log in
-                    </button>
-                  )}
-                  <div
-                    className={`icon-favorites ${item.selected}`}
-                    onClick={() => dispatch(setFavorites(item))}
-                  >
-                    <IoHeart />
-                  </div>
-                </CardLabel>
-              </Card>
-            );
+                      <IoHeart />
+                    </div>
+                  </CardLabel>
+                </Card>
+              );
+            }else{<></>}
           })}
         </CardContainer>
       </StoreCampaingContainer>
