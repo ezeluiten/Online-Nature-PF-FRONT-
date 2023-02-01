@@ -1,12 +1,11 @@
 .list {
+    margin-top: 20px;
+    padding: 20px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 9.5vw;
-    padding: 20px;
-    width: 50vw;
-    height: 5vh;
-    gap: 0.3vw;
+    gap:10px
 }
 
 .items {
@@ -30,8 +29,6 @@
     cursor: pointer; */
     width: 30px;
     height: 30px;
-    margin-top: 7px;
-    margin-left:1px;
     background-color: #568259;
     color: whitesmoke;
     border: none;

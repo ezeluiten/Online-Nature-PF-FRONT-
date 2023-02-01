@@ -7,6 +7,10 @@ import styles from '../Home/Home.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserLoggedInfoToPay, setOpenModal } from "../../store/actions"
 import { useAuth0 } from "@auth0/auth0-react";
+import { LoaderContainer } from "./loaderStyles"
+import { ThreeDots } from "react-loader-spinner";
+
+
 
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
@@ -17,25 +21,45 @@ export const Home = () => {
   console.log("🚀 ~ file: Home.jsx:15 ~ Home ~ user", user)
   useEffect(() => {
     dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
-  }, [])
+  }, [isAuthenticated])
   
+  const loading = useSelector((state) => state.loading);
   const isModalOpen = useSelector((state) => state.isModalOpen);
-  console.log("🚀 ~ file: Home.jsx:14 ~ Home ~ isModalOpen", isModalOpen)
+  console.log("🚀 ~ file: Home.jsx:28 ~ Home ~ loading", loading)
   
+  if(loading){
+    //componente loader
+    <LoaderContainer>
+      <ThreeDots 
+        height="80" 
+        width="80" 
+        radius="9"
+        color="#4fa94d" 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+   />
 
-  return (
-    <div className={styles.body}>
-      <NavBar />
-      <Header
-        imagen={img}
-        text="
-We have suffered an alarming loss of biodiversity in recent decades...
-"
-      />
-      <CardsHome />
-      
-    </div>
-  );
+    </LoaderContainer>
+  }
+
+  if(!loading){
+    
+    return (
+      <div className={styles.body}>
+        <NavBar />
+        <Header
+          imagen={img}
+          text="
+  We have suffered an alarming loss of biodiversity in recent decades...
+  "
+        />
+        <CardsHome />
+        
+      </div>
+    );
+  }
 };
 
 

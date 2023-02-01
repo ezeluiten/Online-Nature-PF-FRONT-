@@ -32,7 +32,7 @@ const handleFilterSpecies = (e) => {
       <div className={styles.divis}>
         <select onChange={handleFilteralph} className={styles.select}>
           <option value="all" className={styles.order}>
-            Alphabetically
+            Order Alphabetically
           </option>
           <option value="ascendant" className={styles.order}>
             A - Z
@@ -45,7 +45,10 @@ const handleFilterSpecies = (e) => {
       <div className={styles.divis}>
         <select onChange={handleFilterSpecies} className={styles.select}>
           <option value="all" className={styles.order}>
-            Species
+            Filter by
+          </option>
+          <option value="all" className={styles.order}>
+            All
           </option>
           <option value="animals" className={styles.order}>
             animals
