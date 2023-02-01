@@ -1,0 +1,114 @@
+.register {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url("../../imagenes/tigre.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: hsla(127, 5%, 29%, 0.7);
+  padding: 30px 80px;
+}
+
+.container h6 {
+  margin-bottom: -3px;
+  color: #fffbff;
+  text-align: center;
+}
+
+.container p {
+  text-align: center;
+}
+
+.container .Entrada {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 315px;
+  align-self: center;
+  padding: 5px;
+}
+
+.container .mensaje {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.logo {
+  height: 200px;
+  width: 200px;
+  background-image: url("../../imagenes/logot.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px;
+}
+
+.logMail {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  gap: 10px;
+  text-align: left;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: #568259;
+  transition: all 1s;
+}
+
+.logMail:hover {
+  transition: all 1s;
+  background-color: hsla(127, 5%, 29%, 0.7);
+}
+
+.logGoogle {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  gap: 10px;
+  text-align: left;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: #fffbff;
+  transition: all 1s;
+}
+
+.logGoogle:hover {
+  transition: all 1s;
+  background-color: hsla(300, 100%, 99%, 0.7);
+}
+
+.link {
+  color: #a8cf45;
+}
+
+.link:hover {
+  color: hsla(77, 59%, 54%, 0.7);
+}

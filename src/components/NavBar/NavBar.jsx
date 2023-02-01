@@ -16,7 +16,7 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const shoppingCartItems = useSelector(state=>state.itemsCart)
+  const shoppingCartItems = useSelector((state) => state.itemsCart);
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
@@ -25,7 +25,15 @@ function Navbar() {
   return (
     <>
       <NavContainer>
-        <div className={styles.logo}></div>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? styles.navActivety : styles.link
+          }
+        >
+          <div className={styles.logo}></div>
+        </NavLink>
+
         <div className={`links ${clicked ? "active" : ""}`}>
           <div className="a">
             <NavLink
@@ -78,7 +86,12 @@ function Navbar() {
           </div>
           {isAuthenticated && (
             <div className={styles.cartLogoContainer}>
-              { shoppingCartItems.items && shoppingCartItems.items.length > 0 && <span className={styles.cartQuantity}>{shoppingCartItems.items.length}</span>}
+              {shoppingCartItems.items &&
+                shoppingCartItems.items.length > 0 && (
+                  <span className={styles.cartQuantity}>
+                    {shoppingCartItems.items.length}
+                  </span>
+                )}
               <HiShoppingCart
                 className={styles.cart}
                 onClick={() => dispatch(setOpenModal(isModalOpen))}
@@ -93,25 +106,26 @@ function Navbar() {
               DONATE
             </button>
           )}
-          {!isAuthenticated ? (
-            <button
-              className={styles.button}
-              onClick={() => loginWithRedirect()}
-            >
-              log in
-            </button>
-          ) :<Profile isAuthenticated={isAuthenticated} />
+          {
+            !isAuthenticated ? (
+              <button
+                className={styles.button}
+                onClick={() => loginWithRedirect()}
+              >
+                log in
+              </button>
+            ) : (
+              <Profile isAuthenticated={isAuthenticated} />
+            )
             // <button onClick={() => logout()} className={styles.button}>
             //   {" "}
             //   Log out
             // </button>
           }
-          
         </div>
         <div className="burguer">
           <BurguerButton clicked={clicked} handleClick={handleClick} />
         </div>
-        
       </NavContainer>
     </>
   );
@@ -207,7 +221,7 @@ const NavContainer = styled.nav`
     align-items: center;
     background: #568259;
     justify-content: space-evenly;
-    
+
     .a {
       font-size: 2rem;
       margin-top: 1rem;
