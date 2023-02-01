@@ -2,7 +2,6 @@
 export const scriptsMeliInjection = ()=>{
     // document.createElement("script")
     const mercadoPagoInitialization = new window.MercadoPago(process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN)
-    console.log("🚀 ~ file: mercadopagoInitHelper.js:6 ~ scriptsMeliInjection ~ mercadoPagoInitialization", mercadoPagoInitialization)
    
     const cardForm = mercadoPagoInitialization.cardForm({
     amount: "100.5",

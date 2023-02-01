@@ -204,7 +204,8 @@ aside .sidebar .message_count {
 }
 
 main {
-	margin-top: 1.4rem;
+	/* margin-top: 1.4rem; */
+	margin-top: 20px;
 }
 
 main .date {
@@ -685,7 +686,7 @@ button:hover {
 	}
 
 	main {
-		margin-top: 8rem;
+		margin-top: 1rem;
 		padding: 0 1rem;
 	}
 

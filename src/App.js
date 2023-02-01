@@ -30,7 +30,6 @@ function App() {
   }, []);
   
   const modifyModalState =(isOpen)=>{
-      console.log("🚀 ~ file: cashierModalHelper.js:8 ~ HandleClose ~ isOpen", isOpen)
     dispatch(setOpenModal(isOpen))
     
   }

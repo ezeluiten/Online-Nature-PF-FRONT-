@@ -7,7 +7,7 @@ import { HiShoppingCart } from "react-icons/hi";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./NavBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenModal } from "../../store/actions";
+import { setOpenModal, loginLoader } from "../../store/actions";
 import { Profile } from "../Profile/Profile";
 
 function Navbar() {
@@ -110,7 +110,7 @@ function Navbar() {
             !isAuthenticated ? (
               <button
                 className={styles.button}
-                onClick={() => loginWithRedirect()}
+                onClick={() => dispatch(loginLoader(loginWithRedirect, isAuthenticated))}
               >
                 log in
               </button>
@@ -144,19 +144,14 @@ const NavContainer = styled.nav`
   padding: 0.4rem;
   background-color: #568259;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
   /* FIXED CULPABLE DE TODO */
   position: fixed;
   z-index: 10;
-  align-items: center;
   flex-wrap: nowrap;
   flex-direction: row;
   right: 0;
-
   margin-top: 15px;
   justify-content: space-between;
 
@@ -166,13 +161,15 @@ const NavContainer = styled.nav`
     margin-right: 1rem;
   }
   .links {
-    position: absolute;
-    top: -700px;
-    left: -2000px;
-    right: 0;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    position:absolute;
+    left: -100%;
+    top:-100%;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    align-items:center;
     transition: all 0.5s ease;
     z-index: 2;
     .a {
@@ -189,7 +186,6 @@ const NavContainer = styled.nav`
         display: inline;
       }
 
-      margin-top: 15px;
       padding-right: 10px;
 
       display: flex;
