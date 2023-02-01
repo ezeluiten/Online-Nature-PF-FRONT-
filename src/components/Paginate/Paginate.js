@@ -9,7 +9,7 @@ const Pagination = ({elementPerPage, element, pagination}) => {
     }
 
     return ( 
-        <nav>
+        <nav className={styles.container}>
             <ul className={styles.list}>
                 {
                     pageNumbers?.map(number => (

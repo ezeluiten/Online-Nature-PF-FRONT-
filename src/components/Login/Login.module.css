@@ -1,83 +1,112 @@
 .login {
-	position: absolute;
-	padding: 50px 50px;
-	text-align: center;
-	box-shadow: 3px 6px 30px 8px rgba(58 58 58 / 15%);
-	background: rgb(0, 52, 134 / 50%);
-	right: 15%;
-	bottom: 20%;
-	height: 75%;
-	border: 1px solid;
-	border-top-color: #56aaff;
-	border-left-color: #56aaff;
-	border-bottom-color: #00000030;
-	border-right-color: #00000030;
-	border-radius: 8px;
-	backdrop-filter: blur(5px);
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url("../../imagenes/pexels-oliver-sjöström-931007.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
 }
 
-.login h4 {
-	font-size: 28px;
-	font-weight: 600;
-	letter-spacing: 2px;
-	color: #d7f52b;
+.loginFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: hsla(127, 5%, 29%, 0.7);
+  padding: 30px 80px;
 }
 
-.login p {
-	font-size: 18px;
-	color: #d7f52b;
-	margin-bottom: 100px;
+.container h6 {
+  margin-bottom: -3px;
+  color: #fffbff;
+  text-align: center;
 }
 
-.inputbox {
-	position: relative;
-	margin-bottom: 50px;
+.container p {
+  text-align: center;
 }
 
-.inputbox input {
-	font-size: 24px;
-	font-weight: 400;
-	letter-spacing: 2px;
-	color: #eff9ff;
-	border: none;
-	border-bottom: 1px solid #abe0ff;
-	background-color: transparent;
-	padding: 4px 3px;
-	outline: none;
+.container .Entrada {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 315px;
+  align-self: center;
+  padding: 5px;
 }
 
-.inputbox span {
-	display: block;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 100%;
-	color: #d7f52b;
-	font-size: 14px;
-	line-height: 25px;
-	text-align: right;
-	padding-right: 10px;
-	padding-left: 10px;
+.container .mensaje {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-.button {
-	position: relative;
-	cursor: pointer;
-	background: #c0dc20;
-	color: #022e79;
-	font-weight: 600;
-	border: none;
-	font-size: 20px;
-	padding: 18px 80px;
-	text-transform: uppercase;
-	border-radius: 50px;
-	box-shadow: 0 3px 8px 2px rgb(60 60 60 / 30%);
-	margin-top: 30px;
-	transition: all 0.2s ease-in-out;
+.logo {
+  height: 200px;
+  width: 200px;
+  background-image: url("../../imagenes/logot.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.button:hover {
-	background: #cfee21;
-	box-shadow: 0 3px 8px 2px rgb(60 60 60 / 30%);
-	transition: all 0.2s ease-in-out;
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+
+.logMail {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  gap: 10px;
+  text-align: left;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: #568259;
+  transition: all 1s;
+}
+
+.logMail:hover {
+  transition: all 1s;
+  background-color: hsla(127, 5%, 29%, 0.7);
+}
+
+.logGoogle {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  gap: 10px;
+  text-align: left;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: transparent;
+  background-color: #fffbff;
+  transition: all 1s;
+}
+
+.logGoogle:hover {
+  transition: all 1s;
+  background-color: hsla(300, 100%, 99%, 0.7);
+}
+
+.link {
+  color: #a8cf45;
+}
+
+.link:hover {
+  color: hsla(77, 59%, 54%, 0.7);
 }

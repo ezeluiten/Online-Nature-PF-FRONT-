@@ -51,7 +51,6 @@ export const PaymentForm = () => {
         script.async = true;
         script.src =`https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js`;
         script.setAttribute('data-preference-id', prepaymentInfo.data);
-        console.log(prepaymentInfo.data, "token id")
         const form = document.getElementById(FORM_ID);
         form.appendChild(script);
         document.getElementById("modal").style.display = "block"

@@ -8,7 +8,6 @@ export const HandleClose = ()=>{
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
   
   const modifyModalState =(isOpen)=>{
-      console.log("🚀 ~ file: cashierModalHelper.js:8 ~ HandleClose ~ isOpen", isOpen)
     dispatch(setOpenModal(isOpen))
     
   }

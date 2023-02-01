@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ProfileSectionContainer } from "./ProfileStyles";
 import { useDispatch, useSelector } from "react-redux";
-import {setSettingsModalGate} from "../../store/actions/index"
+import {setSettingsModalGate, syncLoggedUserWithDb} from "../../store/actions/index"
 import { ModalMenuSettings } from "./modalSettings/ModalMenuSettings";
 import coala from "../../imagenes/koala.webp"
 
@@ -21,8 +21,10 @@ export const Profile = ({isAuthenticated}) => {
     dispatch(setSettingsModalGate(isOpenSettingsModal))
   }
   
-  const checkProfileAndOrCreateIt = (clientInfo)=>{
-    
+  const checkProfileAndOrCreateIt = (clientInfo) => {
+    if(clientInfo && clientInfo.email){
+      dispatch(syncLoggedUserWithDb(clientInfo))
+    }
   }
 
   if (isAuthenticated) {

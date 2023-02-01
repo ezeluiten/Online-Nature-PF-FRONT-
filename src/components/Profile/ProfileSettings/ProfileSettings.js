@@ -11,13 +11,11 @@ export const ProfileSettings = () => {
         open:true,
         view:"favorites"
     })
-    console.log("🚀 ~ file: ProfileSettings.js:14 ~ ProfileSettings ~ isOpen", isOpen)
 
     const handleToggle = ( view ) => {
-        console.log("🚀 ~ file: ProfileSettings.js:16 ~ handleToggle ~ view", view)
         const open = isOpen.open
         setIsOpen({
-            open:!open,
+            open:open,
             view
         })
     }
@@ -42,7 +40,7 @@ export const ProfileSettings = () => {
           </p>
         </div>
         <ViewSelected className="active-view" isOpen={isOpen}>
-          Abierto
+          
         </ViewSelected>
       </ProfileContainer>
 

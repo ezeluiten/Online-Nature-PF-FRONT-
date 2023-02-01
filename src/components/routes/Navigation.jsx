@@ -18,6 +18,7 @@ import { MainContainer } from "./NavigationStyles.js";
 import DashboarAdmin from "../DashboarAdmin/DashboarAdmin.jsx";
 
 export const Navigation = () => {
+
   return (
     <BrowserRouter>
       <Auth0ProviderWithHistory>

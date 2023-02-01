@@ -46,7 +46,7 @@ export const CardShoppingCart = () => {
                                             
                                             >X</button>
                                         </div>
-                                            <p>Hola humano, dejame vivir en el planeta como tu lo haces. Att: {item.title}</p>
+                                            <p>{item.description.substr(0,70)+ "..."}</p>
                                         <div>
                                             <div className={style.containerQuantity}>
                                                 <div className={style.containerQuantityChild}>

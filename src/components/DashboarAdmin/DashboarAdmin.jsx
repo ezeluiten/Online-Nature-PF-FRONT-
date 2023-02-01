@@ -128,7 +128,7 @@ const DashboarAdmin = () => {
 						</div>
 						<div className={style.recent_orders}>
 							<h2>Donaciones</h2>
-							<table>
+							<table className={style.tableContainer}>
 								<thead>
 									<tr>
 										<th>Nombre del Producto</th>
@@ -181,11 +181,11 @@ const DashboarAdmin = () => {
 					</main>
 					{/* Menu + theme dark*/}
 					<div className={style.right}>
-						<div className={style.top}>
+						{/* <div className={style.top}>
 							<button id={style.menu_btn}>
 								<span class="material-symbols-sharp">menu</span>
 							</button>
-						</div>
+						</div> */}
 						<div className={style.recent_updates}>
 							<br />
 							<br />
