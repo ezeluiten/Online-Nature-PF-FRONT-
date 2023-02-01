@@ -17,6 +17,7 @@
   .header img {
     object-fit: cover;
     height: 23rem;
+    width: 100%;
   }
 
   .degradado {

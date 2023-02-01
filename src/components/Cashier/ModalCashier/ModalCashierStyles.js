@@ -53,6 +53,10 @@ export const ModalBody = styled.div`
 
   @media (max-width: 600px) {
     width:350px;
+
+    .buttonEmpty {
+      width: auto;
+    }
   }
 
 `

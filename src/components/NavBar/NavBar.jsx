@@ -199,7 +199,8 @@ const NavContainer = styled.nav`
   }
   .links.active {
     width: auto;
-    height: auto;
+    /* height: auto; */
+    height: 52rem;
     /* width: 100%;
     height: 100%; */
     display: -webkit-box;
@@ -209,8 +210,8 @@ const NavContainer = styled.nav`
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 0;
-    left: -285px;
+    top: -15px;
+    left: -468px;
     right: 0;
     text-align: center;
     -webkit-flex-direction: column;

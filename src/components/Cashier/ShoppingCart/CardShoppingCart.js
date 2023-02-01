@@ -43,8 +43,8 @@ export const CardShoppingCart = () => {
                     X
                   </button>
                 </div>
-                <p>
-                  Hola humano, dejame vivir en el planeta como tu lo haces. Att:{" "}
+                <p className={style.txt}>
+                  Hello human, let me live on the planet as you do. Att:{" "}
                   {item.title}
                 </p>
                 <div>
@@ -67,10 +67,13 @@ export const CardShoppingCart = () => {
                       </a>
                     </div>
                     <div className={style.containerAmount}>
-                      <p>$ {item.amount}</p>
+                      <p>{`$${item.amount}`}</p>
                     </div>
                   </div>
                 </div>
+                  <div className={style.subtotalCalc}>
+                    <p>{`subtotal: $${item.quantity * item.amount}`}</p>
+                  </div>
               </div>
             </div>
           );
@@ -85,7 +88,7 @@ export const CardShoppingCart = () => {
       {shoppingCartItems.items && shoppingCartItems.items.length > 0 ? (
         <div className={style.containerSubmit}>
           <div className={style.subtotal}>
-            subtotal <span>$ {shoppingCartItems.totalAmount}</span>
+            Total <span>$ {shoppingCartItems.totalAmount}</span>
           </div>
           <div>
             <button
@@ -94,7 +97,7 @@ export const CardShoppingCart = () => {
                 dispatch(initCheckOut());
               }}
             >
-              CHECKOUT
+              check you donation
             </button>
           </div>
         </div>
