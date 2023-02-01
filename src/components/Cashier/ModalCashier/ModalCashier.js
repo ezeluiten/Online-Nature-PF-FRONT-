@@ -45,7 +45,7 @@ const ModalCashier = ({children, onClose}) => {
                             }
                             </select>
                             {
-                                shoppingCartItems.items?.length > 0 && <button className={style.buttonSubmit} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Get cart empty</button> 
+                                shoppingCartItems.items?.length > 0 && window.screen.width > 600 ?  <button className={style.buttonEmpty} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Get Cart Empty</button> :  <button className={style.buttonEmpty} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Empty</button>  
 
                             }
 

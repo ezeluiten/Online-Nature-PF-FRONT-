@@ -287,6 +287,43 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
+export const syncLoggedUserWithDb = (client) => {
+  return async function (dispatch) {
+    const clients = await axios.get("http://localhost:3001/api/v1/clients")
+    console.log("🚀 ~ file: index.js:293 ~ clients", clients)
+    
+    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+      console.log(clientInDb, "client in db")
+      return clientInDb.mail == client.email
+    })
+    console.log("🚀 ~ file: index.js:297 ~ filteredLoggedClientInDB ~ filteredLoggedClientInDB", filteredLoggedClientInDB)
+    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
+    console.log("🚀 ~ file: index.js:300 ~ isLoggedClientInDB", isLoggedClientInDB)
+
+    if(!isLoggedClientInDB){
+
+      const normalizedClient = {
+        dni: client.dni || "",
+        mail:client.email,
+        name: client.name,
+        phone:client.phone || 0
+      }
+      console.log("🚀 ~ file: index.js:311 ~ normalizedClient", normalizedClient)
+      const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
+        ...normalizedClient
+      })
+      dispatch({
+        type: "MODAL_SETTINGS",
+        payload: insertingNewClient
+      })
+    }else{
+      return
+    }
+
+  };
+
+};
+
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen
   return async function (dispatch) {

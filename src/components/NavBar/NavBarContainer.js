@@ -20,6 +20,7 @@ export const NavBarContainer = styled.div`
         z-index: 10;
         padding: 5px;
         
+        
     }
     .navBtn {
         padding: 5px;

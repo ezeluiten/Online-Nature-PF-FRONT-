@@ -79,12 +79,14 @@ export const Campaing = () => {
                         log in
                       </button>
                     )}
-                    <div
-                      className={`icon-favorites ${item.selected}`}
-                      onClick={() => dispatch(setFavorites(item))}
-                    >
-                      <IoHeart />
-                    </div>
+                    { isAuthenticated &&
+                      <div
+                        className={`icon-favorites ${item.selected}`}
+                        onClick={() => dispatch(setFavorites(item))}
+                      >
+                        <IoHeart />
+                      </div>
+                    }
                   </CardLabel>
                 </Card>
               );

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BurguerButton from "./ModalBurger"
-import { NavBarContainer } from "./NavBarContainer";
 import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
@@ -86,10 +85,10 @@ function Navbar() {
               ></HiShoppingCart>
             </div>
           )}
-          {isAuthenticated && (
+          {(
             <button
               className={styles.button}
-              onClick={() => dispatch(setOpenModal(isModalOpen))}
+              onClick={isAuthenticated ? () => dispatch(setOpenModal(isModalOpen)) : () => loginWithRedirect()  }
             >
               DONATE
             </button>
