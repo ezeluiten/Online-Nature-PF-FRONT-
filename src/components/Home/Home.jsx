@@ -15,6 +15,9 @@ import { ThreeDots } from "react-loader-spinner";
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
 
+  const layer = document.getElementById("login")
+  console.log("🚀 ~ file: Home.jsx:19 ~ Home ~ layer", layer)
+
   const dispatch = useDispatch()
   const { isAuthenticated, user, logout } = useAuth0();
   

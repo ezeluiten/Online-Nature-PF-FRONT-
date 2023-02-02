@@ -28,9 +28,32 @@ export const Campaing = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const catalogue = useSelector((state) => state.donationCatalogue);
-  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  let catalogue = useSelector((state) => state.donationCatalogue);
+  const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
 
+  storageCatalogue && storageCatalogue.forEach(favorito=>{
+  catalogue = catalogue.map(item => {
+      if(item._id == favorito._id){
+
+        return (
+          {
+            ...favorito
+          }
+        )
+      }else{
+        return {
+          ...item
+        }
+      }
+    })
+  })
+
+  // let catalogueLocalStorage 
+
+  
+  
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  
   const [currentPage, setCurrentPage] = useState(1);
   const [elementPerPage, setElementPerPage] = useState(9);
   const [order, setOrder] = useState("");
@@ -42,14 +65,24 @@ export const Campaing = () => {
     navigate(`/campaign/${id}`);
   };
 
+
+
   const currentCatalogue = catalogue.slice(
     indexOfFirstCatalogue,
     indexOfLastCatalogue
-  );
+    );
+    
+  // useEffect(()=>{
+  //   catalogueLocalStorage = localStorage.getItem("catalogue")
+  //   catalogueLocalStorage = JSON.parse(catalogueLocalStorage)
+  //   console.log("🚀 ~ file: Campaing.js:58 ~ useEffect ~ catalogueLocalStorage", catalogueLocalStorage)
+  // },[currentCatalogue])
+
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
 
   const img = require("../../imagenes/header-home.jpg");
   return (
@@ -63,10 +96,9 @@ export const Campaing = () => {
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
-          {currentCatalogue?.map((item) => {
+          {currentCatalogue.map((item) => {
 
-            if(item.amount){
-              
+            if(item.image){
               return (
                 <Card key={item._id}>
                   <Link to={`/campaign/`}>
@@ -104,9 +136,55 @@ export const Campaing = () => {
                     }
                   </CardLabel>
                 </Card>
-              );
+              )
             }else{<></>}
-          })}
+              
+          }) 
+          // : 
+          //   currentCatalogue.map((item) => {
+
+              
+          //     return (
+          //       <Card key={item._id}>
+          //         <Link to={`/campaign/`}>
+          //           <img src={item.image} />
+          //         </Link>
+          //         <CardLabel>
+          //           <h3>{item.title}</h3>
+          //           <p>$ {item.amount}</p>
+          //           {isAuthenticated && (
+          //             <button
+          //               className="donate-button"
+          //               onClick={() => {
+          //                 // dispatch(setOpenModal(isModalOpen))
+          //                 dispatch(setDonationCartElements(item));
+          //               }}
+          //             >
+          //               Donate
+          //             </button>
+          //           )}
+          //           {!isAuthenticated && (
+          //             <button
+          //               className={"donate-button"}
+          //               onClick={() => loginWithRedirect()}
+          //             >
+          //               log in
+          //             </button>
+          //           )}
+          //           { isAuthenticated &&
+          //             <div
+          //               className={`icon-favorites ${item.selected}`}
+          //               onClick={() => dispatch(setFavorites(item))}
+          //             >
+          //               <IoHeart />
+          //             </div>
+          //           }
+          //         </CardLabel>
+          //       </Card>
+          //     );
+          // }) 
+          
+          }
         </CardContainer>
       </StoreCampaingContainer>
       <Pagination
@@ -117,3 +195,4 @@ export const Campaing = () => {
     </>
   );
 };
+  
