@@ -65,35 +65,37 @@ export const Card = styled.div`
   }
 
   &:hover {
-    --escala: 1.1;
+      --escala: 1.05;
   }
   .button {
-    color: #fffbff;
-    border-radius: 10px;
-    padding: 5px 15px 5px 15px;
-    background-color: #ea4335;
-    border-color: transparent;
-    transition: all 1s;
+      color: #fffbff;
+      border-radius: 10px;
+      padding: 5px 15px 5px 15px;
+      background-color: #ea4335;
+      border-color: transparent;
+      transition: all 1s;
   }
   @media (max-width: 600px) {
-    width: 100%;
+      width:100%
   }
-`;
+   
+`
 export const CardLabel = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 0px 20px;
-  .donate-button {
-    width: 120px;
-    height: 50px;
-    align-self: center;
-    justify-self: flex-end;
-    border-style: none;
-    background-color: #568259;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding: 20px 20px;
+  .donate-button{
+      width:120px;
+      height:50px;
+      align-self:center;
+      justify-self:flex-end;
+      border-style:none;
+      background-color:#568259;
+      color:white;
+      cursor: pointer;
+      border-radius:5px;
+      margin-top: auto;
   }
 `;
 export const CardContainer = styled.div`

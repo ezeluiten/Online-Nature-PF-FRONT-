@@ -53,10 +53,17 @@ export const FavoriteCard = styled.div`
         position:absolute;
         top:-16px;
         right:5px;
-        background-color:#a8cf45;
+        background-color:#ea4335;
         border-style:none;
         
+        transform: scale(var(--escala, 1));
+        transition: transform 0.25s;
     }
+
+    .info-title:hover {
+        --escala: 1.1;
+    }
+    
     .image-container{
         position:relative;
         width:100%;
@@ -72,10 +79,18 @@ export const FavoriteCard = styled.div`
         position:absolute;
         top:5px;
         right:-4px;
-        z-index:99999;
+        z-index:1;
         width:40px;
         color:white;
         font-size:20px;
+        cursor: pointer;
+
+        transform: scale(var(--escala, 1));
+        transition: transform 0.25s;
+    }
+    .button-delete-fav:hover {
+        --escala: 1.4;
+        color: red;
     }
     .info-container {
         display: flex;
@@ -84,5 +99,6 @@ export const FavoriteCard = styled.div`
         padding:10px;
         width: 100%;
         height:100%;
+        color: #8dd866;
     }
 `
