@@ -58,15 +58,6 @@ export const Campaing = () => {
       />
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
-        <FiltersContainer>
-          <div>
-            <select id='order' onChange={(e) => handleName(e)}>
-            <option>Alphabetical Order</option>
-                        <option value = "ascendant">A - Z</option>
-                        <option value = "descendant">Z - A</option>
-            </select>
-          </div>
-        </FiltersContainer>
         <CardContainer>
           {currentCatalogue?.map((item) => {
 
@@ -115,7 +106,7 @@ export const Campaing = () => {
       <Pagination
         elementPerPage={elementPerPage}
         element={catalogue.length}
-        pagination={pagination}
+        pagination={Pagination}
       />
     </>
   );

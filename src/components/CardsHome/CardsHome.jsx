@@ -10,6 +10,7 @@ export default function CardsHome(props) {
   return (
     <>
       <div className={style.contenedor}>
+        
         <div className={style.card}>
           <Card style={{ width: "18rem", height: "24rem"}}>
             <Card.Img
@@ -19,11 +20,10 @@ export default function CardsHome(props) {
               className={"cardImg"}
             />
             <Card.Body>
-              <Card.Title>Plant a Tree!</Card.Title>
+              <Card.Title>The koala</Card.Title>
               <Card.Text>
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+                
+             Koalas  They eat the upper leaves of Eucalipt trees and their excrement helps to recycle nutrients in the soil.
               </Card.Text>
               <Button className={style.store} variant="primary">
                 Store
@@ -40,14 +40,13 @@ export default function CardsHome(props) {
             style={{ width: "18rem", height: "150px" }}
           />
           <Card.Body>
-            <Card.Title>Plant a Tree!</Card.Title>
+            <Card.Title>Pine tree</Card.Title>
             <Card.Text>
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
+            Pine trees are considered evergreens because they keep their needles for approximately 2 years.
+             When old needles falls, new needles quickly take their place.
             </Card.Text>
             <Button className={style.store} variant="primary">
-              Store
+              See more...
             </Button>
           </Card.Body>
         </Card>
@@ -61,14 +60,13 @@ export default function CardsHome(props) {
               style={{ width: "18rem", height: "150px" }}
             />
             <Card.Body>
-              <Card.Title>Plant a Tree!</Card.Title>
+              <Card.Title>The tiger</Card.Title>
               <Card.Text>
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+              A tiger is a both a guardian and an indicator of a healthy forests.
+               A healthy forests. Few understand that a live bird or insect is far more important to the economy than a dead one.
               </Card.Text>
               <Button className={style.store} variant="primary">
-                Store
+              See more...
               </Button>
             </Card.Body>
           </Card>

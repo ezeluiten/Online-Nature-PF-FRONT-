@@ -31,9 +31,10 @@ const handleFilterSpecies = (e) => {
   return (
     <div className={styles.divi}>
       <div className={styles.divis}>
+        Alpabethical order &raquo;   
         <select onChange={handleFilteralph} className={styles.select}>
           <option value="all" className={styles.order}>
-            Alphabetically
+            Any order
           </option>
           <option value="ascendant" className={styles.order}>
             A - Z
@@ -44,15 +45,16 @@ const handleFilterSpecies = (e) => {
         </select>
       </div>
       <div className={styles.divis}>
+      Species &raquo;
         <select onChange={handleFilterSpecies} className={styles.select}>
           <option value="all" className={styles.order}>
-            Species
+            Show all
           </option>
           <option value="animals" className={styles.order}>
-            animals
+            Show animals
           </option>
           <option value="trees" className={styles.order}>
-            trees
+            Show trees
           </option>
         </select>
       </div>
