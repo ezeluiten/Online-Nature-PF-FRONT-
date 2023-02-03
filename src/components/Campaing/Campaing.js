@@ -51,27 +51,25 @@ export const Campaing = () => {
     setCurrentPage(pageNumber);
   };
 
-  const img = require("../../imagenes/header-home.jpg");
+  const img = require("../../imagenes/salto.png");
   return (
     <>
       <NavBar />
       <Header
         imagen={img}
-        text="We have suffered an alarming loss of biodiversity in recent decades..."
+        text="Our actions can change the course of the planet..."
       />
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
         <FiltersContainer></FiltersContainer>
         <CardContainer>
           {currentCatalogue?.map((item) => {
-
-            if(item.amount){
-              
+            if (item.amount) {
               return (
                 <Card key={item._id}>
-                  <Link to={`/campaign/`}>
+                  <div onClick={() => handleClick(item._id)}>
                     <img src={item.image} />
-                  </Link>
+                  </div>
                   <CardLabel>
                     <h3>{item.title}</h3>
                     <p>$ {item.amount}</p>
@@ -103,7 +101,9 @@ export const Campaing = () => {
                   </CardLabel>
                 </Card>
               );
-            }else{<></>}
+            } else {
+              <></>;
+            }
           })}
         </CardContainer>
       </StoreCampaingContainer>
