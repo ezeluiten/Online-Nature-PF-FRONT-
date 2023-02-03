@@ -5,19 +5,18 @@ import zorro from "../../../imagenes/zorro.jpg"
 import sunrise from "../../../imagenes/sunrise.jpg" 
 import { ViewSelected } from './ViewSelected'
 
+
 export const ProfileSettings = () => {
 
     const [ isOpen, setIsOpen ] = useState({
         open:true,
         view:"favorites"
     })
-    console.log("🚀 ~ file: ProfileSettings.js:14 ~ ProfileSettings ~ isOpen", isOpen)
 
     const handleToggle = ( view ) => {
-        console.log("🚀 ~ file: ProfileSettings.js:16 ~ handleToggle ~ view", view)
         const open = isOpen.open
         setIsOpen({
-            open:!open,
+            open:open,
             view
         })
     }
@@ -36,13 +35,13 @@ export const ProfileSettings = () => {
           </p>
           <p className="p-settings" onClick={() => handleToggle("family")}>
             Family members preserved
-          </p>
+          </p> 
           <p className="p-settings" onClick={() => handleToggle("favorites")}>
             Favorite adoption prospects
           </p>
         </div>
         <ViewSelected className="active-view" isOpen={isOpen}>
-          Abierto
+          
         </ViewSelected>
       </ProfileContainer>
 

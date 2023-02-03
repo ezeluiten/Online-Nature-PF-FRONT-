@@ -3,7 +3,7 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  background-image: url("../../imagenes/pexels-oliver-sjöström-931007.jpg");
+  background-image: url("https://res.cloudinary.com/drp8i1fbf/image/upload/v1675284267/imagesTrees/pexels-oliver-sj%C3%B6str%C3%B6m-931007_i3a2yk.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-.container {
+.loginFormContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;

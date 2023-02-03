@@ -28,11 +28,30 @@ export const Campaing = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const catalogue = useSelector((state) => state.donationCatalogue);
-  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  let catalogue = useSelector((state) => state.donationCatalogue);
+  const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
 
+  storageCatalogue && storageCatalogue.forEach(favorito=>{
+  catalogue = catalogue.map(item => {
+      if(item._id == favorito._id){
+
+        return (
+          {
+            ...favorito
+          }
+        )
+      }else{
+        return {
+          ...item
+        }
+      }
+    })
+  })
+
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementPerPage, setElementPerPage] = useState(9);
+  const [elementPerPage, setElementPerPage] = useState(8);
   const [order, setOrder] = useState("");
   const indexOfLastCatalogue = currentPage * elementPerPage;
   const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
@@ -42,10 +61,14 @@ export const Campaing = () => {
     navigate(`/campaign/${id}`);
   };
 
+
+
   const currentCatalogue = catalogue.slice(
     indexOfFirstCatalogue,
     indexOfLastCatalogue
-  );
+    );
+
+
 
 
   const img = require("../../imagenes/header-home.jpg");
@@ -59,10 +82,9 @@ export const Campaing = () => {
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
         <CardContainer>
-          {currentCatalogue?.map((item) => {
+          {currentCatalogue.map((item) => {
 
-            if(item.amount){
-              
+            if(item.image){
               return (
                 <Card key={item._id}>
                   <Link to={`/campaign/`}>
@@ -90,17 +112,21 @@ export const Campaing = () => {
                         log in
                       </button>
                     )}
-                    <div
-                      className={`icon-favorites ${item.selected}`}
-                      onClick={() => dispatch(setFavorites(item))}
-                    >
-                      <IoHeart />
-                    </div>
+                    { isAuthenticated &&
+                      <div
+                        className={`icon-favorites ${item.selected}`}
+                        onClick={() => dispatch(setFavorites(item))}
+                      >
+                        <IoHeart />
+                      </div>
+                    }
                   </CardLabel>
                 </Card>
-              );
+              )
             }else{<></>}
-          })}
+              
+          }) 
+          }
         </CardContainer>
       </StoreCampaingContainer>
       <Pagination
@@ -111,4 +137,4 @@ export const Campaing = () => {
     </>
   );
 };
-
+  

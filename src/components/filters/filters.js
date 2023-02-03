@@ -20,7 +20,6 @@ const Filters = ({setCurrentPage, setOrder}) => {
     dispatch(orderByAlpha(e.target.value));
     setCurrentPage(1)
     setOrder(e.target.value);
-   
   };
 const handleFilterSpecies = (e) => {
   e.preventDefault();
@@ -34,7 +33,7 @@ const handleFilterSpecies = (e) => {
         Alpabethical order &raquo;   
         <select onChange={handleFilteralph} className={styles.select}>
           <option value="all" className={styles.order}>
-            Any order
+            Order Alphabetically
           </option>
           <option value="ascendant" className={styles.order}>
             A - Z
@@ -48,7 +47,10 @@ const handleFilterSpecies = (e) => {
       Species &raquo;
         <select onChange={handleFilterSpecies} className={styles.select}>
           <option value="all" className={styles.order}>
-            Show all
+            Filter by
+          </option>
+          <option value="all" className={styles.order}>
+            All
           </option>
           <option value="animals" className={styles.order}>
             Show animals
