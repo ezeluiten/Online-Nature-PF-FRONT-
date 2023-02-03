@@ -16,7 +16,8 @@ const initialState = {
   transactionInfo:{},
   isOpenSettingsModal: false,
   favorites:[],
-  loading:false
+  loading:false,
+  storageCatalogue:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -153,6 +154,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload
+      };
+    case "ITEMS_LOCAL_STORAGE":
+      return {
+        ...state,
+        storageCatalogue: action.payload
       };
     default:
       return { ...state };

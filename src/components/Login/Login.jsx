@@ -54,8 +54,10 @@ export default function Login() {
   // };
 
   return (
-    <div className={style.login}>
-      <div className={style.loginFormContainer}>
+    <div id="login" className={style.login} 
+    style={{display:"none"}}
+    >
+      <div id="loginFormContainer" className={style.loginFormContainer}>
         {/* <div className={style.logo}></div> */}
         {/* <h4>Log in to your account</h4> */}
         {/* <form onSubmit={handleSubmit}>

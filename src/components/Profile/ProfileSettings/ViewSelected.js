@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom';
 
 export const ViewSelected = ({isOpen}) => {
 
-  const favorites = useSelector(state=>state.favorites)
+  let favorites = useSelector(state=>state.favorites)
+  const storageFavorites = JSON.parse(localStorage.getItem("favorites"))
+  
   const [currentPage, setCurrentPage] = useState(1);
   const [elementPerPage, setElementPerPage] = useState(6);
   const indexOfLastElement = currentPage * elementPerPage;
