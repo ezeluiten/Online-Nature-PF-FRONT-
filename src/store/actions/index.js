@@ -25,9 +25,18 @@ export const getDonations = () => {
       const response = await axios.get("/donations");
       const data = await response.data.data
       console.log("donations", data)
+      
+      const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
+      console.log(suma)
+
+      const cuantityDonations = data.donations.length
+      console.log(cuantityDonations)
       dispatch({
         type: "GET_DONATIONS",
-        payload: data.donations
+        payload: {
+          donations: suma,
+          qDonations:cuantityDonations
+        }
       });
     } catch (error) {
       dispatch({

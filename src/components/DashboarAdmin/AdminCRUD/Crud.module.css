@@ -1,0 +1,42 @@
+.containerCrud {
+    height: 600px;
+    width: 100%;
+    overflow: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2rem 3rem #878b88;
+}
+  
+.trCrud {
+    border-bottom: solid gray 1px;
+} 
+
+.thCrud, .tdCrud {
+    border: none;
+    padding: 8px;
+    text-align: left;
+    /* border-right: solid grey 1px; */
+}
+
+.thCrud {
+    background-color: rgb(255, 255, 255);
+}
+
+.tdCrudButtons {
+    display: flex;
+    height: 100%;
+}
+
+.tdCrudButtons > Button {
+    margin-right: 1rem;
+}
+
+.btnCreate {
+    margin-bottom: 1rem;
+}
