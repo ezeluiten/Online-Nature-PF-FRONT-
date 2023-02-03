@@ -8,13 +8,15 @@ import { useEffect } from 'react';
 
 export const ViewSelected = ({isOpen}) => {
 
-  const favorites = useSelector(state=>state.favorites)
+  let favorites = useSelector(state=>state.favorites)
+  const storageFavorites = JSON.parse(localStorage.getItem("favorites"))
+  
   const [currentPage, setCurrentPage] = useState(1);
   const [elementPerPage, setElementPerPage] = useState(6);
   const indexOfLastElement = currentPage * elementPerPage;
   const indexOfFirstElement = indexOfLastElement - elementPerPage;
   const dispatch = useDispatch()
-
+  
   const [currentFav, setCurrentFav] =  useState([])
 
 
@@ -24,12 +26,17 @@ const pagination = (pageNumber) => {
 
   const {open, view} = isOpen
 
-  useEffect(()=>{
-    setCurrentFav([...favorites].slice(
+  
+
+  useEffect(()=>{    
+    setCurrentFav( storageFavorites ? [...storageFavorites].slice(
+      indexOfFirstElement,
+      indexOfLastElement
+    ): [...favorites].slice(
       indexOfFirstElement,
       indexOfLastElement
     ))
-  }, [favorites])
+  }, [storageFavorites])
  
 
   if(open && view == "edit"){

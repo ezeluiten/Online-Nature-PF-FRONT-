@@ -18,14 +18,12 @@ export const Home = () => {
   const dispatch = useDispatch()
   const { isAuthenticated, user, logout } = useAuth0();
   
-  console.log("🚀 ~ file: Home.jsx:15 ~ Home ~ user", user)
   useEffect(() => {
     dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
   }, [isAuthenticated])
   
   const loading = useSelector((state) => state.loading);
   const isModalOpen = useSelector((state) => state.isModalOpen);
-  console.log("🚀 ~ file: Home.jsx:28 ~ Home ~ loading", loading)
   
   if(loading){
     //componente loader

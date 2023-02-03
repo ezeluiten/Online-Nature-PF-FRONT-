@@ -21,8 +21,19 @@ export const  getAnimals = () => {
 
 
 export const setFavorites = (item, funct) => {
-    return async function(dispatch, getState) { 
+  return async function(dispatch, getState) { 
+
+      let currentLocalStorageCatalogue =  JSON.parse(localStorage.getItem("catalogue"))
       let {favorites, donationCatalogue} = getState()
+
+      if(currentLocalStorageCatalogue && currentLocalStorageCatalogue.length > 0){
+        donationCatalogue = currentLocalStorageCatalogue
+        favorites =[ ...currentLocalStorageCatalogue].filter(fav =>{
+          return fav.selected == "selected"
+        })
+
+      }
+
       if(item.selected){
         item.selected = ""
         const indexInFavorites = favorites.filter(element => {
@@ -38,6 +49,21 @@ export const setFavorites = (item, funct) => {
         favorites.push(item)
 
       }
+
+      const favoritesCopy = JSON.stringify([...favorites])
+      const itemsCatalogue = JSON.stringify([...donationCatalogue])
+      localStorage.removeItem("favorites")
+      localStorage.setItem("favorites", favoritesCopy)
+      localStorage.removeItem("catalogue")
+      localStorage.setItem("catalogue", itemsCatalogue)
+      currentLocalStorageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
+
+      dispatch({
+        type:"ITEMS_LOCAL_STORAGE",
+        payload:[
+          ...currentLocalStorageCatalogue
+        ]
+      })
       dispatch({
         type:"SET_FAVORITES",
         payload:[
@@ -54,12 +80,11 @@ export const setFavorites = (item, funct) => {
     }
 }
 
+
 export const loginLoader = (callBackFunction)=>{
   return async function(dispatch, getState) {
     const { payer } = getState()
     const { isAuthenticated } = payer
-    console.log("🚀 ~ file: index.js:65 ~ returnfunction ~ isAuthenticated", isAuthenticated)
-    console.log("🚀 ~ file: index.js:64 ~ returnfunction ~ payer", payer)
     dispatch({
       type:"LOADING",
       payload:true
@@ -130,7 +155,6 @@ export const getCatalogue = () => {
 
 export const getUserLoggedInfoToPay = (client) => {
   return async function (dispatch, getState) {
-    console.log("🚀 ~ file: index.js:79 ~ getUserLoggedInfoToPay ~ client", client)
 
     dispatch({
       type:"PAYER_CLIENT_INFO",
@@ -213,11 +237,6 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     if(action == "delete" && newItemsCart.length) {
       newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
       
-      // const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
-
-      // const index = newItemsCart.indexOf({...remainingObject}) 
-      // console.log("🚀 ~ file: index.js:122 ~ index", index)
-      // const whetherIsNotCoincidence = index == -1 ? newItemsCart.filter(item => item._id !== newItem._id) : newItemsCart.splice(index, 1)
     }
     
     
