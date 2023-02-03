@@ -160,6 +160,7 @@ img {
 .subtotalCalc {
     display: flex;
     justify-content: flex-end;
+    border-top: solid 1px;
 }
 
 @media only screen and (max-width: 600px){

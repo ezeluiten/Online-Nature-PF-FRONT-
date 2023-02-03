@@ -69,7 +69,9 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
-						<NavLink to="/DashboarAdmin" className={styles.link}>
+						<NavLink to="/DashboarAdmin" className={({ isActive }) =>
+                isActive ? styles.navActivety : styles.link
+              }>
 							My Dash
 						</NavLink>
 					</div>

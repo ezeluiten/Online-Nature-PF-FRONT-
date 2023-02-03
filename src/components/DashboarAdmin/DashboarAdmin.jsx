@@ -1,9 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./DashboarAdmin.module.css";
 import NavBar from "../NavBar/NavBar";
 import logo from "./images/logo2.png";
+import { getDonations } from "../../store/actions";
 
 const DashboarAdmin = () => {
+	const dispatch = useDispatch();
+	const donations = useSelector((state) => state.donations);
+	
+	console.log(donations)
+
+	useEffect(() => {
+		dispatch(getDonations());
+	  }, [dispatch]);
+
 	return (
 		<div className={style.mainContainerDash}>
 			<NavBar />
@@ -76,7 +87,14 @@ const DashboarAdmin = () => {
 								<div className={style.middle}>
 									<div className={style.left}>
 										<h3>Donaciones</h3>
-										<h2>$ 1,000,000</h2>
+										{/* <h2>{`$${donations[0]?.amount}`}</h2> */}
+										{
+											donations?.map(e => (
+												<h2>
+													{e.amount}
+												</h2>
+											))
+										}
 									</div>
 									<div className={style.progress}>
 										<svg>

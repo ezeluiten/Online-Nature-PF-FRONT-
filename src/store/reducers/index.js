@@ -2,6 +2,7 @@ const initialState = {
   animals: [],
   allanimals:[],
   trees:[],
+  donations: [],
   animalDetail: {},
   treeDetail: {},
   isModalCashierOpen:false,
@@ -35,8 +36,13 @@ const rootReducer = (state = initialState, action) => {
           return {
               ...state,
               trees: action.payload,
-        }
-        case 'GET_ANIMALS_BY_ID':
+      }
+      case 'GET_DONATIONS':
+          return {
+            ...state,
+            donations: action.payload
+      }
+        case 'GET_TREES_BY_ID':
           return {
             ...state,
             treeDetail: action.payload
@@ -65,11 +71,7 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           itemsCart: action.payload
         }
-          case "REMOVE_ITEM_CART":
-            return {
-              ...state,
-              itemsCart: state.itemsCart.items.filter(el => el._id !== action.payload)
-            }
+          
           case "PAYER_CLIENT_INFO":
             return {
               ...state,
@@ -126,13 +128,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         itemsCart: action.payload,
-      };
-    case "REMOVE_ITEM_CART":
-      return {
-        ...state,
-        itemsCart: state.itemsCart.items.filter(
-          (el) => el._id !== action.payload
-        ),
       };
     case "PAYER_CLIENT_INFO":
       return {

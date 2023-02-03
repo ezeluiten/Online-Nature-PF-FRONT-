@@ -19,6 +19,24 @@ export const  getAnimals = () => {
   };
 };
 
+export const getDonations = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/donations");
+      const data = await response.data.data
+      console.log("donations", data)
+      dispatch({
+        type: "GET_DONATIONS",
+        payload: data.donations
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
 
 export const setFavorites = (item, funct) => {
     return async function(dispatch, getState) { 
