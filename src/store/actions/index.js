@@ -56,7 +56,6 @@ export const setFavorites = (item, funct) => {
       localStorage.setItem("favorites", favoritesCopy)
       localStorage.removeItem("catalogue")
       localStorage.setItem("catalogue", itemsCatalogue)
-      console.log("🚀 ~ file: index.js:49 ~ returnfunction ~ currentLocalStorageCatalogue", currentLocalStorageCatalogue)
       currentLocalStorageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
 
       dispatch({
@@ -86,8 +85,6 @@ export const loginLoader = (callBackFunction)=>{
   return async function(dispatch, getState) {
     const { payer } = getState()
     const { isAuthenticated } = payer
-    console.log("🚀 ~ file: index.js:65 ~ returnfunction ~ isAuthenticated", isAuthenticated)
-    console.log("🚀 ~ file: index.js:64 ~ returnfunction ~ payer", payer)
     dispatch({
       type:"LOADING",
       payload:true
@@ -158,7 +155,6 @@ export const getCatalogue = () => {
 
 export const getUserLoggedInfoToPay = (client) => {
   return async function (dispatch, getState) {
-    console.log("🚀 ~ file: index.js:79 ~ getUserLoggedInfoToPay ~ client", client)
 
     dispatch({
       type:"PAYER_CLIENT_INFO",
@@ -241,11 +237,6 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     if(action == "delete" && newItemsCart.length) {
       newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
       
-      // const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
-
-      // const index = newItemsCart.indexOf({...remainingObject}) 
-      // console.log("🚀 ~ file: index.js:122 ~ index", index)
-      // const whetherIsNotCoincidence = index == -1 ? newItemsCart.filter(item => item._id !== newItem._id) : newItemsCart.splice(index, 1)
     }
     
     

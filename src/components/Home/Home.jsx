@@ -15,20 +15,15 @@ import { ThreeDots } from "react-loader-spinner";
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
 
-  const layer = document.getElementById("login")
-  console.log("🚀 ~ file: Home.jsx:19 ~ Home ~ layer", layer)
-
   const dispatch = useDispatch()
   const { isAuthenticated, user, logout } = useAuth0();
   
-  console.log("🚀 ~ file: Home.jsx:15 ~ Home ~ user", user)
   useEffect(() => {
     dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
   }, [isAuthenticated])
   
   const loading = useSelector((state) => state.loading);
   const isModalOpen = useSelector((state) => state.isModalOpen);
-  console.log("🚀 ~ file: Home.jsx:28 ~ Home ~ loading", loading)
   
   if(loading){
     //componente loader

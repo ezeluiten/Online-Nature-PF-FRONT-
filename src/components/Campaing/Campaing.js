@@ -48,10 +48,6 @@ export const Campaing = () => {
     })
   })
 
-  // let catalogueLocalStorage 
-
-  
-  
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
   
   const [currentPage, setCurrentPage] = useState(1);
@@ -71,12 +67,6 @@ export const Campaing = () => {
     indexOfFirstCatalogue,
     indexOfLastCatalogue
     );
-    
-  // useEffect(()=>{
-  //   catalogueLocalStorage = localStorage.getItem("catalogue")
-  //   catalogueLocalStorage = JSON.parse(catalogueLocalStorage)
-  //   console.log("🚀 ~ file: Campaing.js:58 ~ useEffect ~ catalogueLocalStorage", catalogueLocalStorage)
-  // },[currentCatalogue])
 
 
   const pagination = (pageNumber) => {
@@ -140,50 +130,6 @@ export const Campaing = () => {
             }else{<></>}
               
           }) 
-          // : 
-          //   currentCatalogue.map((item) => {
-
-              
-          //     return (
-          //       <Card key={item._id}>
-          //         <Link to={`/campaign/`}>
-          //           <img src={item.image} />
-          //         </Link>
-          //         <CardLabel>
-          //           <h3>{item.title}</h3>
-          //           <p>$ {item.amount}</p>
-          //           {isAuthenticated && (
-          //             <button
-          //               className="donate-button"
-          //               onClick={() => {
-          //                 // dispatch(setOpenModal(isModalOpen))
-          //                 dispatch(setDonationCartElements(item));
-          //               }}
-          //             >
-          //               Donate
-          //             </button>
-          //           )}
-          //           {!isAuthenticated && (
-          //             <button
-          //               className={"donate-button"}
-          //               onClick={() => loginWithRedirect()}
-          //             >
-          //               log in
-          //             </button>
-          //           )}
-          //           { isAuthenticated &&
-          //             <div
-          //               className={`icon-favorites ${item.selected}`}
-          //               onClick={() => dispatch(setFavorites(item))}
-          //             >
-          //               <IoHeart />
-          //             </div>
-          //           }
-          //         </CardLabel>
-          //       </Card>
-          //     );
-          // }) 
-          
           }
         </CardContainer>
       </StoreCampaingContainer>
