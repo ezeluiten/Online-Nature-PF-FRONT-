@@ -29,7 +29,7 @@ const ModalCashier = ({children, onClose}) => {
                 <ModalBody>
                     <div className='header-cart'>
                         <div className='button-close' onClick={()=>onClose(isModalOpen)}>{<IoCloseCircleOutline/>}</div>
-                        <h1>Adoption Cart</h1>
+                        <h1 className='h1-name'>Adoption Cart</h1>
                         <div className={style.selectContainer}>
                             <select
                                 className={style.selectAnimal}
@@ -39,13 +39,12 @@ const ModalCashier = ({children, onClose}) => {
                                 catalogue?.map(element=>{
                                     return(
                                         <option value={element._id}>{element.title}</option>
-
                                     )
                                 })
                             }
                             </select>
                             {
-                                shoppingCartItems.items?.length > 0 && <button className={style.buttonSubmit} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Get cart empty</button> 
+                                shoppingCartItems.items?.length > 0 && window.screen.width > 600 ?  <button className={style.buttonEmpty} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Get Cart Empty</button> :  <button className={style.buttonEmpty} onClick={()=> dispatch(setDonationCartElements({},"getCartEmpty"))}>Empty</button>  
 
                             }
 

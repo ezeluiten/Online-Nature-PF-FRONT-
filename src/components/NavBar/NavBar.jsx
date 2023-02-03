@@ -1,33 +1,44 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import BurguerButton from "./ModalBurger"
-
 import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./NavBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenModal } from "../../store/actions";
+import { setOpenModal, loginLoader } from "../../store/actions";
 import { Profile } from "../Profile/Profile";
-
+import { setSettingsModalGate } from "../../store/actions/index";
 function Navbar() {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
   const [clicked, setClicked] = useState(false);
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const shoppingCartItems = useSelector(state=>state.itemsCart)
-  console.log("🚀 ~ file: NavBar.jsx:20 ~ Navbar ~ shoppingCartItems", shoppingCartItems)
+  const shoppingCartItems = useSelector((state) => state.itemsCart);
+
+const { payer, isOpenSettingsModal } = useSelector((state) => state);
+const openSettingsModal = () => {
+  dispatch(setSettingsModalGate(isOpenSettingsModal));
+};
 
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
     setClicked(!clicked);
   };
   return (
-    <>
+    <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
       <NavContainer>
-        <div className={styles.logo}></div>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? styles.navActivety : styles.link
+          }
+        >
+          <div className={styles.logo}></div>
+        </NavLink>
+
         <div className={`links ${clicked ? "active" : ""}`}>
           <div className="a">
             <NavLink
@@ -63,53 +74,71 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
-            <NavLink
+            <NavLink to="/DashboarAdmin" className={styles.link}>
+              My Dash
+            </NavLink>
+          </div>
+
+          <div className={styles.a}>
+            {/* <NavLink
               to="/reservation"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
             >
-              My reservation
-            </NavLink>
+              My reserva
+            </NavLink> */}
           </div>
           {isAuthenticated && (
             <div className={styles.cartLogoContainer}>
-              { shoppingCartItems.items && shoppingCartItems.items.length > 0 && <span className={styles.cartQuantity}>{shoppingCartItems.items.length}</span>}
+              {shoppingCartItems.items &&
+                shoppingCartItems.items.length > 0 && (
+                  <span className={styles.cartQuantity}>
+                    {shoppingCartItems.items.length}
+                  </span>
+                )}
               <HiShoppingCart
                 className={styles.cart}
                 onClick={() => dispatch(setOpenModal(isModalOpen))}
               ></HiShoppingCart>
             </div>
           )}
-          {isAuthenticated && (
+          {
             <button
               className={styles.button}
-              onClick={() => dispatch(setOpenModal(isModalOpen))}
+              onClick={
+                isAuthenticated
+                  ? () => dispatch(setOpenModal(isModalOpen))
+                  : () => loginWithRedirect()
+              }
             >
               DONATE
             </button>
-          )}
-          {!isAuthenticated ? (
-            <button
-              className={styles.button}
-              onClick={() => loginWithRedirect()}
-            >
-              log in
-            </button>
-          ) :<Profile isAuthenticated={isAuthenticated} />
+          }
+          {
+            !isAuthenticated ? (
+              <button
+                className={styles.button}
+                onClick={() =>
+                  dispatch(loginLoader(loginWithRedirect, isAuthenticated))
+                }
+              >
+                Sign in
+              </button>
+            ) : (
+              <Profile isAuthenticated={isAuthenticated} />
+            )
             // <button onClick={() => logout()} className={styles.button}>
             //   {" "}
             //   Log out
             // </button>
           }
-          
         </div>
         <div className="burguer">
           <BurguerButton clicked={clicked} handleClick={handleClick} />
         </div>
-        
       </NavContainer>
-    </>
+    </div>
   );
 }
 
@@ -126,19 +155,14 @@ const NavContainer = styled.nav`
   padding: 0.4rem;
   background-color: #568259;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
   /* FIXED CULPABLE DE TODO */
   position: fixed;
   z-index: 10;
-  align-items: center;
   flex-wrap: nowrap;
   flex-direction: row;
   right: 0;
-
   margin-top: 15px;
   justify-content: space-between;
 
@@ -148,13 +172,15 @@ const NavContainer = styled.nav`
     margin-right: 1rem;
   }
   .links {
-    position: absolute;
-    top: -700px;
-    left: -2000px;
-    right: 0;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    position:absolute;
+    left: -100%;
+    top:-100%;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    align-items:center;
     transition: all 0.5s ease;
     z-index: 2;
     .a {
@@ -171,7 +197,6 @@ const NavContainer = styled.nav`
         display: inline;
       }
 
-      margin-top: 15px;
       padding-right: 10px;
 
       display: flex;
@@ -203,7 +228,7 @@ const NavContainer = styled.nav`
     align-items: center;
     background: #568259;
     justify-content: space-evenly;
-    
+
     .a {
       font-size: 2rem;
       margin-top: 1rem;

@@ -38,6 +38,11 @@ export const FavoriteCard = styled.div`
     border-radius: 1rem ;
     overflow:hidden;
     line-height:15px;
+    .delete-button{
+        position:absolute;
+        width:20px;
+        top: 0;
+    }
     .button-container{
         position:relative;
         width:100%;
@@ -53,6 +58,7 @@ export const FavoriteCard = styled.div`
         
     }
     .image-container{
+        position:relative;
         width:100%;
         height:140px;
         img{
@@ -61,6 +67,16 @@ export const FavoriteCard = styled.div`
             object-fit:cover;
             
         }
+    }
+    .button-delete-fav{
+        position:absolute;
+        top:5px;
+        right:-4px;
+        z-index:99999;
+        width:40px;
+        color:red;
+        font-size:25px;
+        cursor: pointer;
     }
     .info-container {
         display: flex;

@@ -27,8 +27,8 @@
     box-shadow: 10px 5px 5px 0px rgb(91 97 86);
 }
 .imgContainer{
-    width: 60%;
-    height: 100%;
+    width: 300px;
+    height: 200px;
 }
 
 .selectContainer{
@@ -38,6 +38,7 @@
     margin-right: 1rem;
     height: 45px;
     margin-right: 65px;
+   margin-top: 30px;
 }
 
 .selectAnimal{
@@ -96,6 +97,7 @@
 img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .containerSubmit {
@@ -127,6 +129,14 @@ img {
     font-weight: bold;
 }
 
+.buttonEmpty {
+    color: #fffbff;
+    border-radius: 10px;
+    padding: 5px 15px 5px 15px;
+    background-color:#7f7c7b;
+    border-color: transparent;
+    transition: all 1s;
+}
 .buttonSubmit {
     color: #fffbff;
     border-radius: 10px;
@@ -140,3 +150,7 @@ img {
     transition: all 1s;
     background-color: hsla(5, 81%, 56%, 0.8);
   }
+
+.swal2container {
+  z-index: 20000 !important;
+}

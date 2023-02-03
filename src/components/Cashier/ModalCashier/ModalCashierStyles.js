@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
    top:0;
    left:0;
    width:100vw;
-   z-index: 9999;
+   z-index: 999;
 
    /* box-shadow:  */
    /* overflow: auto; */
@@ -31,19 +31,23 @@ export const ModalBody = styled.div`
     padding-bottom:2rem;
     .button-close{
       position:absolute;
-      top:-14px;
-      left:0px;
+      top:-10px;
+      left:600px;
       width:40px;
       height:40px;
       font-size:40px;
       color:white;
       cursor: pointer;
     }
-
+    .h1-name{
+      position: relative;
+      left: -50px;
+      top:10px
+    }
   }
   .modal-content{
     width:100%;
-    height:70%;
+    height:65%;
     background-color:#6d9970;
     backdrop-filter:blur(2px);
     

@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import { ModalContainer } from './ModalStyles'
 
 export const ModalMenuSettings = ({isOpen, handleClose}) => {
-console.log("🚀 ~ file: ModalMenuSettings.js:5 ~ ModalMenuSettings ~ isOpen", isOpen)
 
   const {logout} = useAuth0()
 
