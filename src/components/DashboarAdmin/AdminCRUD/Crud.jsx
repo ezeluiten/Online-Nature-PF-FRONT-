@@ -2,12 +2,11 @@ import React, {useState} from "react"
 import Button from 'react-bootstrap/Button';
 import style from "./Crud.module.css"
 import FormPopup from "./PopupForm";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Crud() {
     const [showForm, setShowForm] = useState(false);
     let catalogue = useSelector((state) => state.donationCatalogue);
-    console.log(catalogue)
 
     const handleClick = () => {
       setShowForm(!showForm);
@@ -22,7 +21,7 @@ export default function Crud() {
             <table className={style.table}>
             <thead>
             <tr className={style.trCrud}>
-                <th className={style.thCrud}>Animal</th>
+                <th className={style.thCrud}>Title</th>
                 <th className={style.thCrud}>Image</th>
                 <th className={style.thCrud}>Image detail</th>
                 <th className={style.thCrud}>Description</th>
@@ -33,7 +32,7 @@ export default function Crud() {
             <tbody>
                 {
                   catalogue?.map(e => (
-                    <tr>
+                    <tr key={e._id}>
                         {
                             <>
                             <td className={style.tdCrud}>{e.title}</td>
