@@ -4,11 +4,7 @@ import style from "./CartShopping.module.css";
 import { initCheckOut, setDonationCartElements } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdAdd, IoIosRemove } from "react-icons/io";
-import { Button } from "bootstrap";
-import { removeItemCart } from "../../../store/actions";
 import { getCatalogue } from "../../../store/actions";
-import Select from "@mui/material/Select";
-import { useNavigate } from "react-router-dom";
 import { PaymentForm } from "../PaymentForm";
 
 export const CardShoppingCart = () => {
