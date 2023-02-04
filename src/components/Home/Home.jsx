@@ -14,41 +14,43 @@ import Loading from "../Loading/Loading";
 
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
-	const dispatch = useDispatch();
-	const { isAuthenticated, user, logout } = useAuth0();
 
-	console.log("🚀 ~ file: Home.jsx:15 ~ Home ~ user", user);
-	useEffect(() => {
-		dispatch(getUserLoggedInfoToPay({ ...user, isAuthenticated }));
-	}, [isAuthenticated]);
 
-	const Loading = useSelector((state) => state.loading);
-	const isModalOpen = useSelector((state) => state.isModalOpen);
-	console.log("🚀 ~ file: Home.jsx:28 ~ Home ~ loading", Loading);
+  const dispatch = useDispatch()
+  const { isAuthenticated, user, logout } = useAuth0();
+  
+  useEffect(() => {
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
+  }, [isAuthenticated])
+  
+  const loading = useSelector((state) => state.loading);
+  const isModalOpen = useSelector((state) => state.isModalOpen);
+  
+  if(loading){
+    //componente loader
+    <LoaderContainer>
+      <ThreeDots 
+        height="80" 
+        width="80" 
+        radius="9"
+        color="#4fa94d" 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+   />
 
-	if (Loading) {
-		//componente loader
-		<LoaderContainer>
-			<ThreeDots
-				height="80"
-				width="80"
-				radius="9"
-				color="#4fa94d"
-				ariaLabel="three-dots-loading"
-				wrapperStyle={{}}
-				wrapperClassName=""
-				visible={true}
-			/>
-		</LoaderContainer>;
-	}
+    </LoaderContainer>
+  }
 
-	if (!Loading) {
-		return (
-			<div className={styles.body}>
-				<NavBar />
-				<Header
-					imagen={img}
-					text="
+  if(!loading){
+    
+    return (
+      <div className={styles.body}>
+        <NavBar />
+        <Header
+          imagen={img}
+          text="
   We have suffered an alarming loss of biodiversity in recent decades...
   "
 				/>

@@ -27,95 +27,121 @@ import Footer from "../Footer/Footer";
 export const Campaing = () => {
 	const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const catalogue = useSelector((state) => state.donationCatalogue);
-	const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let catalogue = useSelector((state) => state.donationCatalogue);
+  const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
 
-	const [currentPage, setCurrentPage] = useState(1);
-	const [elementPerPage, setElementPerPage] = useState(9);
-	const [order, setOrder] = useState("");
-	const indexOfLastCatalogue = currentPage * elementPerPage;
-	const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
+  storageCatalogue && storageCatalogue.forEach(favorito=>{
+  catalogue = catalogue.map(item => {
+      if(item._id == favorito._id){
+
+        return (
+          {
+            ...favorito
+          }
+        )
+      }else{
+        return {
+          ...item
+        }
+      }
+    })
+  })
+
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [elementPerPage, setElementPerPage] = useState(9);
+  const [order, setOrder] = useState("");
+  const indexOfLastCatalogue = currentPage * elementPerPage;
+  const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
+
 
 	const handleClick = (id) => {
 		dispatch(getAnimalsById(id));
 		navigate(`/campaign/${id}`);
 	};
 
-	const currentCatalogue = catalogue.slice(
-		indexOfFirstCatalogue,
-		indexOfLastCatalogue
-	);
+
+  const currentCatalogue = catalogue.slice(
+    indexOfFirstCatalogue,
+    indexOfLastCatalogue
+    );
+
+
 
 	const pagination = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
 
-	const img = require("../../imagenes/header-home.jpg");
-	return (
-		<>
-			<NavBar />
-			<Header
-				imagen={img}
-				text="We have suffered an alarming loss of biodiversity in recent decades..."
-			/>
-			<Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
-			<StoreCampaingContainer>
-				<FiltersContainer></FiltersContainer>
-				<CardContainer>
-					{currentCatalogue?.map((item) => {
-						if (item.amount) {
-							return (
-								<Card key={item._id}>
-									<Link to={`/campaign/`}>
-										<img src={item.image} />
-									</Link>
-									<CardLabel>
-										<h3>{item.title}</h3>
-										<p>$ {item.amount}</p>
-										{isAuthenticated && (
-											<button
-												className="donate-button"
-												onClick={() => {
-													// dispatch(setOpenModal(isModalOpen))
-													dispatch(setDonationCartElements(item));
-												}}
-											>
-												Donate
-											</button>
-										)}
-										{!isAuthenticated && (
-											<button
-												className={"donate-button"}
-												onClick={() => loginWithRedirect()}
-											>
-												log in
-											</button>
-										)}
-										{isAuthenticated && (
-											<div
-												className={`icon-favorites ${item.selected}`}
-												onClick={() => dispatch(setFavorites(item))}
-											>
-												<IoHeart />
-											</div>
-										)}
-									</CardLabel>
-								</Card>
-							);
-						} else {
-							<></>;
-						}
-					})}
-				</CardContainer>
-			</StoreCampaingContainer>
-			<Pagination
-				elementPerPage={elementPerPage}
-				element={catalogue.length}
-				pagination={pagination}
-			/>
-			<Footer />
-		</>
-	);
+
+  const img = require("../../imagenes/header-home.jpg");
+  return (
+    <>
+      <NavBar />
+      <Header
+        imagen={img}
+        text="We have suffered an alarming loss of biodiversity in recent decades..."
+      />
+      <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
+      <StoreCampaingContainer>
+        <FiltersContainer></FiltersContainer>
+        <CardContainer>
+          {currentCatalogue.map((item) => {
+
+            if(item.image){
+              return (
+                <Card key={item._id}>
+                  <Link to={`/campaign/`}>
+                    <img src={item.image} />
+                  </Link>
+                  <CardLabel>
+                    <h3>{item.title}</h3>
+                    <p>$ {item.amount}</p>
+                    {isAuthenticated && (
+                      <button
+                        className="donate-button"
+                        onClick={() => {
+                          // dispatch(setOpenModal(isModalOpen))
+                          dispatch(setDonationCartElements(item));
+                        }}
+                      >
+                        Donate
+                      </button>
+                    )}
+                    {!isAuthenticated && (
+                      <button
+                        className={"donate-button"}
+                        onClick={() => loginWithRedirect()}
+                      >
+                        log in
+                      </button>
+                    )}
+                    { isAuthenticated &&
+                      <div
+                        className={`icon-favorites ${item.selected}`}
+                        onClick={() => dispatch(setFavorites(item))}
+                      >
+                        <IoHeart />
+                      </div>
+                    }
+                  </CardLabel>
+                </Card>
+              )
+            }else{<></>}
+              
+          }) 
+          }
+        </CardContainer>
+      </StoreCampaingContainer>
+      <Pagination
+        elementPerPage={elementPerPage}
+        element={catalogue.length}
+        pagination={pagination}
+      />
+    </>
+  );
+
 };
+  
