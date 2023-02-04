@@ -27,7 +27,6 @@ export const getDonations = () => {
       console.log("donations", data)
       
       const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
-      console.log(suma)
 
       const cuantityDonations = data.donations.length
       console.log(cuantityDonations)
@@ -457,6 +456,40 @@ export const orderBySpecies = (data) => {
       });
     } catch (e) {
       console.log(e);
+    }
+  };
+};
+
+export const postNewAnimal = (animal) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/adoptionCatalogue/animals", animal)
+      dispatch({
+        type: "POST_ANIMAL",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
+
+export const postNewTree = (tree) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/adoptionCatalogue/trees", tree)
+      dispatch({
+        type: "POST_TREE",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
     }
   };
 };
