@@ -199,7 +199,7 @@ export const initCheckOut = ()=>{
 
       const {name, email} = payer
       axios
-      .post("http://localhost:3001/api/v1/checkOutController", {
+      .post("/checkOutController", {
         items:shoppingCart.items,
         totalAmount:shoppingCart.totalAmount,
         payer:{

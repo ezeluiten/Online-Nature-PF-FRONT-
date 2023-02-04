@@ -6,10 +6,10 @@ import "./ShoppingCart/styles/mercadopagoStyles.css"
 export const PaymentForm = () => {
   
   const prepaymentInfo = useSelector(state=>state.transactionInfo)
-  console.log(prepaymentInfo?.data)
-
+  
   useEffect(()=>{
-
+    console.log(prepaymentInfo?.data)
+    
     if(prepaymentInfo.data) {
       const script = document.createElement('script') // Here we create the empty script tag
       script.type = 'text/javascript' // The type of the script
