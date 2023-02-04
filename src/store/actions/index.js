@@ -1,12 +1,11 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const  getAnimals = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get("/animals");
-      console.log(response.data);
       dispatch({
         type: "GET_ANIMALS",
         payload: response.data
@@ -21,28 +20,55 @@ export const  getAnimals = () => {
 };
 
 
-export const setFavorites = (item) => {
-    return async function(dispatch, getState) { 
-      const {favorites, donationCatalogue} = getState()
+export const setFavorites = (item, funct) => {
+  return async function(dispatch, getState) { 
+
+      let currentLocalStorageCatalogue =  JSON.parse(localStorage.getItem("catalogue"))
+      let {favorites, donationCatalogue} = getState()
+
+      if(currentLocalStorageCatalogue && currentLocalStorageCatalogue.length > 0){
+        donationCatalogue = currentLocalStorageCatalogue
+        favorites =[ ...currentLocalStorageCatalogue].filter(fav =>{
+          return fav.selected == "selected"
+        })
+
+      }
+
       if(item.selected){
         item.selected = ""
-        const indexInFavorites = favorites.indexOf(item._id)
-        const removingItemFromFavorites = favorites.splice(indexInFavorites, 1)
+        const indexInFavorites = favorites.filter(element => {
+          return element._id !== item._id
+        })
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         itemInCatalogue.selected = ""
-        console.log("🚀 ~ file: index.js:30 ~ returnfunction ~ index", favorites, indexInFavorites)
+        favorites = indexInFavorites
       }else{
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         item.selected = "selected";
         itemInCatalogue.selected = "selected"
         favorites.push(item)
-        console.log("🚀 ~ file: index.js:35 ~ returnfunction ~ favorites", favorites, item)
 
       }
-      console.log("🚀 ~ file: index.js:38 ~ returnfunction ~ favorites", favorites,item)
+
+      const favoritesCopy = JSON.stringify([...favorites])
+      const itemsCatalogue = JSON.stringify([...donationCatalogue])
+      localStorage.removeItem("favorites")
+      localStorage.setItem("favorites", favoritesCopy)
+      localStorage.removeItem("catalogue")
+      localStorage.setItem("catalogue", itemsCatalogue)
+      currentLocalStorageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
+
+      dispatch({
+        type:"ITEMS_LOCAL_STORAGE",
+        payload:[
+          ...currentLocalStorageCatalogue
+        ]
+      })
       dispatch({
         type:"SET_FAVORITES",
-        payload:favorites
+        payload:[
+          ...favorites
+        ]
       })
       dispatch({
         type:"GET_DONATION_PORTFOLIO",
@@ -52,6 +78,26 @@ export const setFavorites = (item) => {
       })
       
     }
+}
+
+
+export const loginLoader = (callBackFunction)=>{
+  return async function(dispatch, getState) {
+    const { payer } = getState()
+    const { isAuthenticated } = payer
+    dispatch({
+      type:"LOADING",
+      payload:true
+    })
+    callBackFunction()
+    if(isAuthenticated){
+      
+      dispatch({
+        type:"LOADING",
+        payload:false
+      })
+    }
+  }
 }
 
 export const getAnimalsById = (id) => {
@@ -76,7 +122,6 @@ export const getTrees = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get("/trees");
-      console.log(response.data);
       dispatch({
         type: "GET_TREES",
         payload: response.data
@@ -110,7 +155,6 @@ export const getCatalogue = () => {
 
 export const getUserLoggedInfoToPay = (client) => {
   return async function (dispatch, getState) {
-    console.log("🚀 ~ file: index.js:79 ~ getUserLoggedInfoToPay ~ client", client)
 
     dispatch({
       type:"PAYER_CLIENT_INFO",
@@ -128,8 +172,6 @@ export const initCheckOut = ()=>{
     const { payer } = getState();
 
       const {name, email} = payer
-      console.log("🚀 ~ file: index.js:85 ~ clientInfo", name, email)
-      console.log("🚀 ~ file: index.js:80 ~ shoppingCart", shoppingCart)
       axios
       .post("http://localhost:3001/api/v1/checkOutController", {
         items:shoppingCart.items,
@@ -194,13 +236,7 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     
     if(action == "delete" && newItemsCart.length) {
       newItemsCart = newItemsCart.filter(item => item._id !== newItem._id)
-      console.log("🚀 ~ file: index.js:117 ~ cartFiltered", newItemsCart)
       
-      // const { ["quantity"]: removedProperty, ...remainingObject } = cartFiltered;
-
-      // const index = newItemsCart.indexOf({...remainingObject}) 
-      // console.log("🚀 ~ file: index.js:122 ~ index", index)
-      // const whetherIsNotCoincidence = index == -1 ? newItemsCart.filter(item => item._id !== newItem._id) : newItemsCart.splice(index, 1)
     }
     
     
@@ -222,7 +258,6 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     
     // itemsCart.items = [...newItemsCart]
     // itemsCart.totalAmount = newTotalAmount
-    console.log("🚀 ~ file: index.js:140 ~ itemsCart", itemsCart)
 
     dispatch({
       type: "ITEMS_CART",
@@ -239,7 +274,6 @@ export function sorting(params="descendant", catalogue){
 
    return async function (dispatch) {
     const sortAction = params
-    console.log("🚀 ~ file: index.js:160 ~ sortAction", sortAction)
     const allCatalogue = catalogue
     const orderedAscendantCatalogue = allCatalogue.sort(function (a, b) {
         if (a.title < b.title) {
@@ -250,7 +284,6 @@ export function sorting(params="descendant", catalogue){
         }
         return 0;
     })
-    console.log("🚀 ~ file: index.js:171 ~ orderedAscendantCatalogue ~ orderedAscendantCatalogue", orderedAscendantCatalogue)
  
     const orderedDescendantCatalogue = allCatalogue.sort(function (a, b) {
         if (a.title < b.title) {
@@ -261,10 +294,8 @@ export function sorting(params="descendant", catalogue){
         }
         return 0;
     })
-    console.log("🚀 ~ file: index.js:182 ~ orderedDescendantCatalogue ~ orderedDescendantCatalogue", orderedDescendantCatalogue)
  
     const sorted = sortAction == "ascendant" ? orderedAscendantCatalogue : orderedDescendantCatalogue||[]
-    console.log("🚀 ~ file: index.js:185 ~ sorted", sorted)
     dispatch({
       type: "SORT",
       payload: sorted
@@ -282,6 +313,39 @@ const currencyToNumber = (number)=>{
   const normalizedNumber = typeof restoringStringToNormal === "string" ? Number(restoringStringToNormal.replace(regex, "")): restoringStringToNormal
   return  normalizedNumber
 }
+
+export const syncLoggedUserWithDb = (client) => {
+  return async function (dispatch) {
+    const clients = await axios.get("http://localhost:3001/api/v1/clients")
+    
+    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+      return clientInDb.mail == client.email
+    })
+    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
+
+    if(!isLoggedClientInDB){
+
+      const normalizedClient = {
+        dni: client.dni || "",
+        mail:client.email,
+        name: client.name,
+        phone:client.phone || 0
+      }
+      // const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
+      //   ...normalizedClient
+      // })
+      // dispatch({
+      //   type: "MODAL_SETTINGS",
+      //   payload: insertingNewClient
+      // })
+    }
+    // else{
+    //   return
+    // }
+
+  };
+
+};
 
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen
@@ -343,9 +407,7 @@ export const orderByAlpha = (data) => {
   return async (dispatch) => {
     try {
       let url = `/filterController/sort?type=${data}`;
-      console.log(url);
       let json = await axios.get(url);
-      console.log(json.data);
       return dispatch({
         type: "ORDER_BY_ALPHA",
         payload: json.data
@@ -360,9 +422,7 @@ export const orderBySpecies = (data) => {
   return async (dispatch) => {
     try {
       let url = `/filterController/category?type=${data}`;
-      console.log(url);
       let json = await axios.get(url);
-      console.log(json.data);
       return dispatch({
         type: "ORDER_BY_SPECIES",
         payload: json.data,
