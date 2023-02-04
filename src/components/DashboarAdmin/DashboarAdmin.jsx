@@ -2,8 +2,11 @@ import React from "react";
 import style from "./DashboarAdmin.module.css";
 import NavBar from "../NavBar/NavBar";
 import logo from "./images/logo2.png";
+import "./DashboarAdmin.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DashboarAdmin = () => {
+	const { logout } = useAuth0();
 	return (
 		<div className={style.mainContainerDash}>
 			<NavBar />
@@ -26,115 +29,50 @@ const DashboarAdmin = () => {
 								<span class="material-icons-sharp">grid_view</span>
 								<h3>Dashboard</h3>
 							</a>
-							<a href="/home" className={style.active}>
+							<a href="/profile">
 								<span class="material-icons-sharp">people</span>
-								<h3>Clientes</h3>
+								<h3>Customers</h3>
 							</a>
-							<a href="/home">
-								<span class="material-icons-sharp">receipt_long</span>
-								<h3>Pedidos</h3>
-							</a>
-							<a href="/home">
+							<a href="/Analitica">
 								<span class="material-icons-sharp">insights</span>
-								<h3>Analítica</h3>
+								<h3>Analytics</h3>
 							</a>
-							<a href="/home">
-								<span class="material-icons-sharp">mail_outline</span>
-								<h3>Mensajes</h3>
-								<span className={style.message_count}>26</span>
+							<a href="Contactanos">
+								<span class="material-icons-sharp">contact_mail</span>
+								<h3>contact us</h3>
 							</a>
 							<a href="/campaign">
 								<span class="material-icons-sharp">inventory </span>
-								<h3>Productos</h3>
+								<h3>Products</h3>
 							</a>
-							<a href="/home">
-								<span class="material-icons-sharp">report_gmailerrorred</span>
-								<h3>Informes</h3>
-							</a>
-							<a href="/home">
-								<span class="material-icons-sharp">settings</span>
-								<h3>Ajustes</h3>
+							<a href="/Terminos">
+								<span class="material-symbols-sharp">gavel</span>
+								<h3>Términos</h3>
 							</a>
 							<a href="/campaign">
 								<span class="material-icons-sharp">add</span>
-								<h3>Agregar Productos</h3>
+								<h3>Add Products</h3>
 							</a>
-							<a href="/home">
+							<a onClick={() => logout()}>
 								<span class="material-icons-sharp">logout</span>
 								<h3>Logout</h3>
 							</a>
 						</div>
 					</aside>
-					<main>
+					<main className={style.mains}>
 						<h1>Dashboard</h1>
 						<div className={style.date}>
 							<input type="date" />
 						</div>
-						<div className={style.insigths}>
-							<div className={style.sales}>
-								<span class="material-icons-sharp">analytics</span>
-								<div className={style.middle}>
-									<div className={style.left}>
-										<h3>Donaciones</h3>
-										<h2>$ 1,000,000</h2>
-									</div>
-									<div className={style.progress}>
-										<svg>
-											<circle cx="38" cy="38" r="36"></circle>
-										</svg>
-										<div className={style.number}>
-											<p>80%</p>
-										</div>
-									</div>
-								</div>
-								<small className={style.text_muted}> Ultimas 24Hs</small>
-							</div>
-							<div className={style.expenses}>
-								<span class="material-icons-sharp">bar_chart</span>
-								<div className={style.middle}>
-									<div className={style.left}>
-										<h3>Total de Gastos</h3>
-										<h2>$ 150,000</h2>
-									</div>
-									<div className={style.progress}>
-										<svg>
-											<circle cx="38" cy="38" r="36"></circle>
-										</svg>
-										<div className={style.number}>
-											<p>42%</p>
-										</div>
-									</div>
-								</div>
-								<small className={style.text_muted}> Ultimas 24Hs</small>
-							</div>
-							<div className={style.income}>
-								<span class="material-icons-sharp">stacked_line_chart</span>
-								<div className={style.middle}>
-									<div className={style.left}>
-										<h3>Total de Ingresos</h3>
-										<h2>$ 1,500,000</h2>
-									</div>
-									<div className={style.progress}>
-										<svg>
-											<circle cx="38" cy="38" r="36"></circle>
-										</svg>
-										<div className={style.number}>
-											<p>90%</p>
-										</div>
-									</div>
-								</div>
-								<small className={style.text_muted}> Ultimas 24Hs</small>
-							</div>
-						</div>
 						<div className={style.recent_orders}>
-							<h2>Donaciones</h2>
+							<h2>Donations</h2>
 							<table className={style.tableContainer}>
 								<thead>
 									<tr>
-										<th>Nombre del Producto</th>
-										<th>Numero de Productos</th>
-										<th>Pago</th>
-										<th>Estado</th>
+										<th>Product name</th>
+										<th>Number of Products</th>
+										<th>Pay</th>
+										<th>State</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -143,40 +81,51 @@ const DashboarAdmin = () => {
 										<td>Aguila Harpía</td>
 										<td>1</td>
 										<td>$25</td>
-										<td className={style.warning}>Pendiente</td>
-										<td className={style.primary}>Detalles</td>
+										<td className={style.warning}>Earring</td>
+										<a href="/Analitica">
+											<h3>Details</h3>
+										</a>
+										{/* <a src="/#" className={style.primary}>Details</a> */}
 									</tr>
 									<tr>
 										<td>Pingüino de Galápagos</td>
 										<td>1</td>
 										<td>$25</td>
-										<td className={style.warning}>Pendiente</td>
-										<td className={style.primary}>Detalles</td>
+										<td className={style.warning}>Earring</td>
+										<a href="/Analitica">
+											<h3>Details</h3>
+										</a>
 									</tr>
 									<tr>
 										<td>Albatros</td>
 										<td>2</td>
 										<td>$50</td>
-										<td className={style.warning}>Pendiente</td>
-										<td className={style.primary}>Detalles</td>
+										<td className={style.warning}>Earring</td>
+										<a href="/Analitica">
+											<h3>Details</h3>
+										</a>
 									</tr>
 									<tr>
 										<td>Delfín rosa</td>
 										<td>1</td>
 										<td>$75</td>
 										<td className={style.warning}>Pagado</td>
-										<td className={style.primary}>Detalles</td>
+										<a href="/Analitica">
+											<h3>Details</h3>
+										</a>
 									</tr>
 									<tr>
 										<td>Tigre</td>
 										<td>5</td>
 										<td>$125</td>
 										<td className={style.warning}>Pagado</td>
-										<td className={style.primary}>Detalles</td>
+										<a href="/Analitica">
+											<h3>Details</h3>
+										</a>
 									</tr>
 								</tbody>
 							</table>
-							<a href="/home">Mostrar Todo</a>
+							<a href="/home">Show everything</a>
 						</div>
 					</main>
 					{/* Menu + theme dark*/}
@@ -189,7 +138,7 @@ const DashboarAdmin = () => {
 						<div className={style.recent_updates}>
 							<br />
 							<br />
-							<h2>Actualizaciones Recientes</h2>
+							<h2>Recent Updates</h2>
 							<div className={style.updates}>
 								<div className={style.update}>
 									<div className={style.profile_photo}>
@@ -199,10 +148,10 @@ const DashboarAdmin = () => {
 										/>
 									</div>
 									<div className={style.message}>
-										<p>
-											<b>Shakira</b> Hizo una donacion.
+										<p className="pp">
+											<b>Shakira</b> He made a donation.
 										</p>
-										<small className={style.text_muted}>Hace 2 minutos</small>
+										<small className={style.text_muted}>2 minutes ago</small>
 									</div>
 								</div>
 								<div className={style.update}>
@@ -213,10 +162,10 @@ const DashboarAdmin = () => {
 										/>
 									</div>
 									<div className={style.message}>
-										<p>
-											<b>Becky G</b> Hizo una donacion.
+										<p className="pp">
+											<b>Becky G</b> He made a donation.
 										</p>
-										<small className={style.text_muted}>Hace 2 minutos</small>
+										<small className={style.text_muted}>2 minutes ago</small>
 									</div>
 								</div>
 								<div className={style.update}>
@@ -227,10 +176,10 @@ const DashboarAdmin = () => {
 										/>
 									</div>
 									<div className={style.message}>
-										<p>
-											<b>Mike Tyson</b> Hizo una donacion.
+										<p className="pp">
+											<b>Mike Tyson</b> He made a donation.
 										</p>
-										<small className={style.text_muted}>Hace 2 minutos</small>
+										<small className={style.text_muted}>2 minutes ago</small>
 									</div>
 								</div>
 								<div className={style.update}>
@@ -241,59 +190,11 @@ const DashboarAdmin = () => {
 										/>
 									</div>
 									<div className={style.message}>
-										<p>
-											<b>Lionel Messi</b> Hizo una donacion.
+										<p className="pp">
+											<b>Lionel Messi</b> He made a donation.
 										</p>
-										<small className={style.text_muted}>Hace 2 minutos</small>
+										<small className={style.text_muted}>2 minutes ago</small>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div className={style.sales_analytics}>
-							<h2>Analítica</h2>
-							<div className={style.item_online}>
-								<div className={style.icon}>
-									<span class="material-symbols-sharp">volunteer_activism</span>
-								</div>
-								<div className={style.right}>
-									<div className={style.info}>
-										<h3>Donaciones</h3>
-										<small className={style.text_muted}>Ultimas 24 Hs</small>
-									</div>
-									<h5 className={style.success}>+39%</h5>
-									<h3>3849</h3>
-								</div>
-							</div>
-							<div className={style.item_offline}>
-								<div className={style.icon}>
-									<span class="material-symbols-sharp">visibility</span>
-								</div>
-								<div className={style.right}>
-									<div className={style.info}>
-										<h3>Visitas a la Web</h3>
-										<small className={style.text_muted}>Ultimas 24 Hs</small>
-									</div>
-									<h5 className={style.primary}>+39%</h5>
-									<h3>3849</h3>
-								</div>
-							</div>
-							<div className={style.item_customers}>
-								<div className={style.icon}>
-									<span class="material-symbols-sharp">travel_explore</span>
-								</div>
-								<div className={style.right}>
-									<div className={style.info}>
-										<h3>Busqueda</h3>
-										<small className={style.text_muted}>Ultimas 24 Hs</small>
-									</div>
-									<h5 className={style.success}>+39%</h5>
-									<h3>3849</h3>
-								</div>
-							</div>
-							<div className={style.item_add_products}>
-								<div>
-									<span class="material-symbols-sharp">add</span>
-									<h3>Agregar Producto</h3>
 								</div>
 							</div>
 						</div>

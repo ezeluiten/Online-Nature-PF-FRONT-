@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LoaderContainer } from "./loaderStyles";
 import { ThreeDots } from "react-loader-spinner";
 import Footer from "../Footer/Footer";
+import Loading from "../Loading/Loading";
 
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
@@ -21,11 +22,11 @@ export const Home = () => {
 		dispatch(getUserLoggedInfoToPay({ ...user, isAuthenticated }));
 	}, [isAuthenticated]);
 
-	const loading = useSelector((state) => state.loading);
+	const Loading = useSelector((state) => state.loading);
 	const isModalOpen = useSelector((state) => state.isModalOpen);
-	console.log("🚀 ~ file: Home.jsx:28 ~ Home ~ loading", loading);
+	console.log("🚀 ~ file: Home.jsx:28 ~ Home ~ loading", Loading);
 
-	if (loading) {
+	if (Loading) {
 		//componente loader
 		<LoaderContainer>
 			<ThreeDots
@@ -41,7 +42,7 @@ export const Home = () => {
 		</LoaderContainer>;
 	}
 
-	if (!loading) {
+	if (!Loading) {
 		return (
 			<div className={styles.body}>
 				<NavBar />

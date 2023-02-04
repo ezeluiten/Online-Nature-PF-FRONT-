@@ -20,21 +20,26 @@ function CarouselFadeExample() {
 						}}
 					>
 						<div className={style.subContaineImg}>
+							<div class={style.bg}>
+								<h1>WELCOME TO NATURE ONLINE</h1>
+							</div>
 							<img className={style.logo} src={logo} alt="img_logo" />
+
 							<br />
-							<button>
-								<span class="transition"></span>
-								<span class="gradient"></span>
-								<span class="label"> Enter... </span>
-							</button>
+							<br />
+							<br />
+
+							<div>
+								<button className={style.botonlan}>GET IN!..</button>
+							</div>
 						</div>
 					</div>
 					<div className={style.containerText}>
-						<h3>First slide label</h3>
 						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-							quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-							voluptates temporibus a.
+							"Donating to protect endangered trees means invest in a greener
+							and more sustainable future. By contributing, we are safeguarding
+							biodiversity, fighting change climate change and creating a
+							healthier habitat for generations future."
 						</p>
 					</div>
 				</Carousel.Caption>
@@ -50,21 +55,28 @@ function CarouselFadeExample() {
 						}}
 					>
 						<div className={style.subContaineImg}>
+							<div class={style.bg}>
+								<h1 class="t-stroke t-shadow-halftone">
+									WELCOME TO NATURE ONLINE
+								</h1>
+							</div>
 							<img className={style.logo} src={logo} alt="img_logo" />
+
 							<br />
-							<button>
-								<span class="transition"></span>
-								<span class="gradient"></span>
-								<span class="label"> Enter... </span>
-							</button>
+							<br />
+							<br />
+
+							<div>
+								<button className={style.botonlan}>GET IN!..</button>
+							</div>
 						</div>
 					</div>
 					<div className={style.containerText}>
-						<h3>Second slide label</h3>
 						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-							quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-							voluptates temporibus a.
+							"Donating to endangered animals is a way powerful way to show love
+							and responsibility towards the planet and their habitants. Every
+							contribution, no matter how small, can help preserve diversity and
+							ensure a brighter future Brilliant for them and for us."
 						</p>
 					</div>
 				</Carousel.Caption>
@@ -80,21 +92,29 @@ function CarouselFadeExample() {
 						}}
 					>
 						<div className={style.subContaineImg}>
+							<div class={style.bg}>
+								<h1 class="t-stroke t-shadow-halftone">
+									WELCOME TO NATURE ONLINE
+								</h1>
+							</div>
+
 							<img className={style.logo} src={logo} alt="img_logo" />
+
 							<br />
-							<button>
-								<span class="transition"></span>
-								<span class="gradient"></span>
-								<span class="label"> Enter... </span>
-							</button>
+							<br />
+							<br />
+
+							<div>
+								<button className={style.botonlan}>GET IN!..</button>
+							</div>
 						</div>
 					</div>
 					<div className={style.containerText}>
-						<h3>Third slide label</h3>
 						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
-							quia culpa fugit saepe atque, exercitationem nesciunt. Sapiente
-							voluptates temporibus a.
+							"An act of generosity towards endangered animals can make the
+							difference between your survival and your disappearance. Together
+							we can protect biodiversity and ensure a sustainable future for
+							the next generations."
 						</p>
 					</div>
 				</Carousel.Caption>

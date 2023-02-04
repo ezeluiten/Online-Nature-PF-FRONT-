@@ -4,7 +4,7 @@
 }
 
 .logo {
-	width: cover;
+	/* 	width: cover; */
 	animation-name: palpita;
 	animation-duration: 2s;
 	animation-timing-function: linear;
@@ -32,13 +32,90 @@
 .subContaineImg:hover {
 	transition: all 1s;
 	transform: scale(1.1);
-	background-color: #56825943;
 	border-radius: 20px;
 }
 
 .containerText {
 	background-color: hsla(0, 0%, 13%, 0.7);
 	border-radius: 20px;
+}
+
+.botonlan {
+	background-color: black;
+	cursor: pointer;
+	border: none;
+	padding: 16px 32px;
+	color: #fff;
+	font-size: bold;
+	position: relative;
+	border-radius: 12px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	-ms-border-radius: 12px;
+	-o-border-radius: 12px;
+}
+
+.botonlan:hover {
+	background-color: hsl(0, 0%, 13%);
+}
+
+.botonlan::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 90%;
+	height: 90%;
+	background: linear-gradient(
+		45deg,
+		#568259,
+		#81e4c3,
+		#ff7782,
+		#ffbb55,
+		#568259,
+		#81e4c3,
+		#ff7782,
+		#ffbb55
+	);
+	background-size: 800%;
+	border-radius: 10px;
+	animation: glowing 20s linear infinite;
+	-webkit-animation: glowing 20s linear infinite;
+}
+
+.bg {
+	background: linear-gradient(to right, #88b98b, #568259);
+	z-index: 2;
+	transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	opacity: 0.8;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+}
+
+@keyframes glowing {
+	0% {
+		background-position: 0 0;
+	}
+
+	50% {
+		background-position: 400% 0;
+	}
+
+	100% {
+		background-position: 0 0;
+	}
 }
 
 @media only screen and (max-width: 600px) {
