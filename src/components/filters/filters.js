@@ -20,7 +20,6 @@ const Filters = ({setCurrentPage, setOrder}) => {
     dispatch(orderByAlpha(e.target.value));
     setCurrentPage(1)
     setOrder(e.target.value);
-   
   };
 const handleFilterSpecies = (e) => {
   e.preventDefault();

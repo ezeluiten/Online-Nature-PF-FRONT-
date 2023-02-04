@@ -5,6 +5,7 @@ import zorro from "../../../imagenes/zorro.jpg"
 import sunrise from "../../../imagenes/sunrise.jpg" 
 import { ViewSelected } from './ViewSelected'
 
+
 export const ProfileSettings = () => {
 
     const [ isOpen, setIsOpen ] = useState({
@@ -34,7 +35,7 @@ export const ProfileSettings = () => {
           </p>
           <p className="p-settings" onClick={() => handleToggle("family")}>
             Family members preserved
-          </p>
+          </p> 
           <p className="p-settings" onClick={() => handleToggle("favorites")}>
             Favorite adoption prospects
           </p>

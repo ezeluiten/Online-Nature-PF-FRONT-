@@ -9,6 +9,10 @@ import { getUserLoggedInfoToPay, setOpenModal } from "../../store/actions"
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoaderContainer } from "./loaderStyles"
 import { ThreeDots } from "react-loader-spinner";
+
+
+import { LoaderContainer } from "./loaderStyles"
+import { ThreeDots } from "react-loader-spinner";
 import { setSettingsModalGate } from "../../store/actions/index";
 
 
@@ -21,10 +25,13 @@ export const Home = () => {
     const openSettingsModal = () => {
       dispatch(setSettingsModalGate(isOpenSettingsModal));
     };
+  
   useEffect(() => {
     dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
   }, [isAuthenticated])
+  }, [isAuthenticated])
   
+  const loading = useSelector((state) => state.loading);
   const loading = useSelector((state) => state.loading);
   const isModalOpen = useSelector((state) => state.isModalOpen);
   
@@ -60,6 +67,39 @@ export const Home = () => {
   "
         />
         <CardsHome />
+      </div>
+    );
+  }
+  if(loading){
+    //componente loader
+    <LoaderContainer>
+      <ThreeDots 
+        height="80" 
+        width="80" 
+        radius="9"
+        color="#4fa94d" 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+   />
+
+    </LoaderContainer>
+  }
+
+  if(!loading){
+    
+    return (
+      <div className={styles.body}>
+        <NavBar />
+        <Header
+          imagen={img}
+          text="
+  We have suffered an alarming loss of biodiversity in recent decades...
+  "
+        />
+        <CardsHome />
+        
       </div>
     );
   }

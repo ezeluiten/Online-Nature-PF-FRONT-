@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const  getAnimals = () => {
   return async function (dispatch) {
@@ -18,6 +19,48 @@ export const  getAnimals = () => {
     }
   };
 };
+
+export const getDonations = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/donations");
+      const data = await response.data.data
+      console.log("donations", data)
+      
+      const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
+      console.log(suma)
+
+      const cuantityDonations = data.donations.length
+      console.log(cuantityDonations)
+      dispatch({
+        type: "GET_DONATIONS",
+        payload: {
+          donations: suma,
+          qDonations:cuantityDonations
+        }
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
+
+export const setFavorites = (item, funct) => {
+  return async function(dispatch, getState) { 
+
+      let currentLocalStorageCatalogue =  JSON.parse(localStorage.getItem("catalogue"))
+      let {favorites, donationCatalogue} = getState()
+
+      if(currentLocalStorageCatalogue && currentLocalStorageCatalogue.length > 0){
+        donationCatalogue = currentLocalStorageCatalogue
+        favorites =[ ...currentLocalStorageCatalogue].filter(fav =>{
+          return fav.selected == "selected"
+        })
+
+      }
 
 
 export const setFavorites = (item, funct) => {
@@ -39,8 +82,12 @@ export const setFavorites = (item, funct) => {
         const indexInFavorites = favorites.filter(element => {
           return element._id !== item._id
         })
+        const indexInFavorites = favorites.filter(element => {
+          return element._id !== item._id
+        })
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         itemInCatalogue.selected = ""
+        favorites = indexInFavorites
         favorites = indexInFavorites
       }else{
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
@@ -64,10 +111,27 @@ export const setFavorites = (item, funct) => {
           ...currentLocalStorageCatalogue
         ]
       })
+
+      const favoritesCopy = JSON.stringify([...favorites])
+      const itemsCatalogue = JSON.stringify([...donationCatalogue])
+      localStorage.removeItem("favorites")
+      localStorage.setItem("favorites", favoritesCopy)
+      localStorage.removeItem("catalogue")
+      localStorage.setItem("catalogue", itemsCatalogue)
+      currentLocalStorageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
+
+      dispatch({
+        type:"ITEMS_LOCAL_STORAGE",
+        payload:[
+          ...currentLocalStorageCatalogue
+        ]
+      })
       dispatch({
         type:"SET_FAVORITES",
         payload:[
+          ...[
           ...favorites
+        ]
         ]
       })
       dispatch({
@@ -92,6 +156,26 @@ export const loginLoader = (callBackFunction)=>{
     callBackFunction()
     if(isAuthenticated){
       
+
+export const loginLoader = (callBackFunction)=>{
+  return async function(dispatch, getState) {
+    const { payer } = getState()
+    const { isAuthenticated } = payer
+    dispatch({
+      type:"LOADING",
+      payload:true
+    })
+    callBackFunction()
+    if(isAuthenticated){
+      
+      dispatch({
+        type:"LOADING",
+        payload:false
+      })
+    }
+  }
+}
+
       dispatch({
         type:"LOADING",
         payload:false
@@ -259,6 +343,7 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     // itemsCart.items = [...newItemsCart]
     // itemsCart.totalAmount = newTotalAmount
 
+
     dispatch({
       type: "ITEMS_CART",
       payload: {
@@ -318,6 +403,39 @@ export const syncLoggedUserWithDb = (client) => {
   return async function (dispatch) {
     const clients = await axios.get("http://localhost:3001/api/v1/clients")
     
+export const syncLoggedUserWithDb = (client) => {
+  return async function (dispatch) {
+    const clients = await axios.get("http://localhost:3001/api/v1/clients")
+    
+    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+      return clientInDb.mail == client.email
+    })
+    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
+
+    if(!isLoggedClientInDB){
+
+      const normalizedClient = {
+        dni: client.dni || "",
+        mail:client.email,
+        name: client.name,
+        phone:client.phone || 0
+      }
+      // const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
+      //   ...normalizedClient
+      // })
+      // dispatch({
+      //   type: "MODAL_SETTINGS",
+      //   payload: insertingNewClient
+      // })
+    }
+    // else{
+    //   return
+    // }
+
+  };
+
+};
+
     const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
       return clientInDb.mail == client.email
     })

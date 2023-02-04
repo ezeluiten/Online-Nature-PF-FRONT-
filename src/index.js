@@ -9,7 +9,7 @@ import store from '../src/store/index'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-      <React.StrictMode>
+      {/* <React.StrictMode> */}
     {/* <Auth0Provider
       domain="dev-xp4wmo5z0oblx157.us.auth0.com"
       clientId="nfR8JrcLD4Uz3kRybl8cv8EGj41YC7W3"
@@ -17,6 +17,6 @@ root.render(
     > */}
         <App/>
     {/* </Auth0Provider> */}
-  </React.StrictMode>
+  {/* </React.StrictMode> */}
   </Provider>
 );

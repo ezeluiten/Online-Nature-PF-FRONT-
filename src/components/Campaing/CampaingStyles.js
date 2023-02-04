@@ -48,42 +48,6 @@ export const Card = styled.div`
     border-radius: 100%;
     cursor: pointer;
   }
-  .icon-favorites2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 99999;
-    width: 40px;
-    height: 40px;
-    color: white;
-    font-size: 30px;
-    background-color: rgb(33, 37, 41, 0.8);
-    border-radius: 100%;
-    cursor: pointer;
-    animation: dobleclick 1s 1;
-
-    @keyframes dobleclick {
-       20%  {
-        transform: scale(0.8);
-      }
-      40% {
-        transform: scale(1.5);
-      }
-       
-      /* 20% {
-        transform: scale(0.9) rotate(-3deg);
-      }
-      30%,50%,70%,90% {
-        transform: scale(1.1) rotate(3deg);
-      }
-      40%, 60%, 80%{
-        transform: scale(1.1) rotate(-3deg);
-      } */
-    }
-  }
   .selected {
     color: #900a22;
   }
@@ -101,20 +65,21 @@ export const Card = styled.div`
   }
 
   &:hover {
-    --escala: 1.05;
+      --escala: 1.05;
   }
   .button {
-    color: #fffbff;
-    border-radius: 10px;
-    padding: 5px 15px 5px 15px;
-    background-color: #ea4335;
-    border-color: transparent;
-    transition: all 1s;
+      color: #fffbff;
+      border-radius: 10px;
+      padding: 5px 15px 5px 15px;
+      background-color: #ea4335;
+      border-color: transparent;
+      transition: all 1s;
   }
   @media (max-width: 600px) {
-    width: 100%;
+      width:100%
   }
-`;
+   
+`
 export const CardLabel = styled.div`
   display:flex;
   flex-direction:column;

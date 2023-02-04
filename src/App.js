@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCatalogue, setOpenModal } from "./store/actions"
 import { CardShoppingCart } from './components/Cashier/ShoppingCart/CardShoppingCart.js';
 import { useEffect } from 'react';
+import { scriptsMeliInjection } from './components/helpers/mercadopagoInitHelper.js';
+import Login from './components/Login/Login.jsx';
 
 
 const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
@@ -25,10 +27,10 @@ function App() {
   
   useEffect(() => {
     dispatch(getCatalogue());
+    // scriptsMeliInjection()
   }, []);
   
   const modifyModalState =(isOpen)=>{
-      console.log("🚀 ~ file: cashierModalHelper.js:8 ~ HandleClose ~ isOpen", isOpen)
     dispatch(setOpenModal(isOpen))
     
   }
@@ -37,6 +39,7 @@ function App() {
       <ModalCashierPortal onClose={modifyModalState} children={<CardShoppingCart/>}/>
         
       <Navigation/>
+      <Login/>
     </>
   );
 }
