@@ -12,7 +12,7 @@ const Pagination = ({elementPerPage, element, pagination}) => {
         <nav className={styles.container}>
             <ul className={styles.list}>
                 {
-                    pageNumbers?.map(number => (
+                    pageNumbers && pageNumbers?.map(number => (
                         <li className={styles.items} key={number}>
                             <button className={styles.a} onClick={() => pagination(number)}>{number}</button>
                         </li>

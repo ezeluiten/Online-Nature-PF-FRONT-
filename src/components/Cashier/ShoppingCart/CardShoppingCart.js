@@ -68,6 +68,9 @@ export const CardShoppingCart = () => {
                     </div>
                   </div>
                 </div>
+                <div className={style.subtotalCalc}>
+                  <p>{`subtotal: $${item.quantity * item.amount}`}</p>
+                </div>
               </div>
             </div>
           );

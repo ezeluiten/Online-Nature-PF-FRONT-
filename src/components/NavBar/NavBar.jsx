@@ -69,7 +69,9 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
-						<NavLink to="/DashboarAdmin" className={styles.link}>
+						<NavLink to="/DashboarAdmin" className={({ isActive }) =>
+                isActive ? styles.navActivety : styles.link
+              }>
 							My Dash
 						</NavLink>
 					</div>
@@ -193,8 +195,9 @@ const NavContainer = styled.nav`
     }
   }
   .links.active {
-    width: inherit;
-    height: 42rem;
+    width: auto;
+    /* height: auto; */
+    height: 52rem;
     /* width: 100%;
     height: 100%; */
     display: -webkit-box;
@@ -204,8 +207,8 @@ const NavContainer = styled.nav`
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 0;
-    left: 0px;
+    top: -15px;
+    left: -468px;
     right: 0;
     text-align: center;
     -webkit-flex-direction: column;

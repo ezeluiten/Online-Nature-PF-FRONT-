@@ -51,7 +51,7 @@ export const Campaing = () => {
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
   
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementPerPage, setElementPerPage] = useState(9);
+  const [elementPerPage, setElementPerPage] = useState(8);
   const [order, setOrder] = useState("");
   const indexOfLastCatalogue = currentPage * elementPerPage;
   const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;

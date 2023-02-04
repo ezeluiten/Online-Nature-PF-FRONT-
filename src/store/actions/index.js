@@ -19,6 +19,33 @@ export const  getAnimals = () => {
   };
 };
 
+export const getDonations = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/donations");
+      const data = await response.data.data
+      console.log("donations", data)
+      
+      const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
+      console.log(suma)
+
+      const cuantityDonations = data.donations.length
+      console.log(cuantityDonations)
+      dispatch({
+        type: "GET_DONATIONS",
+        payload: {
+          donations: suma,
+          qDonations:cuantityDonations
+        }
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
 
 export const setFavorites = (item, funct) => {
   return async function(dispatch, getState) { 
@@ -258,6 +285,7 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     
     // itemsCart.items = [...newItemsCart]
     // itemsCart.totalAmount = newTotalAmount
+
 
     dispatch({
       type: "ITEMS_CART",

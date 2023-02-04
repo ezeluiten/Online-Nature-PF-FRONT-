@@ -2,6 +2,7 @@ const initialState = {
   animals: [],
   allanimals: [],
   trees: [],
+  donations: [],
   animalDetail: {},
   treeDetail: {},
   isModalCashierOpen: false,
@@ -37,7 +38,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         trees: action.payload,
       };
-    case "GET_ANIMALS_BY_ID":
+    case "GET_DONATIONS":
+      return {
+        ...state,
+        donations: action.payload,
+      };
+    case "GET_TREES_BY_ID":
       return {
         ...state,
         treeDetail: action.payload,
@@ -62,17 +68,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         itemsCart: action.payload,
       };
-    case "REMOVE_ITEM_CART":
-      return {
-        ...state,
-        itemsCart: state.itemsCart.items.filter(
-          (el) => el._id !== action.payload
-        ),
-      };
+
     case "PAYER_CLIENT_INFO":
       return {
         ...state,
         payer: action.payload,
+      };
+    case "INIT_TRANSACTION":
+      return {
+        ...state,
+        transactionInfo: action.payload,
       };
     case "MODAL_SETTINGS":
       return {
@@ -83,53 +88,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload,
-      };
-    case "GET_ANIMALS_BY_ID":
-      return {
-        ...state,
-        animalDetail: action.payload,
-      };
-    case "GET_TREES":
-      return {
-        ...state,
-        trees: action.payload,
-      };
-    case "GET_TREES_BY_ID":
-      return {
-        ...state,
-        treeDetail: action.payload,
-      };
-    case "MODAL_GATE":
-      return {
-        ...state,
-        isModalCashierOpen: action.payload,
-      };
-    case "MODAL_NAV":
-      return {
-        ...state,
-        isModalNavBar: action.payload,
-      };
-    case "ITEMS_CART":
-      return {
-        ...state,
-        itemsCart: action.payload,
-      };
-    case "REMOVE_ITEM_CART":
-      return {
-        ...state,
-        itemsCart: state.itemsCart.items.filter(
-          (el) => el._id !== action.payload
-        ),
-      };
-    case "PAYER_CLIENT_INFO":
-      return {
-        ...state,
-        payer: action.payload,
-      };
-    case "INIT_TRANSACTION":
-      return {
-        ...state,
-        transactionInfo: action.payload,
       };
     case "ORDER_BY_ALPHA":
       return {
