@@ -9,10 +9,6 @@ import { getUserLoggedInfoToPay, setOpenModal } from "../../store/actions"
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoaderContainer } from "./loaderStyles"
 import { ThreeDots } from "react-loader-spinner";
-
-
-import { LoaderContainer } from "./loaderStyles"
-import { ThreeDots } from "react-loader-spinner";
 import { setSettingsModalGate } from "../../store/actions/index";
 
 
@@ -29,10 +25,10 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
   }, [isAuthenticated])
-  }, [isAuthenticated])
+
   
   const loading = useSelector((state) => state.loading);
-  const loading = useSelector((state) => state.loading);
+ 
   const isModalOpen = useSelector((state) => state.isModalOpen);
   
   if(loading){

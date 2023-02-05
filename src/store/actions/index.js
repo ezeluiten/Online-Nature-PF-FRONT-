@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useAuth0 } from "@auth0/auth0-react";
 
 export const  getAnimals = () => {
   return async function (dispatch) {
@@ -48,19 +47,7 @@ export const getDonations = () => {
   };
 };
 
-export const setFavorites = (item, funct) => {
-  return async function(dispatch, getState) { 
 
-      let currentLocalStorageCatalogue =  JSON.parse(localStorage.getItem("catalogue"))
-      let {favorites, donationCatalogue} = getState()
-
-      if(currentLocalStorageCatalogue && currentLocalStorageCatalogue.length > 0){
-        donationCatalogue = currentLocalStorageCatalogue
-        favorites =[ ...currentLocalStorageCatalogue].filter(fav =>{
-          return fav.selected == "selected"
-        })
-
-      }
 
 
 export const setFavorites = (item, funct) => {
@@ -79,9 +66,7 @@ export const setFavorites = (item, funct) => {
 
       if(item.selected){
         item.selected = ""
-        const indexInFavorites = favorites.filter(element => {
-          return element._id !== item._id
-        })
+        
         const indexInFavorites = favorites.filter(element => {
           return element._id !== item._id
         })
@@ -112,20 +97,7 @@ export const setFavorites = (item, funct) => {
         ]
       })
 
-      const favoritesCopy = JSON.stringify([...favorites])
-      const itemsCatalogue = JSON.stringify([...donationCatalogue])
-      localStorage.removeItem("favorites")
-      localStorage.setItem("favorites", favoritesCopy)
-      localStorage.removeItem("catalogue")
-      localStorage.setItem("catalogue", itemsCatalogue)
-      currentLocalStorageCatalogue = JSON.parse(localStorage.getItem("catalogue"))
-
-      dispatch({
-        type:"ITEMS_LOCAL_STORAGE",
-        payload:[
-          ...currentLocalStorageCatalogue
-        ]
-      })
+   
       dispatch({
         type:"SET_FAVORITES",
         payload:[
@@ -157,16 +129,7 @@ export const loginLoader = (callBackFunction)=>{
     if(isAuthenticated){
       
 
-export const loginLoader = (callBackFunction)=>{
-  return async function(dispatch, getState) {
-    const { payer } = getState()
-    const { isAuthenticated } = payer
-    dispatch({
-      type:"LOADING",
-      payload:true
-    })
-    callBackFunction()
-    if(isAuthenticated){
+
       
       dispatch({
         type:"LOADING",
@@ -176,13 +139,6 @@ export const loginLoader = (callBackFunction)=>{
   }
 }
 
-      dispatch({
-        type:"LOADING",
-        payload:false
-      })
-    }
-  }
-}
 
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
@@ -399,9 +355,6 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
-export const syncLoggedUserWithDb = (client) => {
-  return async function (dispatch) {
-    const clients = await axios.get("http://localhost:3001/api/v1/clients")
     
 export const syncLoggedUserWithDb = (client) => {
   return async function (dispatch) {
@@ -436,34 +389,7 @@ export const syncLoggedUserWithDb = (client) => {
 
 };
 
-    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
-      return clientInDb.mail == client.email
-    })
-    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
 
-    if(!isLoggedClientInDB){
-
-      const normalizedClient = {
-        dni: client.dni || "",
-        mail:client.email,
-        name: client.name,
-        phone:client.phone || 0
-      }
-      // const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
-      //   ...normalizedClient
-      // })
-      // dispatch({
-      //   type: "MODAL_SETTINGS",
-      //   payload: insertingNewClient
-      // })
-    }
-    // else{
-    //   return
-    // }
-
-  };
-
-};
 
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen

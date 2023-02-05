@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import BurguerButton from "./ModalBurger"
+import BurguerButton from "./ModalBurger";
 import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./NavBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenModal, loginLoader } from "../../store/actions";
 import { setOpenModal, loginLoader } from "../../store/actions";
 import { Profile } from "../Profile/Profile";
 import { setSettingsModalGate } from "../../store/actions/index";
@@ -17,12 +16,11 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const shoppingCartItems = useSelector((state) => state.itemsCart);
 
-const { payer, isOpenSettingsModal } = useSelector((state) => state);
-const openSettingsModal = () => {
-  dispatch(setSettingsModalGate(isOpenSettingsModal));
-};
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
   const shoppingCartItems = useSelector((state) => state.itemsCart);
 
   const handleClick = () => {
@@ -41,14 +39,7 @@ const openSettingsModal = () => {
           <div className={styles.logo}></div>
         </NavLink>
 
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? styles.navActivety : styles.link
-          }
-        >
-          <div className={styles.logo}></div>
-        </NavLink>
+   
 
         <div className={`links ${clicked ? "active" : ""}`}>
           <div className="a">
@@ -120,24 +111,28 @@ const openSettingsModal = () => {
               ></HiShoppingCart>
             </div>
           )}
+
           {
-          {(
             <button
               className={styles.button}
-              onClick={isAuthenticated ? 
+              onClick={
                 isAuthenticated
-                  ? () => dispatch(setOpenModal(isModalOpen)) : () => loginWithRedirect()  
+                  ? isAuthenticated
+                    ? () => dispatch(setOpenModal(isModalOpen))
+                    : () => loginWithRedirect()
                   : () => loginWithRedirect()
               }
             >
               DONATE
             </button>
-          )}
+          }
           {
             !isAuthenticated ? (
               <button
                 className={styles.button}
-                onClick={() => dispatch(loginLoader(loginWithRedirect, isAuthenticated))}
+                onClick={() =>
+                  dispatch(loginLoader(loginWithRedirect, isAuthenticated))
+                }
               >
                 log in
               </button>
@@ -188,22 +183,22 @@ const NavContainer = styled.nav`
     margin-right: 1rem;
   }
   .links {
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    position:absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
     left: -100%;
-    top:-100%;
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    position:absolute;
+    top: -100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
     left: -100%;
-    top:-100%;
+    top: -100%;
     margin-left: auto;
     margin-right: auto;
-    align-items:center;
-    align-items:center;
+    align-items: center;
+    align-items: center;
     transition: all 0.5s ease;
     z-index: 2;
     .a {
@@ -252,7 +247,6 @@ const NavContainer = styled.nav`
     align-items: center;
     background: #568259;
     justify-content: space-evenly;
-
 
     .a {
       font-size: 2rem;
