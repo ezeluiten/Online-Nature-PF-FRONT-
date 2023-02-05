@@ -138,7 +138,7 @@ const pagination = (pageNumber) => {
                 </Link>
               </div>
             )}
-            {/* {currentFav && currentFav.length >= 1 ? (
+            {currentFav && currentFav.length >= 1 ? (
               <div className={style.addedCard}>
                 <Link to="/campaign">
                   <div className={style.emptyCardFavorite}>+</div>
@@ -146,9 +146,8 @@ const pagination = (pageNumber) => {
               </div>
             ) : (
               <></>
-            )} */}
+            )}
           </div>
-          
         </CardsContainer>
         <Pagination
           elementPerPage={elementPerPage}
