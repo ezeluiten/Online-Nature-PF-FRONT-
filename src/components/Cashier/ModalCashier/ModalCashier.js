@@ -29,7 +29,7 @@ const ModalCashier = ({children, onClose}) => {
                 <ModalBody>
                     <div className='header-cart'>
                         <div className='button-close' onClick={()=>onClose(isModalOpen)}>{<IoCloseCircleOutline/>}</div>
-                        <h1 className='h1-name'>Adoption Cart</h1>
+                        <h1 >Adoption Cart</h1>
                         <div className={style.selectContainer}>
                             <select
                                 className={style.selectAnimal}

@@ -43,7 +43,7 @@ export const CardShoppingCart = () => {
           return (
             <div className={style.cardContainer} key={item._id}>
               <div className={style.imgContainer}>
-                <img src={item.image} alt="img not found" width="250px" height="250px" />
+                <img src={item.image} alt="img not found" />
               </div>
               <div className={style.infoContainer}>
                 <div className={style.infoContainerChild}>
@@ -85,7 +85,8 @@ export const CardShoppingCart = () => {
                   </div>
                 </div>
                 <div className={style.subtotalCalc}>
-                  <p>{`subtotal: $${item.quantity * item.amount}`}</p>
+                  <p>{`subtotal:`}</p>
+                  <p>{`$${item.quantity * item.amount}`}</p>
                 </div>
               </div>
             </div>
