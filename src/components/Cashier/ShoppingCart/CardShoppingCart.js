@@ -57,7 +57,7 @@ export const CardShoppingCart = () => {
                     X
                   </button>
                 </div>
-                <p>{item.description.substr(0, 70) + "..."}</p>
+                <p>{item.description.substr(0, 30) + "..."}</p>
                 <div>
                   <div className={style.containerQuantity}>
                     <div className={style.containerQuantityChild}>
