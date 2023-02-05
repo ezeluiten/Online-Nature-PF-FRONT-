@@ -43,6 +43,11 @@ export const FavoriteCard = styled.div`
         width:20px;
         top: 0;
     }
+    .delete-button{
+        position:absolute;
+        width:20px;
+        top: 0;
+    }
     .button-container{
         position:relative;
         width:100%;
@@ -79,18 +84,11 @@ export const FavoriteCard = styled.div`
         position:absolute;
         top:5px;
         right:-4px;
-        z-index:1;
+        z-index:99999;
         width:40px;
-        color:white;
-        font-size:20px;
+        color:red;
+        font-size:25px;
         cursor: pointer;
-
-        transform: scale(var(--escala, 1));
-        transition: transform 0.25s;
-    }
-    .button-delete-fav:hover {
-        --escala: 1.4;
-        color: red;
     }
     .info-container {
         display: flex;

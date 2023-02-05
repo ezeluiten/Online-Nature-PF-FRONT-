@@ -25,7 +25,7 @@ export const ModalContainer = styled.div`
         text-decoration:none;
         color:#121619;
         cursor: pointer;
-        border-bottom:solid;
+       
         border-width:0.3px;
         border-color: #121619;
         /* rgb(18, 22, 25,0.6) rgb(81, 128, 85,1)*/
