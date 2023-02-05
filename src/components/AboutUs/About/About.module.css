@@ -142,9 +142,16 @@
 	padding-top: 100px;
 	font-family: "Poppins", sans-serif;
 	text-align: justify;
-	font-weight: 400px !important;
+	font-weight: 300;
 	letter-spacing: 1px;
 	line-height: 2 !important;
+}
+
+.description h4{
+	font-weight: 300;
+}
+.description h5{
+	font-weight: 300;
 }
 
 .tittle {
@@ -155,5 +162,5 @@
 	background-color: #568259;
 	padding: 30px;
 	font-family: "Poppins", sans-serif;
-	font-weight: 400px !important;
+	font-weight: 300;
 }

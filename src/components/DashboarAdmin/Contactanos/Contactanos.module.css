@@ -1,5 +1,5 @@
 .contact h2 {
-	font-size: 50px;
+	font-size: 30px;
 	padding: 20px;
 	padding-right: 1200px;
 }
@@ -22,7 +22,7 @@
 	margin: 20px 0;
 	border: none;
 	border-radius: 5px;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .form_textarea {
@@ -36,5 +36,5 @@
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	font-size: 18px;
+	font-size: 16px;
 }

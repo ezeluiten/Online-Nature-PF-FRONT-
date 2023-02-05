@@ -66,7 +66,7 @@ function Navbar() {
 
           <div className={styles.a}>
             <NavLink
-              to="/contact"
+              to="/Contactanos"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
