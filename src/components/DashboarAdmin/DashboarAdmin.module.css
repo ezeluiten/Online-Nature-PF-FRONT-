@@ -1,41 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-* {
-	margin: 0;
-	padding: 0;
-	outline: 0;
-	appearance: none;
-	text-decoration: none;
-	list-style: none;
-	box-sizing: border-box;
-}
-/* 
-html {
-	font-size: 14px;
-} */
-
-.mainContainerDash {
-	width: 100vw;
-	height: 100vh;
-	font-size: poppins, sans-serif;
-	font-size: 0.88rem;
-	background: #f6f6f9;
-	user-select: none;
-	color: #121619;
-}
-
 .container {
-	display: grid;
-	width: 96%;
-	margin: 0 auto;
+	display: flex;
+	width: 100%;
+	margin: 0;
 	gap: 1.8rem;
 	grid-template-columns: 14rem auto 23rem;
+	overflow: hidden;
+	font-size: 1.2rem;
+	font-weight: 400;
 }
 
-.tableContainer{
+.tableContainer {
 	padding: 60px;
 }
-
+/* 
 a {
 	color: #121619;
 	text-decoration: none;
@@ -66,7 +45,7 @@ h4 {
 
 h5 {
 	font-size: 0.77rem;
-}
+} */
 
 small {
 	font-size: 0.75rem;
@@ -82,9 +61,9 @@ small {
 	color: #638565;
 }
 
-/* p {
+.pp {
 	color: #677483;
-} */
+}
 
 b {
 	color: #121619;
@@ -164,7 +143,7 @@ aside .sidebar a:last-child {
 	width: 86%;
 }
 
-aside .sidebar a.active {
+/* aside .sidebar a.active {
 	background-color: #878b88;
 	color: #81e4c3;
 	margin-left: 0;
@@ -180,7 +159,7 @@ aside .sidebar a.active:before {
 aside .sidebar a.active span {
 	color: #81e4c3;
 	margin-left: calc(1rem - 3px);
-}
+} */
 
 aside .sidebar a:hover {
 	color: #81e4c3;
@@ -189,7 +168,6 @@ aside .sidebar a:hover {
 aside .sidebar a:hover span {
 	margin-left: 1rem;
 }
-
 
 aside .sidebar .message_count {
 	background: #878b88;
@@ -203,12 +181,12 @@ aside .sidebar .message_count {
 	-o-border-radius: 0.4rem;
 }
 
-main {
+.mains {
 	/* margin-top: 1.4rem; */
 	margin-top: 20px;
 }
 
-main .date {
+.mains .date {
 	display: inline-block;
 	background: #878b88;
 	border-radius: 0.4rem;
@@ -216,131 +194,22 @@ main .date {
 	padding: 0.5rem 1.6rem;
 }
 
-main .date input[type="date"] {
+.mains .date input[type="date"] {
 	background: transparent;
 	border: none;
 	color: #fffbff;
 	font-size: 0.8rem;
 }
 
-main .insigths {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 1.6rem;
-}
-
-main .insigths > div {
-	background: #fffbff;
-	padding: 1.8rem;
-	border-radius: 2rem;
-	-webkit-border-radius: 2rem;
-	-moz-border-radius: 2rem;
-	-ms-border-radius: 2rem;
-	-o-border-radius: 2rem;
-	margin-top: 1rem;
-	box-shadow: 0 2rem 3rem #878b88;
-}
-
-main .insigths > div:hover {
-	box-shadow: none;
-}
-
-main .insigths > div span {
-	background: #81e4c3;
-	padding: 0.5rem;
-	border-radius: 50%;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	-ms-border-radius: 50%;
-	-o-border-radius: 50%;
-	color: #fffbff;
-	font-size: 2rem;
-}
-
-main .insigths > div.expenses span {
-	background: #568259;
-}
-
-main .insigths > div.income span {
-	background: #ff7782;
-}
-
-main .insigths > div .middle {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-main .insigths h3 {
-	font-size: 1rem 0 0.6rem;
-}
-
-main .insigths .progress {
-	position: relative;
-	width: 92px;
-	height: 92px;
-	border-radius: 50%;
-}
-
-main .insigths svg {
-	width: 7rem;
-	height: 7rem;
-}
-
-main .insigths svg circle {
-	fill: none;
-	stroke: #81e4c3;
-	stroke-width: 14;
-	stroke-linecap: round;
-	transform: translate(5px, 5px);
-	-webkit-transform: translate(5px, 5px);
-	-moz-transform: translate(5px, 5px);
-	-ms-transform: translate(5px, 5px);
-	-o-transform: translate(5px, 5px);
-	stroke-dasharray: 110;
-	stroke-dashoffset: 92;
-}
-
-main .insigths .income svg circle {
-	stroke-dashoffset: -30;
-	stroke-dasharray: 200;
-}
-
-main .insigths .sale svg circle {
-	stroke-dashoffset: 20;
-	stroke-dasharray: 80;
-}
-
-main .insigths .expenses svg circle {
-	stroke-dashoffset: -20;
-	stroke-dasharray: 110;
-}
-
-main .insigths .progress .number {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-main .insigths small {
-	margin-top: 1.3rem;
-	display: block;
-}
-
-main .recent_orders {
+.mains .recent_orders {
 	margin-top: 2rem;
 }
 
-main .recent_orders h2 {
+.mains .recent_orders h2 {
 	margin-bottom: 0.8rem;
 }
 
-main .recent_orders table {
+.mains .recent_orders table {
 	background: #fffbff;
 	width: 100%;
 	border-radius: 1rem;
@@ -350,29 +219,38 @@ main .recent_orders table {
 	transition: all 300ms ease;
 }
 
-main .recent_orders table:hover {
+.mains .recent_orders table:hover {
 	box-shadow: none;
 }
 
-main table tbody td {
+.mains table tbody td {
 	height: 2.8rem;
 	border-bottom: 1px solid #878b88;
 	color: #677483;
 	padding: 20px;
 }
-main table thead th{
+.mains table thead th {
 	padding: 20px;
 }
 
-main table tbody td:last-child {
+.mains table tbody td:last-child {
 	border: none;
 }
 
-main .recent_orders a {
+.mains .recent_orders a {
 	text-align: center;
 	display: block;
 	margin: 1rem auto;
 	color: #81e4c3;
+}
+
+.mains table tbody {
+	border-top: 1px solid #878b88;
+	border-bottom: 1px solid #878b88;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
 }
 
 /* PRINCIPIO DE CSS DE MENU */
@@ -608,6 +486,293 @@ button:hover {
 	aside .logo h2 {
 		display: none;
 	}
+}
+.date {
+	display: inline-block;
+	background: #878b88;
+	border-radius: 0.4rem;
+	margin-top: 1rem;
+	padding: 0.5rem 1.6rem;
+}
+
+.mains .date input[type="date"] {
+	background: transparent;
+	border: none;
+	color: #fffbff;
+	font-size: 0.8rem;
+}
+
+.mains .recent_orders {
+	margin-top: 2rem;
+}
+
+.mains .recent_orders h2 {
+	margin-bottom: 0.8rem;
+}
+
+.mains .recent_orders table {
+	background: #fffbff;
+	width: 100%;
+	border-radius: 1rem;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.mains .recent_orders table:hover {
+	box-shadow: none;
+}
+
+.mains table tbody td {
+	height: 2.8rem;
+	border-bottom: 1px solid #878b88;
+	color: #677483;
+	padding: 20px;
+}
+.mains table thead th {
+	padding: 20px;
+}
+
+.mains table tbody td:last-child {
+	border: none;
+}
+
+.mains .recent_orders a {
+	text-align: center;
+	display: block;
+	margin: 1rem auto;
+	color: #81e4c3;
+}
+
+.mains table tbody {
+	border-top: 1px solid #878b88;
+	border-bottom: 1px solid #878b88;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+/* PRINCIPIO DE CSS DE MENU */
+
+.right {
+	margin-top: 1.4rem;
+}
+
+.right .top {
+	display: flex;
+	justify-content: end;
+	gap: 2rem;
+}
+
+.right .top .theme_toggler {
+	display: flex;
+	align-items: center;
+}
+
+.rigth .theme_toggler span {
+	padding: 0.4rem 0.4rem;
+	cursor: pointer;
+	transition: all 300ms ease;
+}
+
+.rigth .theme_toggler span.active {
+	background: #81e4c3;
+	color: white;
+}
+
+.right .top .profile {
+	display: flex;
+	align-items: center;
+}
+
+.right .recent_updates {
+	margin-top: 2rem;
+}
+
+.right .recent_updates h2 {
+	margin-bottom: 0.8rem;
+}
+
+.right .recent_updates .updates {
+	background: #fffbff;
+	border-radius: 2rem;
+	padding: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .recent_updates .updates:hover {
+	box-shadow: none;
+}
+
+.right .recent_updates .updates .update {
+	display: grid;
+	grid-template-columns: 2.6rem auto;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.right .sales_analytics {
+	margin-top: 2rem;
+}
+
+.right .sales_analytics h2 {
+	margin-bottom: 0.8rem;
+}
+
+.right .sales_analytics .item_online {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .sales_analytics .item_online:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_online .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_online .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	background: #81e4c3;
+	display: flex;
+}
+
+.right .sales_analytics .item_customers {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .sales_analytics .item_customers:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_customers .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_customers .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	display: flex;
+	background: #ffbb55;
+}
+
+.right .sales_analytics .item_offline {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .sales_analytics .item_offline:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_offline .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_offline .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	display: flex;
+	background: #ff7782;
+}
+
+.right .sales_analytics .item_add_products {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+	background-color: transparent;
+	border: 2px dashed #81e4c3;
+	justify-content: center;
+	color: #ff7782;
+}
+
+.right .sales_analytics .item_add_products:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_add_products .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_add_products .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	background: #81e4c3;
+	display: flex;
+}
+
+.right .sales_analytics .item_add_products div {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.right .sales_analytics .item_add_products div span {
+	font-size: 600;
+}
+
+@media screen and (max-width: 1200px) {
+	.container {
+		width: 94%;
+		grid-template-columns: 7rem auto 23rem;
+	}
+
+	aside .logo h2 {
+		display: none;
+	}
 
 	aside .sidebar h3 {
 		display: none;
@@ -622,12 +787,12 @@ button:hover {
 		margin-top: 1.8rem;
 	}
 
-	main .insigths {
+	.mains .insigths {
 		grid-template-columns: 1fr;
 		gap: 0;
 	}
 
-	main .recent_orders {
+	.mains .recent_orders {
 		width: 94%;
 		position: absolute;
 		left: 50%;
@@ -635,7 +800,7 @@ button:hover {
 		margin: 2rem 0 0 8.8rem;
 	}
 
-	main .recent_orders table {
+	.mains .recent_orders table {
 		width: 83vw;
 	}
 }
@@ -685,18 +850,18 @@ button:hover {
 		cursor: pointer;
 	}
 
-	main {
+	.mains {
 		margin-top: 1rem;
 		padding: 0 1rem;
 	}
 
-	main .recent_orders {
+	.mains .recent_orders {
 		position: relative;
 		margin: 3rem 0 0 0;
 		width: 100%;
 	}
 
-	main .recent_orders table {
+	.mains .recent_orders table {
 		width: 100%;
 		margin: 0;
 	}

@@ -78,12 +78,12 @@ function Navbar() {
 
           <div className={styles.a}>
             <NavLink
-              to="/reservation"
+              to="/About"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
             >
-              My reservation
+              About Us
             </NavLink>
           </div>
           {isAuthenticated && (
