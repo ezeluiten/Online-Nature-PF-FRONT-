@@ -22,20 +22,43 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { IoHeart } from "react-icons/io5";
 import Filters from "../filters/filters";
 import Pagination from "../Paginate/Paginate";
-
+import Swal from "sweetalert2";
+import { setSettingsModalGate } from "../../store/actions/index";
+import { height } from "@mui/system";
 export const Campaing = () => {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const catalogue = useSelector((state) => state.donationCatalogue);
-  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  let catalogue = useSelector((state) => state.donationCatalogue);
+  const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"));
+  const storageFavorites = JSON.parse(localStorage.getItem("favorites"));
+  storageCatalogue &&
+    storageCatalogue.forEach((favorito) => {
+      catalogue = catalogue.map((item) => {
+        if (item._id == favorito._id) {
+          return {
+            ...favorito,
+          };
+        } else {
+          return {
+            ...item,
+          };
+        }
+      });
+    });
 
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
   const [currentPage, setCurrentPage] = useState(1);
   const [elementPerPage, setElementPerPage] = useState(9);
   const [order, setOrder] = useState("");
   const indexOfLastCatalogue = currentPage * elementPerPage;
   const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
+  const img = require("../../imagenes/salto.png");
 
   const handleClick = (id) => {
     dispatch(getAnimalsById(id));
@@ -50,10 +73,43 @@ export const Campaing = () => {
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const HandleClickCart = () => {
+    Swal.fire({
+      position: "top-start",
+      icon: "success",
+      title: "added to cart successfully",
+      showConfirmButton: false,
+      timer: 1000,
+      width: 300,
+    });
+  };
 
-  const img = require("../../imagenes/salto.png");
+  const animate = (item) => {
+    dispatch(setFavorites(item));
+
+    storageFavorites.map((favorito) => {
+      if (favorito._id != item._id) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "added to favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "eliminate to favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
-    <>
+    <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
       <NavBar />
       <Header
         imagen={img}
@@ -61,15 +117,14 @@ export const Campaing = () => {
       />
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
-        <FiltersContainer></FiltersContainer>
         <CardContainer>
-          {currentCatalogue?.map((item) => {
-            if (item.amount) {
+          {currentCatalogue.map((item) => {
+            if (item.image) {
               return (
                 <Card key={item._id}>
-                  <div onClick={() => handleClick(item._id)}>
-                    <img src={item.image} />
-                  </div>
+                  <Link to={`/campaign/`}>
+                    <img src={item.image} alt="img not found" />
+                  </Link>
                   <CardLabel>
                     <h3>{item.title}</h3>
                     <p>$ {item.amount}</p>
@@ -78,10 +133,13 @@ export const Campaing = () => {
                         className="donate-button"
                         onClick={() => {
                           // dispatch(setOpenModal(isModalOpen))
-                          dispatch(setDonationCartElements(item));
+                          dispatch(
+                            setDonationCartElements(item),
+                            HandleClickCart()
+                          );
                         }}
                       >
-                        Donate
+                        Add cart
                       </button>
                     )}
                     {!isAuthenticated && (
@@ -92,12 +150,14 @@ export const Campaing = () => {
                         log in
                       </button>
                     )}
-                    <div
-                      className={`icon-favorites ${item.selected}`}
-                      onClick={() => dispatch(setFavorites(item))}
-                    >
-                      <IoHeart />
-                    </div>
+                    {isAuthenticated && (
+                      <div
+                        className={`icon-favorites ${item.selected}`}
+                        onClick={() => animate(item)}
+                      >
+                        <IoHeart />
+                      </div>
+                    )}
                   </CardLabel>
                 </Card>
               );
@@ -112,6 +172,6 @@ export const Campaing = () => {
         element={catalogue.length}
         pagination={pagination}
       />
-    </>
+    </div>
   );
 };

@@ -4,24 +4,29 @@ import { ProfileContainer, ProfileContainerView } from './ProfileSettingsStyles'
 import zorro from "../../../imagenes/zorro.jpg" 
 import sunrise from "../../../imagenes/sunrise.jpg" 
 import { ViewSelected } from './ViewSelected'
+import { setSettingsModalGate } from "../../../store/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export const ProfileSettings = () => {
+  const dispatch = useDispatch();
 
     const [ isOpen, setIsOpen ] = useState({
         open:true,
         view:"favorites"
     })
-    console.log("🚀 ~ file: ProfileSettings.js:14 ~ ProfileSettings ~ isOpen", isOpen)
 
     const handleToggle = ( view ) => {
-        console.log("🚀 ~ file: ProfileSettings.js:16 ~ handleToggle ~ view", view)
         const open = isOpen.open
         setIsOpen({
-            open:!open,
+            open:open,
             view
         })
     }
-
+const { payer, isOpenSettingsModal } = useSelector((state) => state);
+const openSettingsModal = () => {
+  dispatch(setSettingsModalGate(isOpenSettingsModal));
+};
   return (
     <ProfileContainerView>
       {/* <img src={zorro} style={{
@@ -30,7 +35,10 @@ export const ProfileSettings = () => {
 
       <Navbar />
       <ProfileContainer>
-        <div className="settings-panel-options-picker">
+        <div
+          className="settings-panel-options-picker"
+          onClick={isOpenSettingsModal ? () => openSettingsModal() : null}
+        >
           <p className="p-settings" onClick={() => handleToggle("edit")}>
             Edit Account Information
           </p>
@@ -41,14 +49,8 @@ export const ProfileSettings = () => {
             Favorite adoption prospects
           </p>
         </div>
-        <ViewSelected className="active-view" isOpen={isOpen}>
-          Abierto
-        </ViewSelected>
+        <ViewSelected className="active-view" isOpen={isOpen}></ViewSelected>
       </ProfileContainer>
-
-        <Navbar/>
-       
-
     </ProfileContainerView>
   );
 }

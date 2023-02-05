@@ -1,9 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./DashboarAdmin.module.css";
 import NavBar from "../NavBar/NavBar";
 import logo from "./images/logo2.png";
+import { getDonations } from "../../store/actions";
+import Crud from "./AdminCRUD/Crud";
 
 const DashboarAdmin = () => {
+	const dispatch = useDispatch();
+	const donations = useSelector((state) => state.donations);
+
+	console.log(donations)
+
+	useEffect(() => {
+		dispatch(getDonations());
+	  }, [dispatch]);
+
 	return (
 		<div className={style.mainContainerDash}>
 			<NavBar />
@@ -75,17 +87,24 @@ const DashboarAdmin = () => {
 								<span class="material-icons-sharp">analytics</span>
 								<div className={style.middle}>
 									<div className={style.left}>
-										<h3>Donaciones</h3>
-										<h2>$ 1,000,000</h2>
+										<h3>Total amount donations</h3>
+										<h2>{`$${donations?.donations}`}</h2>
+										{/* {
+											donations?.donations.map(e => (
+												<h2>
+													$ {e}
+												</h2>
+											))
+										} */}
 									</div>
-									<div className={style.progress}>
+									{/* <div className={style.progress}>
 										<svg>
 											<circle cx="38" cy="38" r="36"></circle>
 										</svg>
 										<div className={style.number}>
 											<p>80%</p>
 										</div>
-									</div>
+									</div> */}
 								</div>
 								<small className={style.text_muted}> Ultimas 24Hs</small>
 							</div>
@@ -93,17 +112,17 @@ const DashboarAdmin = () => {
 								<span class="material-icons-sharp">bar_chart</span>
 								<div className={style.middle}>
 									<div className={style.left}>
-										<h3>Total de Gastos</h3>
-										<h2>$ 150,000</h2>
+										<h3>Donation quantity</h3>
+										<h2>{`Quantity: ${donations?.qDonations}`}</h2>
 									</div>
-									<div className={style.progress}>
+									{/* <div className={style.progress}>
 										<svg>
 											<circle cx="38" cy="38" r="36"></circle>
 										</svg>
 										<div className={style.number}>
 											<p>42%</p>
 										</div>
-									</div>
+									</div> */}
 								</div>
 								<small className={style.text_muted}> Ultimas 24Hs</small>
 							</div>
@@ -128,7 +147,7 @@ const DashboarAdmin = () => {
 						</div>
 						<div className={style.recent_orders}>
 							<h2>Donaciones</h2>
-							<table>
+							<table className={style.tableContainer}>
 								<thead>
 									<tr>
 										<th>Nombre del Producto</th>
@@ -178,14 +197,18 @@ const DashboarAdmin = () => {
 							</table>
 							<a href="/home">Mostrar Todo</a>
 						</div>
+
+						<div>
+							<Crud />
+						</div>
 					</main>
 					{/* Menu + theme dark*/}
 					<div className={style.right}>
-						<div className={style.top}>
+						{/* <div className={style.top}>
 							<button id={style.menu_btn}>
 								<span class="material-symbols-sharp">menu</span>
 							</button>
-						</div>
+						</div> */}
 						<div className={style.recent_updates}>
 							<br />
 							<br />

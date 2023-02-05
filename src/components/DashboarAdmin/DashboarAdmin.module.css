@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* * {
+* {
 	margin: 0;
 	padding: 0;
 	outline: 0;
@@ -8,7 +8,7 @@
 	text-decoration: none;
 	list-style: none;
 	box-sizing: border-box;
-} */
+}
 /* 
 html {
 	font-size: 14px;
@@ -32,6 +32,10 @@ html {
 	grid-template-columns: 14rem auto 23rem;
 }
 
+.tableContainer{
+	padding: 60px;
+}
+
 a {
 	color: #121619;
 	text-decoration: none;
@@ -40,6 +44,7 @@ a {
 img {
 	display: block;
 	width: 100%;
+	object-fit: cover;
 }
 
 h1 {
@@ -185,6 +190,7 @@ aside .sidebar a:hover span {
 	margin-left: 1rem;
 }
 
+
 aside .sidebar .message_count {
 	background: #878b88;
 	color: #fffbff;
@@ -198,7 +204,8 @@ aside .sidebar .message_count {
 }
 
 main {
-	margin-top: 1.4rem;
+	/* margin-top: 1.4rem; */
+	margin-top: 20px;
 }
 
 main .date {
@@ -336,8 +343,8 @@ main .recent_orders h2 {
 main .recent_orders table {
 	background: #fffbff;
 	width: 100%;
-	border-radius: 2rem;
-	padding: 1.8rem;
+	border-radius: 1rem;
+	padding: 20px;
 	text-align: center;
 	box-shadow: 0 2rem 3rem #878b88;
 	transition: all 300ms ease;
@@ -351,6 +358,10 @@ main table tbody td {
 	height: 2.8rem;
 	border-bottom: 1px solid #878b88;
 	color: #677483;
+	padding: 20px;
+}
+main table thead th{
+	padding: 20px;
 }
 
 main table tbody td:last-child {
@@ -675,7 +686,7 @@ button:hover {
 	}
 
 	main {
-		margin-top: 8rem;
+		margin-top: 1rem;
 		padding: 0 1rem;
 	}
 

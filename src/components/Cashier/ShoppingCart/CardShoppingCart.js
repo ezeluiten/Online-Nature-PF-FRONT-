@@ -7,9 +7,10 @@ import { IoMdAdd, IoIosRemove } from "react-icons/io";
 import { Button } from "bootstrap";
 import { removeItemCart } from "../../../store/actions";
 import { getCatalogue } from "../../../store/actions";
-// import Select from '@mui/material/Select';
+import Select from "@mui/material/Select";
 import { useNavigate } from "react-router-dom";
 import { PaymentForm } from "../PaymentForm";
+import Swal from "sweetalert2";
 
 export const CardShoppingCart = () => {
   useEffect(() => {
@@ -20,6 +21,25 @@ export const CardShoppingCart = () => {
   const dispatch = useDispatch();
   const shoppingCartItems = useSelector((state) => state.itemsCart);
 
+  const HandleClickRemove = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+       customClass: {
+    container: style.swal2container
+  }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(setDonationCartElements(item, "delete"));
+       
+      }
+    });
+  };
   return (
     <div className={style.containerCart}>
       {shoppingCartItems.items && shoppingCartItems.items.length > 0 ? (
@@ -27,7 +47,7 @@ export const CardShoppingCart = () => {
           return (
             <div className={style.cardContainer} key={item._id}>
               <div className={style.imgContainer}>
-                <img src={item.image} />
+                <img src={item.image} alt="img not found" width="250px" height="250px" />
               </div>
               <div className={style.infoContainer}>
                 <div className={style.infoContainerChild}>
@@ -36,17 +56,12 @@ export const CardShoppingCart = () => {
                   </div>
                   <button
                     className={style.btn}
-                    onClick={() =>
-                      dispatch(setDonationCartElements(item, "delete"))
-                    }
+                    onClick={() => HandleClickRemove(item)}
                   >
                     X
                   </button>
                 </div>
-                <p>
-                  Hola humano, dejame vivir en el planeta como tu lo haces. Att:{" "}
-                  {item.title}
-                </p>
+                <p>{item.description.substr(0, 70) + "..."}</p>
                 <div>
                   <div className={style.containerQuantity}>
                     <div className={style.containerQuantityChild}>
@@ -54,6 +69,7 @@ export const CardShoppingCart = () => {
                         onClick={() =>
                           dispatch(setDonationCartElements(item, "decrease"))
                         }
+                        href
                       >
                         {<IoIosRemove />}
                       </a>
@@ -62,12 +78,13 @@ export const CardShoppingCart = () => {
                         onClick={() =>
                           dispatch(setDonationCartElements(item, "increase"))
                         }
+                        href
                       >
                         {<IoMdAdd />}
                       </a>
                     </div>
                     <div className={style.containerAmount}>
-                      <p>$ {item.amount}</p>
+                      <p>{item.amount}</p>
                     </div>
                   </div>
                 </div>
@@ -85,7 +102,7 @@ export const CardShoppingCart = () => {
       {shoppingCartItems.items && shoppingCartItems.items.length > 0 ? (
         <div className={style.containerSubmit}>
           <div className={style.subtotal}>
-            subtotal <span>$ {shoppingCartItems.totalAmount}</span>
+            Total <span>$ {shoppingCartItems.totalAmount}</span>
           </div>
           <div>
             <button

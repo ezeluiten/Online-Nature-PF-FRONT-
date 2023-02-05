@@ -7,9 +7,9 @@ export const ProfileContainer = styled.div`
     flex-direction:row;
     justify-content:space-around;
     align-content:flex-start;
-    margin-top:200px;
-    z-index:999;
-    width:100%;
+    margin-top:120px;
+    /* z-index:999; */
+    width:124%;
     height:100%;
     gap:40px;
     max-width:1400px;
@@ -25,7 +25,10 @@ export const ProfileContainer = styled.div`
         border-radius:10px;
         padding:10px;
         box-shadow:6px 6px 5px 2px #3d2020;
-
+        justify-content: space-evenly;
+    }
+    .settings-panel-options-picker > p:hover {
+        color: #b2e03d;
     }
     animation: movementBelow 1.5s linear ease-in;
      @keyframes movementBelow {
@@ -62,8 +65,10 @@ export const ProfileContainerView = styled.div`
     background-origin: border-box;
     background-repeat: no-repeat;
     background-size:cover;
-    padding:40px;
+    padding:40px;padding:40px;
     width:100%;
-    height:100vh;
+    height:100%;
+    min-height:100vh;
+    max-height: 100%;
 
 `;
