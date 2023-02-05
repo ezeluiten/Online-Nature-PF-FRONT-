@@ -46,6 +46,9 @@ export const getDonations = () => {
   };
 };
 
+
+
+
 export const setFavorites = (item, funct) => {
   return async function(dispatch, getState) { 
 
@@ -62,11 +65,13 @@ export const setFavorites = (item, funct) => {
 
       if(item.selected){
         item.selected = ""
+        
         const indexInFavorites = favorites.filter(element => {
           return element._id !== item._id
         })
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         itemInCatalogue.selected = ""
+        favorites = indexInFavorites
         favorites = indexInFavorites
       }else{
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
@@ -90,10 +95,14 @@ export const setFavorites = (item, funct) => {
           ...currentLocalStorageCatalogue
         ]
       })
+
+   
       dispatch({
         type:"SET_FAVORITES",
         payload:[
+          ...[
           ...favorites
+        ]
         ]
       })
       dispatch({
@@ -118,6 +127,9 @@ export const loginLoader = (callBackFunction)=>{
     callBackFunction()
     if(isAuthenticated){
       
+
+
+      
       dispatch({
         type:"LOADING",
         payload:false
@@ -125,6 +137,7 @@ export const loginLoader = (callBackFunction)=>{
     }
   }
 }
+
 
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
@@ -341,6 +354,7 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
+    
 export const syncLoggedUserWithDb = (client) => {
   return async function (dispatch) {
     const clients = await axios.get("http://localhost:3001/api/v1/clients")
@@ -373,6 +387,8 @@ export const syncLoggedUserWithDb = (client) => {
   };
 
 };
+
+
 
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen
