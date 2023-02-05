@@ -4,12 +4,9 @@ import style from "./CartShopping.module.css";
 import { initCheckOut, setDonationCartElements } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdAdd, IoIosRemove } from "react-icons/io";
-import { Button } from "bootstrap";
-import { removeItemCart } from "../../../store/actions";
 import { getCatalogue } from "../../../store/actions";
-import Select from "@mui/material/Select";
-import { useNavigate } from "react-router-dom";
 import { PaymentForm } from "../PaymentForm";
+import Swal from "sweetalert2";
 
 export const CardShoppingCart = () => {
   useEffect(() => {
@@ -20,6 +17,25 @@ export const CardShoppingCart = () => {
   const dispatch = useDispatch();
   const shoppingCartItems = useSelector((state) => state.itemsCart);
 
+  const HandleClickRemove = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+       customClass: {
+    container: style.swal2container
+  }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(setDonationCartElements(item, "delete"));
+       
+      }
+    });
+  };
   return (
     <div className={style.containerCart}>
       {shoppingCartItems.items && shoppingCartItems.items.length > 0 ? (
@@ -27,7 +43,7 @@ export const CardShoppingCart = () => {
           return (
             <div className={style.cardContainer} key={item._id}>
               <div className={style.imgContainer}>
-                <img src={item.image} />
+                <img src={item.image} alt="img not found" width="250px" height="250px" />
               </div>
               <div className={style.infoContainer}>
                 <div className={style.infoContainerChild}>
@@ -36,9 +52,7 @@ export const CardShoppingCart = () => {
                   </div>
                   <button
                     className={style.btn}
-                    onClick={() =>
-                      dispatch(setDonationCartElements(item, "delete"))
-                    }
+                    onClick={() => HandleClickRemove(item)}
                   >
                     X
                   </button>
@@ -51,6 +65,7 @@ export const CardShoppingCart = () => {
                         onClick={() =>
                           dispatch(setDonationCartElements(item, "decrease"))
                         }
+                        href
                       >
                         {<IoIosRemove />}
                       </a>
@@ -59,6 +74,7 @@ export const CardShoppingCart = () => {
                         onClick={() =>
                           dispatch(setDonationCartElements(item, "increase"))
                         }
+                        href
                       >
                         {<IoMdAdd />}
                       </a>
@@ -67,6 +83,9 @@ export const CardShoppingCart = () => {
                       <p>$ {item.amount}</p>
                     </div>
                   </div>
+                </div>
+                <div className={style.subtotalCalc}>
+                  <p>{`subtotal: $${item.quantity * item.amount}`}</p>
                 </div>
               </div>
             </div>
@@ -82,7 +101,7 @@ export const CardShoppingCart = () => {
       {shoppingCartItems.items && shoppingCartItems.items.length > 0 ? (
         <div className={style.containerSubmit}>
           <div className={style.subtotal}>
-            subtotal <span>$ {shoppingCartItems.totalAmount}</span>
+            Total <span>$ {shoppingCartItems.totalAmount}</span>
           </div>
           <div>
             <button

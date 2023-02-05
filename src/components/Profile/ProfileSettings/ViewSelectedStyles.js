@@ -43,6 +43,11 @@ export const FavoriteCard = styled.div`
         width:20px;
         top: 0;
     }
+    .delete-button{
+        position:absolute;
+        width:20px;
+        top: 0;
+    }
     .button-container{
         position:relative;
         width:100%;
@@ -53,10 +58,17 @@ export const FavoriteCard = styled.div`
         position:absolute;
         top:-16px;
         right:5px;
-        background-color:#a8cf45;
+        background-color:#ea4335;
         border-style:none;
         
+        transform: scale(var(--escala, 1));
+        transition: transform 0.25s;
     }
+
+    .info-title:hover {
+        --escala: 1.1;
+    }
+    
     .image-container{
         position:relative;
         width:100%;
@@ -74,8 +86,9 @@ export const FavoriteCard = styled.div`
         right:-4px;
         z-index:99999;
         width:40px;
-        color:white;
-        font-size:20px;
+        color:red;
+        font-size:25px;
+        cursor: pointer;
     }
     .info-container {
         display: flex;
@@ -84,5 +97,6 @@ export const FavoriteCard = styled.div`
         padding:10px;
         width: 100%;
         height:100%;
+        color: #8dd866;
     }
 `

@@ -19,6 +19,35 @@ export const  getAnimals = () => {
   };
 };
 
+export const getDonations = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("/donations");
+      const data = await response.data.data
+      console.log("donations", data)
+      
+      const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
+
+      const cuantityDonations = data.donations.length
+      console.log(cuantityDonations)
+      dispatch({
+        type: "GET_DONATIONS",
+        payload: {
+          donations: suma,
+          qDonations:cuantityDonations
+        }
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
+
+
+
 
 export const setFavorites = (item, funct) => {
   return async function(dispatch, getState) { 
@@ -36,11 +65,13 @@ export const setFavorites = (item, funct) => {
 
       if(item.selected){
         item.selected = ""
+        
         const indexInFavorites = favorites.filter(element => {
           return element._id !== item._id
         })
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         itemInCatalogue.selected = ""
+        favorites = indexInFavorites
         favorites = indexInFavorites
       }else{
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
@@ -64,10 +95,14 @@ export const setFavorites = (item, funct) => {
           ...currentLocalStorageCatalogue
         ]
       })
+
+   
       dispatch({
         type:"SET_FAVORITES",
         payload:[
+          ...[
           ...favorites
+        ]
         ]
       })
       dispatch({
@@ -92,6 +127,9 @@ export const loginLoader = (callBackFunction)=>{
     callBackFunction()
     if(isAuthenticated){
       
+
+
+      
       dispatch({
         type:"LOADING",
         payload:false
@@ -99,6 +137,7 @@ export const loginLoader = (callBackFunction)=>{
     }
   }
 }
+
 
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
@@ -173,7 +212,7 @@ export const initCheckOut = ()=>{
 
       const {name, email} = payer
       axios
-      .post("http://localhost:3001/api/v1/checkOutController", {
+      .post("/checkOutController", {
         items:shoppingCart.items,
         totalAmount:shoppingCart.totalAmount,
         payer:{
@@ -259,6 +298,7 @@ export const setDonationCartElements = ( newItem, action = "increase" ) => {
     // itemsCart.items = [...newItemsCart]
     // itemsCart.totalAmount = newTotalAmount
 
+
     dispatch({
       type: "ITEMS_CART",
       payload: {
@@ -314,6 +354,7 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
+    
 export const syncLoggedUserWithDb = (client) => {
   return async function (dispatch) {
     const clients = await axios.get("http://localhost:3001/api/v1/clients")
@@ -346,6 +387,8 @@ export const syncLoggedUserWithDb = (client) => {
   };
 
 };
+
+
 
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen
@@ -429,6 +472,40 @@ export const orderBySpecies = (data) => {
       });
     } catch (e) {
       console.log(e);
+    }
+  };
+};
+
+export const postNewAnimal = (animal) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/adoptionCatalogue/animals", animal)
+      dispatch({
+        type: "POST_ANIMAL",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
+
+export const postNewTree = (tree) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/adoptionCatalogue/trees", tree)
+      dispatch({
+        type: "POST_TREE",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
     }
   };
 };

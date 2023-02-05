@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import BurguerButton from "./ModalBurger"
+import BurguerButton from "./ModalBurger";
 import styles from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { HiShoppingCart } from "react-icons/hi";
@@ -9,13 +9,18 @@ import "./NavBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenModal, loginLoader } from "../../store/actions";
 import { Profile } from "../Profile/Profile";
-
+import { setSettingsModalGate } from "../../store/actions/index";
 function Navbar() {
   const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
   const [clicked, setClicked] = useState(false);
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
   const shoppingCartItems = useSelector((state) => state.itemsCart);
 
   const handleClick = () => {
@@ -23,7 +28,7 @@ function Navbar() {
     setClicked(!clicked);
   };
   return (
-    <>
+    <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
       <NavContainer>
         <NavLink
           to="/"
@@ -33,6 +38,8 @@ function Navbar() {
         >
           <div className={styles.logo}></div>
         </NavLink>
+
+   
 
         <div className={`links ${clicked ? "active" : ""}`}>
           <div className="a">
@@ -59,7 +66,7 @@ function Navbar() {
 
           <div className={styles.a}>
             <NavLink
-              to="/contact"
+              to="/Contactanos"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
@@ -69,23 +76,29 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
-						<NavLink to="/DashboarAdmin" className={styles.link}>
-							My Dash
-						</NavLink>
-					</div>
+            <NavLink to="/DashboarAdmin" className={styles.link}>
+              My Dash
+            </NavLink>
+          </div>
 
           <div className={styles.a}>
             <NavLink
-              to="/reservation"
+              to="/About"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
             >
-              My reservation
+              About Us
             </NavLink>
           </div>
           {isAuthenticated && (
             <div className={styles.cartLogoContainer}>
+              {shoppingCartItems.items &&
+                shoppingCartItems.items.length > 0 && (
+                  <span className={styles.cartQuantity}>
+                    {shoppingCartItems.items.length}
+                  </span>
+                )}
               {shoppingCartItems.items &&
                 shoppingCartItems.items.length > 0 && (
                   <span className={styles.cartQuantity}>
@@ -98,19 +111,28 @@ function Navbar() {
               ></HiShoppingCart>
             </div>
           )}
-          {(
+
+          {
             <button
               className={styles.button}
-              onClick={isAuthenticated ? () => dispatch(setOpenModal(isModalOpen)) : () => loginWithRedirect()  }
+              onClick={
+                isAuthenticated
+                  ? isAuthenticated
+                    ? () => dispatch(setOpenModal(isModalOpen))
+                    : () => loginWithRedirect()
+                  : () => loginWithRedirect()
+              }
             >
               DONATE
             </button>
-          )}
+          }
           {
             !isAuthenticated ? (
               <button
                 className={styles.button}
-                onClick={() => dispatch(loginLoader(loginWithRedirect, isAuthenticated))}
+                onClick={() =>
+                  dispatch(loginLoader(loginWithRedirect, isAuthenticated))
+                }
               >
                 log in
               </button>
@@ -127,7 +149,7 @@ function Navbar() {
           <BurguerButton clicked={clicked} handleClick={handleClick} />
         </div>
       </NavContainer>
-    </>
+    </div>
   );
 }
 
@@ -161,15 +183,22 @@ const NavContainer = styled.nav`
     margin-right: 1rem;
   }
   .links {
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    position:absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
     left: -100%;
-    top:-100%;
+    top: -100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    left: -100%;
+    top: -100%;
     margin-left: auto;
     margin-right: auto;
-    align-items:center;
+    align-items: center;
+    align-items: center;
     transition: all 0.5s ease;
     z-index: 2;
     .a {
@@ -193,8 +222,9 @@ const NavContainer = styled.nav`
     }
   }
   .links.active {
-    width: inherit;
-    height: 42rem;
+    width: auto;
+    /* height: auto; */
+    height: 52rem;
     /* width: 100%;
     height: 100%; */
     display: -webkit-box;
@@ -204,8 +234,8 @@ const NavContainer = styled.nav`
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 0;
-    left: 0px;
+    top: -15px;
+    left: -468px;
     right: 0;
     text-align: center;
     -webkit-flex-direction: column;
