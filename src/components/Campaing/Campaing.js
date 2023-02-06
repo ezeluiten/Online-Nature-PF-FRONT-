@@ -14,7 +14,7 @@ import {
   setDonationCartElements,
   sorting,
   setFavorites,
-  getAnimalsById,
+  getDetail,
 } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
@@ -60,17 +60,14 @@ export const Campaing = () => {
   const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
 
   const handleClick = (id) => {
-    dispatch(getAnimalsById(id));
+    dispatch(getDetail(id));
     navigate(`/campaign/${id}`);
   };
-
-
 
   const currentCatalogue = catalogue.slice(
     indexOfFirstCatalogue,
     indexOfLastCatalogue
-    );
-
+  );
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -109,13 +106,13 @@ export const Campaing = () => {
       }
     });
   };
-  const img = require("../../imagenes/header-home.jpg");
+  const img = require("../../imagenes/salto.png");
   return (
     <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
       <NavBar />
       <Header
         imagen={img}
-        text="We have suffered an alarming loss of biodiversity in recent decades..."
+        text="Our actions can change the course of the planet..."
       />
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
@@ -124,9 +121,9 @@ export const Campaing = () => {
             if (item.image) {
               return (
                 <Card key={item._id}>
-                  <Link to={`/campaign/`}>
+                  <div onClick={() => handleClick(item._id)}>
                     <img src={item.image} alt="img not found" />
-                  </Link>
+                  </div>
                   <CardLabel>
                     <h3>{item.title}</h3>
                     <p>$ {item.amount}</p>
@@ -177,4 +174,3 @@ export const Campaing = () => {
     </div>
   );
 };
-  

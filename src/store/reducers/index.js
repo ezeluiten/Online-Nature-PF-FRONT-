@@ -3,8 +3,7 @@ const initialState = {
   allanimals: [],
   trees: [],
   donations: [],
-  animalDetail: {},
-  treeDetail: {},
+  detail: {},
   isModalCashierOpen: false,
   isModalNavBarOpen: false,
   donationCatalogue: [],
@@ -17,9 +16,9 @@ const initialState = {
   isOpenSettingsModal: false,
   favorites: [],
   loading: false,
-  storageCatalogue:[],
-  post_animal:[],
-  post_tree:[]
+  storageCatalogue: [],
+  post_animal: [],
+  post_tree: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -111,16 +110,28 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         storageCatalogue: action.payload,
       };
-    case 'POST_ANIMAL':
-        return {
-           ...state,
-           post_animal: action.payload
-    }
-    case 'POST_TREE':
-          return {
-             ...state,
-             post_tree: action.payload
-    }
+    case "POST_ANIMAL":
+      return {
+        ...state,
+        post_animal: action.payload,
+      };
+    case "POST_TREE":
+      return {
+        ...state,
+        post_tree: action.payload,
+      };
+    case "GET_DETAIL":
+      return {
+        ...state,
+        detail: state.donationCatalogue.find(
+          (element) => element._id === action.payload
+        ),
+      };
+    case "RESET_DETAIL":
+      return {
+        ...state,
+        detail: {},
+      };
     default:
       return { ...state };
   }
