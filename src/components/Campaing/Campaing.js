@@ -73,6 +73,7 @@ export const Campaing = () => {
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   const HandleClickCart = () => {
     Swal.fire({
       position: "top-start",
@@ -122,9 +123,9 @@ export const Campaing = () => {
             if (item.image) {
               return (
                 <Card key={item._id}>
-                  <Link to={`/campaign/`}>
+                  <div onClick={() => handleClick(item._id)}>
                     <img src={item.image} alt="img not found" />
-                  </Link>
+                  </div>
                   <CardLabel>
                     <h3>{item.title}</h3>
                     <p>$ {item.amount}</p>
