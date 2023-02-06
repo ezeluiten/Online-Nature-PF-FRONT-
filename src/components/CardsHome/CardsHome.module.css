@@ -1,38 +1,71 @@
 .contenedor {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  gap:40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	gap: 40px;
+	padding: 100px 150px 100px 150px;
 }
 
-.cardImg{
-  object-fit:cover;
+.cardContainer{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 20px;
+	height: 100%;
+}
+
+.card {
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+		rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.card .tittle {
+	font-size: 25px;
+	font-weight: bold;
+	color: #446f47;
+}
+
+.sabias {
+	font-size: 15px;
+	font-weight: bold;
+	color: #446f47;
+}
+
+.card:hover {
+	box-shadow: none;
+}
+
+.cardImg {
+	object-fit: cover;
 }
 
 .store {
-  background-color: #568259;
-  border-color: transparent;
+	background-color: #568259;
+	border-color: transparent;
+	margin-top: auto;
 }
 
 .store:hover {
-  background-color: hsla(124, 20%, 42%, 0.8);
-  border-color: transparent;
+	background-color: hsla(124, 20%, 42%, 0.8);
+	border-color: transparent;
 }
 
-@media only screen and (max-width: 600px){
-  .contenedor {
-    display: flex;
-    flex-direction: column;
-  }
-  img{
-    object-fit:contain;
-  }
-  .card {
-    margin-bottom: 1rem;
-    overflow: hidden;
-  }
+@media only screen and (max-width: 600px) {
+	.contenedor {
+		display: flex;
+		flex-direction: column;
+	}
+	img {
+		object-fit: contain;
+	}
+	.card {
+		margin-bottom: 1rem;
+		overflow: hidden;
+	}
 }

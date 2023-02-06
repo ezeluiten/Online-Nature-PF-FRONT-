@@ -33,7 +33,7 @@ export const ModalBody = styled.div`
     .button-close{
       position:absolute;
       top:-10px;
-      left:600px;
+      right:20px;
       width:40px;
       height:40px;
       font-size:40px;

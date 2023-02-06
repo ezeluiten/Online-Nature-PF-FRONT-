@@ -66,7 +66,7 @@ function Navbar() {
 
           <div className={styles.a}>
             <NavLink
-              to="/contact"
+              to="/Contactanos"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
@@ -82,14 +82,14 @@ function Navbar() {
           </div>
 
           <div className={styles.a}>
-            {/* <NavLink
-              to="/reservation"
+            <NavLink
+              to="/About"
               className={({ isActive }) =>
                 isActive ? styles.navActivety : styles.link
               }
             >
-              My reserva
-            </NavLink> */}
+              About Us
+            </NavLink>
           </div>
           {isAuthenticated && (
             <div className={styles.cartLogoContainer}>
