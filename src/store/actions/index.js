@@ -460,3 +460,18 @@ export const orderBySpecies = (data) => {
     }
   };
 };
+
+export const updateAnimal = (id) => {
+  return async (dispatch) => {
+    try {
+      let url = await axios.put(`/adoptionCatalogue/${id}`)
+      return dispatch({
+        type: "UPDATE_ITEMS",
+        payload: url.data ,
+      })
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+}

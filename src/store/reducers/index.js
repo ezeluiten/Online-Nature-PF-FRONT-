@@ -160,6 +160,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         storageCatalogue: action.payload
       };
+    case "UPDATE_ITEMS":
+      return {
+        ...state,
+        donationCatalogue: action.payload,
+      }
+
     default:
       return { ...state };
   }

@@ -2,15 +2,20 @@ import React, {useState} from "react"
 import Button from 'react-bootstrap/Button';
 import style from "./Crud.module.css"
 import FormPopup from "./PopupForm";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useEffect } from "react-redux";
+import PopUpFormEdit from "./PopUpFormEdit";
+
 
 export default function Crud() {
     const [showForm, setShowForm] = useState(false);
     let catalogue = useSelector((state) => state.donationCatalogue);
     console.log(catalogue)
 
+    
+
     const handleClick = () => {
       setShowForm(!showForm);
+
     };
 
     return(
@@ -42,7 +47,7 @@ export default function Crud() {
                             <td className={style.tdCrud}>{e.description.substr(0, 40) + "..."}</td>
                             <td className={style.tdCrud}>{e.amount}</td>
                             <td className={style.tdCrudButtons}>
-                                <Button variant="primary">Edit</Button>{' '}
+                                <PopUpFormEdit handleClick={() => handleClick(e._id)} showForm={showForm} />
                                 <Button variant="danger">Delete</Button>{' '}
                             </td>
                             </>
