@@ -18,8 +18,9 @@ import Login from './components/Login/Login.jsx';
 const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
 const prodUrl = process.env.REACT_APP_PRODUCTION_URL
 
-axios.defaults.baseURL = process.env.NODE_ENV === "production" ? prodUrl : developUrl 
-console.log("🚀 ~ file: App.js:22 ~ axios.defaults.baseURL", axios.defaults.baseURL)
+// axios.defaults.baseURL = process.env.NODE_ENV === "production" ? prodUrl : developUrl 
+// console.log("🚀 ~ file: App.js:22 ~ axios.defaults.baseURL", axios.defaults.baseURL)
+axios.defaults.baseURL = developUrl
 
 function App() {
 

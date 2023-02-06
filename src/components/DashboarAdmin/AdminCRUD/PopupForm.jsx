@@ -20,7 +20,6 @@ export default function FormPopup({handleClick, showForm}) {
     item_type: []
 })
 
-console.log(fomrInfo.item_type.toString())
 
 const [error, setError] = useState({
     title: '',

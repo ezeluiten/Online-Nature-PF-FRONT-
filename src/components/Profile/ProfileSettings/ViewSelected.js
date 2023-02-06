@@ -74,6 +74,17 @@ const pagination = (pageNumber) => {
         <CardsContainer>
           <h2 className="title-welcome">Family members:</h2>
           <h4 className="title-welcome">Your favorite friend's panel: </h4>
+          <div>
+          {currentFav && currentFav.length < 1 ? (
+              <div className={style.addedCard}>
+                <Link to="/campaign">
+                  <div className={style.emptyCardFavorite}>+</div>
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </CardsContainer>
       </ViewSelectedContainer>
     );
@@ -148,34 +159,6 @@ const pagination = (pageNumber) => {
               <></>
             )}
           </div>
-          {currentFav?.map((favorite) => {
-            return (
-              <FavoriteCard key={favorite._id} className={"card-container"}>
-                <div className={"image-container"}>
-                  <img src={favorite.image_detail} alt={favorite.title} />
-                  {
-                    <IoCloseCircleOutline
-                      className="button-delete-fav"
-                      onClick={() => dispatch(setFavorites(favorite))}
-                    />
-                  }
-                </div>
-                <div className="button-container">
-                  <button
-                    className={"info-title"}
-                    onClick={() => dispatch(setDonationCartElements(favorite))}
-                  >
-                    Donate now
-                  </button>
-                </div>
-                <div className={"info-container"}>
-                  <p>{favorite.title}</p>
-
-                  <p>{favorite.description.substr(0, 40) + "..."}</p>
-                </div>
-              </FavoriteCard>
-            );
-          })}
         </CardsContainer>
         <Pagination
           elementPerPage={elementPerPage}
