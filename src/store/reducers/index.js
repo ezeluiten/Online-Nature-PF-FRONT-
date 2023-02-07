@@ -14,9 +14,10 @@ const initialState = {
   payer: {},
   transactionInfo: {},
   isOpenSettingsModal: false,
-  favorites: [],
-  loading: false,
+  favorites:[],
+  loading:false,
   storageCatalogue:[],
+  id:"",
   post_animal:[],
   post_tree:[],
   tickets:[],
@@ -140,6 +141,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: {},
       };
+    case "UPDATE_ITEMS":
+      return {
+        ...state,
+        donationCatalogue: action.payload,
+      }
+    case "SEND_ID":
+      return {
+        ...state,
+        id : action.payload
+      }
+
     case "CLIENT_LOGGED":
       return {
         ...state,

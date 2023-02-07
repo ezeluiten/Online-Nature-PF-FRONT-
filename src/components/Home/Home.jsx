@@ -12,6 +12,8 @@ import { ThreeDots } from "react-loader-spinner";
 import { setSettingsModalGate } from "../../store/actions/index";
 
 
+
+
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
 

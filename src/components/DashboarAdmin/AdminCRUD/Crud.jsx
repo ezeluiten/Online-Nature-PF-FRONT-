@@ -2,15 +2,29 @@ import React, {useState} from "react"
 import Button from 'react-bootstrap/Button';
 import style from "./Crud.module.css"
 import FormPopup from "./PopupForm";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { sendId } from "../../../store/actions";
+import PopUpFormEdit from "./PopUpFormEdit"
+
+
 
 export default function Crud() {
     const [showForm, setShowForm] = useState(false);
+    const [showFormEdit, setShowFormEdit] = useState(false);
+    const [dataToEdit, setDataToEdit] = useState(null);
     let catalogue = useSelector((state) => state.donationCatalogue);
-
+    console.log(catalogue, "hola")
+    const dispatch = useDispatch();
+    
     const handleClick = () => {
       setShowForm(!showForm);
     };
+
+    const handleUpdate = (id) => {
+        setShowFormEdit(!showFormEdit);
+        dispatch(sendId(id))
+      };
+
 
     return(
         <>
@@ -35,13 +49,13 @@ export default function Crud() {
                     <tr key={e._id}>
                         {
                             <>
-                            <td className={style.tdCrud}>{e.title}</td>
-                            <td className={style.tdCrud}>{e.image.substr(0, 40) + "..."}</td>
-                            <td className={style.tdCrud}>{e.image_detail.substr(0, 40) + "..."}</td>
-                            <td className={style.tdCrud}>{e.description.substr(0, 40) + "..."}</td>
-                            <td className={style.tdCrud}>{e.amount}</td>
+                            <td className={style.tdCrud}>{e?.title && e?.title}</td>
+                            <td className={style.tdCrud}>{e?.image && e?.image.substr(0, 40)  + "..."}</td>
+                            <td className={style.tdCrud}>{e?.image_detail && e?.image_detail.substr(0, 40) + "..."}</td>
+                            <td className={style.tdCrud}>{e?.description && e?.description.substr(0, 40) + "..."}</td>
+                            <td className={style.tdCrud}>{e?.amount && e?.amount}</td>
                             <td className={style.tdCrudButtons}>
-                                <Button variant="primary">Edit</Button>{' '}
+                                <PopUpFormEdit handleUpdate={() => handleUpdate(e._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
                                 <Button variant="danger">Delete</Button>{' '}
                             </td>
                             </>
