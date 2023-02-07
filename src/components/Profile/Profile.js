@@ -6,15 +6,15 @@ import {setSettingsModalGate, syncLoggedUserWithDb} from "../../store/actions/in
 import { ModalMenuSettings } from "./modalSettings/ModalMenuSettings";
 import coala from "../../imagenes/koala.webp"
 
-export const Profile = ({isAuthenticated}) => {
+export const Profile = () => {
 
-  const { logout } = useAuth0();
+  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
   const dispatch = useDispatch()
   const { payer, isOpenSettingsModal } = useSelector((state) => state);
 
   useEffect(() => {
     checkProfileAndOrCreateIt(payer)
-  }, [payer])
+  }, [payer.isAuthenticated])
   
 
   const openSettingsModal = ()=>{
@@ -22,7 +22,8 @@ export const Profile = ({isAuthenticated}) => {
   }
   
   const checkProfileAndOrCreateIt = (clientInfo) => {
-    if(clientInfo && clientInfo.email){
+    console.log("🚀 ~ file: Profile.js:25 ~ checkProfileAndOrCreateIt ~ clientInfo", clientInfo)
+    if(clientInfo && clientInfo.email && clientInfo.isAuthenticated){
       dispatch(syncLoggedUserWithDb(clientInfo))
     }
   }
