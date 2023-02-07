@@ -43,9 +43,8 @@ function App() {
   }
   return (
     <>
-      <ModalCashierPortal onClose={modifyModalState}>
-        {/* {componente - children} */}
-      </ModalCashierPortal>
+      <ModalCashierPortal onClose={modifyModalState} children={<CardShoppingCart/>}/>
+        
       <Navigation/>
       <Login/>
     </>
