@@ -8,25 +8,32 @@ import axios from "axios"
 import { ModalCashierPortal } from "./components/Cashier/ModalCashier/ModalCashier"
 import { HandleClose } from '../src/components/helpers/cashierModalHelper.js';
 import { useDispatch, useSelector } from "react-redux"
+<<<<<<< HEAD
 import { setOpenModal, getCatalogue, } from "./store/actions"
+=======
+import { getCatalogue, getUserLoggedInfoToPay, setOpenModal } from "./store/actions"
+>>>>>>> ef0a1c84eaafa2b28d27b559bf31f65f17382574
 import { CardShoppingCart } from './components/Cashier/ShoppingCart/CardShoppingCart.js';
 import { useEffect } from 'react';
 import { scriptsMeliInjection } from './components/helpers/mercadopagoInitHelper.js';
 import Login from './components/Login/Login.jsx';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
 const prodUrl = process.env.REACT_APP_PRODUCTION_URL
-axios.defaults.baseURL = developUrl
-// axios.defaults.baseURL = prodUrl
+
+axios.defaults.baseURL = process.env.NODE_ENV === "production" ? prodUrl : developUrl 
 
 function App() {
 
   const dispatch = useDispatch()
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  
+  const {user, isAuthenticated} = useAuth0()
+
   useEffect(() => {
     dispatch(getCatalogue());
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
     // scriptsMeliInjection()
   }, []);
   

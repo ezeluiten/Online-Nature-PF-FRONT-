@@ -1,55 +1,100 @@
 .imagen {
-  height: 100vh;
-  width: 100%;
+	height: 100vh;
+	width: 100%;
 }
 
 .logo {
-  width: cover;
-  animation-name: palpita;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
+	/* 	width: cover; */
+	width: 100%;
+	height: 70%;
+	animation-name: palpita;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate-reverse;
 }
 
 .containeImg {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 1s;
-  width: 100%;
-  background-color: transparent;
-  margin-bottom: 100px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 1s;
+	width: 100%;
+	background-color: transparent;
+	margin-bottom: 50px;
 }
 
 .subContaineImg {
-  width: 40%;
-  padding: 15px;
-  transition: all 1s;
+	width: 35%;
+	padding: 20px;
+	transition: all 1s;
+}
+
+.subContaineImg h1 {
+	font-size: 25px;
 }
 
 .subContaineImg:hover {
-  transition: all 1s;
-  transform: scale(1.1);
-  background-color: #56825943;
-  border-radius: 20px;
+	transition: all 1s;
+	transform: scale(1.1);
+	border-radius: 20px;
 }
 
 .containerText {
-  background-color: hsla(0, 0%, 13%, 0.7);
-  border-radius: 20px;
+	background-color: hsla(0, 0%, 13%, 0.7);
+	border-radius: 20px;
 }
 
-@media only screen and (max-width: 600px) {
+.myButton {
+	box-shadow: inset 0px 1px 0px 0px #a4e271;
+	background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color: #89c403;
+	border-radius: 6px;
+	border: 1px solid #74b807;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #528009;
 }
+
+.myButton:hover {
+	background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	background-color: #77a809;
+}
+
+.myButton:active {
+	position: relative;
+	top: 1px;
+}
+
+@keyframes glowing {
+	0% {
+		background-position: 0 0;
+	}
+
+	50% {
+		background-position: 400% 0;
+	}
+
+	100% {
+		background-position: 0 0;
+	}
+}
+
+@media only screen and (max-width: 600px) {}
 
 @keyframes palpita {
-  0% {
-    transform: scale(1.1);
-  }
+	0% {
+		transform: scale(1.1);
+	}
 
-  100% {
-    transform: scale(1);
-  }
+	100% {
+		transform: scale(1);
+	}
 }

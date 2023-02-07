@@ -19,6 +19,19 @@ export const  getAnimals = () => {
   };
 };
 
+export const getDetail = (id) => {
+  return {
+    type: "GET_DETAIL",
+    payload: id,
+  };
+};
+
+export const resetDetail = (id) => {
+  return {
+    type: "RESET_DETAIL",
+  };
+};
+
 export const getDonations = () => {
   return async function (dispatch) {
     try {
@@ -27,7 +40,6 @@ export const getDonations = () => {
       console.log("donations", data)
       
       const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
-      console.log(suma)
 
       const cuantityDonations = data.donations.length
       console.log(cuantityDonations)
@@ -47,6 +59,9 @@ export const getDonations = () => {
   };
 };
 
+
+
+
 export const setFavorites = (item, funct) => {
   return async function(dispatch, getState) { 
 
@@ -63,11 +78,13 @@ export const setFavorites = (item, funct) => {
 
       if(item.selected){
         item.selected = ""
+        
         const indexInFavorites = favorites.filter(element => {
           return element._id !== item._id
         })
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
         itemInCatalogue.selected = ""
+        favorites = indexInFavorites
         favorites = indexInFavorites
       }else{
         const itemInCatalogue = donationCatalogue.find(element=> element._id == item._id)
@@ -91,10 +108,14 @@ export const setFavorites = (item, funct) => {
           ...currentLocalStorageCatalogue
         ]
       })
+
+   
       dispatch({
         type:"SET_FAVORITES",
         payload:[
+          ...[
           ...favorites
+        ]
         ]
       })
       dispatch({
@@ -119,6 +140,9 @@ export const loginLoader = (callBackFunction)=>{
     callBackFunction()
     if(isAuthenticated){
       
+
+
+      
       dispatch({
         type:"LOADING",
         payload:false
@@ -126,6 +150,7 @@ export const loginLoader = (callBackFunction)=>{
     }
   }
 }
+
 
 export const getAnimalsById = (id) => {
     return async function(dispatch) {
@@ -192,20 +217,76 @@ export const getUserLoggedInfoToPay = (client) => {
   
   }
 }
+export const getTickets = () => {
+  return async function (dispatch, getState) {
+
+    const tickets = await axios.get("/ticket")
+
+    dispatch({
+      type:"GET_ALL_TICKETS",
+      payload:tickets.data.data
+      
+    })
+
+  
+  }
+}
+
+export const syncLoggedUserWithDb = (client) => {
+  return async function (dispatch) {
+    const clients = await axios.get("/clients")
+    
+    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+      return clientInDb.mail == client.email
+    })
+    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
+
+    if(!isLoggedClientInDB){
+
+      const normalizedClient = {
+        dni: client.dni || "",
+        mail:client.email,
+        name: client.name,
+        phone:client.phone || 0
+      }
+      const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
+        ...normalizedClient
+      })
+      dispatch({
+        type: "MODAL_SETTINGS",
+        payload: insertingNewClient
+      })
+    }
+    // else{
+    //   return
+    // }
+
+  };
+
+};
 
 export const initCheckOut = ()=>{
   return async function (dispatch, getState) {
     const {itemsCart:shoppingCart} = getState()
     const { payer } = getState();
+    console.log("🚀 ~ file: index.js:248 ~ payer", payer)
 
       const {name, email} = payer
+
+      const clients = await axios.get("/clients")
+      console.log("🚀 ~ file: index.js:361 ~ clients", clients)
+      
+      const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+        return clientInDb.mail == email
+      })
+      console.log("🚀 ~ file: index.js:258 ~ filteredLoggedClientInDB ~ filteredLoggedClientInDB", filteredLoggedClientInDB)
+
       axios
-      .post("http://localhost:3001/api/v1/checkOutController", {
+      .post("/checkOutController", {
         items:shoppingCart.items,
         totalAmount:shoppingCart.totalAmount,
         payer:{
-          name,
-          email
+          ...filteredLoggedClientInDB[0]
         }
       },{headers:{
         "content-type":"application/json",
@@ -342,39 +423,6 @@ const currencyToNumber = (number)=>{
   return  normalizedNumber
 }
 
-export const syncLoggedUserWithDb = (client) => {
-  return async function (dispatch) {
-    const clients = await axios.get("http://localhost:3001/api/v1/clients")
-    
-    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
-      return clientInDb.mail == client.email
-    })
-    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
-
-    if(!isLoggedClientInDB){
-
-      const normalizedClient = {
-        dni: client.dni || "",
-        mail:client.email,
-        name: client.name,
-        phone:client.phone || 0
-      }
-      // const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
-      //   ...normalizedClient
-      // })
-      // dispatch({
-      //   type: "MODAL_SETTINGS",
-      //   payload: insertingNewClient
-      // })
-    }
-    // else{
-    //   return
-    // }
-
-  };
-
-};
-
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen
   return async function (dispatch) {
@@ -490,3 +538,36 @@ export const sendId = (id) => {
     }
   }
 }
+export const postNewAnimal = (animal) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/adoptionCatalogue/animals", animal)
+      dispatch({
+        type: "POST_ANIMAL",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
+
+export const postNewTree = (tree) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("/adoptionCatalogue/trees", tree)
+      dispatch({
+        type: "POST_TREE",
+        payload: response.data
+      });
+    } catch (error) {
+      dispatch({
+        type: 'ERROR',
+        payload: error
+      })
+    }
+  };
+};
