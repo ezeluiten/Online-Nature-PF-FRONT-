@@ -31,11 +31,11 @@
   align-items: center;
   gap: 50px;
 } */
-.cartLogoContainer  {
+.cartLogoContainer {
   position: relative;
 }
 
-.cartQuantity  {
+.cartQuantity {
   position: absolute;
   width: 20px;
   top: -13px;
@@ -46,7 +46,6 @@
   border-radius: 50%;
   background-color: white;
   background-color: white;
- 
 }
 .link {
   background-color: transparent;
@@ -81,6 +80,7 @@
 }
 
 .cart {
+  cursor: pointer;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -150,7 +150,6 @@
   } */
 
   .links,
- 
   .a {
     font-size: 1.5rem;
   }
