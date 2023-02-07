@@ -10,7 +10,7 @@
 	padding: 100px 150px 100px 150px;
 }
 
-.cardContainer{
+.cardContainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -49,11 +49,30 @@
 	background-color: #568259;
 	border-color: transparent;
 	margin-top: auto;
+	text-decoration: none;
+	color: black;
 }
 
 .store:hover {
 	background-color: hsla(124, 20%, 42%, 0.8);
 	border-color: transparent;
+	color: black;
+}
+
+.boton1 {
+	display: flex;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.boton2 {
+	display: flex;
+	margin-top: 40px;
+}
+
+.boton3 {
+	display: flex;
+	margin-top: 55px;
 }
 
 @media only screen and (max-width: 600px) {

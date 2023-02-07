@@ -16,12 +16,21 @@ const Foteer = () => {
 				<div className={style.box}>
 					<h2>ABOUT US</h2>
 					<p>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia,
-						alias!
+						-We are students of Henry and this is our final project. We strive
+						to achieve excellent work.
 					</p>
 					<p>
-						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia,
-						alias!
+						-Together as a group, we present our final project with enthusiasm
+						and dedication.
+					</p>
+					<p>
+						-We are proud to be Henry students and present our final work with
+						professionalism.
+					</p>
+					<p>-We have come together to create an impressive final project.</p>
+					<p>
+						-With our training from Henry, we focus on doing a quality final
+						project to demonstrate our learning.
 					</p>
 				</div>
 				<div className={style.box}>
@@ -29,6 +38,15 @@ const Foteer = () => {
 					<div className={style.RedSocial}>
 						<a href="/#">
 							<i class="fa-brands fa-react"></i>
+						</a>
+						<a href="/#">
+							<i class="fa-brands fa-square-js"></i>
+						</a>
+						<a href="/#">
+							<i class="fa-brands fa-node-js"></i>
+						</a>
+						<a href="/#">
+							<i class="fas fa-database"></i>
 						</a>
 						<a href="/#">
 							<i class="fa-brands fa-html5"></i>

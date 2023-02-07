@@ -1,6 +1,7 @@
 import style from "./CardsHome.module.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { NavLink } from "react-router-dom";
 
 const img1 = require("../../imagenes/plant.jpg");
 const img2 = require("../../imagenes/adopta.jpg");
@@ -27,15 +28,24 @@ export default function CardsHome(props) {
 							</Card.Text>
 							<br />
 							<br />
-							<button className={style.store} variant="primary">
-								Know more
+							<button className={style.boton1}>
+								<NavLink to="/Curiosidades" className={style.store}>
+									Know more
+								</NavLink>
 							</button>
+							{/* <button
+								src="/Curiosidades"
+								className={style.store}
+								variant="primary"
+							>
+								Know more
+							</button> */}
 						</div>
 					</Card>
 				</div>
 
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem"}}>
+					<Card style={{ width: "20rem", height: "28rem" }}>
 						<Card.Img
 							variant="top"
 							src={img2}
@@ -50,8 +60,10 @@ export default function CardsHome(props) {
 								Adopting an endangered animal can virtually help support
 								conservation and protection efforts for that species.
 							</Card.Text>
-							<button className={style.store} variant="primary">
-								Know more
+							<button className={style.boton2}>
+								<NavLink to="/Curiosidades" className={style.store}>
+									Know more
+								</NavLink>
 							</button>
 						</div>
 					</Card>
@@ -73,8 +85,10 @@ export default function CardsHome(props) {
 								Donating to a species conservation organization can help fund
 								endangered animal research and protection projects
 							</Card.Text>
-							<button className={style.store} variant="primary">
-								Know more
+							<button className={style.boton3}>
+								<NavLink to="/Curiosidades" className={style.store}>
+									Know more
+								</NavLink>
 							</button>
 						</div>
 					</Card>

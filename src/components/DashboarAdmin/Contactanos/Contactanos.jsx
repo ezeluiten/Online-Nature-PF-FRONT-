@@ -22,6 +22,10 @@ const ContactForm = () => {
 		console.log(formData);
 	};
 
+	const handleButtonSubmit = (e) => {
+		e.preventDefault();
+	};
+
 	return (
 		<>
 			<Navbar />
@@ -55,7 +59,11 @@ const ContactForm = () => {
 					required
 					className={style.form_textarea}
 				/>
-				<button type="submit" className={style.form_button}>
+				<button
+					type="submit"
+					onClick={(e) => handleButtonSubmit(e)}
+					className={style.form_button}
+				>
 					Send
 				</button>
 			</form>
