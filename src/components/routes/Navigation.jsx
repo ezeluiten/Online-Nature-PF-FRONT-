@@ -15,13 +15,12 @@ import { PaymentForm } from "../Cashier/PaymentForm.js";
 import { ProfileSettings } from "../Profile/ProfileSettings/ProfileSettings.js";
 import { MainContainer } from "./NavigationStyles.js";
 import DashboarAdmin from "../DashboarAdmin/DashboarAdmin.jsx";
-import Analitica from "./../DashboarAdmin/Analitica/Analitica"
-import Contactanos from "./../DashboarAdmin/Contactanos/Contactanos"
-import Terminos from "./../DashboarAdmin/T&C/Terminos"
-import About from "./../AboutUs/About/About"
+import Analitica from "./../DashboarAdmin/Analitica/Analitica";
+import Contactanos from "./../DashboarAdmin/Contactanos/Contactanos";
+import Terminos from "./../DashboarAdmin/T&C/Terminos";
+import About from "./../AboutUs/About/About";
 
 export const Navigation = () => {
-
   return (
     <BrowserRouter>
       <Auth0ProviderWithHistory>
@@ -34,13 +33,12 @@ export const Navigation = () => {
             <Route path="/campaign" element={<Campaing />} />
             <Route path="/DashboarAdmin" element={<DashboarAdmin />} />
             <Route path="/Analitica" element={<Analitica />} />
-						<Route path="/Contactanos" element={<Contactanos />} />
-						<Route path="/Terminos" element={<Terminos />} />
-						<Route path="/About" element={<About />} />
+            <Route path="/Contactanos" element={<Contactanos />} />
+            <Route path="/Terminos" element={<Terminos />} />
+            <Route path="/About" element={<About />} />
             <Route path="home" element={<Home />} />
             <Route path="/" element={<LandingPage />} />
             <Route path="/*" element={<Navigate to={"/"} replace />} />
-            
           </Routes>
         </MainContainer>
       </Auth0ProviderWithHistory>
