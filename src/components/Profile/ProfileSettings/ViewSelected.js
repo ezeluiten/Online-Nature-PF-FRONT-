@@ -74,6 +74,17 @@ const pagination = (pageNumber) => {
         <CardsContainer>
           <h2 className="title-welcome">Family members:</h2>
           <h4 className="title-welcome">Your favorite friend's panel: </h4>
+          <div>
+          {currentFav && currentFav.length < 1 ? (
+              <div className={style.addedCard}>
+                <Link to="/campaign">
+                  <div className={style.emptyCardFavorite}>+</div>
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </CardsContainer>
       </ViewSelectedContainer>
     );

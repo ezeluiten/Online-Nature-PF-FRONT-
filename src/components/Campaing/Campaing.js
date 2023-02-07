@@ -14,6 +14,9 @@ import {
   setDonationCartElements,
   sorting,
   setFavorites,
+  getAnimalsById,
+  getUserLoggedInfoToPay,
+  getTickets,
   getDetail,
 } from "../../store/actions";
 import Header from "../Header/Header";
@@ -26,13 +29,16 @@ import Swal from "sweetalert2";
 import { setSettingsModalGate } from "../../store/actions/index";
 import { height } from "@mui/system";
 export const Campaing = () => {
-  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+  const { logout, loginWithRedirect,user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let catalogue = useSelector((state) => state.donationCatalogue);
   const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"));
   const storageFavorites = JSON.parse(localStorage.getItem("favorites"));
+  useEffect(() => {
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
+  }, [isAuthenticated])
   storageCatalogue &&
     storageCatalogue.forEach((favorito) => {
       catalogue = catalogue.map((item) => {
@@ -169,7 +175,7 @@ export const Campaing = () => {
       <Pagination
         elementPerPage={elementPerPage}
         element={catalogue.length}
-        pagination={pagination}
+        pagination={Pagination}
       />
     </div>
   );

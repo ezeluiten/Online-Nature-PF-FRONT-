@@ -51,10 +51,10 @@ const handleFilterSpecies = (e) => {
             All
           </option>
           <option value="animals" className={styles.order}>
-            animals
+            Show animals
           </option>
           <option value="trees" className={styles.order}>
-            trees
+            Show trees
           </option>
         </select>
       </div>
