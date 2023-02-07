@@ -21,7 +21,8 @@ const initialState = {
   post_animal:[],
   post_tree:[],
   tickets:[],
-  detail:{}
+  detail:{},
+  id:'',
 };
 
 const rootReducer = (state = initialState, action) => {

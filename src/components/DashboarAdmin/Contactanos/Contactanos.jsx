@@ -5,10 +5,18 @@ import style from "./Contactanos.module.css";
 import Navbar from "../../NavBar/NavBar";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
+import { setSettingsModalGate } from "../../../store/actions"
+import { useDispatch, useSelector } from "react-redux";
 
 const ContactForm = () => {
   const form = useRef();
+  const dispatch = useDispatch();
 
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -59,7 +67,8 @@ const ContactForm = () => {
   const img = require("../../../imagenes/Felicidad02.jpg");
 
   return (
-    <>
+    < div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
+
       <Navbar />
       <Header imagen={img} text="Contact with the Nature..." />
       <div className={style.contact}></div>
@@ -95,7 +104,7 @@ const ContactForm = () => {
         </button>
       </form>
       <Footer />
-    </>
+    </div>
   );
 };
 
