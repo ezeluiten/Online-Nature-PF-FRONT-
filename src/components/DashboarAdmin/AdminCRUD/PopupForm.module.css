@@ -3,7 +3,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #568259;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
@@ -54,9 +54,8 @@ textarea {
     font-size: medium;
 }
 
-form {
+.creationForm {
     display: flex;
-    background-color: rgba(184, 184, 184, 0.82);
     color: #000000;
     padding: 20px;
     border-radius: 10px;
@@ -65,11 +64,12 @@ form {
     justify-content: center;
     flex-direction: column;
     margin-top: 1rem;
+    background-color: rgb(219 228 215);
 }
 
 .select {
     border-radius: 8px;
-    width: 7rem;
+    width: 100%;
     margin-right: 1rem;
     border: 2px solid #ffffff;
     height: 40px;
@@ -78,6 +78,17 @@ form {
     font-size: medium;
     margin-bottom: 1rem;
     padding-left: 10px;
-    /* background: rgb(134, 138, 143); */
 }
 
+.titleForm{
+    text-align: center;
+}
+
+.inputForm{
+    padding-left: 12px;
+}
+
+.buttonsForm {
+    display: flex;
+    justify-content: space-around;
+}

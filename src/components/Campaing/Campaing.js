@@ -70,13 +70,10 @@ export const Campaing = () => {
     navigate(`/campaign/${id}`);
   };
 
-
-
   const currentCatalogue = catalogue.slice(
     indexOfFirstCatalogue,
     indexOfLastCatalogue
-    );
-
+  );
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -183,4 +180,3 @@ export const Campaing = () => {
     </div>
   );
 };
-  
