@@ -20,7 +20,8 @@ const initialState = {
   post_animal:[],
   post_tree:[],
   tickets:[],
-  detail:{}
+  detail:{},
+  clientLogged:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -138,6 +139,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         detail: {},
+      };
+    case "CLIENT_LOGGED":
+      return {
+        ...state,
+        clientLogged: {},
       };
     default:
       return { ...state };
