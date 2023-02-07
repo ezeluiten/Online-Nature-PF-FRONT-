@@ -20,7 +20,8 @@ const initialState = {
   storageCatalogue:[],
   post_animal:[],
   post_tree:[],
-  tickets:[]
+  tickets:[],
+  detail:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -127,6 +128,18 @@ const rootReducer = (state = initialState, action) => {
              ...state,
              tickets: action.payload
     }
+    case "GET_DETAIL":
+      return {
+        ...state,
+        detail: state.donationCatalogue.find(
+          (element) => element._id === action.payload
+        ),
+      };
+    case "RESET_DETAIL":
+      return {
+        ...state,
+        detail: {},
+      };
     default:
       return { ...state };
   }

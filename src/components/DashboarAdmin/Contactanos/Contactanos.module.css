@@ -31,10 +31,13 @@
 
 .form_button {
 	padding: 10px 20px;
-	background-color: #333;
+	background-color:  #ea4335;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 16px;
+}
+.form_button:hover {
+	background-color: hsla(5, 81%, 56%, 0.8);
 }

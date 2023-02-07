@@ -19,6 +19,19 @@ export const  getAnimals = () => {
   };
 };
 
+export const getDetail = (id) => {
+  return {
+    type: "GET_DETAIL",
+    payload: id,
+  };
+};
+
+export const resetDetail = (id) => {
+  return {
+    type: "RESET_DETAIL",
+  };
+};
+
 export const getDonations = () => {
   return async function (dispatch) {
     try {

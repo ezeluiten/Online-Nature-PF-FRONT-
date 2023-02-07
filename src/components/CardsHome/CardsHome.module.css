@@ -60,6 +60,10 @@
 	margin-top: auto;
 }
 
+.store:hover {
+	background-color: #ea4335;
+}
+
 @media only screen and (max-width: 600px) {
 	.contenedor {
 		display: flex;
