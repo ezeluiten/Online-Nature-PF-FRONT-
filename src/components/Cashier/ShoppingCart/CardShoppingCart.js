@@ -16,7 +16,8 @@ export const CardShoppingCart = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
   const shoppingCartItems = useSelector((state) => state.itemsCart);
-
+  console.log(shoppingCartItems)
+  
   const HandleClickRemove = (item) => {
     Swal.fire({
       title: "Are you sure?",
