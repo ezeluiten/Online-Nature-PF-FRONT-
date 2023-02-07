@@ -231,10 +231,11 @@ export const syncLoggedUserWithDb = (client) => {
     if(!isLoggedClientInDB){
 
       const normalizedClient = {
-        dni: client.dni || "",
-        mail:client.email,
-        name: client.name,
-        phone:client.phone || 0
+        dni: filteredLoggedClientInDB[0].dni || "",
+        mail:filteredLoggedClientInDB[0].email,
+        name: filteredLoggedClientInDB[0].name,
+        phone:filteredLoggedClientInDB[0].phone || 0,
+        client_id: filteredLoggedClientInDB[0]._id || "",
       }
       const insertingNewClient = await axios.post("/clients", {...normalizedClient})
       dispatch({
