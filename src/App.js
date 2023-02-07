@@ -28,10 +28,13 @@ function App() {
   const {user, isAuthenticated} = useAuth0()
 
   useEffect(() => {
+    
     dispatch(getCatalogue());
-    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
-    // scriptsMeliInjection()
   }, []);
+  useEffect(() => {
+    
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
+  }, [isAuthenticated]);
   
   const modifyModalState =(isOpen)=>{
     dispatch(setOpenModal(isOpen))

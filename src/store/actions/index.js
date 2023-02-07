@@ -249,7 +249,7 @@ export const syncLoggedUserWithDb = (client) => {
         name: client.name,
         phone:client.phone || 0
       }
-      const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
+      const insertingNewClient = await axios.post("/clients",{
         ...normalizedClient
       })
       dispatch({
@@ -272,6 +272,7 @@ export const initCheckOut = ()=>{
     console.log("🚀 ~ file: index.js:248 ~ payer", payer)
 
       const {name, email} = payer
+      console.log("🚀 ~ file: index.js:275 ~ email", email, name)
 
       const clients = await axios.get("/clients")
       console.log("🚀 ~ file: index.js:361 ~ clients", clients)
