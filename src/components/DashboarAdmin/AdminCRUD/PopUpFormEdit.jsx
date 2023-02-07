@@ -67,7 +67,7 @@ export default function PopUpFormEdit({ handleUpdate ,showFormEdit}) {
         }
         console.log(itemModified, "item modificado")
         dispatch(updateAnimal(id, itemModified))
-        window.location.reload()
+        // window.location.reload()
     }
 
 console.log(handleUpdate, "hola")
