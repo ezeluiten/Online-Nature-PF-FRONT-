@@ -223,7 +223,7 @@ export const syncLoggedUserWithDb = (client) => {
   return async function (dispatch) {
     const clients = await axios.get("/clients")
     
-    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+    const filteredLoggedClientInDB = clients && clients.data.length > 0 && clients.data.filter(clientInDb =>{
       return clientInDb.mail == client.email
     })
     const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
@@ -236,17 +236,14 @@ export const syncLoggedUserWithDb = (client) => {
         name: client.name,
         phone:client.phone || 0
       }
-      const insertingNewClient = await axios.post("/clients",{
-        ...normalizedClient
-      })
+      const insertingNewClient = await axios.post("/clients", {...normalizedClient})
       dispatch({
-        type: "MODAL_SETTINGS",
-        payload: insertingNewClient
+        type: "CLIENT_LOGGED",
+        payload: {
+          ...insertingNewClient
+        }
       })
     }
-    // else{
-    //   return
-    // }
 
   };
 
