@@ -17,7 +17,8 @@ const initialState = {
   isOpenSettingsModal: false,
   favorites:[],
   loading:false,
-  storageCatalogue:[]
+  storageCatalogue:[],
+  id:""
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -164,6 +165,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         donationCatalogue: action.payload,
+      }
+    case "SEND_ID":
+      return {
+        ...state,
+        id : action.payload
       }
 
     default:

@@ -3,19 +3,20 @@ import Button from 'react-bootstrap/Button';
 import style from "./Crud.module.css"
 import FormPopup from "./PopupForm";
 import { useDispatch, useSelector, useEffect } from "react-redux";
+
 import PopUpFormEdit from "./PopUpFormEdit";
+import { sendId } from "../../../store/actions";
 
 
 export default function Crud() {
     const [showForm, setShowForm] = useState(false);
     let catalogue = useSelector((state) => state.donationCatalogue);
-    console.log(catalogue)
-
+    console.log(catalogue, "hola")
+    const dispatch = useDispatch();
     
-
-    const handleClick = () => {
+    const handleClick = (id) => {
       setShowForm(!showForm);
-
+      dispatch(sendId(id))
     };
 
     return(
@@ -41,11 +42,11 @@ export default function Crud() {
                     <tr>
                         {
                             <>
-                            <td className={style.tdCrud}>{e.title}</td>
-                            <td className={style.tdCrud}>{e.image.substr(0, 40) + "..."}</td>
-                            <td className={style.tdCrud}>{e.image_detail.substr(0, 40) + "..."}</td>
-                            <td className={style.tdCrud}>{e.description.substr(0, 40) + "..."}</td>
-                            <td className={style.tdCrud}>{e.amount}</td>
+                            <td className={style.tdCrud}>{e?.title && e?.title}</td>
+                            <td className={style.tdCrud}>{e?.image && e?.image.substr(0, 40)  + "..."}</td>
+                            <td className={style.tdCrud}>{e?.image_detail && e?.image_detail.substr(0, 40) + "..."}</td>
+                            <td className={style.tdCrud}>{e?.description && e?.description.substr(0, 40) + "..."}</td>
+                            <td className={style.tdCrud}>{e?.amount && e?.amount}</td>
                             <td className={style.tdCrudButtons}>
                                 <PopUpFormEdit handleClick={() => handleClick(e._id)} showForm={showForm} />
                                 <Button variant="danger">Delete</Button>{' '}

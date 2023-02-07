@@ -1,19 +1,22 @@
 import React, {useState} from "react";
 import Button from 'react-bootstrap/Button';
 import style from './PopupForm.module.css';
-import { updateAnimal } from "../../../store/actions/index.js"
+import { getCatalogue, updateAnimal } from "../../../store/actions/index.js"
 import { useDispatch, useSelector, useEffect } from "react-redux";
 
 
 
-export default function PopUpFormEdit({ handleClick ,showForm, _id}) {
+export default function PopUpFormEdit({ handleClick ,showForm}) {
 
   
-
-
+  
+  let id = useSelector((state) => state.id);
+  console.log(id)
    const dispatch = useDispatch();
-    let catalogue = useSelector((state) => state.donationCatalogue._id)
-    console.log(_id)
+    let catalogue = useSelector((state) => state.donationCatalogue)
+    // const catalogueIds = catalogue.map(item => {
+    //   return {}  
+    // })
 
 
 
@@ -26,6 +29,7 @@ export default function PopUpFormEdit({ handleClick ,showForm, _id}) {
   })
   
   const handleInputChange = (e) => {
+    console.log(e.target.value, e.target.name , "datos de input")
     setFormData({
       ...formData,
       [e.target.name] : e.target.value
@@ -35,9 +39,18 @@ export default function PopUpFormEdit({ handleClick ,showForm, _id}) {
 
 
    
-    const handleSubmit = (id, e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(updateAnimal(id))
+        const itemModified = {
+          title: formData?.title == "" ? undefined : formData?.title,
+          image: formData?.image == "" ? undefined : formData?.image,
+          image_detail: formData?.image_detail == "" ? undefined : formData?.image_detail,
+          description: formData?.description == "" ? undefined : formData?.description,
+          amount: formData?.amount == 0 ? undefined : formData?.amount
+        }
+        console.log(itemModified, "item modificado")
+        dispatch(updateAnimal(id, itemModified))
+        window.location.reload()
     }
 
 
@@ -49,7 +62,7 @@ export default function PopUpFormEdit({ handleClick ,showForm, _id}) {
           {/* {catalogue.map((e) => {return(
             
           )})} */}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <label>
               Title:
               <input type="text" onChange={handleInputChange} id="title" name="title" value={formData.title}/>

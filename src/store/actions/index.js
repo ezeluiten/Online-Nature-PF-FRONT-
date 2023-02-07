@@ -461,13 +461,28 @@ export const orderBySpecies = (data) => {
   };
 };
 
-export const updateAnimal = (id) => {
+export const updateAnimal = (id, itemModified) => {
   return async (dispatch) => {
     try {
-      let url = await axios.put(`/adoptionCatalogue/${id}`)
+      let url = await axios.put(`/adoptionCatalogue/${id}`, {...itemModified})
       return dispatch({
         type: "UPDATE_ITEMS",
-        payload: url.data ,
+        payload: url.data , 
+      })
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+}
+
+
+export const sendId = (id) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: "SEND_ID",
+        payload: id ,
       })
     }
     catch(e) {
