@@ -16,9 +16,11 @@ const initialState = {
   isOpenSettingsModal: false,
   favorites: [],
   loading: false,
-  storageCatalogue: [],
-  post_animal: [],
-  post_tree: [],
+  storageCatalogue:[],
+  post_animal:[],
+  post_tree:[],
+  tickets:[],
+  detail:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -110,16 +112,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         storageCatalogue: action.payload,
       };
-    case "POST_ANIMAL":
-      return {
-        ...state,
-        post_animal: action.payload,
-      };
-    case "POST_TREE":
-      return {
-        ...state,
-        post_tree: action.payload,
-      };
+    case 'POST_ANIMAL':
+        return {
+           ...state,
+           post_animal: action.payload
+    }
+    case 'POST_TREE':
+          return {
+             ...state,
+             post_tree: action.payload
+    }
+    case 'GET_ALL_TICKETS':
+          return {
+             ...state,
+             tickets: action.payload
+    }
     case "GET_DETAIL":
       return {
         ...state,

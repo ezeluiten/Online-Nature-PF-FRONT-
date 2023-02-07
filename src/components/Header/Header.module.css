@@ -1,5 +1,5 @@
 .header img {
-  width: 100vmax;
+  width: 100%;
   height: 100%;
 }
 
@@ -21,6 +21,7 @@
   }
 
   .degradado {
+    padding: 0;
     padding-top: 0;
     margin-top: 20px;
   }

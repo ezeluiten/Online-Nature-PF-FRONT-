@@ -11,7 +11,6 @@ import { Profile } from "../Profile/Profile";
 import { Auth0ProviderWithHistory } from "../../auth/Auth0ProviderWithHistory";
 import { Campaing } from "../Campaing/Campaing.js";
 import AnimalDetil from "../detail/AnimalDetail/AnimalDetail.jsx";
-import TreeDetail from "../detail/TreeDetail/TreeDetail.jsx";
 import { PaymentForm } from "../Cashier/PaymentForm.js";
 import { ProfileSettings } from "../Profile/ProfileSettings/ProfileSettings.js";
 import { MainContainer } from "./NavigationStyles.js";
@@ -28,9 +27,9 @@ export const Navigation = () => {
         <MainContainer className="main-layout">
           <NavLink to={"/home"}></NavLink>
           <Routes>
-            <Route path="/campaign/:id" element={<AnimalDetil />} />
-            <Route path="/payment" element={<PaymentForm />} />
-            <Route path="/profile" element={<ProfileSettings />} />
+            <Route path='/campaign/:id' element={<AnimalDetil />} />
+            <Route path="/payment" element={<PaymentForm/>}/>
+            <Route path="/profile" element={<ProfileSettings/>}/>
             <Route path="/campaign" element={<Campaing />} />
             <Route path="/DashboarAdmin" element={<DashboarAdmin />} />
             <Route path="/Analitica" element={<Analitica />} />
