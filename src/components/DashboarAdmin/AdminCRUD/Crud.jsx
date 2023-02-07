@@ -5,16 +5,26 @@ import FormPopup from "./PopupForm";
 import { useSelector, useDispatch } from "react-redux";
 import { sendId } from "../../../store/actions";
 import PopUpFormEdit from "./PopUpFormEdit"
+
+
+
 export default function Crud() {
     const [showForm, setShowForm] = useState(false);
+    const [showFormEdit, setShowFormEdit] = useState(false);
+    const [dataToEdit, setDataToEdit] = useState(null);
     let catalogue = useSelector((state) => state.donationCatalogue);
     console.log(catalogue, "hola")
     const dispatch = useDispatch();
     
-    const handleClick = (id) => {
+    const handleClick = () => {
       setShowForm(!showForm);
-      dispatch(sendId(id))
     };
+
+    const handleUpdate = (id) => {
+        setShowFormEdit(!showFormEdit);
+        dispatch(sendId(id))
+      };
+
 
     return(
         <>
@@ -45,7 +55,7 @@ export default function Crud() {
                             <td className={style.tdCrud}>{e?.description && e?.description.substr(0, 40) + "..."}</td>
                             <td className={style.tdCrud}>{e?.amount && e?.amount}</td>
                             <td className={style.tdCrudButtons}>
-                                <PopUpFormEdit handleClick={() => handleClick(e._id)} showForm={showForm} />
+                                <PopUpFormEdit handleUpdate={() => handleUpdate(e._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
                                 <Button variant="danger">Delete</Button>{' '}
                             </td>
                             </>
