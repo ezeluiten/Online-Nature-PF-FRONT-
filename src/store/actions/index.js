@@ -223,7 +223,7 @@ export const syncLoggedUserWithDb = (client) => {
   return async function (dispatch) {
     const clients = await axios.get("/clients")
     
-    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+    const filteredLoggedClientInDB = clients && clients.data.length > 0 && clients.data.filter(clientInDb =>{
       return clientInDb.mail == client.email
     })
     const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
@@ -236,17 +236,14 @@ export const syncLoggedUserWithDb = (client) => {
         name: client.name,
         phone:client.phone || 0
       }
-      const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
-        ...normalizedClient
-      })
+      const insertingNewClient = await axios.post("/clients", {...normalizedClient})
       dispatch({
-        type: "MODAL_SETTINGS",
-        payload: insertingNewClient
+        type: "CLIENT_LOGGED",
+        payload: {
+          ...insertingNewClient
+        }
       })
     }
-    // else{
-    //   return
-    // }
 
   };
 
@@ -259,6 +256,7 @@ export const initCheckOut = ()=>{
     console.log("🚀 ~ file: index.js:248 ~ payer", payer)
 
       const {name, email} = payer
+      console.log("🚀 ~ file: index.js:275 ~ email", email, name)
 
       const clients = await axios.get("/clients")
       console.log("🚀 ~ file: index.js:361 ~ clients", clients)
@@ -485,6 +483,35 @@ export const orderBySpecies = (data) => {
   };
 };
 
+export const updateAnimal = (id, itemModified) => {
+  return async (dispatch) => {
+    try {
+      let url = await axios.put(`/adoptionCatalogue/${id}`, {...itemModified})
+      return dispatch({
+        type: "UPDATE_ITEMS",
+        payload: url.data , 
+      })
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+}
+
+
+export const sendId = (id) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: "SEND_ID",
+        payload: id ,
+      })
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+}
 export const postNewAnimal = (animal) => {
   return async function (dispatch) {
     try {

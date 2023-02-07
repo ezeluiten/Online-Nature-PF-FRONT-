@@ -1,6 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar.jsx';
-import LandingPage from './components/LandingPage/LandingPage.jsx';
+import {LandingPage} from './components/LandingPage/LandingPage.jsx';
 import Detail  from './components/detail/AnimalDetail/AnimalDetail.jsx';
 import { Home } from './components/Home/Home.jsx';
 import { Navigation } from "./components/routes/Navigation"
@@ -20,6 +20,7 @@ const developUrl = process.env.REACT_APP_DEVELOPMENT_URL
 const prodUrl = process.env.REACT_APP_PRODUCTION_URL
 
 axios.defaults.baseURL = process.env.NODE_ENV === "production" ? prodUrl : developUrl 
+console.log("🚀 ~ file: App.js:23 ~ axios.defaults.baseURL", axios.defaults.baseURL)
 
 function App() {
 
@@ -28,10 +29,13 @@ function App() {
   const {user, isAuthenticated} = useAuth0()
 
   useEffect(() => {
+    
     dispatch(getCatalogue());
-    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
-    // scriptsMeliInjection()
   }, []);
+  useEffect(() => {
+    
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
+  }, [isAuthenticated]);
   
   const modifyModalState =(isOpen)=>{
     dispatch(setOpenModal(isOpen))
@@ -39,8 +43,9 @@ function App() {
   }
   return (
     <>
-      <ModalCashierPortal onClose={modifyModalState} children={<CardShoppingCart/>}/>
-        
+      <ModalCashierPortal onClose={modifyModalState}>
+        {/* {componente - children} */}
+      </ModalCashierPortal>
       <Navigation/>
       <Login/>
     </>

@@ -175,7 +175,7 @@ export const Campaing = () => {
       <Pagination
         elementPerPage={elementPerPage}
         element={catalogue.length}
-        pagination={pagination}
+        pagination={Pagination}
       />
     </div>
   );

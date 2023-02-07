@@ -1,35 +1,36 @@
 .contact h2 {
-	font-size: 30px;
-	padding: 20px;
-	padding-right: 1200px;
+  font-size: 30px;
+  padding: 20px;
+  padding-right: 1200px;
 }
 
 .contact_form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 50%;
-	margin: 50px auto;
-	padding: 20px;
-	background-color: #568259;
-	border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #568259;
+  border-radius: 10px;
 }
 
 .form_input,
 .form_textarea {
-	width: 100%;
-	padding: 10px;
-	margin: 20px 0;
-	border: none;
-	border-radius: 5px;
-	font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .form_textarea {
-	height: 200px;
+  height: 200px;
 }
 
 .form_button {
+
 	padding: 10px 20px;
 	background-color:  #ea4335;
 	color: #fff;
@@ -37,6 +38,7 @@
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 16px;
+
 }
 .form_button:hover {
 	background-color: hsla(5, 81%, 56%, 0.8);

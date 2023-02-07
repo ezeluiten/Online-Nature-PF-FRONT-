@@ -137,7 +137,7 @@ function Navbar() {
                 log in
               </button>
             ) : (
-              <Profile isAuthenticated={isAuthenticated} />
+              <Profile />
             )
             // <button onClick={() => logout()} className={styles.button}>
             //   {" "}
