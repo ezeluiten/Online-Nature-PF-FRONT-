@@ -70,16 +70,11 @@ export const Campaing = () => {
     navigate(`/campaign/${id}`);
   };
 
-
-
   const currentCatalogue = catalogue.slice(
     indexOfFirstCatalogue,
     indexOfLastCatalogue
-    );
+  );
 
-
-<<<<<<< HEAD
-=======
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -93,7 +88,6 @@ export const Campaing = () => {
       width: 300,
     });
   };
->>>>>>> ef0a1c84eaafa2b28d27b559bf31f65f17382574
 
   const animate = (item) => {
     dispatch(setFavorites(item));
@@ -186,4 +180,3 @@ export const Campaing = () => {
     </div>
   );
 };
-  

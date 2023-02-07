@@ -2,8 +2,9 @@ import React, {useState} from "react"
 import Button from 'react-bootstrap/Button';
 import style from "./Crud.module.css"
 import FormPopup from "./PopupForm";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { sendId } from "../../../store/actions";
+import PopUpFormEdit from "./PopUpFormEdit"
 export default function Crud() {
     const [showForm, setShowForm] = useState(false);
     let catalogue = useSelector((state) => state.donationCatalogue);

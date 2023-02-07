@@ -8,11 +8,7 @@ import axios from "axios"
 import { ModalCashierPortal } from "./components/Cashier/ModalCashier/ModalCashier"
 import { HandleClose } from '../src/components/helpers/cashierModalHelper.js';
 import { useDispatch, useSelector } from "react-redux"
-<<<<<<< HEAD
-import { setOpenModal, getCatalogue, } from "./store/actions"
-=======
 import { getCatalogue, getUserLoggedInfoToPay, setOpenModal } from "./store/actions"
->>>>>>> ef0a1c84eaafa2b28d27b559bf31f65f17382574
 import { CardShoppingCart } from './components/Cashier/ShoppingCart/CardShoppingCart.js';
 import { useEffect } from 'react';
 import { scriptsMeliInjection } from './components/helpers/mercadopagoInitHelper.js';
