@@ -11,73 +11,63 @@ export default function CardsHome(props) {
 		<>
 			<div className={style.contenedor}>
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem" }}>
-						<Card.Img
-							variant="top"
+						<img
 							src={img1}
-							style={{ width: "20rem", height: "150px" }}
-							className={"cardImg"}
+							className={style.cardImg}
 						/>
 						<div className={style.cardContainer}>
-							<Card.Text className="card-text-container">
-								<Card.Title className={style.tittle}>Plant a tree!</Card.Title>
-								<h3 className={style.sabias}>Did you know?...</h3>
-								Planting a tree can help reduce air pollution. air and improve
-								air quality.
-							</Card.Text>
+							<div className="card-text-container">
+								<h3 className={style.tittle}>Plant a tree!</h3>
+								<h4 className={style.sabias}>Did you know?...</h4>
+								<p>Planting a tree can help reduce air pollution. air and improve
+								air quality.</p>
+							</div>
 							<br />
 							<br />
 							<button className={style.store} variant="primary">
 								Know more
 							</button>
 						</div>
-					</Card>
 				</div>
 
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem"}}>
-						<Card.Img
-							variant="top"
+						<img
 							src={img2}
-							style={{ width: "20rem", height: "150px" }}
+							className={style.cardImg}
 						/>
 						<div className={style.cardContainer}>
-							<Card.Text>
-								<Card.Title className={style.tittle}>
+							<div>
+								<h3 className={style.tittle}>
 									Adopt an animal!
-								</Card.Title>
-								<h3 className={style.sabias}>Did you know?...</h3>
-								Adopting an endangered animal can virtually help support
-								conservation and protection efforts for that species.
-							</Card.Text>
+								</h3>
+								<h4 className={style.sabias}>Did you know?...</h4>
+								<p>Adopting an endangered animal can virtually help support
+								conservation and protection efforts for that species.</p>
+							</div>
 							<button className={style.store} variant="primary">
 								Know more
 							</button>
 						</div>
-					</Card>
 				</div>
 
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem" }}>
-						<Card.Img
-							variant="top"
+						<img
 							src={img3}
-							style={{ width: "19.5rem", height: "150px" }}
+							className={style.cardImg}
 						/>
 						<div className={style.cardContainer}>
-							<Card.Text>
-								<Card.Title className={style.tittle}>
+							<div>
+								<h3 className={style.tittle}>
 									Donate is Save!
-								</Card.Title>
-								<h3 className={style.sabias}>Did you know?...</h3>
-								Donating to a species conservation organization can help fund
-								endangered animal research and protection projects
-							</Card.Text>
+								</h3>
+								<h4 className={style.sabias}>Did you know?...</h4>
+								<p>Donating to a species conservation organization can help fund
+								endangered animal research and protection projects</p>
+							</div>
 							<button className={style.store} variant="primary">
 								Know more
 							</button>
 						</div>
-					</Card>
 				</div>
 			</div>
 		</>

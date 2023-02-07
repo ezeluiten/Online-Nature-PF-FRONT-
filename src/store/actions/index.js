@@ -19,6 +19,19 @@ export const  getAnimals = () => {
   };
 };
 
+export const getDetail = (id) => {
+  return {
+    type: "GET_DETAIL",
+    payload: id,
+  };
+};
+
+export const resetDetail = (id) => {
+  return {
+    type: "RESET_DETAIL",
+  };
+};
+
 export const getDonations = () => {
   return async function (dispatch) {
     try {
@@ -204,20 +217,76 @@ export const getUserLoggedInfoToPay = (client) => {
   
   }
 }
+export const getTickets = () => {
+  return async function (dispatch, getState) {
+
+    const tickets = await axios.get("/ticket")
+
+    dispatch({
+      type:"GET_ALL_TICKETS",
+      payload:tickets.data.data
+      
+    })
+
+  
+  }
+}
+
+export const syncLoggedUserWithDb = (client) => {
+  return async function (dispatch) {
+    const clients = await axios.get("/clients")
+    
+    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+      return clientInDb.mail == client.email
+    })
+    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
+
+    if(!isLoggedClientInDB){
+
+      const normalizedClient = {
+        dni: client.dni || "",
+        mail:client.email,
+        name: client.name,
+        phone:client.phone || 0
+      }
+      const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
+        ...normalizedClient
+      })
+      dispatch({
+        type: "MODAL_SETTINGS",
+        payload: insertingNewClient
+      })
+    }
+    // else{
+    //   return
+    // }
+
+  };
+
+};
 
 export const initCheckOut = ()=>{
   return async function (dispatch, getState) {
     const {itemsCart:shoppingCart} = getState()
     const { payer } = getState();
+    console.log("🚀 ~ file: index.js:248 ~ payer", payer)
 
       const {name, email} = payer
+
+      const clients = await axios.get("/clients")
+      console.log("🚀 ~ file: index.js:361 ~ clients", clients)
+      
+      const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
+        return clientInDb.mail == email
+      })
+      console.log("🚀 ~ file: index.js:258 ~ filteredLoggedClientInDB ~ filteredLoggedClientInDB", filteredLoggedClientInDB)
+
       axios
       .post("/checkOutController", {
         items:shoppingCart.items,
         totalAmount:shoppingCart.totalAmount,
         payer:{
-          name,
-          email
+          ...filteredLoggedClientInDB[0]
         }
       },{headers:{
         "content-type":"application/json",
@@ -353,42 +422,6 @@ const currencyToNumber = (number)=>{
   const normalizedNumber = typeof restoringStringToNormal === "string" ? Number(restoringStringToNormal.replace(regex, "")): restoringStringToNormal
   return  normalizedNumber
 }
-
-    
-export const syncLoggedUserWithDb = (client) => {
-  return async function (dispatch) {
-    const clients = await axios.get("http://localhost:3001/api/v1/clients")
-    
-    const filteredLoggedClientInDB = clients.data.filter(clientInDb =>{
-      return clientInDb.mail == client.email
-    })
-    const isLoggedClientInDB = filteredLoggedClientInDB && filteredLoggedClientInDB.length > 0
-
-    if(!isLoggedClientInDB){
-
-      const normalizedClient = {
-        dni: client.dni || "",
-        mail:client.email,
-        name: client.name,
-        phone:client.phone || 0
-      }
-      // const insertingNewClient = await axios.post("http://localhost:3001/api/v1/clients",{
-      //   ...normalizedClient
-      // })
-      // dispatch({
-      //   type: "MODAL_SETTINGS",
-      //   payload: insertingNewClient
-      // })
-    }
-    // else{
-    //   return
-    // }
-
-  };
-
-};
-
-
 
 export const setSettingsModalGate = (isOpen) => {
   const setIsOpen = !isOpen

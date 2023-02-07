@@ -15,6 +15,9 @@ import {
   sorting,
   setFavorites,
   getAnimalsById,
+  getUserLoggedInfoToPay,
+  getTickets,
+  getDetail,
 } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
@@ -26,13 +29,16 @@ import Swal from "sweetalert2";
 import { setSettingsModalGate } from "../../store/actions/index";
 import { height } from "@mui/system";
 export const Campaing = () => {
-  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+  const { logout, loginWithRedirect,user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let catalogue = useSelector((state) => state.donationCatalogue);
   const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"));
   const storageFavorites = JSON.parse(localStorage.getItem("favorites"));
+  useEffect(() => {
+    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
+  }, [isAuthenticated])
   storageCatalogue &&
     storageCatalogue.forEach((favorito) => {
       catalogue = catalogue.map((item) => {
@@ -60,7 +66,7 @@ export const Campaing = () => {
   const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
 
   const handleClick = (id) => {
-    dispatch(getAnimalsById(id));
+    dispatch(getDetail(id));
     navigate(`/campaign/${id}`);
   };
 
@@ -109,13 +115,13 @@ export const Campaing = () => {
       }
     });
   };
-  const img = require("../../imagenes/header-home.jpg");
+  const img = require("../../imagenes/salto.png");
   return (
     <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
       <NavBar />
       <Header
         imagen={img}
-        text="We have suffered an alarming loss of biodiversity in recent decades..."
+        text="Our actions can change the course of the planet..."
       />
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
       <StoreCampaingContainer>
@@ -124,9 +130,9 @@ export const Campaing = () => {
             if (item.image) {
               return (
                 <Card key={item._id}>
-                  <Link to={`/campaign/`}>
+                  <div onClick={() => handleClick(item._id)}>
                     <img src={item.image} alt="img not found" />
-                  </Link>
+                  </div>
                   <CardLabel>
                     <h3>{item.title}</h3>
                     <p>$ {item.amount}</p>
