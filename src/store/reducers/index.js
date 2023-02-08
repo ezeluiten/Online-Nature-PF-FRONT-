@@ -153,19 +153,26 @@ const rootReducer = (state = initialState, action) => {
 				id: action.payload,
 			};
 
-		case "CLIENT_LOGGED":
-			return {
-				...state,
-				clientLogged: {},
-			};
+    case "CLIENT_LOGGED":
+      return {
+        ...state,
+        clientLogged: {},
+      };
+      case "DELETE_ITEM":
+        return{
+          ...state,
+          donationCatalogue:action.payload
+        }
 		case "ITEM_NAME":
 			return {
 				...state,
 				donationCatalogue: action.payload,
 			};
-		default:
-			return { ...state };
+    default:
+      return { ...state };
+  }
+	
 	}
-};
+
 
 export default rootReducer;
