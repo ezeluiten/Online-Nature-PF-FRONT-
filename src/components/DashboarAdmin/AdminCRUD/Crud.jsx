@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { sendId, deleteItem } from "../../../store/actions";
 import PopUpFormEdit from "./PopUpFormEdit"
 import Swal from 'sweetalert2'
+import NavBar from "../../NavBar/NavBar";
 
-import { useNavigate } from "react-router-dom";
 
 
 
@@ -18,12 +18,14 @@ export default function Crud() {
 	let catalogue = useSelector((state) => state.donationCatalogue);
 	console.log(catalogue, "hola");
 	const dispatch = useDispatch();
+	const handleClick = () => {
+      setShowForm(!showForm);
+    };
 
     const handleUpdate = (id) => {
         setShowFormEdit(!showFormEdit);
         dispatch(sendId(id))
       };
-  const navigate = useNavigate();
 
       const handleDelete=(id)=>{
         
@@ -48,6 +50,7 @@ setTimeout(function () {
 
     return(
         <>
+		<NavBar/>
         <div className={style.btnCreate}>
             <FormPopup handleClick={handleClick} showForm={showForm} />
         </div>
@@ -75,8 +78,8 @@ setTimeout(function () {
                             <td className={style.tdCrud}>{e?.description && e?.description.substr(0, 40) + "..."}</td>
                             <td className={style.tdCrud}>{e?.amount && e?.amount}</td>
                             <td className={style.tdCrudButtons}>
-                                <PopUpFormEdit handleUpdate={() => handleUpdate(e?._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
-                                <Button variant="danger" onClick={()=>handleDelete(e?._id)}>Delete</Button>{' '}
+                                <PopUpFormEdit handleUpdate={() => handleUpdate(e._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
+                                <Button variant="danger" onClick={()=>handleDelete(e._id)}>Delete</Button>{' '}
                             </td>
                             </>
                         }
