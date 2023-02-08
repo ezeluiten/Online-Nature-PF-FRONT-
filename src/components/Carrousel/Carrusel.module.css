@@ -5,6 +5,8 @@
 
 .logo {
 	/* 	width: cover; */
+	width: 100%;
+	height: 70%;
 	animation-name: palpita;
 	animation-duration: 2s;
 	animation-timing-function: linear;
@@ -24,11 +26,12 @@
 }
 
 .subContaineImg {
-	width:35%;
+	width: 35%;
 	padding: 20px;
 	transition: all 1s;
 }
-.subContaineImg h1{
+
+.subContaineImg h1 {
 	font-size: 25px;
 }
 
@@ -59,10 +62,12 @@
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #528009;
 }
+
 .myButton:hover {
 	background: linear-gradient(to bottom, #77a809 5%, #89c403 100%);
 	background-color: #77a809;
 }
+
 .myButton:active {
 	position: relative;
 	top: 1px;
@@ -82,8 +87,7 @@
 	}
 }
 
-@media only screen and (max-width: 600px) {
-}
+@media only screen and (max-width: 600px) {}
 
 @keyframes palpita {
 	0% {

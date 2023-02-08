@@ -20,6 +20,10 @@ const initialState = {
 	storageCatalogue: [],
 	post_animal: [],
 	post_tree: [],
+	detail: {},
+	id: "",
+	tickets: [],
+	clientLogged: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -58,7 +62,7 @@ const rootReducer = (state = initialState, action) => {
 		case "MODAL_NAV":
 			return {
 				...state,
-				isModalNavBar: action.payload,
+				isModalNavBarOpen: action.payload,
 			};
 		case "GET_DONATION_PORTFOLIO":
 			return {
@@ -121,7 +125,39 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				post_tree: action.payload,
 			};
+		case "GET_ALL_TICKETS":
+			return {
+				...state,
+				tickets: action.payload,
+			};
+		case "GET_DETAIL":
+			return {
+				...state,
+				detail: state.donationCatalogue.find(
+					(element) => element._id === action.payload
+				),
+			};
+		case "RESET_DETAIL":
+			return {
+				...state,
+				detail: {},
+			};
+		case "UPDATE_ITEMS":
+			return {
+				...state,
+				donationCatalogue: action.payload,
+			};
+		case "SEND_ID":
+			return {
+				...state,
+				id: action.payload,
+			};
 
+		case "CLIENT_LOGGED":
+			return {
+				...state,
+				clientLogged: {},
+			};
 		case "ITEM_NAME":
 			return {
 				...state,

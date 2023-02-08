@@ -1,7 +1,6 @@
 import style from "./CardsHome.module.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { NavLink } from "react-router-dom";
 
 const img1 = require("../../imagenes/plant.jpg");
 const img2 = require("../../imagenes/adopta.jpg");
@@ -12,86 +11,56 @@ export default function CardsHome(props) {
 		<>
 			<div className={style.contenedor}>
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem" }}>
-						<Card.Img
-							variant="top"
-							src={img1}
-							style={{ width: "20rem", height: "150px" }}
-							className={"cardImg"}
-						/>
-						<div className={style.cardContainer}>
-							<Card.Text className="card-text-container">
-								<Card.Title className={style.tittle}>Plant a tree!</Card.Title>
-								<h3 className={style.sabias}>Did you know?...</h3>
+					<img src={img1} className={style.cardImg} />
+					<div className={style.cardContainer}>
+						<div className="card-text-container">
+							<h3 className={style.tittle}>Plant a tree!</h3>
+							<h4 className={style.sabias}>Did you know?...</h4>
+							<p>
 								Planting a tree can help reduce air pollution. air and improve
 								air quality.
-							</Card.Text>
-							<br />
-							<br />
-							<button className={style.boton1}>
-								<NavLink to="/Curiosidades" className={style.store}>
-									Know more
-								</NavLink>
-							</button>
-							{/* <button
-								src="/Curiosidades"
-								className={style.store}
-								variant="primary"
-							>
-								Know more
-							</button> */}
+							</p>
 						</div>
-					</Card>
+						<br />
+						<br />
+						<button className={style.store} variant="primary">
+							Know more
+						</button>
+					</div>
 				</div>
 
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem" }}>
-						<Card.Img
-							variant="top"
-							src={img2}
-							style={{ width: "20rem", height: "150px" }}
-						/>
-						<div className={style.cardContainer}>
-							<Card.Text>
-								<Card.Title className={style.tittle}>
-									Adopt an animal!
-								</Card.Title>
-								<h3 className={style.sabias}>Did you know?...</h3>
+					<img src={img2} className={style.cardImg} />
+					<div className={style.cardContainer}>
+						<div>
+							<h3 className={style.tittle}>Adopt an animal!</h3>
+							<h4 className={style.sabias}>Did you know?...</h4>
+							<p>
 								Adopting an endangered animal can virtually help support
 								conservation and protection efforts for that species.
-							</Card.Text>
-							<button className={style.boton2}>
-								<NavLink to="/Curiosidades" className={style.store}>
-									Know more
-								</NavLink>
-							</button>
+							</p>
 						</div>
-					</Card>
+						<button className={style.store} variant="primary">
+							Know more
+						</button>
+					</div>
 				</div>
 
 				<div className={style.card}>
-					<Card style={{ width: "20rem", height: "28rem" }}>
-						<Card.Img
-							variant="top"
-							src={img3}
-							style={{ width: "19.5rem", height: "150px" }}
-						/>
-						<div className={style.cardContainer}>
-							<Card.Text>
-								<Card.Title className={style.tittle}>
-									Donate is Save!
-								</Card.Title>
-								<h3 className={style.sabias}>Did you know?...</h3>
+					<img src={img3} className={style.cardImg} />
+					<div className={style.cardContainer}>
+						<div>
+							<h3 className={style.tittle}>Donate is Save!</h3>
+							<h4 className={style.sabias}>Did you know?...</h4>
+							<p>
 								Donating to a species conservation organization can help fund
 								endangered animal research and protection projects
-							</Card.Text>
-							<button className={style.boton3}>
-								<NavLink to="/Curiosidades" className={style.store}>
-									Know more
-								</NavLink>
-							</button>
+							</p>
 						</div>
-					</Card>
+						<button className={style.store} variant="primary">
+							Know more
+						</button>
+					</div>
 				</div>
 			</div>
 		</>

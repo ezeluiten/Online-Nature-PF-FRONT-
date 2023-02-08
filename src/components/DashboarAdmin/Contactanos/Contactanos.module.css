@@ -1,5 +1,5 @@
 .contact h2 {
-	font-size: 25px;
+	font-size: 30px;
 	padding: 20px;
 	padding-right: 1200px;
 }
@@ -31,15 +31,13 @@
 
 .form_button {
 	padding: 10px 20px;
-	background-color: #333;
+	background-color: #ea4335;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 16px;
-	box-shadow: 0 1rem 1rem #878b88;
 }
-
 .form_button:hover {
-	box-shadow: none;
+	background-color: hsla(5, 81%, 56%, 0.8);
 }
