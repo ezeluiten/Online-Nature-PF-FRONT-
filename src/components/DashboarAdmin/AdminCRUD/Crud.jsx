@@ -1,6 +1,6 @@
-import React, {useState} from "react"
-import Button from 'react-bootstrap/Button';
-import style from "./Crud.module.css"
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import style from "./Crud.module.css";
 import FormPopup from "./PopupForm";
 import { useSelector, useDispatch } from "react-redux";
 import { sendId, deleteItem } from "../../../store/actions";
@@ -12,16 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function Crud() {
-    const [showForm, setShowForm] = useState(false);
-    const [showFormEdit, setShowFormEdit] = useState(false);
-    const [dataToEdit, setDataToEdit] = useState(null);
-    let catalogue = useSelector((state) => state.donationCatalogue);
-    console.log(catalogue, "hola")
-    const dispatch = useDispatch();
-    
-    const handleClick = () => {
-      setShowForm(!showForm);
-    };
+	const [showForm, setShowForm] = useState(false);
+	const [showFormEdit, setShowFormEdit] = useState(false);
+	const [dataToEdit, setDataToEdit] = useState(null);
+	let catalogue = useSelector((state) => state.donationCatalogue);
+	console.log(catalogue, "hola");
+	const dispatch = useDispatch();
 
     const handleUpdate = (id) => {
         setShowFormEdit(!showFormEdit);
