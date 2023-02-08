@@ -546,3 +546,17 @@ export const postNewTree = (tree) => {
   };
 };
 
+export const deleteItem = (id)=>{
+  return async function (dispatch){
+    try{
+      const response = await axios.delete(`adoptionCatalogue/${id}`)
+      dispatch({
+        type:"DELETE_ITEM",
+        payload:response.data
+      })
+    }    catch(e) {
+      console.log(e)
+    }
+  }
+  }
+

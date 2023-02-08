@@ -21,7 +21,6 @@ const initialState = {
   post_animal:[],
   post_tree:[],
   tickets:[],
-  detail:{},
   clientLogged:{}
 };
 
@@ -157,6 +156,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         clientLogged: {},
       };
+      case "DELETE_ITEM":
+        return{
+          ...state,
+          donationCatalogue:action.payload
+        }
     default:
       return { ...state };
   }

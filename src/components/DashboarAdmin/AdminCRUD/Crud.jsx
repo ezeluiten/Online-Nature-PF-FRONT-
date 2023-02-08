@@ -3,8 +3,11 @@ import Button from 'react-bootstrap/Button';
 import style from "./Crud.module.css"
 import FormPopup from "./PopupForm";
 import { useSelector, useDispatch } from "react-redux";
-import { sendId } from "../../../store/actions";
+import { sendId, deleteItem } from "../../../store/actions";
 import PopUpFormEdit from "./PopUpFormEdit"
+import Swal from 'sweetalert2'
+
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -24,7 +27,28 @@ export default function Crud() {
         setShowFormEdit(!showFormEdit);
         dispatch(sendId(id))
       };
+  const navigate = useNavigate();
 
+      const handleDelete=(id)=>{
+        
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+              dispatch(deleteItem(id));
+setTimeout(function () {
+  window.location.reload();
+}, 1000);        
+          }
+        });
+
+      }
 
     return(
         <>
@@ -55,8 +79,8 @@ export default function Crud() {
                             <td className={style.tdCrud}>{e?.description && e?.description.substr(0, 40) + "..."}</td>
                             <td className={style.tdCrud}>{e?.amount && e?.amount}</td>
                             <td className={style.tdCrudButtons}>
-                                <PopUpFormEdit handleUpdate={() => handleUpdate(e._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
-                                <Button variant="danger">Delete</Button>{' '}
+                                <PopUpFormEdit handleUpdate={() => handleUpdate(e?._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
+                                <Button variant="danger" onClick={()=>handleDelete(e?._id)}>Delete</Button>{' '}
                             </td>
                             </>
                         }
