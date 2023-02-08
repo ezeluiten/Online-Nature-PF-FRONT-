@@ -17,13 +17,6 @@ export const Home = () => {
 	const dispatch = useDispatch();
 	const { isAuthenticated, user, logout } = useAuth0();
 	const { payer, isOpenSettingsModal } = useSelector((state) => state);
-	const openSettingsModal = () => {
-		dispatch(setSettingsModalGate(isOpenSettingsModal));
-	};
-
-	const dispatch = useDispatch();
-	const { isAuthenticated, user, logout } = useAuth0();
-	const { payer, isOpenSettingsModal } = useSelector((state) => state);
 
 	const openSettingsModal = () => {
 		dispatch(setSettingsModalGate(isOpenSettingsModal));

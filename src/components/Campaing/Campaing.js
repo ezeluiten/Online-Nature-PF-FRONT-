@@ -122,6 +122,7 @@ export const Campaing = () => {
 				imagen={img}
 				text="Our actions can change the course of the planet..."
 			/>
+			<SearchBar />
 			<Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
 			<StoreCampaingContainer>
 				<CardContainer>
@@ -179,6 +180,7 @@ export const Campaing = () => {
 				element={catalogue.length}
 				pagination={pagination}
 			/>
+			<Footer />
 		</div>
 	);
 };

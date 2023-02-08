@@ -58,10 +58,18 @@
 	background-color: #ea4335;
 	border-color: transparent;
 	margin-top: auto;
+	overflow: hidden;
+	font-size: 16px;
+	border-radius: 0.4rem;
+	padding: 5px;
+}
+.store a {
+	text-decoration: none;
+	color: white;
 }
 
 .store:hover {
-	background-color: #ea4335;
+	background-color: #e8210e;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,6 +1,7 @@
 import style from "./CardsHome.module.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { NavLink } from "react-router-dom";
 
 const img1 = require("../../imagenes/plant.jpg");
 const img2 = require("../../imagenes/adopta.jpg");
@@ -23,8 +24,10 @@ export default function CardsHome(props) {
 						</div>
 						<br />
 						<br />
-						<button className={style.store} variant="primary">
-							Know more
+						<button className={style.store}>
+							<NavLink to="/Curiosidades" className={style.store}>
+								Know more
+							</NavLink>
 						</button>
 					</div>
 				</div>
@@ -40,8 +43,10 @@ export default function CardsHome(props) {
 								conservation and protection efforts for that species.
 							</p>
 						</div>
-						<button className={style.store} variant="primary">
-							Know more
+						<button className={style.store}>
+							<NavLink to="/Curiosidades" className={style.store}>
+								Know more
+							</NavLink>
 						</button>
 					</div>
 				</div>
@@ -57,8 +62,10 @@ export default function CardsHome(props) {
 								endangered animal research and protection projects
 							</p>
 						</div>
-						<button className={style.store} variant="primary">
-							Know more
+						<button className={style.store}>
+							<NavLink to="/Curiosidades" className={style.store}>
+								Know more
+							</NavLink>
 						</button>
 					</div>
 				</div>

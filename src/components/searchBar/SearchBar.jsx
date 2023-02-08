@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./SearchBar.module.css";
+import style from "../searchBar/SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { getItemByName } from "../../store/actions/index";
 //import searchLogo from "../../images/search.png";
