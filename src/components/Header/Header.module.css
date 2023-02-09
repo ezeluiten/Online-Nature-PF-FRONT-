@@ -1,28 +1,42 @@
 .header img {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .degradado {
-  font-family: "Courier New", Courier, monospace;
-  position: absolute;
-  color: #fffbff;
-  z-index: 0;
-  width: 50%;
-  margin-top: 10%;
-  padding: 2rem;
+	font-family: "Courier New", Courier, monospace;
+	position: absolute;
+	color: #fffbff;
+	z-index: 0;
+	width: 50%;
+	margin-top: 10%;
+	padding: 2rem;
+	animation-name: translate;
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	animation-fill-mode: both;
 }
 
 @media only screen and (max-width: 600px) {
-  .header img {
-    object-fit: cover;
-    height: 23rem;
-    width: 100%;
-  }
+	.header img {
+		object-fit: cover;
+		height: 23rem;
+		width: 100%;
+	}
 
-  .degradado {
-    padding: 0;
-    padding-top: 0;
-    margin-top: 20px;
-  }
+	.degradado {
+		padding: 0;
+		padding-top: 0;
+		margin-top: 20px;
+	}
+}
+
+@keyframes translate {
+	0% {
+		transform: translateX(-100px);
+	}
+
+	100% {
+		transform: translateX(0px);
+	}
 }

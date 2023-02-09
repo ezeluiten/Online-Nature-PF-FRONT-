@@ -114,13 +114,13 @@ export const Campaing = () => {
 			}
 		});
 	};
-	const img = require("../../imagenes/salto.png");
+	const img = require("../../imagenes/chile.jpg");
 	return (
 		<div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
 			<NavBar />
 			<Header
 				imagen={img}
-				text="Our actions can change the course of the planet..."
+				text="Chile needs us today, it has one of the biggest forest fires recent history"
 			/>
 			<SearchBar />
 			<Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
@@ -135,7 +135,10 @@ export const Campaing = () => {
 									</div>
 									<CardLabel>
 										<h3>{item.title}</h3>
-										<p>$ {item.amount}</p>
+										<p>
+											Symbolic Adoption <strong>{item.amount} (COP)</strong>{" "}
+										</p>
+
 										{isAuthenticated && (
 											<button
 												className="donate-button"
