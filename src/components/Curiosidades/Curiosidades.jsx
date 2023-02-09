@@ -86,7 +86,7 @@ const Curiosidades = () => {
 					<div>
 						<img src={img3} alt="" className={style.dibujitos} />
 					</div>
-					<h2>Donate is Save!</h2>
+					<h2>Donate = Save!</h2>
 					<h3 className={style.parrafos}>
 						Donating to a species conservation organization can help fund
 						projects to protect and research endangered animals and trees. In

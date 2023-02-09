@@ -609,3 +609,17 @@ export const getDonationsByItemsFromTickets = () => {
 		}
 	};
 };
+
+export const getDonationsByLastThreeMonths = () => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`/ticket/lastThreeMonths`);
+			dispatch({
+				type: "DONATIONS_BY_LAST_THREE_MONTHS",
+				payload: response.data,
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+};

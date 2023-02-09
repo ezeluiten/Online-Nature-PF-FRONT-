@@ -24,25 +24,45 @@ const Foteer = () => {
 				<div className={style.box}>
 					<h2>WE USE</h2>
 					<div className={style.RedSocial}>
-						<a href="/#">
+						<a
+							href="https://es.reactjs.org/"
+							target={"_blank"}
+							rel="noreferrer"
+						>
 							<i class="fa-brands fa-react"></i>
 						</a>
-						<a href="/#">
+						<a
+							href="https://developer.mozilla.org/es/docs/Web/JavaScript"
+							target={"_blank"}
+							rel="noreferrer"
+						>
 							<i class="fa-brands fa-square-js"></i>
 						</a>
-						<a href="/#">
+						<a href="https://nodejs.org/es/" target={"_blank"} rel="noreferrer">
 							<i class="fa-brands fa-node-js"></i>
 						</a>
-						<a href="/#">
+						<a
+							href="https://www.postgresql.org/"
+							target={"_blank"}
+							rel="noreferrer"
+						>
 							<i class="fas fa-database"></i>
 						</a>
-						<a href="/#">
+						<a
+							href="https://developer.mozilla.org/es/docs/Web/HTML"
+							target={"_blank"}
+							rel="noreferrer"
+						>
 							<i class="fa-brands fa-html5"></i>
 						</a>
-						<a href="/#">
+						<a
+							href="https://developer.mozilla.org/es/docs/Web/CSS"
+							target={"_blank"}
+							rel="noreferrer"
+						>
 							<i class="fa-brands fa-css3-alt"></i>
 						</a>
-						<a href="/#">
+						<a href="https://sass-lang.com/" target={"_blank"} rel="noreferrer">
 							<i class="fa-brands fa-sass"></i>
 						</a>
 					</div>
