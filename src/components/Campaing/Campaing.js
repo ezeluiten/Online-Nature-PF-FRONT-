@@ -28,6 +28,8 @@ import Pagination from "../Paginate/Paginate";
 import Swal from "sweetalert2";
 import { setSettingsModalGate } from "../../store/actions/index";
 import { height } from "@mui/system";
+// import FilterComponent from "../filters/CombinatedFilter";
+
 export const Campaing = () => {
   const { logout, loginWithRedirect,user, isAuthenticated } = useAuth0();
 
@@ -41,7 +43,7 @@ export const Campaing = () => {
   }, [isAuthenticated])
   storageCatalogue &&
     storageCatalogue.forEach((favorito) => {
-      catalogue = catalogue.map((item) => {
+      catalogue = catalogue?.map((item) => {
         if (item._id == favorito._id) {
           return {
             ...favorito,
@@ -92,7 +94,7 @@ export const Campaing = () => {
   const animate = (item) => {
     dispatch(setFavorites(item));
 
-    storageFavorites.map((favorito) => {
+    storageFavorites?.map((favorito) => {
       if (favorito._id != item._id) {
         Swal.fire({
           position: "top-end",
@@ -121,9 +123,11 @@ export const Campaing = () => {
         text="Our actions can change the course of the planet..."
       />
       <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
+
+      {/* <FilterComponent setCurrentPage={setCurrentPage} setOrder={setOrder}/> */}
       <StoreCampaingContainer>
         <CardContainer>
-          {currentCatalogue.map((item) => {
+          {currentCatalogue?.map((item) => {
             if (item.image) {
               return (
                 <Card key={item._id}>

@@ -547,3 +547,33 @@ export const postNewTree = (tree) => {
   };
 };
 
+export const fetchItems = (type, order) => async dispatch => {
+  try {
+    const res = await axios.get(`/filter/${type}/sort/${order}`);
+    dispatch({ 
+      type: "FETCH_ITEMS", 
+      payload: res.data 
+    });
+  }catch(error) {
+    console.log(error)
+  }
+};
+
+export const filterType = (type) => {
+  return {
+    type: "FILTER_TYPE",
+    payload: type,
+  };
+};
+
+export const ordenNameMayor = () => {
+  return {
+    type: "ORDER_NAME_MAYOR",
+  };
+};
+
+export const ordenNameMenor = () => {
+  return {
+    type: "ORDER_NAME_MENOR",
+  };
+};

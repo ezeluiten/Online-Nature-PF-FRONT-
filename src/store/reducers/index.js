@@ -22,7 +22,8 @@ const initialState = {
   post_tree:[],
   tickets:[],
   detail:{},
-  clientLogged:{}
+  clientLogged:{},
+  allCatalogue: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -67,6 +68,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         donationCatalogue: action.payload,
+        allCatalogue: action.payload,
       };
     case "ITEMS_CART":
       return {
@@ -157,6 +159,56 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         clientLogged: {},
       };
+      case "FETCH_ITEMS":
+        return {
+          ...state,
+          donationCatalogue: action.payload
+        };
+        case "ORDER_NAME_MENOR":
+          return {
+            ...state,
+            donationCatalogue: state.donationCatalogue
+              .sort((a, b) => {
+                if (a.title < b.title) {
+                  return -1;
+                } else if (a.title > b.title) {
+                  return 1;
+                } else {
+                  return 0;
+                }
+              })
+              .reverse(),
+          };
+
+          case "ORDER_NAME_MAYOR":
+      return {
+        ...state,
+        donationCatalogue: state.donationCatalogue.sort((a, b) => {
+          if (a.title < b.title) {
+            return -1;
+          } else if (a.title > b.title) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }),
+      };
+
+      case "FILTER_TYPE": {
+        if (action.payload === "All") {
+          return {
+            ...state,
+            donationCatalogue: state.allCatalogue,
+          };
+        } else {
+          return {
+            ...state,
+            donationCatalogue: state.allCatalogue?.filter(
+              (element) => element.type === action.payload
+            ),
+          };
+        }
+      }
     default:
       return { ...state };
   }
