@@ -1,5 +1,6 @@
 const initialState = {
 	donationsByItem: [],
+	donationsThreeMonths: [],
 	animals: [],
 	allanimals: [],
 	trees: [],
@@ -222,6 +223,12 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				donationsByItem: action.payload,
+			};
+
+		case "DONATIONS_BY_LAST_THREE_MONTHS":
+			return {
+				...state,
+				donationsThreeMonths: action.payload,
 			};
 
 		default:
