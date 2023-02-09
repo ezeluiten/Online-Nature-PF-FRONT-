@@ -11,7 +11,6 @@ const Analitica = () => {
 	const dispatch = useDispatch();
 	const donations = useSelector((state) => state.donations);
 
-	console.log(donations);
 
 	useEffect(() => {
 		dispatch(getDonations());

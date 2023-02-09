@@ -7,7 +7,6 @@ import { useDispatch, useSelector, useEffect } from "react-redux";
 
 export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
   let id = useSelector((state) => state.id);
-  console.log(id);
   const dispatch = useDispatch();
   let catalogue = useSelector((state) => state.donationCatalogue);
   // const catalogueIds = catalogue.map(item => {
@@ -32,7 +31,6 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
   });
 
   const handleInputChange = (e) => {
-    console.log(e.target.value, e.target.name, "datos de input");
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -57,7 +55,6 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
         formData?.description == "" ? undefined : formData?.description,
       amount: formData?.amount == 0 ? undefined : formData?.amount,
     };
-    console.log(itemModified, "item modificado");
     dispatch(updateAnimal(id, itemModified));
     // window.location.reload()
     setTimeout(function () {
@@ -65,7 +62,6 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
     }, 1000);
   };
 
-  console.log(handleUpdate, "hola");
   return (
     <div className={style.containerFormCreate}>
       <Button onClick={handleUpdate} variant="success">

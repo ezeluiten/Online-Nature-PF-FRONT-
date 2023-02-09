@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+const _ = require("lodash")
 
 export const getAnimals = () => {
 	return async function (dispatch) {
@@ -31,7 +32,6 @@ export const getDonations = () => {
 		try {
 			const response = await axios.get("/donations");
 			const data = await response.data.data;
-			console.log("donations", data);
 
 			const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
 
@@ -212,6 +212,48 @@ export const getTickets = () => {
 		});
 	};
 };
+export const getTicketsByClientId = () => {
+	return async function (dispatch, getState) {
+
+		const { payer } = getState();
+
+		const { name, email } = payer;
+
+		const clientLogged = await axios.get(`/clients/${email}`);
+
+		const idCLientLogged = clientLogged.data._id.toString()
+
+		const ticketsByUser = await axios.get(`/ticket/${idCLientLogged}`);
+
+		const items = ticketsByUser.data.data.reduce((acum,ticket) => {
+			const items = _.get(ticket, "items", [])
+			items.forEach(item=>{
+				if(acum.hasOwnProperty(item.id)){
+					acum[item.id] = {
+						id: item.id,
+						name: item.title,
+						quantity: acum[item.id].quantity + Number(item.quantity),
+						amount: acum[item.id].amount + (item.unit_price * item.quantity )
+					}
+				}else{
+					acum[item.id] = {
+						id: item.id,
+						name: item.title,
+						quantity: Number(item.quantity),
+						amount: Number((item.unit_price * item.quantity ))
+					}
+				}
+			})
+	
+			return acum
+		},{});
+
+		dispatch({
+			type: "FILTER_TICKETS_BY_CLIENT",
+			payload: Object.values(items),
+		});
+	};
+};
 
 export const syncLoggedUserWithDb = (client) => {
 	return async function (dispatch) {
@@ -251,13 +293,10 @@ export const initCheckOut = () => {
 	return async function (dispatch, getState) {
 		const { itemsCart: shoppingCart } = getState();
 		const { payer } = getState();
-		console.log("🚀 ~ file: index.js:248 ~ payer", payer);
 
 		const { name, email } = payer;
-		console.log("🚀 ~ file: index.js:275 ~ email", email, name);
 
 		const clients = await axios.get("/clients");
-		console.log("🚀 ~ file: index.js:361 ~ clients", clients);
 
 		const filteredLoggedClientInDB = clients.data.filter((clientInDb) => {
 			return clientInDb.mail == email;

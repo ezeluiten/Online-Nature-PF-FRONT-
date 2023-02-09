@@ -4,7 +4,7 @@ import { FavoriteCard, ViewSelectedContainer, CardsContainer } from './ViewSelec
 import style from "./ViewSelected.module.css"
 import Pagination from "../../Paginate/Paginate";
 import { IoCloseCircleOutline } from "react-icons/io5"
-import { setDonationCartElements, setFavorites } from '../../../store/actions';
+import { getTicketsByClientId, setDonationCartElements, setFavorites } from '../../../store/actions';
 import { useEffect } from 'react';
 import { setSettingsModalGate } from "../../../store/actions/index";
 
@@ -14,8 +14,11 @@ import { Link } from 'react-router-dom';
 export const ViewSelected = ({isOpen}) => {
 
   
-
+  
+  
   let favorites = useSelector(state=>state.favorites)
+  let ticketsByUserLogged = useSelector(state=>state.ticketsByUserLogged)
+  console.log("🚀 ~ file: ViewSelected.js:21 ~ ViewSelected ~ ticketsByUserLogged", ticketsByUserLogged)
   const storageFavorites = JSON.parse(localStorage.getItem("favorites"))
   
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +28,10 @@ export const ViewSelected = ({isOpen}) => {
   const dispatch = useDispatch()
   
   const [currentFav, setCurrentFav] =  useState([])
-const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  useEffect(()=>{
+    dispatch(getTicketsByClientId())
+  }, [dispatch])
 const openSettingsModal = () => {
   dispatch(setSettingsModalGate(isOpenSettingsModal));
 };

@@ -10,7 +10,6 @@ import { setSettingsModalGate } from "../../../store/actions/index";
 export default function AnimalDetil() {
   const dispatch = useDispatch();
   let detalle = useSelector((state) => state.detail);
-  console.log(detalle);
   const navigate = useNavigate();
 
   const handleClick = () => {

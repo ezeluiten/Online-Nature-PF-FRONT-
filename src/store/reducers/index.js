@@ -25,6 +25,7 @@ const initialState = {
   tickets: [],
   clientLogged: {},
   allCatalogue: [],
+  ticketsByUserLogged:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -171,9 +172,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         donationCatalogue: action.payload,
       };
-    case "ORDER_NAME_MENOR":
-      return {
-        ...state,
+      case "ORDER_NAME_MENOR":
+        return {
+          ...state,
         donationCatalogue: state.donationCatalogue
           .sort((a, b) => {
             if (a.title < b.title) {
@@ -200,24 +201,29 @@ const rootReducer = (state = initialState, action) => {
           }
         }),
       };
-
-    case "FILTER_TYPE": {
-      if (action.payload === "All") {
-        return {
-          ...state,
-          donationCatalogue: state.allCatalogue,
-        };
-      } else {
-        return {
-          ...state,
-          donationCatalogue: state.allCatalogue?.filter(
-            (element) => element.type === action.payload
-          ),
-        };
-      }
-    }
-
-    default:
+      
+      case "FILTER_TYPE": {
+        if (action.payload === "All") {
+          return {
+            ...state,
+            donationCatalogue: state.allCatalogue,
+          };
+        } else {
+          return {
+            ...state,
+            donationCatalogue: state.allCatalogue?.filter(
+              (element) => element.type === action.payload
+              ),
+            };
+          }
+        }
+        case "FILTER_TICKETS_BY_CLIENT":
+          return {
+            ...state,
+            ticketsByUserLogged: action.payload,
+          };
+        
+        default:
       return { ...state };
   }
 	

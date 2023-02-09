@@ -125,11 +125,9 @@ export const Campaing = () => {
   //         scope: "read:current_user update:current_user_metadata"
   //       },
   //     });
-  //     console.log("🚀 ~ file: Campaing.js:126 ~ getUserMetadata ~ accessToken", accessToken)
 
   //     const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
 
-  //     console.log("🚀 ~ file: Campaing.js:130 ~ getUserMetadata ~ userDetailsByIdUrl", userDetailsByIdUrl)
   //     const metadataResponse = await fetch(userDetailsByIdUrl, {
   //       headers: {
   //         Authorization: `Bearer ${accessToken}`,
@@ -138,7 +136,6 @@ export const Campaing = () => {
 
   //     const variableAuth = await metadataResponse.json();
 
-  //     console.log(variableAuth);
   //   } catch (e) {
   //     console.log(e.message);
   //   }
