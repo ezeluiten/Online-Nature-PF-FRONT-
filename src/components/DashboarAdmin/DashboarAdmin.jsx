@@ -109,11 +109,11 @@ const DashboarAdmin = () => {
 					</main>
 					{/* Menu + theme dark*/}
 					<div className={style.right}>
-						{/* <div className={style.top}>
-							  <button id={style.menu_btn}>
-								  <span class="material-symbols-sharp">menu</span>
-							  </button>
-						  </div> */}
+						<div className={style.top}>
+							<button id={style.menu_btn}>
+								<span class="material-symbols-sharp">menu</span>
+							</button>
+						</div>
 						<div className={style.recent_updates}>
 							<br />
 							<br />
