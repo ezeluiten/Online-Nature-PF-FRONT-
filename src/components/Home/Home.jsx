@@ -14,85 +14,85 @@ import Footer from "../Footer/Footer";
 
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
-	const dispatch = useDispatch();
-	const { isAuthenticated, user, logout } = useAuth0();
-	const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { isAuthenticated, user, logout } = useAuth0();
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
 
-	const openSettingsModal = () => {
-		dispatch(setSettingsModalGate(isOpenSettingsModal));
-	};
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
 
-	useEffect(() => {
-		dispatch(getUserLoggedInfoToPay({ ...user, isAuthenticated }));
-	}, [isAuthenticated]);
+  useEffect(() => {
+    dispatch(getUserLoggedInfoToPay({ ...user, isAuthenticated }));
+  }, [isAuthenticated]);
 
-	const loading = useSelector((state) => state.loading);
+  const loading = useSelector((state) => state.loading);
 
-	const isModalOpen = useSelector((state) => state.isModalOpen);
+  const isModalOpen = useSelector((state) => state.isModalOpen);
 
-	if (loading) {
-		//componente loader
-		<LoaderContainer>
-			<ThreeDots
-				height="80"
-				width="80"
-				radius="9"
-				color="#4fa94d"
-				ariaLabel="three-dots-loading"
-				wrapperStyle={{}}
-				wrapperClassName=""
-				visible={true}
-			/>
-		</LoaderContainer>;
-	}
+  if (loading) {
+    //componente loader
+    <LoaderContainer>
+      <ThreeDots
+        height="80"
+        width="80"
+        radius="9"
+        color="#4fa94d"
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+      />
+    </LoaderContainer>;
+  }
 
-	if (!loading) {
-		return (
-			<div
-				className={styles.body}
-				onClick={isOpenSettingsModal ? () => openSettingsModal() : null}
-			>
-				<NavBar />
-				<Header
-					imagen={img}
-					text="
+  if (!loading) {
+    return (
+      <div
+        className={styles.body}
+        onClick={isOpenSettingsModal ? () => openSettingsModal() : null}
+      >
+        <NavBar />
+        <Header
+          imagen={img}
+          text="
+  We have suffered an alarming loss of biodiversity in recent decades
+  "
+        />
+        <CardsHome />
+
+        <Footer />
+      </div>
+    );
+  }
+  if (loading) {
+    //componente loader
+    <LoaderContainer>
+      <ThreeDots
+        height="80"
+        width="80"
+        radius="9"
+        color="#4fa94d"
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+      />
+    </LoaderContainer>;
+  }
+
+  if (!loading) {
+    return (
+      <div className={styles.body}>
+        <NavBar />
+        <Header
+          imagen={img}
+          text="
   We have suffered an alarming loss of biodiversity in recent decades...
   "
-				/>
-				<CardsHome />
-
-				<Footer />
-			</div>
-		);
-	}
-	if (loading) {
-		//componente loader
-		<LoaderContainer>
-			<ThreeDots
-				height="80"
-				width="80"
-				radius="9"
-				color="#4fa94d"
-				ariaLabel="three-dots-loading"
-				wrapperStyle={{}}
-				wrapperClassName=""
-				visible={true}
-			/>
-		</LoaderContainer>;
-	}
-
-	if (!loading) {
-		return (
-			<div className={styles.body}>
-				<NavBar />
-				<Header
-					imagen={img}
-					text="
-  We have suffered an alarming loss of biodiversity in recent decades...
-  "
-				/>
-				<CardsHome />
-			</div>
-		);
-	}
+        />
+        <CardsHome />
+      </div>
+    );
+  }
 };

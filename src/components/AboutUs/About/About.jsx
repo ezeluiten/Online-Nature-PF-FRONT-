@@ -2,6 +2,7 @@ import React from "react";
 import style from "./About.module.css";
 import Footer from "../../Footer/Footer";
 import Navbar from "../../NavBar/NavBar";
+import Header from "../../Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { setSettingsModalGate } from "../../../store/actions/index";
 
@@ -12,20 +13,26 @@ const About = () => {
   const openSettingsModal = () => {
     dispatch(setSettingsModalGate(isOpenSettingsModal));
   };
+  const img = require("../../../imagenes/salto.png");
   return (
-     <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
-
+    <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
       <Navbar />
-	  <div className={style.description}>
+      <Header imagen={img} text="Team Online Nature" />
+      <div className={style.description}>
         <h4>Description</h4>
         <h5>
-			We are very committed with the nature preservation of animals and trees in danger of extinction. 
-			When you make a donation throughout our platform, you are contributing to different preservation and
-			protection of a variety of species. When accepting our terms and conditions you are accepting that any donation that
-			you make is with no return and non refundable. As well as accepting that the projects and programs are always 
-			subject to change and we don't guarantee specific results our commitment is to improve and enhance life in general.
-			By utilizing our website, you accept to comply all of the rules and laws applicable. We are dedicated to protect
-			your personal information in the most responsible manner. Thanks a lot for aiming to protect and keep animals and trees in danger of extinction.
+          We are very committed with the nature preservation of animals and
+          trees in danger of extinction. When you make a donation throughout our
+          platform, you are contributing to different preservation and
+          protection of a variety of species. When accepting our terms and
+          conditions you are accepting that any donation that you make is with
+          no return and non refundable. As well as accepting that the projects
+          and programs are always subject to change and we don't guarantee
+          specific results our commitment is to improve and enhance life in
+          general. By utilizing our website, you accept to comply all of the
+          rules and laws applicable. We are dedicated to protect your personal
+          information in the most responsible manner. Thanks a lot for aiming to
+          protect and keep animals and trees in danger of extinction.
         </h5>
       </div>
       {/* <div className={style.tittle}>ABOUT US</div> */}
@@ -151,7 +158,7 @@ const About = () => {
           </div>
         </div>
       </div>
-     
+
       <div>
         <Footer />
       </div>
