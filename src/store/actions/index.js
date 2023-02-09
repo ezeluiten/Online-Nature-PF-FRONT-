@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+const _ = require("lodash")
 
 export const getAnimals = () => {
   return async function (dispatch) {
@@ -27,11 +28,10 @@ export const getDetail = (id) => {
 };
 
 export const getDonations = () => {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get("/donations");
-      const data = await response.data.data;
-      console.log("donations", data);
+	return async function (dispatch) {
+		try {
+			const response = await axios.get("/donations");
+			const data = await response.data.data;
 
       const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
 
@@ -194,12 +194,15 @@ export const resetDetail = (id) => {
 };
 
 export const getUserLoggedInfoToPay = (client) => {
-  return async function (dispatch, getState) {
-    dispatch({
-      type: "PAYER_CLIENT_INFO",
-      payload: client,
-    });
-  };
+	return async function (dispatch, getState) {
+
+		const clientLogged = await axios.get(`/clients/${client.email}`);
+
+		dispatch({
+			type: "PAYER_CLIENT_INFO",
+			payload: clientLogged.data,
+		});
+	};
 };
 
 export const getTickets = () => {
@@ -211,6 +214,49 @@ export const getTickets = () => {
       payload: tickets.data.data,
     });
   };
+};
+export const getTicketsByClientId = () => {
+	return async function (dispatch, getState) {
+
+		const { payer } = getState();
+		console.log("🚀 ~ file: index.js:219 ~ payer", payer)
+
+		const { name, email } = payer;
+
+		const clientLogged = await axios.get(`/clients/${email}`);
+
+		const idCLientLogged = clientLogged.data._id.toString()
+
+		const ticketsByUser = await axios.get(`/ticket/${idCLientLogged}`);
+
+		const items = ticketsByUser.data.data.reduce((acum,ticket) => {
+			const items = _.get(ticket, "items", [])
+			items.forEach(item=>{
+				if(acum.hasOwnProperty(item.id)){
+					acum[item.id] = {
+						id: item.id,
+						title: item.title,
+						quantity: acum[item.id].quantity + Number(item.quantity),
+						amount: acum[item.id].amount + (item.unit_price * item.quantity ),
+					}
+				}else{
+					acum[item.id] = {
+						id: item.id,
+						title: item.title,
+						quantity: Number(item.quantity),
+						amount: Number((item.unit_price * item.quantity )),
+					}
+				}
+			})
+	
+			return acum
+		},{});
+
+		dispatch({
+			type: "FILTER_TICKETS_BY_CLIENT",
+			payload: Object.values(items),
+		});
+	};
 };
 
 export const syncLoggedUserWithDb = (client) => {
@@ -248,16 +294,13 @@ export const syncLoggedUserWithDb = (client) => {
 };
 
 export const initCheckOut = () => {
-  return async function (dispatch, getState) {
-    const { itemsCart: shoppingCart } = getState();
-    const { payer } = getState();
-    console.log("🚀 ~ file: index.js:248 ~ payer", payer);
+	return async function (dispatch, getState) {
+		const { itemsCart: shoppingCart } = getState();
+		const { payer } = getState();
 
-    const { name, email } = payer;
-    console.log("🚀 ~ file: index.js:275 ~ email", email, name);
+		const { name, email } = payer;
 
-    const clients = await axios.get("/clients");
-    console.log("🚀 ~ file: index.js:361 ~ clients", clients);
+		const clients = await axios.get("/clients");
 
     const filteredLoggedClientInDB = clients.data.filter((clientInDb) => {
       return clientInDb.mail == email;

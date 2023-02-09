@@ -28,6 +28,7 @@ const initialState = {
   tickets: [],
   clientLogged: {},
   allCatalogue: [],
+  ticketsByUserLogged: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -231,6 +232,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         donationsThreeMonths: action.payload,
       };
+    case "FILTER_TICKETS_BY_CLIENT":
+      return {
+        ...state,
+        ticketsByUserLogged: action.payload,
+      }
     case "GET_RECENT_CLIENT":
       return {
         ...state,

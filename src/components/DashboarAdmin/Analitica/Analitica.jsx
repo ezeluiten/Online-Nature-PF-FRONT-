@@ -15,7 +15,6 @@ const Analitica = () => {
 		(state) => state.donationsThreeMonths
 	);
 
-	console.log(donations);
 
 	useEffect(() => {
 		dispatch(getDonations());

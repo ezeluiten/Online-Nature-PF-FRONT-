@@ -16,9 +16,6 @@ const DashboarAdmin = () => {
   let lastTransactions = useSelector((state) => state.lastTransactions);
   let donationsByItem = useSelector((state) => state.donationsByItem);
 
-  console.log(lastTransactions, "lastTransactions");
-
-  /* console.log(donations); */
 
   useEffect(() => {
     dispatch(getDonations());
