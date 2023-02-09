@@ -16,6 +16,8 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const userLogged = useSelector((state) => state.payer);
+  console.log("🚀 ~ file: NavBar.jsx:20 ~ Navbar ~ userLogged", userLogged)
 
   const { payer, isOpenSettingsModal } = useSelector((state) => state);
   const openSettingsModal = () => {
@@ -75,11 +77,13 @@ function Navbar() {
             </NavLink>
           </div>
 
-          <div className={styles.a}>
+          {
+            isAuthenticated && userLogged && userLogged.is_admin &&  <div className={styles.a}>
             <NavLink to="/DashboarAdmin" className={styles.link}>
               My Dash
             </NavLink>
-          </div>
+            </div>
+          }
 
           <div className={styles.a}>
             <NavLink

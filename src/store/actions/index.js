@@ -195,9 +195,12 @@ export const resetDetail = (id) => {
 
 export const getUserLoggedInfoToPay = (client) => {
 	return async function (dispatch, getState) {
+
+		const clientLogged = await axios.get(`/clients/${client.email}`);
+
 		dispatch({
 			type: "PAYER_CLIENT_INFO",
-			payload: client,
+			payload: clientLogged.data,
 		});
 	};
 };
@@ -232,16 +235,16 @@ export const getTicketsByClientId = () => {
 				if(acum.hasOwnProperty(item.id)){
 					acum[item.id] = {
 						id: item.id,
-						name: item.title,
+						title: item.title,
 						quantity: acum[item.id].quantity + Number(item.quantity),
-						amount: acum[item.id].amount + (item.unit_price * item.quantity )
+						amount: acum[item.id].amount + (item.unit_price * item.quantity ),
 					}
 				}else{
 					acum[item.id] = {
 						id: item.id,
-						name: item.title,
+						title: item.title,
 						quantity: Number(item.quantity),
-						amount: Number((item.unit_price * item.quantity ))
+						amount: Number((item.unit_price * item.quantity )),
 					}
 				}
 			})
