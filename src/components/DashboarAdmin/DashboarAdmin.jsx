@@ -3,18 +3,24 @@ import { useSelector, useDispatch } from "react-redux";
 import style from "./DashboarAdmin.module.css";
 import NavBar from "../NavBar/NavBar";
 import logo from "./images/logo2.png";
-import { getDonations } from "../../store/actions";
+import {
+	getDonations,
+	getDonationsByItemsFromTickets,
+} from "../../store/actions";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
 const DashboarAdmin = () => {
 	const dispatch = useDispatch();
 	const donations = useSelector((state) => state.donations);
+	const donationsByItem = useSelector((state) => state.donationsByItem);
+	console.log(donationsByItem, "holitas");
 
-	console.log(donations);
+	/* console.log(donations); */
 
 	useEffect(() => {
 		dispatch(getDonations());
+		dispatch(getDonationsByItemsFromTickets());
 	}, [dispatch]);
 
 	const { logout } = useAuth0();
@@ -73,8 +79,8 @@ const DashboarAdmin = () => {
 					<main className={style.mains}>
 						<h1 className={style.lash1}>Dashboard</h1>
 
+						<h2 className={style.lash2}>Donations</h2>
 						<div className={style.recent_orders}>
-							<h2 className={style.lash2}>Donations</h2>
 							<table className={style.tableContainer}>
 								<thead>
 									<tr>
@@ -86,31 +92,13 @@ const DashboarAdmin = () => {
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Aguila Harpía</td>
-										<td>1</td>
-										<td>$25</td>
-									</tr>
-									<tr>
-										<td>Pingüino de Galápagos</td>
-										<td>1</td>
-										<td>$25</td>
-									</tr>
-									<tr>
-										<td>Albatros</td>
-										<td>2</td>
-										<td>$50</td>
-									</tr>
-									<tr>
-										<td>Delfín rosa</td>
-										<td>1</td>
-										<td>$75</td>
-									</tr>
-									<tr>
-										<td>Tigre</td>
-										<td>5</td>
-										<td>$125</td>
-									</tr>
+									{donationsByItem.data?.map((e) => (
+										<tr key={e.id}>
+											<td>{e.name}</td>
+											<td>{e.quantity}</td>
+											<td>{e.amount}</td>
+										</tr>
+									))}
 								</tbody>
 							</table>
 							{/* 	<a href="/home">Show everything</a> */}

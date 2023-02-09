@@ -564,34 +564,48 @@ export const getItemByName = (title) => {
 	};
 };
 
-export const deleteItem = (id)=>{
-  return async function (dispatch){
-    try{
-      const response = await axios.delete(`adoptionCatalogue/${id}`)
-      dispatch({
-        type:"DELETE_ITEM",
-        payload:response.data
-      })
-    }    catch(e) {
-      console.log(e)
-    }
-  }
-  }
+export const deleteItem = (id) => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.delete(`adoptionCatalogue/${id}`);
+			dispatch({
+				type: "DELETE_ITEM",
+				payload: response.data,
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+};
 export const filterType = (type) => {
-  return {
-    type: "FILTER_TYPE",
-    payload: type,
-  };
+	return {
+		type: "FILTER_TYPE",
+		payload: type,
+	};
 };
 
 export const ordenNameMayor = () => {
-  return {
-    type: "ORDER_NAME_MAYOR",
-  };
+	return {
+		type: "ORDER_NAME_MAYOR",
+	};
 };
 
 export const ordenNameMenor = () => {
-  return {
-    type: "ORDER_NAME_MENOR",
-  };
+	return {
+		type: "ORDER_NAME_MENOR",
+	};
+};
+
+export const getDonationsByItemsFromTickets = () => {
+	return async function (dispatch) {
+		try {
+			const response = await axios.get(`/ticket/donationsByItem`);
+			dispatch({
+				type: "DONATIONS_BY_ITEMS_FROM_TICKETS",
+				payload: response.data,
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
 };
