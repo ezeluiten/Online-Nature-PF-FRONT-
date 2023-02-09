@@ -37,6 +37,6 @@
 	}
 
 	100% {
-		transform: translateX(0px);
+		transform: translateX(100px);
 	}
 }
