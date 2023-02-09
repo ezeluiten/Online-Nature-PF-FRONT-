@@ -577,4 +577,21 @@ export const deleteItem = (id)=>{
     }
   }
   }
+export const filterType = (type) => {
+  return {
+    type: "FILTER_TYPE",
+    payload: type,
+  };
+};
 
+export const ordenNameMayor = () => {
+  return {
+    type: "ORDER_NAME_MAYOR",
+  };
+};
+
+export const ordenNameMenor = () => {
+  return {
+    type: "ORDER_NAME_MENOR",
+  };
+};
