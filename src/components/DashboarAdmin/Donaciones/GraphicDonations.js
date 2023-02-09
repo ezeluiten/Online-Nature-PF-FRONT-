@@ -18,7 +18,6 @@ const GraphicDonations = () => {
 		dispatch(getDonationsByLastThreeMonths());
 	}, [dispatch]);
 	const donationsThreeMonths = useSelector((s) => s.donationsThreeMonths);
-	console.log(donationsThreeMonths);
 
 	const data = donationsThreeMonths.data?.map((e) => ({
 		month: e.month,

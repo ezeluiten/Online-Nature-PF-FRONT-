@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import CardsHome from "../CardsHome/CardsHome";
 import styles from "../Home/Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserLoggedInfoToPay, setOpenModal } from "../../store/actions";
+import { getUserLoggedInfoDb, getUserLoggedInfoToPay, setOpenModal } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoaderContainer } from "./loaderStyles";
 import { ThreeDots } from "react-loader-spinner";
@@ -17,6 +17,7 @@ export const Home = () => {
 	const dispatch = useDispatch();
 	const { isAuthenticated, user, logout, isLoading } = useAuth0();
 	const { payer, isOpenSettingsModal } = useSelector((state) => state);
+	const userLogged = useSelector((state) => state.userLoggedDbRetrieved);
 
 	const openSettingsModal = () => {
 		dispatch(setSettingsModalGate(isOpenSettingsModal));
@@ -24,6 +25,7 @@ export const Home = () => {
 
 	useEffect(() => {
 		dispatch(getUserLoggedInfoToPay({ ...user, isAuthenticated }));
+		dispatch(getUserLoggedInfoDb())
 	}, [isAuthenticated]);
 
 	const loading = useSelector((state) => state.loading);
