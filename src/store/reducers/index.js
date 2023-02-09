@@ -29,6 +29,7 @@ const initialState = {
   clientLogged: {},
   allCatalogue: [],
   ticketsByUserLogged: [],
+  userLoggedDbRetrieved:{}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -241,6 +242,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         lastTransactions: action.payload,
+      };
+    case "LOGGED_USER_RETRIEVE":
+      return {
+        ...state,
+        userLoggedDbRetrieved: action.payload,
       };
 
     default:

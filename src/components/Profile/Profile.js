@@ -22,7 +22,6 @@ export const Profile = () => {
   }
   
   const checkProfileAndOrCreateIt = (clientInfo) => {
-    console.log("🚀 ~ file: Profile.js:25 ~ checkProfileAndOrCreateIt ~ clientInfo", clientInfo)
     if(clientInfo && clientInfo.email && clientInfo.isAuthenticated){
       dispatch(syncLoggedUserWithDb(clientInfo))
     }

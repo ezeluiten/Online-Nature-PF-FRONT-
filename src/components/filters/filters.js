@@ -15,7 +15,6 @@ const Filters = ({ setCurrentPage, setOrder }) => {
 
   useEffect(() => {
     dispatch(getCatalogue());
-    console.log(hola);
   }, [dispatch]);
 
   const handleFilterAlph = (e) => {

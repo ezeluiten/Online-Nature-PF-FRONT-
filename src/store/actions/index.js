@@ -36,7 +36,6 @@ export const getDonations = () => {
       const suma = data.donations.reduce((acc, obj) => acc + obj.amount, 0);
 
       const cuantityDonations = data.donations.length;
-      console.log(cuantityDonations);
       dispatch({
         type: "GET_DONATIONS",
         payload: {
@@ -196,13 +195,27 @@ export const resetDetail = (id) => {
 export const getUserLoggedInfoToPay = (client) => {
 	return async function (dispatch, getState) {
 
-		const clientLogged = await axios.get(`/clients/${client.email}`);
 
-		dispatch({
-			type: "PAYER_CLIENT_INFO",
-			payload: clientLogged.data,
-		});
+		// const clientLogged = await axios.get(`/clients/${client.email}`);
+
+
+      dispatch({
+        type: "PAYER_CLIENT_INFO",
+        payload: client,
+      });
 	};
+};
+
+export const getUserLoggedInfoDb = () => {
+  return async function (dispatch, getState) {
+    const {payer} = getState()
+    const clientLogged = await axios.get(`/clients/${payer.email}`);
+
+    dispatch({
+      type: "LOGGED_USER_RETRIEVE",
+      payload: clientLogged.data,
+    });
+  };
 };
 
 export const getTickets = () => {
@@ -219,7 +232,6 @@ export const getTicketsByClientId = () => {
 	return async function (dispatch, getState) {
 
 		const { payer } = getState();
-		console.log("🚀 ~ file: index.js:219 ~ payer", payer)
 
 		const { name, email } = payer;
 
@@ -593,7 +605,6 @@ export const getItemByName = (title) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/adoptionCatalogue?title=${title}`);
-      console.log(response.data);
       if (response.status === 404) {
         alert("item doesnt exist");
       }
@@ -671,9 +682,21 @@ export const getRecentClient = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(`/ticket/lastTransactions`);
+      const values = response.data.data
+      
+      const ordered = values.sort((a,b)=>{
+        if ( Number(a.since) < Number(b.since) ) {
+          return -1;
+        }
+        if ( Number(a.since) > Number(b.since) ) {
+          return 1;
+        }
+        // a must be equal to b
+        return 0;
+      })
       dispatch({
         type: "GET_RECENT_CLIENT",
-        payload: response.data,
+        payload: ordered,
       });
     } catch (e) {
       console.log(e);

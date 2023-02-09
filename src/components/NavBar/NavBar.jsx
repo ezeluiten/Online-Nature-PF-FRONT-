@@ -11,13 +11,12 @@ import { setOpenModal, loginLoader } from "../../store/actions";
 import { Profile } from "../Profile/Profile";
 import { setSettingsModalGate } from "../../store/actions/index";
 function Navbar() {
-  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+  const { logout, loginWithRedirect, isAuthenticated, user } = useAuth0();
   const [clicked, setClicked] = useState(false);
 
   const dispatch = useDispatch();
   const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const userLogged = useSelector((state) => state.payer);
-  console.log("🚀 ~ file: NavBar.jsx:20 ~ Navbar ~ userLogged", userLogged)
+  const userLogged = useSelector((state) => state.userLoggedDbRetrieved);
 
   const { payer, isOpenSettingsModal } = useSelector((state) => state);
   const openSettingsModal = () => {
@@ -78,7 +77,7 @@ function Navbar() {
           </div>
 
           {
-            isAuthenticated && userLogged && userLogged.is_admin &&  <div className={styles.a}>
+            isAuthenticated && user.email == "rapuentes@uan.edu.co" &&  <div className={styles.a}>
             <NavLink to="/DashboarAdmin" className={styles.link}>
               My Dash
             </NavLink>

@@ -16,7 +16,6 @@ export default function Crud() {
 	const [showFormEdit, setShowFormEdit] = useState(false);
 	const [dataToEdit, setDataToEdit] = useState(null);
 	let catalogue = useSelector((state) => state.donationCatalogue);
-	console.log(catalogue, "hola");
 	const dispatch = useDispatch();
 	const handleClick = () => {
       setShowForm(!showForm);

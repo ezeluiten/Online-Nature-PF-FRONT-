@@ -119,7 +119,7 @@ const DashboarAdmin = () => {
               <br />
               <h2 className={style.lash2}>Recent Updates</h2>
               <div className={style.updates}>
-                {lastTransactions.data?.map((e) => {
+                {lastTransactions?.map((e) => {
                   return (
                     <div className={style.update}>
                       <div className={style.profile_photo}>
