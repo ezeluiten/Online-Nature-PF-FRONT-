@@ -37,6 +37,10 @@ export const ViewSelected = ({ isOpen }) => {
 
 	const { open, view } = isOpen;
 
+  useEffect(() => {
+		dispatch(getTicketsByClientId())
+	}, [dispatch]);
+
 	useEffect(() => {
 		setCurrentFav(
 			storageFavorites

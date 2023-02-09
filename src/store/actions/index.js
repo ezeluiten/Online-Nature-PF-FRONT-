@@ -216,6 +216,7 @@ export const getTicketsByClientId = () => {
 	return async function (dispatch, getState) {
 
 		const { payer } = getState();
+		console.log("🚀 ~ file: index.js:219 ~ payer", payer)
 
 		const { name, email } = payer;
 
