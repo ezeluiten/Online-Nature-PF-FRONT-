@@ -61,7 +61,7 @@ export const FavoriteCard = styled.div`
 		right: 5px;
 		background-color: #ea4335;
 		border-style: none;
-
+		color:white;
 		transform: scale(var(--escala, 1));
 		transition: transform 0.25s;
 	}
@@ -94,9 +94,12 @@ export const FavoriteCard = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 10px;
+		padding: 0px 10px;
 		width: 100%;
 		height: 100%;
 		color: #8dd866;
+		font-size:10px;
+		color:white;
 	}
+	
 `;

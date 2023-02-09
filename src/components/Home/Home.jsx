@@ -15,7 +15,7 @@ import Footer from "../Footer/Footer";
 const img = require("../../imagenes/header-home.jpg");
 export const Home = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, user, logout } = useAuth0();
+  const { isAuthenticated, user, logout, isLoading } = useAuth0();
   const { payer, isOpenSettingsModal } = useSelector((state) => state);
 
   const openSettingsModal = () => {
@@ -30,7 +30,7 @@ export const Home = () => {
 
   const isModalOpen = useSelector((state) => state.isModalOpen);
 
-  if (loading) {
+  if (isLoading) {
     //componente loader
     <LoaderContainer>
       <ThreeDots
@@ -46,7 +46,7 @@ export const Home = () => {
     </LoaderContainer>;
   }
 
-  if (!loading) {
+  if (!isLoading) {
     return (
       <div
         className={styles.body}
@@ -62,36 +62,6 @@ export const Home = () => {
         <CardsHome />
 
         <Footer />
-      </div>
-    );
-  }
-  if (loading) {
-    //componente loader
-    <LoaderContainer>
-      <ThreeDots
-        height="80"
-        width="80"
-        radius="9"
-        color="#4fa94d"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClassName=""
-        visible={true}
-      />
-    </LoaderContainer>;
-  }
-
-  if (!loading) {
-    return (
-      <div className={styles.body}>
-        <NavBar />
-        <Header
-          imagen={img}
-          text="
-  We have suffered an alarming loss of biodiversity in recent decades...
-  "
-        />
-        <CardsHome />
       </div>
     );
   }

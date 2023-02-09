@@ -8,7 +8,6 @@ export const PaymentForm = () => {
   const prepaymentInfo = useSelector(state=>state.transactionInfo)
   
   useEffect(()=>{
-    console.log(prepaymentInfo?.data)
     
     if(prepaymentInfo.data) {
       const script = document.createElement('script') // Here we create the empty script tag
@@ -18,7 +17,6 @@ export const PaymentForm = () => {
       document.body.appendChild(script) // Here we append it to the body of our page
       
       script.onload = () => {
-        console.log("charge the script my bro")
         // Here we create the button, setting the container, our public key and the ID of the preference that Mercado Pago API returns in its response
         const mp = new window.MercadoPago(process.env.REACT_APP_MERCADOPAGO_PUBLIC_KEY, {
           locale: 'es-CO'

@@ -52,6 +52,9 @@ export const ProfileContainer = styled.div`
     .p-settings{
        cursor:pointer;
     }
+    @media (max-width : 600px) {
+		flex-direction:column;
+	}
     
 `;
 export const ProfileContainerView = styled.div`

@@ -18,7 +18,11 @@ export const Auth0ProviderWithHistory = ({children}) => {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+        audience: "https://dev-xp4wmo5z0oblx157.us.auth0.com/api/v2/",
+        scope: "read:current_user update:current_user_metadata"
+      }}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >

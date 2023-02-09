@@ -31,7 +31,7 @@ import { setSettingsModalGate } from "../../store/actions/index";
 import { height } from "@mui/system";
 import Footer from "../Footer/Footer";
 export const Campaing = () => {
-	const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
+  const { logout, loginWithRedirect,user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
