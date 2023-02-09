@@ -614,6 +614,17 @@ aside .sidebar .message_count {
 	font-size: 600;
 }
 
+.grafico {
+	background: #fffbff;
+	width: 100%;
+	border-radius: 1rem;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+	margin-top: 130px;
+}
+
 @media screen and (max-width: 1200px) {
 	.container {
 		width: 94%;

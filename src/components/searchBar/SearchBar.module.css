@@ -1,6 +1,14 @@
+.continerSearchBar {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
 .form_search_cnt {
 	width: 35%;
-	height: 2em;
+	height: 3em;
 	background-color: #568259;
 	display: flex;
 	align-items: center;
@@ -24,7 +32,6 @@
 	color: #060000;
 	font-weight: 400;
 	transition: 0.5s;
-	margin-top: 20px;
 }
 
 ::placeholder {
@@ -42,6 +49,8 @@
 	cursor: pointer;
 	transition: 0.6s;
 	box-shadow: 0 0.5rem 0.5rem #878b88;
+	position: absolute;
+	right: 0;
 }
 
 .form_search_cnt button img {
