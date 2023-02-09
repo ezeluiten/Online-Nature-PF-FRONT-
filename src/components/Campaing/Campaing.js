@@ -94,120 +94,96 @@ export const Campaing = () => {
 	const animate = (item) => {
 		dispatch(setFavorites(item));
 
-    storageFavorites.map((favorito) => {
-      if (favorito._id != item._id) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "added to favorite",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "eliminate to favorite",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
-  };
-  const img = require("../../imagenes/salto.png");
-  // const getUserMetadata = async () => {
-  //   const domain = "dev-xp4wmo5z0oblx157.us.auth0.com";
+		storageFavorites.map((favorito) => {
+			if (favorito._id != item._id) {
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "added to favorite",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			} else {
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "eliminate to favorite",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			}
+		});
+	};
+	const img = require("../../imagenes/chile.jpg");
+	return (
+		<div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
+			<NavBar />
+			<Header
+				imagen={img}
+				text="Chile needs us today, it has one of the biggest forest fires recent history"
+			/>
+			<SearchBar />
+			<Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
+			<StoreCampaingContainer>
+				<CardContainer>
+					{currentCatalogue.map((item) => {
+						if (item.image) {
+							return (
+								<Card key={item._id}>
+									<div onClick={() => handleClick(item._id)}>
+										<img src={item.image} alt="img not found" />
+									</div>
+									<CardLabel>
+										<h3>{item.title}</h3>
+										<p>
+											Symbolic Adoption <strong>{item.amount} (COP)</strong>{" "}
+										</p>
 
-  //   try {
-  //     const accessToken = await getAccessTokenSilently({
-  //       authorizationParams: {
-  //         audience: `https://${domain}/api/v2/`,
-  //         scope: "read:current_user update:current_user_metadata"
-  //       },
-  //     });
-
-  //     const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
-
-  //     const metadataResponse = await fetch(userDetailsByIdUrl, {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-
-  //     const variableAuth = await metadataResponse.json();
-
-  //   } catch (e) {
-  //     console.log(e.message);
-  //   }
-  // };
-
-  
-
-  return (
-    <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
-      {/* <button onClick={getUserMetadata}>CLICK ME</button> */}
-      <NavBar />
-      <Header
-        imagen={img}
-        text="Our actions can change the course of the planet..."
-      />
-      <Filters setCurrentPage={setCurrentPage} setOrder={setOrder} />
-      <StoreCampaingContainer>
-        <CardContainer>
-          {currentCatalogue.map((item) => {
-            if (item.image) {
-              return (
-                <Card key={item._id}>
-                  <div onClick={() => handleClick(item._id)}>
-                    <img src={item.image} alt="img not found" />
-                  </div>
-                  <CardLabel>
-                    <h3>{item.title}</h3>
-                    <p>$ {item.amount}</p>
-                    {isAuthenticated && (
-                      <button
-                        className="donate-button"
-                        onClick={() => {
-                          // dispatch(setOpenModal(isModalOpen))
-                          dispatch(
-                            setDonationCartElements(item),
-                            HandleClickCart()
-                          );
-                        }}
-                      >
-                        Add cart
-                      </button>
-                    )}
-                    {!isAuthenticated && (
-                      <button
-                        className={"donate-button"}
-                        onClick={() => loginWithRedirect()}
-                      >
-                        log in
-                      </button>
-                    )}
-                    {isAuthenticated && (
-                      <div
-                        className={`icon-favorites ${item.selected}`}
-                        onClick={() => animate(item)}
-                      >
-                        <IoHeart />
-                      </div>
-                    )}
-                  </CardLabel>
-                </Card>
-              );
-            } else {
-              <></>;
-            }
-          })}
-        </CardContainer>
-      </StoreCampaingContainer>
-      <Pagination
-        elementPerPage={elementPerPage}
-        element={catalogue.length}
-        pagination={pagination}
-      />
-    </div>
-  );
+										{isAuthenticated && (
+											<button
+												className="donate-button"
+												onClick={() => {
+													// dispatch(setOpenModal(isModalOpen))
+													dispatch(
+														setDonationCartElements(item),
+														HandleClickCart()
+													);
+												}}
+											>
+												Add cart
+											</button>
+										)}
+										{!isAuthenticated && (
+											<button
+												className={"donate-button"}
+												onClick={() => loginWithRedirect()}
+											>
+												log in
+											</button>
+										)}
+										{isAuthenticated && (
+											<div
+												className={`icon-favorites ${item.selected}`}
+												onClick={() => animate(item)}
+											>
+												<IoHeart />
+											</div>
+										)}
+									</CardLabel>
+								</Card>
+							);
+						} else {
+							<></>;
+						}
+					})}
+				</CardContainer>
+			</StoreCampaingContainer>
+			<Pagination
+				elementPerPage={elementPerPage}
+				element={catalogue.length}
+				pagination={pagination}
+			/>
+			<Footer />
+		</div>
+	);
 };
