@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Terminos.module.css";
 import Navbar from "../../NavBar/NavBar";
 import Footer from "../../Footer/Footer";
-import PaymentTicket from "../../PaymentTicket/PaymentTicket";
 
 const Terminos = () => {
 	return (
@@ -13,8 +12,8 @@ const Terminos = () => {
 					<h1 className={style.titulo}>Terms and Conditions</h1>
 					<p className={style.parrafo}>
 						Thank you for considering making a donation to our organization.
-						dedicated to protecting endangered animals and trees. To the By
-						making a donation, you agree to the following terms and conditions:
+						dedicated to protecting endangered animals and trees. By making a
+						donation, you agree to the following terms and conditions:
 					</p>
 					<ol>
 						<li>All donations are final and cannot be refunded.</li>
@@ -33,7 +32,6 @@ const Terminos = () => {
 						do not hesitate. in contacting us.
 					</p>
 				</div>
-				<PaymentTicket />
 			</div>
 			<Footer />
 		</div>

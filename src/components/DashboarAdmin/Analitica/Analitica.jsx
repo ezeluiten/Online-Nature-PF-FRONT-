@@ -4,6 +4,7 @@ import style from "./Analitica.module.css";
 import NavBar from "../../NavBar/NavBar";
 import logo from "../images/logo2.png";
 import { getDonations } from "../../../store/actions/index";
+import GraphicDonation from "../Donaciones/GraphicDonations";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -72,8 +73,11 @@ const Analitica = () => {
 					</aside>
 					<main className={style.mains}>
 						<h1 className={style.lash1}>Dashboard</h1>
+						<div className={style.grafico}>
+							<GraphicDonation />
+						</div>
 
-						<div className={style.insigths}>
+						{/* <div className={style.insigths}>
 							<div className={style.sales}>
 								<span class="material-icons-sharp">analytics</span>
 								<div className={style.middle}>
@@ -128,7 +132,7 @@ const Analitica = () => {
 								</div>
 								<small className={style.text_muted}> last 24 hours</small>
 							</div>
-						</div>
+						</div> */}
 					</main>
 					<div className={style.right}>
 						<div className={style.sales_analytics}>
