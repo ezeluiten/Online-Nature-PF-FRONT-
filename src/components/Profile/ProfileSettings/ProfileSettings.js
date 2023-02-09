@@ -28,17 +28,16 @@ const openSettingsModal = () => {
   dispatch(setSettingsModalGate(isOpenSettingsModal));
 };
   return (
-    <ProfileContainerView>
+    <ProfileContainerView
+      onClick={isOpenSettingsModal ? () => openSettingsModal() : null}
+    >
       {/* <img src={zorro} style={{
             "position":"fixed"
         }}/> */}
 
       <Navbar />
       <ProfileContainer>
-        <div
-          className="settings-panel-options-picker"
-          onClick={isOpenSettingsModal ? () => openSettingsModal() : null}
-        >
+        <div className="settings-panel-options-picker">
           <p className="p-settings" onClick={() => handleToggle("edit")}>
             Edit Account Information
           </p>

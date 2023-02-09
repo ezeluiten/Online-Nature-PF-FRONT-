@@ -33,7 +33,7 @@ export default function CardsHome(props) {
 				</div>
 
 				<div className={style.card}>
-					<img src={img2} className={style.cardImg} />
+					<img src={img2} className={style.cardImg} alt="img not found" />
 					<div className={style.cardContainer}>
 						<div>
 							<h3 className={style.tittle}>Adopt an animal!</h3>
