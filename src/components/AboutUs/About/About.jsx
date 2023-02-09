@@ -2,10 +2,19 @@ import React from "react";
 import style from "./About.module.css";
 import Footer from "../../Footer/Footer";
 import Navbar from "../../NavBar/NavBar";
+import { useDispatch, useSelector } from "react-redux";
+import { setSettingsModalGate } from "../../../store/actions/index";
 
 const About = () => {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
   return (
-    <>
+     <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
+
       <Navbar />
 	  <div className={style.description}>
         <h4>Description</h4>
@@ -146,7 +155,7 @@ const About = () => {
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

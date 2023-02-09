@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
+import SearchBar from "../searchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
-  StoreCampaingContainer,
-  FiltersContainer,
-  CardLabel,
-  Card,
-  CardContainer,
+	StoreCampaingContainer,
+	FiltersContainer,
+	CardLabel,
+	Card,
+	CardContainer,
 } from "./CampaingStyles";
 import {
-  setOpenModal,
-  setDonationCartElements,
-  sorting,
-  setFavorites,
-  getAnimalsById,
-  getUserLoggedInfoToPay,
-  getTickets,
-  getDetail,
+	setOpenModal,
+	setDonationCartElements,
+	sorting,
+	setFavorites,
+	getAnimalsById,
+	getUserLoggedInfoToPay,
+	getTickets,
+	getDetail,
 } from "../../store/actions";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
@@ -28,69 +29,70 @@ import Pagination from "../Paginate/Paginate";
 import Swal from "sweetalert2";
 import { setSettingsModalGate } from "../../store/actions/index";
 import { height } from "@mui/system";
+import Footer from "../Footer/Footer";
 export const Campaing = () => {
   const { logout, loginWithRedirect,user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  let catalogue = useSelector((state) => state.donationCatalogue);
-  const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"));
-  const storageFavorites = JSON.parse(localStorage.getItem("favorites"));
-  useEffect(() => {
-    dispatch(getUserLoggedInfoToPay({...user, isAuthenticated}))
-  }, [isAuthenticated])
-  storageCatalogue &&
-    storageCatalogue.forEach((favorito) => {
-      catalogue = catalogue.map((item) => {
-        if (item._id == favorito._id) {
-          return {
-            ...favorito,
-          };
-        } else {
-          return {
-            ...item,
-          };
-        }
-      });
-    });
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	let catalogue = useSelector((state) => state.donationCatalogue);
+	const storageCatalogue = JSON.parse(localStorage.getItem("catalogue"));
+	const storageFavorites = JSON.parse(localStorage.getItem("favorites"));
+	useEffect(() => {
+		dispatch(getUserLoggedInfoToPay({ ...user, isAuthenticated }));
+	}, [isAuthenticated]);
+	storageCatalogue &&
+		storageCatalogue.forEach((favorito) => {
+			catalogue = catalogue.map((item) => {
+				if (item._id == favorito._id) {
+					return {
+						...favorito,
+					};
+				} else {
+					return {
+						...item,
+					};
+				}
+			});
+		});
 
-  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
-  const { payer, isOpenSettingsModal } = useSelector((state) => state);
-  const openSettingsModal = () => {
-    dispatch(setSettingsModalGate(isOpenSettingsModal));
-  };
-  const [currentPage, setCurrentPage] = useState(1);
-  const [elementPerPage, setElementPerPage] = useState(9);
-  const [order, setOrder] = useState("");
-  const indexOfLastCatalogue = currentPage * elementPerPage;
-  const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
+	const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+	const { payer, isOpenSettingsModal } = useSelector((state) => state);
+	const openSettingsModal = () => {
+		dispatch(setSettingsModalGate(isOpenSettingsModal));
+	};
+	const [currentPage, setCurrentPage] = useState(1);
+	const [elementPerPage, setElementPerPage] = useState(9);
+	const [order, setOrder] = useState("");
+	const indexOfLastCatalogue = currentPage * elementPerPage;
+	const indexOfFirstCatalogue = indexOfLastCatalogue - elementPerPage;
 
-  const handleClick = (id) => {
-    dispatch(getDetail(id));
-    navigate(`/campaign/${id}`);
-  };
+	const handleClick = (id) => {
+		dispatch(getDetail(id));
+		navigate(`/campaign/${id}`);
+	};
 
-  const currentCatalogue = catalogue.slice(
-    indexOfFirstCatalogue,
-    indexOfLastCatalogue
-  );
+	const currentCatalogue = catalogue.slice(
+		indexOfFirstCatalogue,
+		indexOfLastCatalogue
+	);
 
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-  const HandleClickCart = () => {
-    Swal.fire({
-      position: "top-start",
-      icon: "success",
-      title: "added to cart successfully",
-      showConfirmButton: false,
-      timer: 1000,
-      width: 300,
-    });
-  };
+	const pagination = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
+	const HandleClickCart = () => {
+		Swal.fire({
+			position: "top-start",
+			icon: "success",
+			title: "added to cart successfully",
+			showConfirmButton: false,
+			timer: 1000,
+			width: 300,
+		});
+	};
 
-  const animate = (item) => {
-    dispatch(setFavorites(item));
+	const animate = (item) => {
+		dispatch(setFavorites(item));
 
     storageFavorites.map((favorito) => {
       if (favorito._id != item._id) {

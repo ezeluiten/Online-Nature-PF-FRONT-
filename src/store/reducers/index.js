@@ -3,7 +3,8 @@ const initialState = {
   allanimals: [],
   trees: [],
   donations: [],
-  detail: {},
+  animalDetail: {},
+  treeDetail: {},
   isModalCashierOpen: false,
   isModalNavBarOpen: false,
   donationCatalogue: [],
@@ -14,19 +15,20 @@ const initialState = {
   payer: {},
   transactionInfo: {},
   isOpenSettingsModal: false,
-  favorites:[],
-  loading:false,
-  storageCatalogue:[],
-  id:"",
-  post_animal:[],
-  post_tree:[],
-  tickets:[],
-  detail:{},
-  clientLogged:{}
+  favorites: [],
+  loading: false,
+  storageCatalogue: [],
+  post_animal: [],
+  post_tree: [],
+  detail: {},
+  id: "",
+  tickets: [],
+  clientLogged: {},
+  allCatalogue: [],
 };
 
 const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
+	switch (action.type) {
     case "GET_ANIMALS":
       return {
         ...state,
@@ -61,13 +63,15 @@ const rootReducer = (state = initialState, action) => {
     case "MODAL_NAV":
       return {
         ...state,
-        isModalNavBar: action.payload,
+        isModalNavBarOpen: action.payload,
       };
     case "GET_DONATION_PORTFOLIO":
       return {
         ...state,
         donationCatalogue: action.payload,
+        allCatalogue: action.payload,
       };
+	  
     case "ITEMS_CART":
       return {
         ...state,
@@ -114,21 +118,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         storageCatalogue: action.payload,
       };
-    case 'POST_ANIMAL':
-        return {
-           ...state,
-           post_animal: action.payload
-    }
-    case 'POST_TREE':
-          return {
-             ...state,
-             post_tree: action.payload
-    }
-    case 'GET_ALL_TICKETS':
-          return {
-             ...state,
-             tickets: action.payload
-    }
+    case "POST_ANIMAL":
+      return {
+        ...state,
+        post_animal: action.payload,
+      };
+    case "POST_TREE":
+      return {
+        ...state,
+        post_tree: action.payload,
+      };
+    case "GET_ALL_TICKETS":
+      return {
+        ...state,
+        tickets: action.payload,
+      };
     case "GET_DETAIL":
       return {
         ...state,
@@ -145,21 +149,79 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         donationCatalogue: action.payload,
-      }
+      };
     case "SEND_ID":
       return {
         ...state,
-        id : action.payload
-      }
+        id: action.payload,
+      };
 
     case "CLIENT_LOGGED":
       return {
         ...state,
         clientLogged: {},
       };
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        donationCatalogue: action.payload,
+      };
+    case "ITEM_NAME":
+      return {
+        ...state,
+        donationCatalogue: action.payload,
+      };
+    case "ORDER_NAME_MENOR":
+      return {
+        ...state,
+        donationCatalogue: state.donationCatalogue
+          .sort((a, b) => {
+            if (a.title < b.title) {
+              return -1;
+            } else if (a.title > b.title) {
+              return 1;
+            } else {
+              return 0;
+            }
+          })
+          .reverse(),
+      };
+
+    case "ORDER_NAME_MAYOR":
+      return {
+        ...state,
+        donationCatalogue: state.donationCatalogue.sort((a, b) => {
+          if (a.title < b.title) {
+            return -1;
+          } else if (a.title > b.title) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }),
+      };
+
+    case "FILTER_TYPE": {
+      if (action.payload === "All") {
+        return {
+          ...state,
+          donationCatalogue: state.allCatalogue,
+        };
+      } else {
+        return {
+          ...state,
+          donationCatalogue: state.allCatalogue?.filter(
+            (element) => element.type === action.payload
+          ),
+        };
+      }
+    }
+
     default:
       return { ...state };
   }
-};
+	
+	}
+
 
 export default rootReducer;
