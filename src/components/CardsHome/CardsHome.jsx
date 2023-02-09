@@ -55,7 +55,7 @@ export default function CardsHome(props) {
 					<img src={img3} className={style.cardImg} />
 					<div className={style.cardContainer}>
 						<div>
-							<h3 className={style.tittle}>Donate is Save!</h3>
+							<h3 className={style.tittle}>Donate = Save!</h3>
 							<h4 className={style.sabias}>Did you know?...</h4>
 							<p>
 								Donating to a species conservation organization can help fund

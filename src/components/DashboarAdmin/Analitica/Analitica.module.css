@@ -160,7 +160,7 @@ aside .sidebar .aa span {
 aside .sidebar .aa:last-child {
 	position: absolute;
 	bottom: 2rem;
-	width: 100%;
+	width: 90%;
 }
 
 aside .sidebar a.active {
@@ -612,6 +612,17 @@ aside .sidebar .message_count {
 
 .right .sales_analytics .item_add_products div span {
 	font-size: 600;
+}
+
+.grafico {
+	background: #fffbff;
+	width: 100%;
+	border-radius: 1rem;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+	margin-top: 3rem;
 }
 
 @media screen and (max-width: 1200px) {

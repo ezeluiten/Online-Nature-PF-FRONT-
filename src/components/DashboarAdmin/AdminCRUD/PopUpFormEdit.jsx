@@ -13,22 +13,22 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
   //   return {}
   // })
 
-  const [formData, setFormData] = useState({
-    title: "",
-    image: "",
-    image_detail: "",
-    description: "",
-    amount: 0,
-  });
+	const [formData, setFormData] = useState({
+		title: "",
+		image: "",
+		image_detail: "",
+		description: "",
+		amount: 0,
+	});
 
-  const [error, setError] = useState({
-    title: "",
-    image: "",
-    image_detail: " ",
-    description: "",
-    amount: 0,
-    item_type: [],
-  });
+	const [error, setError] = useState({
+		title: "",
+		image: "",
+		image_detail: " ",
+		description: "",
+		amount: 0,
+		item_type: [],
+	});
 
   const handleInputChange = (e) => {
     setFormData({
@@ -36,13 +36,13 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
       [e.target.name]: e.target.value,
     });
 
-    setError(
-      validationCreate({
-        ...formData,
-        [e.target.name]: e.target.value,
-      })
-    );
-  };
+		setError(
+			validationCreate({
+				...formData,
+				[e.target.name]: e.target.value,
+			})
+		);
+	};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,10 +64,10 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
 
   return (
     <div className={style.containerFormCreate}>
-      <Button onClick={handleUpdate} variant="success">
-        Update
-      </Button>{" "}
-      {showFormEdit && (
+      	<Button onClick={handleUpdate} variant="primary">
+				Update
+		</Button>{" "}
+      	{showFormEdit && (
         <div className={style.formPopup}>
           <div>
             <form onSubmit={handleSubmit} className={style.creationForm}>
@@ -85,69 +85,69 @@ export default function PopUpFormEdit({ handleUpdate, showFormEdit }) {
               <p className={style.danger}>{error.title}</p>
               <br />
 
-              <label htmlFor="image">Image</label>
-              <input
-                className={`${error.image} && ${style.warning} ${style.inputForm}`}
-                value={formData.image}
-                onChange={handleInputChange}
-                type="text"
-                id="image"
-                name="image"
-                placeholder="URL"
-              />
-              <p className={style.danger}>{error.image}</p>
-              <br />
+							<label htmlFor="image">Image</label>
+							<input
+								className={`${error.image} && ${style.warning} ${style.inputForm}`}
+								value={formData.image}
+								onChange={handleInputChange}
+								type="text"
+								id="image"
+								name="image"
+								placeholder="URL"
+							/>
+							<p className={style.danger}>{error.image}</p>
+							<br />
 
-              <label htmlFor="image_detail">Image detail:</label>
-              <input
-                className={`${error.image_detail} && ${style.warning} ${style.inputForm}`}
-                value={formData.image_detail}
-                onChange={handleInputChange}
-                type="text"
-                id="image_detail"
-                name="image_detail"
-                placeholder="url"
-              />
-              <p className={style.danger}>{error.image_detail}</p>
-              <br />
+							<label htmlFor="image_detail">Image detail:</label>
+							<input
+								className={`${error.image_detail} && ${style.warning} ${style.inputForm}`}
+								value={formData.image_detail}
+								onChange={handleInputChange}
+								type="text"
+								id="image_detail"
+								name="image_detail"
+								placeholder="url"
+							/>
+							<p className={style.danger}>{error.image_detail}</p>
+							<br />
 
-              <label htmlFor="description">Description:</label>
-              <textarea
-                className={`${error.description} && ${style.warning} ${style.inputForm}`}
-                value={formData.description}
-                onChange={handleInputChange}
-                type="text"
-                id="description"
-                name="description"
-                placeholder="Description"
-              />
-              <p className={style.danger}>{error.description}</p>
-              <br />
+							<label htmlFor="description">Description:</label>
+							<textarea
+								className={`${error.description} && ${style.warning} ${style.inputForm}`}
+								value={formData.description}
+								onChange={handleInputChange}
+								type="text"
+								id="description"
+								name="description"
+								placeholder="Description"
+							/>
+							<p className={style.danger}>{error.description}</p>
+							<br />
 
-              <label htmlFor="amount">Amount:</label>
-              <input
-                className={`${error.amount} && ${style.warning} ${style.inputForm}`}
-                value={formData.amount}
-                onChange={handleInputChange}
-                type="number"
-                id="amount"
-                name="amount"
-                placeholder="ej: 30"
-              />
-              <p className={style.danger}>{error.amount}</p>
-              <br />
-              <div className={style.buttonsForm}>
-                <Button type="submit" variant="success">
-                  Update
-                </Button>{" "}
-                <Button variant="warning" onClick={handleUpdate}>
-                  Go back
-                </Button>{" "}
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+							<label htmlFor="amount">Amount:</label>
+							<input
+								className={`${error.amount} && ${style.warning} ${style.inputForm}`}
+								value={formData.amount}
+								onChange={handleInputChange}
+								type="number"
+								id="amount"
+								name="amount"
+								placeholder="ej: 30"
+							/>
+							<p className={style.danger}>{error.amount}</p>
+							<br />
+							<div className={style.buttonsForm}>
+								<Button type="submit" variant="primary">
+									Update
+								</Button>{" "}
+								<Button variant="warning" onClick={handleUpdate}>
+									Go back
+								</Button>{" "}
+							</div>
+						</form>
+					</div>
+				</div>
+			)}
+		</div>
+	);
 }

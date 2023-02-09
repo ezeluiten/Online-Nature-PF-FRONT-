@@ -4,17 +4,30 @@ import style from "./Analitica.module.css";
 import NavBar from "../../NavBar/NavBar";
 import logo from "../images/logo2.png";
 import { getDonations } from "../../../store/actions/index";
+import GraphicDonation from "../Donaciones/GraphicDonations";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Analitica = () => {
 	const dispatch = useDispatch();
 	const donations = useSelector((state) => state.donations);
+	const donationsThreeMonths = useSelector(
+		(state) => state.donationsThreeMonths
+	);
 
 
 	useEffect(() => {
 		dispatch(getDonations());
 	}, [dispatch]);
+
+	const suma = donationsThreeMonths.data?.reduce(
+		(acc, obj) => acc + obj.amount,
+		0
+	);
+	const quantity = donationsThreeMonths.data?.reduce(
+		(acc, obj) => acc + obj.quantity,
+		0
+	);
 
 	const { logout } = useAuth0();
 	return (
@@ -47,14 +60,6 @@ const Analitica = () => {
 								<span class="material-icons-sharp">insights</span>
 								<h3 className={style.lash3}>Analytics</h3>
 							</a>
-							{/* <a href="Contactanos" className={style.aa}>
-								<span class="material-icons-sharp">contact_mail</span>
-								<h3 className={style.lash3}>contact us</h3>
-							</a>
-							<a href="/Crud" className={style.aa}>
-								<span class="material-icons-sharp">inventory </span>
-								<h3 className={style.lash3}>Products</h3>
-							</a> */}
 							<a href="/Terminos" className={style.aa}>
 								<span class="material-symbols-sharp">gavel</span>
 								<h3 className={style.lash3}>Términos</h3>
@@ -71,62 +76,8 @@ const Analitica = () => {
 					</aside>
 					<main className={style.mains}>
 						<h1 className={style.lash1}>Dashboard</h1>
-
-						<div className={style.insigths}>
-							<div className={style.sales}>
-								<span class="material-icons-sharp">analytics</span>
-								<div className={style.middle}>
-									<div className={style.left}>
-										<h3 className={style.lash3}>Donations</h3>
-										<h2 className={style.lash2}>$ 1,000,000</h2>
-									</div>
-									<div className={style.progress}>
-										<svg>
-											<circle cx="38" cy="38" r="36"></circle>
-										</svg>
-										<div className={style.number}>
-											<p className={style.pp}>80%</p>
-										</div>
-									</div>
-								</div>
-								<small className={style.text_muted}> last 24 hours</small>
-							</div>
-							<div className={style.expenses}>
-								<span class="material-icons-sharp">bar_chart</span>
-								<div className={style.middle}>
-									<div className={style.left}>
-										<h3 className={style.lash3}>Total expenditures</h3>
-										<h2 className={style.lash2}>$ 150,000</h2>
-									</div>
-									<div className={style.progress}>
-										<svg>
-											<circle cx="38" cy="38" r="36"></circle>
-										</svg>
-										<div className={style.number}>
-											<p className={style.pp}>42%</p>
-										</div>
-									</div>
-								</div>
-								<small className={style.text_muted}> last 24 hours</small>
-							</div>
-							<div className={style.income}>
-								<span class="material-icons-sharp">stacked_line_chart</span>
-								<div className={style.middle}>
-									<div className={style.left}>
-										<h3 className={style.lash3}>Total revenues</h3>
-										<h2 className={style.lash2}>$ 1,500,000</h2>
-									</div>
-									<div className={style.progress}>
-										<svg>
-											<circle cx="38" cy="38" r="36"></circle>
-										</svg>
-										<div className={style.number}>
-											<p className={style.pp}>90%</p>
-										</div>
-									</div>
-								</div>
-								<small className={style.text_muted}> last 24 hours</small>
-							</div>
+						<div className={style.grafico}>
+							<GraphicDonation />
 						</div>
 					</main>
 					<div className={style.right}>
@@ -138,11 +89,9 @@ const Analitica = () => {
 								</div>
 								<div className={style.right}>
 									<div className={style.info}>
-										<h3 className={style.lash3}>Donations</h3>
-										<small className={style.text_muted}>last 24 hours</small>
+										<h3 className={style.lash3}>Last Three Months</h3>
+										<h5 className={style.successs}>Donations {suma} COP</h5>
 									</div>
-									<h5 className={style.successs}>+39%</h5>
-									<h3 className={style.lash3}>3849</h3>
 								</div>
 							</div>
 							<div className={style.item_offline}>
@@ -151,32 +100,11 @@ const Analitica = () => {
 								</div>
 								<div className={style.right}>
 									<div className={style.info}>
-										<h3 className={style.lash3}>Website visits</h3>
-										<small className={style.text_muted}>last 24 hours</small>
+										<h3 className={style.lash3}>Last Three Months</h3>
+										<h5 className={style.primaryy}>Quantity: {quantity}</h5>
 									</div>
-									<h5 className={style.primaryy}>+39%</h5>
-									<h3 className={style.lash3}>3849</h3>
 								</div>
 							</div>
-							<div className={style.item_customers}>
-								<div className={style.icon}>
-									<span class="material-symbols-sharp">travel_explore</span>
-								</div>
-								<div className={style.right}>
-									<div className={style.info}>
-										<h3 className={style.lash3}>Searchs</h3>
-										<small className={style.text_muted}>last 24 hours</small>
-									</div>
-									<h5 className={style.successs}>+39%</h5>
-									<h3 className={style.lash3}>3849</h3>
-								</div>
-							</div>
-							{/* <div className={style.item_add_products}>
-								<div>
-									<span class="material-symbols-sharp">add</span>
-									<h3 className={style.lash3}>Add Product</h3>
-								</div>
-							</div> */}
 						</div>
 					</div>
 				</div>

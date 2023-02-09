@@ -24,13 +24,15 @@ const SearchBar = () => {
 	};
 
 	return (
-		<form className={style.form_search_cnt}>
-			<input type="search" placeholder="Search..." onChange={handleName} />
-			<button type="submit" onClick={handleButtonSubmit}>
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</button>
-			{/* <img src="/#" alt="search icon" /> */}
-		</form>
+		<div className={style.continerSearchBar}>
+			<form className={style.form_search_cnt}>
+				<input type="search" placeholder="Search..." onChange={handleName} />
+				<button type="submit" onClick={handleButtonSubmit}>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+				{/* <img src="/#" alt="search icon" /> */}
+			</form>
+		</div>
 	);
 };
 

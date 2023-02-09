@@ -160,7 +160,7 @@ aside .sidebar .aa span {
 aside .sidebar .aa:last-child {
 	position: absolute;
 	bottom: 2rem;
-	width: 100%;
+	width: 90%;
 }
 
 aside .sidebar a.active {
@@ -332,6 +332,13 @@ main .insigths small {
 
 .mains .recent_orders {
 	margin-top: 2rem;
+	height: 80vh;
+	overflow-y: scroll;
+	box-shadow: 0 2rem 3rem #878b88;
+}
+
+.mains .recent_orders:hover {
+	box-shadow: none;
 }
 
 .mains .recent_orders .lash2 {
