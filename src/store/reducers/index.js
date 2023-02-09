@@ -1,6 +1,7 @@
 const initialState = {
   donationsByItem: [],
   donationsThreeMonths: [],
+  lastTransactions: [],
   animals: [],
   allanimals: [],
   trees: [],
@@ -235,6 +236,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         ticketsByUserLogged: action.payload,
+      }
+    case "GET_RECENT_CLIENT":
+      return {
+        ...state,
+        lastTransactions: action.payload,
       };
 
     default:
