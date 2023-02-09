@@ -15,7 +15,7 @@ export const ProfileSettings = () => {
 
 	const [isOpen, setIsOpen] = useState({
 		open: true,
-		view: "favorites",
+		view: "family",
 	});
 
 	const handleToggle = (view) => {
