@@ -29,7 +29,7 @@ import Swal from "sweetalert2";
 import { setSettingsModalGate } from "../../store/actions/index";
 import { height } from "@mui/system";
 export const Campaing = () => {
-  const { logout, loginWithRedirect,user, isAuthenticated } = useAuth0();
+  const { logout, loginWithRedirect,user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -113,8 +113,40 @@ export const Campaing = () => {
     });
   };
   const img = require("../../imagenes/salto.png");
+  // const getUserMetadata = async () => {
+  //   const domain = "dev-xp4wmo5z0oblx157.us.auth0.com";
+
+  //   try {
+  //     const accessToken = await getAccessTokenSilently({
+  //       authorizationParams: {
+  //         audience: `https://${domain}/api/v2/`,
+  //         scope: "read:current_user update:current_user_metadata"
+  //       },
+  //     });
+  //     console.log("🚀 ~ file: Campaing.js:126 ~ getUserMetadata ~ accessToken", accessToken)
+
+  //     const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
+
+  //     console.log("🚀 ~ file: Campaing.js:130 ~ getUserMetadata ~ userDetailsByIdUrl", userDetailsByIdUrl)
+  //     const metadataResponse = await fetch(userDetailsByIdUrl, {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     });
+
+  //     const variableAuth = await metadataResponse.json();
+
+  //     console.log(variableAuth);
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  // };
+
+  
+
   return (
     <div onClick={isOpenSettingsModal ? () => openSettingsModal() : null}>
+      {/* <button onClick={getUserMetadata}>CLICK ME</button> */}
       <NavBar />
       <Header
         imagen={img}
