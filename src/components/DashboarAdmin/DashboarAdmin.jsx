@@ -48,7 +48,7 @@ const DashboarAdmin = () => {
               </a>
               <a href="/profile" className={style.aa}>
                 <span class="material-icons-sharp">people</span>
-                <h3 className={style.lash3}>Customers</h3>
+                <h3 className={style.lash3}>Family members</h3>
               </a>
               <a href="/Analitica" className={style.aa}>
                 <span class="material-icons-sharp">insights</span>
