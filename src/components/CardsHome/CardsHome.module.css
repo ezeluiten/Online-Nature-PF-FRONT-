@@ -1,5 +1,4 @@
 .contenedor {
-
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -12,7 +11,7 @@
 	margin-bottom: 50px;
 }
 
-.cardContainer{
+.cardContainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -25,48 +24,52 @@
 
 .card {
 	box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
-	rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+		rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 	width: 350px;
 	height: 500px;
 	background-color: white;
 	border-radius: 10px;
 	overflow: hidden;
-
 }
 
 .card .tittle {
-  font-size: 25px;
-  font-weight: bold;
-  color: #446f47;
+	font-size: 25px;
+	font-weight: bold;
+	color: #446f47;
 }
 
 .sabias {
-  font-size: 15px;
-  font-weight: bold;
-  color: #446f47;
+	font-size: 15px;
+	font-weight: bold;
+	color: #446f47;
 }
 
 .card:hover {
-  box-shadow: none;
+	box-shadow: none;
 }
 
 .cardImg {
-
 	object-fit: cover;
 	width: 100%;
 	height: 200px;
-
 }
 
 .store {
-  background-color: #ea4335;
-  border-color: transparent;
-  margin-top: auto;
+	background-color: #ea4335;
+	border-color: transparent;
+	margin-top: auto;
+	overflow: hidden;
+	font-size: 16px;
+	border-radius: 0.4rem;
+	padding: 5px;
+}
+.store a {
+	text-decoration: none;
+	color: white;
 }
 
 .store:hover {
-
-	background-color: #ea4335;
+	background-color: #e8210e;
 }
 
 @media only screen and (max-width: 600px) {
@@ -79,15 +82,14 @@
 	img {
 		object-fit: contain;
 	}
-	
+
 	.card {
 		margin: 0;
 		overflow: hidden;
 		width: 100%;
 	}
-	.cardContainer{
+	.cardContainer {
 		width: 100%;
 		margin: 0;
 	}
-
 }

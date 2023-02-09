@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import NavBar from "../../NavBar/NavBar";
 import styles from "./AnimalDetail.module.css";
 import { setDonationCartElements, resetDetail } from "../../../store/actions";
+import { setSettingsModalGate } from "../../../store/actions/index";
 
 export default function AnimalDetil() {
   const dispatch = useDispatch();
@@ -16,9 +17,16 @@ export default function AnimalDetil() {
     dispatch(resetDetail());
     navigate(`/campaign`);
   };
-
+  const isModalOpen = useSelector((state) => state.isModalCashierOpen);
+  const { payer, isOpenSettingsModal } = useSelector((state) => state);
+  const openSettingsModal = () => {
+    dispatch(setSettingsModalGate(isOpenSettingsModal));
+  };
   return (
-    <div className={styles.detalle}>
+    <div
+      className={styles.detalle}
+      onClick={isOpenSettingsModal ? () => openSettingsModal() : null}
+    >
       <NavBar />
       <img src={detalle.image_detail} alt="img" />
       <div className={styles.container}>

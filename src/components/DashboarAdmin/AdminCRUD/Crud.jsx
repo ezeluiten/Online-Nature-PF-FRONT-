@@ -1,22 +1,24 @@
-import React, {useState} from "react"
-import Button from 'react-bootstrap/Button';
-import style from "./Crud.module.css"
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import style from "./Crud.module.css";
 import FormPopup from "./PopupForm";
 import { useSelector, useDispatch } from "react-redux";
-import { sendId } from "../../../store/actions";
+import { sendId, deleteItem } from "../../../store/actions";
 import PopUpFormEdit from "./PopUpFormEdit"
+import Swal from 'sweetalert2'
+import NavBar from "../../NavBar/NavBar";
+
 
 
 
 export default function Crud() {
-    const [showForm, setShowForm] = useState(false);
-    const [showFormEdit, setShowFormEdit] = useState(false);
-    const [dataToEdit, setDataToEdit] = useState(null);
-    let catalogue = useSelector((state) => state.donationCatalogue);
-    console.log(catalogue, "hola")
-    const dispatch = useDispatch();
-    
-    const handleClick = () => {
+	const [showForm, setShowForm] = useState(false);
+	const [showFormEdit, setShowFormEdit] = useState(false);
+	const [dataToEdit, setDataToEdit] = useState(null);
+	let catalogue = useSelector((state) => state.donationCatalogue);
+	console.log(catalogue, "hola");
+	const dispatch = useDispatch();
+	const handleClick = () => {
       setShowForm(!showForm);
     };
 
@@ -25,9 +27,30 @@ export default function Crud() {
         dispatch(sendId(id))
       };
 
+      const handleDelete=(id)=>{
+        
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+              dispatch(deleteItem(id));
+setTimeout(function () {
+  window.location.reload();
+}, 1000);        
+          }
+        });
+
+      }
 
     return(
         <>
+		<NavBar/>
         <div className={style.btnCreate}>
             <FormPopup handleClick={handleClick} showForm={showForm} />
         </div>
@@ -56,7 +79,7 @@ export default function Crud() {
                             <td className={style.tdCrud}>{e?.amount && e?.amount}</td>
                             <td className={style.tdCrudButtons}>
                                 <PopUpFormEdit handleUpdate={() => handleUpdate(e._id)} showFormEdit={showFormEdit} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
-                                <Button variant="danger">Delete</Button>{' '}
+                                <Button variant="danger" onClick={()=>handleDelete(e._id)}>Delete</Button>{' '}
                             </td>
                             </>
                         }

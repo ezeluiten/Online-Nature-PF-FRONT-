@@ -1,0 +1,123 @@
+.continerSearchBar {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.form_search_cnt {
+	width: 35%;
+	height: 3em;
+	background-color: #568259;
+	display: flex;
+	align-items: center;
+	border-radius: 60px;
+	padding: 10px 20px;
+	backdrop-filter: blur(4px) saturate(180%);
+	-webkit-backdrop-filter: blur(4px) saturate(180%);
+	border: 1px solid #060706;
+	transition: 0.5s;
+	margin-bottom: 20px;
+	box-shadow: 0 0.5rem 0.5rem #878b88;
+}
+
+.form_search_cnt input {
+	background-color: transparent;
+	flex: 1;
+	border: 0;
+	outline: none;
+	padding: 11px 5px;
+	font-size: 15px;
+	color: #060000;
+	font-weight: 400;
+	transition: 0.5s;
+}
+
+::placeholder {
+	color: rgba(11, 1, 1, 0.558);
+	font-weight: 600;
+	font-size: 1em;
+}
+
+.form_search_cnt button {
+	border: 0;
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	background-color: #ea4335;
+	cursor: pointer;
+	transition: 0.6s;
+	box-shadow: 0 0.5rem 0.5rem #878b88;
+	position: absolute;
+	right: 0;
+}
+
+.form_search_cnt button img {
+	width: 25px;
+	height: 25px;
+	transition: 0.6s;
+}
+
+.form_search_cnt button:hover {
+	background-color: #568259;
+	transition: 0.6s;
+	box-shadow: none;
+}
+
+/* .search {
+	margin-left: 550px;
+	margin-top: 20px;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	padding: 20px;
+	transition-duration: 500ms;
+	cursor: pointer;
+	font-family: "Inter", sans-serif;
+	font-family: "Lato", sans-serif;
+	font-family: "Noto Sans", sans-serif;
+	font-size: 15px;
+	border: 1px solid #568259;
+	overflow: hidden;
+	background-image: url(./search.png.png);
+	background-repeat: no-repeat;
+	background-size: 22px;
+	background-position: 45% 50%;
+}
+
+.search:hover {
+	width: 400px;
+	cursor: text;
+	padding-left: 80px;
+	color: black;
+	outline: none;
+	background-color: white;
+	border: 1px solid #568259;
+	background-image: url(./search.png.png) no-repeat;
+	background-size: 22px;
+	background-position: 10px;
+	border-radius: 20%;
+	-webkit-border-radius: 20%;
+	-moz-border-radius: 20%;
+	-ms-border-radius: 20%;
+	-o-border-radius: 20%;
+}
+
+/* .search:focus {
+	width: 200px;
+	cursor: text;
+	padding-left: 40px;
+	color: white;
+	outline: none;
+	background-color: transparent;
+	border: 1px solid #ff9950;
+	background-image: url(./search.png.png) no-repeat;
+	background-size: 22px;
+	background-position: 10px 50%;
+} */

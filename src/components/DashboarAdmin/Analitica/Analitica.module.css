@@ -1,14 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 .mainContainerDash {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	appearance: none;
+	border: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+	font-size: 14px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 40' width='80' height='40'%3E%3Cpath fill='%2374a180' fill-opacity='0.09' d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.2A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 25.26 20.02 20.02 0 0 1 65.32.76zM.07 0h20.1l-.08.07A20.02 20.02 0 0 1 .75 5.25 20.08 20.08 0 0 1 .07 0zm1.94 40h2.53l4.26-4.24v-9.78A17.96 17.96 0 0 0 2 40zm5.38 0h9.8a17.98 17.98 0 0 0 6.67-16.42L7.4 40zm3.43-15.42v9.17l11.62-11.59c-3.97-.5-8.08.3-11.62 2.42zm32.86-.78A18 18 0 0 0 63.85 3.63L43.68 23.8zm7.2-19.17v9.15L62.43 2.22c-3.96-.5-8.05.3-11.57 2.4zm-3.49 2.72c-4.1 4.1-5.81 9.69-5.13 15.03l6.61-6.6V6.02c-.51.41-1 .85-1.48 1.33zM17.18 0H7.42L3.64 3.78A18 18 0 0 0 17.18 0zM2.08 0c-.01.8.04 1.58.14 2.37L4.59 0H2.07z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.dashbody {
 	width: 100vw;
 	height: 100vh;
-	font-size: poppins, sans-serif;
-	font-size: 0.88rem;
-	background-color: #eeeeee;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 40' width='80' height='40'%3E%3Cpath fill='%2374a180' fill-opacity='0.09' d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.2A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 25.26 20.02 20.02 0 0 1 65.32.76zM.07 0h20.1l-.08.07A20.02 20.02 0 0 1 .75 5.25 20.08 20.08 0 0 1 .07 0zm1.94 40h2.53l4.26-4.24v-9.78A17.96 17.96 0 0 0 2 40zm5.38 0h9.8a17.98 17.98 0 0 0 6.67-16.42L7.4 40zm3.43-15.42v9.17l11.62-11.59c-3.97-.5-8.08.3-11.62 2.42zm32.86-.78A18 18 0 0 0 63.85 3.63L43.68 23.8zm7.2-19.17v9.15L62.43 2.22c-3.96-.5-8.05.3-11.57 2.4zm-3.49 2.72c-4.1 4.1-5.81 9.69-5.13 15.03l6.61-6.6V6.02c-.51.41-1 .85-1.48 1.33zM17.18 0H7.42L3.64 3.78A18 18 0 0 0 17.18 0zM2.08 0c-.01.8.04 1.58.14 2.37L4.59 0H2.07z'%3E%3C/path%3E%3C/svg%3E");
+	font-family: poppins, sans-serif;
 	user-select: none;
-	color: #121619;
+	overflow-x: hidden;
 }
 
 .container {
@@ -17,48 +27,48 @@
 	margin: 0 auto;
 	gap: 1.8rem;
 	grid-template-columns: 14rem auto 23rem;
-	overflow: hidden;
+	/* overflow: hidden;
+	font-size: 1.2rem;
+	font-weight: 400; */
 }
 
-.tableContainer {
+/* .tableContainer {
 	padding: 60px;
-}
+}  */
 
-/* a {
+.aa {
 	color: #121619;
-	text-decoration: none;
 }
 
 img {
 	display: block;
 	width: 100%;
-	object-fit: cover;
 }
 
-h1 {
+.lash1 {
 	font-weight: 800;
 	font-size: 1.8rem;
 }
 
-h2 {
-	font-size: 1.6rem;
+.lash2 {
+	font-size: 1.4rem;
 }
 
-h3 {
-	font-size: 1rem;
+.lash3 {
+	font-size: 0.87rem;
 }
 
-h4 {
+.lash4 {
 	font-size: 0.8rem;
 }
 
-h5 {
+.lash5 {
 	font-size: 0.77rem;
 }
 
 small {
 	font-size: 0.75rem;
-} */
+}
 
 .profile_photo {
 	width: 2.8rem;
@@ -78,19 +88,19 @@ b {
 	color: #121619;
 }
 
-.primary {
+.primaryy {
 	color: #81e4c3;
 }
 
-.danger {
+.dangerr {
 	color: #568259;
 }
 
-.success {
+.successs {
 	color: #ff7782;
 }
 
-.warning {
+.warningg {
 	color: #ffbb55;
 }
 
@@ -127,29 +137,30 @@ aside .sidebar {
 	top: 3rem;
 }
 
-aside h3 {
+aside .lash3 {
 	font-weight: 500;
 }
 
-aside .sidebar a {
+aside .sidebar .aa {
 	display: flex;
 	background: #568259;
 	margin-left: 2rem;
+	gap: 1rem;
 	align-items: center;
 	position: relative;
 	height: 3.7rem;
 	transition: all 300ms ease;
 }
 
-aside .sidebar a span {
-	font-size: 2rem;
+aside .sidebar .aa span {
+	font-size: 1.6rem;
 	transition: all 300ms ease;
 }
 
-aside .sidebar a:last-child {
+aside .sidebar .aa:last-child {
 	position: absolute;
 	bottom: 2rem;
-	width: 86%;
+	width: 90%;
 }
 
 aside .sidebar a.active {
@@ -170,11 +181,11 @@ aside .sidebar a.active span {
 	margin-left: calc(1rem - 3px);
 }
 
-aside .sidebar a:hover {
-	color: #81e4c3;
+aside .sidebar .aa:hover {
+	color: #57e388;
 }
 
-aside .sidebar a:hover span {
+aside .sidebar .aa:hover span {
 	margin-left: 1rem;
 }
 
@@ -190,7 +201,12 @@ aside .sidebar .message_count {
 	-o-border-radius: 0.4rem;
 }
 
-main .date {
+.mains {
+	margin-top: 1.4rem;
+	margin-top: 20px;
+}
+
+.mains .date {
 	display: inline-block;
 	background: #878b88;
 	border-radius: 0.4rem;
@@ -198,20 +214,20 @@ main .date {
 	padding: 0.5rem 1.6rem;
 }
 
-main .date input[type="date"] {
+.mains .date input[type="date"] {
 	background: transparent;
 	border: none;
 	color: #fffbff;
 	font-size: 0.8rem;
 }
 
-main .insigths {
+.mains .insigths {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1.6rem;
 }
 
-main .insigths > div {
+.mains .insigths > div {
 	background: #fffbff;
 	padding: 1.8rem;
 	border-radius: 2rem;
@@ -219,15 +235,15 @@ main .insigths > div {
 	-moz-border-radius: 2rem;
 	-ms-border-radius: 2rem;
 	-o-border-radius: 2rem;
-	margin-top: 1rem;
+	margin-top: 150px;
 	box-shadow: 0 2rem 3rem #878b88;
 }
 
-main .insigths > div:hover {
+.mains .insigths > div:hover {
 	box-shadow: none;
 }
 
-main .insigths > div span {
+.mains .insigths > div span {
 	background: #81e4c3;
 	padding: 0.5rem;
 	border-radius: 50%;
@@ -239,37 +255,37 @@ main .insigths > div span {
 	font-size: 2rem;
 }
 
-main .insigths > div.expenses span {
+.mains .insigths > div.expenses span {
 	background: #568259;
 }
 
-main .insigths > div.income span {
+.mains .insigths > div.income span {
 	background: #ff7782;
 }
 
-main .insigths > div .middle {
+.mains .insigths > div .middle {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-main .insigths h3 {
+.mains .insigths h3 {
 	font-size: 1rem 0 0.6rem;
 }
 
-main .insigths .progress {
+.mains .insigths .progress {
 	position: relative;
 	width: 92px;
 	height: 92px;
 	border-radius: 50%;
 }
 
-main .insigths svg {
+.mains .insigths svg {
 	width: 7rem;
 	height: 7rem;
 }
 
-main .insigths svg circle {
+.mains .insigths svg circle {
 	fill: none;
 	stroke: #81e4c3;
 	stroke-width: 14;
@@ -283,22 +299,22 @@ main .insigths svg circle {
 	stroke-dashoffset: 92;
 }
 
-main .insigths .income svg circle {
+.mains .insigths .income svg circle {
 	stroke-dashoffset: -30;
 	stroke-dasharray: 200;
 }
 
-main .insigths .sale svg circle {
+.mains .insigths .sale svg circle {
 	stroke-dashoffset: 20;
 	stroke-dasharray: 80;
 }
 
-main .insigths .expenses svg circle {
+.mains .insigths .expenses svg circle {
 	stroke-dashoffset: -20;
 	stroke-dasharray: 110;
 }
 
-main .insigths .progress .number {
+.mains .insigths .progress .number {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -309,16 +325,448 @@ main .insigths .progress .number {
 	justify-content: center;
 }
 
-main .insigths small {
+.mains .insigths small {
 	margin-top: 1.3rem;
 	display: block;
+}
+
+.mains .recent_orders {
+	margin-top: 100px;
+}
+
+.mains .recent_orders .lash2 {
+	margin-bottom: 0.8rem;
+}
+
+.mains .recent_orders table {
+	background: #fffbff;
+	width: 100%;
+	border-radius: 1rem;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.mains .recent_orders table:hover {
+	box-shadow: none;
+}
+
+.mains table tbody td {
+	height: 2.8rem;
+	border-bottom: 1px solid #878b88;
+	color: #677483;
+	padding: 20px;
+}
+.mains table thead th {
+	padding: 20px;
+}
+
+.mains table tbody td:last-child {
+	border: none;
+}
+
+.mains .recent_orders .aa {
+	text-align: center;
+	display: block;
+	margin: 1rem auto;
+	color: #81e4c3;
+}
+
+.mains table tbody {
+	border-top: 1px solid #878b88;
+	border-bottom: 1px solid #878b88;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+/* PRINCIPIO DE CSS DE MENU */
+
+.right {
+	margin-top: 1.4rem;
+}
+
+.right .top {
+	display: flex;
+	justify-content: end;
+	gap: 2rem;
+}
+
+.botoncito {
+	background: #81e4c3;
+	color: white;
+	padding: 0.4rem 0.4rem;
+	border: none;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	transition: all 300ms ease;
+}
+
+.botoncito:hover {
+	background: #568259;
+}
+
+.right .top .theme_toggler {
+	display: flex;
+	align-items: center;
+}
+
+.rigth .theme_toggler span {
+	padding: 0.4rem 0.4rem;
+	cursor: pointer;
+	transition: all 300ms ease;
+}
+
+.rigth .theme_toggler span.active {
+	background: #81e4c3;
+	color: white;
+}
+
+.right .top .profile_photo {
+	display: flex;
+	align-items: center;
+}
+
+.right .recent_updates {
+	margin-top: 100px;
+}
+
+.right .recent_updates .lash2 {
+	margin-bottom: 0.8rem;
+}
+
+.right .recent_updates .updates {
+	background: #fffbff;
+	border-radius: 2rem;
+	padding: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .recent_updates .updates:hover {
+	box-shadow: none;
+}
+
+.right .recent_updates .updates .update {
+	display: grid;
+	grid-template-columns: 2.6rem auto;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.right .recent_updates .updates .profile_photo img {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.right .sales_analytics {
+	margin-top: 100px;
+	margin-right: 100px;
+}
+
+.right .sales_analytics .lash2 {
+	margin-bottom: 0.8rem;
+}
+
+.right .sales_analytics .item_online {
+	margin-top: 100px;
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 20px;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .sales_analytics .item_online:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_online .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_online .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	background: #81e4c3;
+	display: flex;
+}
+
+.right .sales_analytics .item_customers {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .sales_analytics .item_customers:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_customers .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_customers .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	display: flex;
+	background: #ffbb55;
+}
+
+.right .sales_analytics .item_offline {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .sales_analytics .item_offline:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_offline .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_offline .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	display: flex;
+	background: #ff7782;
+}
+
+.right .sales_analytics .item_add_products {
+	background: #fffbff;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+	padding: 1.4rem 1.8rem;
+	border-radius: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+	background-color: transparent;
+	border: 2px dashed #81e4c3;
+	justify-content: center;
+	color: #ff7782;
+}
+
+.right .sales_analytics .item_add_products:hover {
+	box-shadow: none;
+}
+
+.right .sales_analytics .item_add_products .right {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0;
+	width: 100%;
+}
+
+.right .sales_analytics .item_add_products .icon {
+	padding: 0.6rem;
+	color: #f6f6f9;
+	border-radius: 50%;
+	background: #81e4c3;
+	display: flex;
+}
+
+.right .sales_analytics .item_add_products div {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.right .sales_analytics .item_add_products div span {
+	font-size: 600;
+}
+
+.grafico {
+	background: #fffbff;
+	width: 100%;
+	border-radius: 1rem;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+	margin-top: 3rem;
+}
+
+@media screen and (max-width: 1200px) {
+	.container {
+		width: 94%;
+		grid-template-columns: 7rem auto 23rem;
+	}
+
+	aside .logo .lash2 {
+		display: none;
+	}
+}
+.date {
+	display: inline-block;
+	background: #878b88;
+	border-radius: 0.4rem;
+	margin-top: 1rem;
+	padding: 0.5rem 1.6rem;
+}
+
+.mains .date input[type="date"] {
+	background: transparent;
+	border: none;
+	color: #fffbff;
+	font-size: 0.8rem;
+}
+
+.mains .recent_orders {
+	margin-top: 2rem;
+}
+
+.mains .recent_orders .lash2 {
+	margin-bottom: 0.8rem;
+}
+
+.mains .recent_orders table {
+	background: #fffbff;
+	width: 100%;
+	border-radius: 1rem;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.mains .recent_orders table:hover {
+	box-shadow: none;
+}
+
+.mains table tbody td {
+	height: 2.8rem;
+	border-bottom: 1px solid #878b88;
+	color: #677483;
+	padding: 20px;
+}
+.mains table thead th {
+	padding: 20px;
+}
+
+.mains table tbody td:last-child {
+	border: none;
+}
+
+.mains .recent_orders .aa {
+	text-align: center;
+	display: block;
+	margin: 1rem auto;
+	color: #81e4c3;
+}
+
+.mains table tbody {
+	border-top: 1px solid #878b88;
+	border-bottom: 1px solid #878b88;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+/* PRINCIPIO DE CSS DE MENU */
+/* 
+.right {
+	margin-top: 1.4rem;
+}
+
+.right .top {
+	display: flex;
+	justify-content: end;
+	gap: 2rem;
+}
+
+.right .top .theme_toggler {
+	display: flex;
+	align-items: center;
+}
+
+.rigth .theme_toggler span {
+	padding: 0.4rem 0.4rem;
+	cursor: pointer;
+	transition: all 300ms ease;
+}
+
+.rigth .theme_toggler span.active {
+	background: #81e4c3;
+	color: white;
+}
+
+.right .top .profile {
+	display: flex;
+	align-items: center;
+} */
+
+.right .recent_updates {
+	margin-top: 1rem;
+}
+
+.right .recent_updates .lash2 {
+	margin-bottom: 0.8rem;
+}
+
+.right .recent_updates .updates {
+	background: #fffbff;
+	border-radius: 2rem;
+	padding: 1.2rem;
+	box-shadow: 0 2rem 3rem #878b88;
+	transition: all 300ms ease;
+}
+
+.right .recent_updates .updates:hover {
+	box-shadow: none;
+}
+
+.right .recent_updates .updates .update {
+	display: grid;
+	grid-template-columns: 2.6rem auto;
+	gap: 1rem;
+	margin-bottom: 1rem;
 }
 
 .right .sales_analytics {
 	margin-top: 2rem;
 }
 
-.right .sales_analytics h2 {
+.right .sales_analytics .lash2 {
 	margin-bottom: 0.8rem;
 }
 
@@ -462,6 +910,141 @@ main .insigths small {
 
 .right .sales_analytics .item_add_products div span {
 	font-size: 600;
+}
+
+@media screen and (max-width: 1200px) {
+	.container {
+		width: 94%;
+		grid-template-columns: 7rem auto 23rem;
+	}
+
+	aside .logo .lash2 {
+		display: none;
+	}
+
+	aside .sidebar .lash3 {
+		display: none;
+	}
+
+	aside .sidebar .aa {
+		width: 5.6rem;
+	}
+
+	aside .sidebar .aa:last-child {
+		position: relative;
+		margin-top: 1.8rem;
+	}
+
+	.mains .insigths {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.mains .recent_orders {
+		width: 94%;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		margin: 2rem 0 0 8.8rem;
+	}
+
+	.mains .recent_orders table {
+		width: 83vw;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		width: 100%;
+		grid-template-columns: 1fr;
+	}
+
+	aside {
+		position: fixed;
+		left: 0;
+		background: #f6f6f9;
+		width: 18rem;
+		z-index: 3;
+		box-shadow: 1rem 3rem 4rem #878b88;
+		height: 100vh;
+		padding-right: 1.8rem;
+		display: none;
+	}
+
+	aside .logo {
+		margin-left: 1rem;
+	}
+
+	aside .logo .lash2 {
+		display: inline;
+	}
+
+	aside .sidebar .lash3 {
+		display: inline;
+	}
+
+	aside .sidebar .aa {
+		width: 100%;
+		height: 3.4rem;
+	}
+
+	aside .sidebar .aa:last-child {
+		position: absolute;
+		bottom: 5rem;
+	}
+
+	aside .close {
+		display: inline-block;
+		cursor: pointer;
+	}
+
+	.mains {
+		margin-top: 1rem;
+		padding: 0 1rem;
+	}
+
+	.mains .recent_orders {
+		position: relative;
+		margin: 3rem 0 0 0;
+		width: 100%;
+	}
+
+	.mains .recent_orders table {
+		width: 100%;
+		margin: 0;
+	}
+
+	.right {
+		width: 94%;
+		margin: 0 auto 4rem;
+	}
+
+	.right .top {
+		position: fixed;
+		top: 0;
+		left: 0;
+		align-items: center;
+		padding: 0 0.8rem;
+		height: 4.6rem;
+		background: #f6f6f9;
+		width: 100%;
+		margin: 0;
+		z-index: 2;
+		box-shadow: 0 1rem 1rem #878b88;
+	}
+
+	.right .top .botoncito {
+		display: inline-block;
+		background: transparent;
+		cursor: pointer;
+		color: #121619;
+		position: absolute;
+		left: 1rem;
+	}
+
+	.right .top .botoncito span {
+		font-size: 2rem;
+	}
 }
 
 @media screen and (max-width: 1200px) {

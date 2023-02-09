@@ -1,44 +1,42 @@
-import React, { useEffect, useState} from "react";
-import { useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   orderByAlpha,
   getCatalogue,
   orderBySpecies,
-
   filterType,
   ordenNameMayor,
-  ordenNameMenor
+  ordenNameMenor,
 } from "../../store/actions";
-import styles from '../filters/filters.module.css'
-const Filters = ({setCurrentPage, setOrder}) => {
+import styles from "../filters/filters.module.css";
+const Filters = ({ setCurrentPage, setOrder }) => {
   const dispatch = useDispatch();
 const hola = useSelector((state) => state.donationCatalogue);
 
- 
   useEffect(() => {
     dispatch(getCatalogue());
-    console.log(hola)
+    console.log(hola);
   }, [dispatch]);
 
   const handleFilterAlph = (e) => {
     e.preventDefault();
     // dispatch(orderByAlpha(e.target.value));
-    const type = e.target.value
-    if(type === "ascendant"){
-      dispatch(ordenNameMayor())
-    }else{
-      dispatch(ordenNameMenor())
+    const type = e.target.value;
+    if (type === "ascendant") {
+      dispatch(ordenNameMayor());
+    } else {
+      dispatch(ordenNameMenor());
     }
-    setCurrentPage(1)
+    setCurrentPage(1);
     setOrder(e.target.value);
   };
-const handleFilterSpecies = (e) => {
-  e.preventDefault();
-  // dispatch(orderBySpecies(e.target.value));
-  dispatch(filterType(e.target.value))
-  setCurrentPage(1);
-  setOrder(e.target.value);
-};
+  const handleFilterSpecies = (e) => {
+    e.preventDefault();
+    // dispatch(orderBySpecies(e.target.value));
+    dispatch(filterType(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+  };
   return (
     <div className={styles.divi}>
       <div className={styles.divis}>
