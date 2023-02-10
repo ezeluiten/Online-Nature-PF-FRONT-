@@ -77,7 +77,7 @@ function Navbar() {
           </div>
 
           {
-            isAuthenticated && user.email == "rapuentes@uan.edu.co" &&  <div className={styles.a}>
+            <div className={styles.a}>
             <NavLink to="/DashboarAdmin" className={styles.link}>
               My Dash
             </NavLink>
