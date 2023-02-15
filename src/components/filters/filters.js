@@ -11,7 +11,7 @@ import {
 import styles from "../filters/filters.module.css";
 const Filters = ({ setCurrentPage, setOrder }) => {
   const dispatch = useDispatch();
-  const hola = useSelector((state) => state.donationCatalogue);
+const hola = useSelector((state) => state.donationCatalogue);
 
   useEffect(() => {
     dispatch(getCatalogue());
