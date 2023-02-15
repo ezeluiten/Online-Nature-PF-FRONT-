@@ -73,7 +73,7 @@ const About = () => {
         <div className={style.profile_card}>
           <div className={style.img}>
             <img
-              src="https://media.licdn.com/dms/image/D4D35AQFIQcDlRZas7w/profile-framedphoto-shrink_800_800/0/1666015377058?e=1676091600&v=beta&t=JTOe7jau2TZS7vWzHs-lB8pA9k_502DEsVKlbrupo2I"
+              src="https://res.cloudinary.com/drp8i1fbf/image/upload/v1676421340/imagesTrees/WhatsApp_Image_2023-02-14_at_7.33.13_PM_fifv3c.jpg"
               alt=""
             />
           </div>
@@ -113,7 +113,7 @@ const About = () => {
         <div className={style.profile_card}>
           <div className={style.img}>
             <img
-              src="https://media.licdn.com/dms/image/D4E35AQHWee_mGRwjqw/profile-framedphoto-shrink_800_800/0/1666449056742?e=1676091600&v=beta&t=w4HaDuWqogYwn_fgQa2t1KLMiUo08CM8W4pufdDr9wk"
+              src="https://res.cloudinary.com/drp8i1fbf/image/upload/v1676421479/imagesTrees/dan_zymbcw.jpg"
               alt=""
             />
           </div>
@@ -133,7 +133,7 @@ const About = () => {
         <div className={style.profile_card}>
           <div className={style.img}>
             <img
-              src="https://media.licdn.com/dms/image/D4E35AQEs30xbEjo7sg/profile-framedphoto-shrink_800_800/0/1666463279778?e=1676091600&v=beta&t=TolPndwZm9gCoPNgJWv0-4qruPjvvEfl0jYOPRhPrUY"
+              src="https://res.cloudinary.com/drp8i1fbf/image/upload/v1675923811/imagesTrees/jose_tgatlt.jpg"
               alt=""
             />
           </div>
